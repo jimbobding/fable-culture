@@ -1,7 +1,7 @@
 "use client";
 
 import QRCode from "@/components/QRCode";
-import "@/styles/globals.css"; // make sure your global CSS is loaded
+// import "@/styles/globals.css"; // make sure your global CSS is loaded
 
 export default function Home() {
   const homepageURL = "https://fable-culture.vercel.app/";
