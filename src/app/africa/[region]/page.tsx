@@ -55,8 +55,8 @@ export default function RegionPage({ params }: Props) {
   }
 
   // Pick 3 facts from data file (you can extend your data structure to include multiple facts if desired)
-  const topFacts = Array.isArray(localRegion.fact)
-    ? localRegion.fact.slice(0, 3)
+  const topFacts: string[] = Array.isArray(localRegion.fact)
+    ? localRegion.fact
     : [localRegion.fact];
 
   return (
