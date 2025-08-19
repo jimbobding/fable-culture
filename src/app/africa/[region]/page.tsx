@@ -7,18 +7,23 @@ import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
 import Image from "next/image";
 
-type Props = {
-  params: { region: string };
-};
+interface RegionFact {
+  regionKey: string;
+  fact: string;
+}
 
-export default function RegionPage({ params }: Props) {
+interface RegionPageProps {
+  params: { region: keyof typeof africaRegions };
+}
+
+export default function RegionPage({ params }: RegionPageProps) {
   const regionKey = params.region;
-  const localRegion = africaRegions[regionKey as RegionKey];
+  const localRegion = africaRegions[regionKey];
 
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
 
-  // Fetch Firestore facts for this region
+  // Fetch Firestore facts
   useEffect(() => {
     const fetchFacts = async () => {
       const q = query(
@@ -26,24 +31,22 @@ export default function RegionPage({ params }: Props) {
         where("regionKey", "==", regionKey)
       );
       const snapshot = await getDocs(q);
-      setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
+      setAddedFacts(
+        snapshot.docs.map((doc) => (doc.data() as RegionFact).fact)
+      );
     };
     fetchFacts();
   }, [regionKey]);
 
-  // Add a new fact
   const handleAddFact = async () => {
     if (!newFact) return;
-    await addDoc(collection(db, "regionFacts"), {
-      regionKey,
-      fact: newFact,
-    });
+    await addDoc(collection(db, "regionFacts"), { regionKey, fact: newFact });
     setNewFact("");
-    // Refresh added facts
+    // Refresh
     const snapshot = await getDocs(
       query(collection(db, "regionFacts"), where("regionKey", "==", regionKey))
     );
-    setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
+    setAddedFacts(snapshot.docs.map((doc) => (doc.data() as RegionFact).fact));
   };
 
   if (!localRegion) {
@@ -54,38 +57,19 @@ export default function RegionPage({ params }: Props) {
     );
   }
 
-  // Pick 3 facts from data file (you can extend your data structure to include multiple facts if desired)
   const topFacts: string[] = Array.isArray(localRegion.fact)
     ? localRegion.fact
     : [localRegion.fact];
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row relative">
-      {/* Left Side - Static region data */}
+      {/* Left Side */}
       <div
-        className="flex-1 p-12 flex flex-col justify-start"
+        className="flex-1 p-8 lg:p-12 flex flex-col justify-start"
         style={{ background: localRegion.color }}
       >
-        {/* Colorful title */}
-        <h1
-          className={`text-5xl font-extrabold mb-6`}
-          style={{
-            color:
-              regionKey === "north"
-                ? "#D97706"
-                : regionKey === "west"
-                  ? "#059669"
-                  : regionKey === "east"
-                    ? "#3B82F6"
-                    : regionKey === "central"
-                      ? "#8B5CF6"
-                      : "#EF4444",
-          }}
-        >
-          {localRegion.title}
-        </h1>
+        <h1 className="text-5xl font-extrabold mb-6">{localRegion.title}</h1>
 
-        {/* Countries */}
         <h2 className="text-2xl font-semibold mb-2">Countries</h2>
         <div className="flex flex-wrap gap-2 mb-6">
           {localRegion.countries.map((country, i) => (
@@ -98,19 +82,15 @@ export default function RegionPage({ params }: Props) {
           ))}
         </div>
 
-        {/* Top Facts */}
         <div className="mb-6">
           <h2 className="text-2xl font-semibold mb-2">Top Facts</h2>
           <ul className="list-disc pl-5">
             {topFacts.map((fact, i) => (
-              <li key={i} className="mb-1">
-                {fact}
-              </li>
+              <li key={i}>{fact}</li>
             ))}
           </ul>
         </div>
 
-        {/* Added facts from Firebase */}
         {addedFacts.length > 0 && (
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Additional Facts</h3>
@@ -122,7 +102,6 @@ export default function RegionPage({ params }: Props) {
           </div>
         )}
 
-        {/* Add new fact */}
         <div className="mb-6">
           <input
             type="text"
@@ -139,30 +118,27 @@ export default function RegionPage({ params }: Props) {
           </button>
         </div>
 
-        {/* Back button */}
         <div>
-          <Link
-            href="/africa"
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4 inline-block text-center"
-          >
-            ← Back to Regions
+          <Link href="/africa">
+            <button className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4">
+              ← Back to Regions
+            </button>
           </Link>
         </div>
       </div>
 
-      {/* Right Side - Image Gallery */}
+      {/* Right Side - Images */}
       <div className="flex-1 h-full p-8 bg-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-6">
         {localRegion.images.map((img, i) => (
           <div
             key={i}
-            className="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+            className="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 relative h-64"
           >
             <Image
               src={img}
               alt={`${localRegion.title} image ${i + 1}`}
-              width={500} // or your desired width
-              height={320} // or your desired height
-              className="object-cover w-full h-full rounded-xl"
+              fill
+              className="object-cover rounded-xl"
             />
           </div>
         ))}
