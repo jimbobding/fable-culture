@@ -1,13 +1,14 @@
-// src/app/layout.js
+import "./global.css"; // Import Tailwind CSS
+
 export const metadata = {
-  title: "Fable-Culture",
-  description: "Learn about cultures around the world",
+  title: "Fable Culture",
+  description: "Explore African regions with Fable-Culture",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="antialiased text-gray-900">{children}</body>
     </html>
   );
 }
