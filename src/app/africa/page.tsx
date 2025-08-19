@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { africaRegions, RegionKey } from "@/data/africaRegions";
+import Image from "next/image";
 
 export default function AfricaOverview() {
   const regionKeys: RegionKey[] = [
@@ -31,11 +32,13 @@ export default function AfricaOverview() {
           return (
             <Link key={key} href={`/africa/${key}`} className="group">
               <div className="p-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 bg-white flex flex-col items-center justify-center h-80">
-                <div className="w-full h-48 overflow-hidden rounded-xl mb-4">
-                  <img
+                <div className="w-full h-48 overflow-hidden rounded-xl mb-4 relative">
+                  <Image
                     src={region.images[0]}
                     alt={`${region.title} preview`}
-                    className="w-full h-full object-cover"
+                    fill // makes the image cover the parent div
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw" // responsive sizing
                   />
                 </div>
                 <h2
