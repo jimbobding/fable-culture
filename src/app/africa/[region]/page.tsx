@@ -5,6 +5,7 @@ import { africaRegions, RegionKey } from "@/data/africaRegions";
 import { db } from "@/firebaseConfig";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
+import Image from "next/image";
 
 type Props = {
   params: { region: string };
@@ -156,10 +157,12 @@ export default function RegionPage({ params }: Props) {
             key={i}
             className="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
           >
-            <img
+            <Image
               src={img}
               alt={`${localRegion.title} image ${i + 1}`}
-              className="w-full h-64 object-cover"
+              width={500} // or your desired width
+              height={320} // or your desired height
+              className="object-cover w-full h-full rounded-xl"
             />
           </div>
         ))}
