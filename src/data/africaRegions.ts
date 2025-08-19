@@ -1,4 +1,4 @@
-// src/data/africaRegions.js
+// src/data/africaRegions.ts
 
 export type Region = {
   title: string;
@@ -9,13 +9,25 @@ export type Region = {
   countries: string[];
 };
 
+export const africaImagePaths = {
+  north: "/images/north-africa",
+  west: "/images/west-africa",
+  east: "/images/east-africa",
+  central: "/images/central-africa",
+  southern: "/images/southern-africa",
+} as const;
+
 export const africaRegions = {
   north: {
     title: "North Africa",
     fact: "The Sahara Desert is the largest hot desert in the world.",
     blurb:
       "North Africa is known for ancient civilizations, deserts, and Mediterranean culture.",
-    images: ["/images/north1.jpg", "/images/north2.jpg", "/images/north3.jpg"],
+    images: [
+      `${africaImagePaths.north}/market.jpeg`,
+      `${africaImagePaths.north}/pyramids.jpg`,
+      `${africaImagePaths.north}/sahara.jpeg`,
+    ],
     color: "#EAE2B7",
     countries: [
       "Algeria",
@@ -31,7 +43,11 @@ export const africaRegions = {
     title: "West Africa",
     fact: "West Africa is home to over 500 languages.",
     blurb: "Vibrant music, history, and cultural diversity define this region.",
-    images: ["/images/west1.jpg", "/images/west2.jpg", "/images/west3.jpg"],
+    images: [
+      `${africaImagePaths.west}/festival.jpeg`,
+      `${africaImagePaths.west}/lagos.jpg`,
+      `${africaImagePaths.west}/savanna.jpg`,
+    ],
     color: "#FFD6A5",
     countries: [
       "Benin",
@@ -57,7 +73,11 @@ export const africaRegions = {
     fact: "The Great Rift Valley is one of the most significant geological features in the world.",
     blurb:
       "East Africa is famous for wildlife safaris, stunning landscapes, and diverse cultures.",
-    images: ["/images/east1.jpg", "/images/east2.jpg", "/images/east3.jpg"],
+    images: [
+      `${africaImagePaths.east}/lake.png`,
+      `${africaImagePaths.east}/mountain.webp`,
+      `${africaImagePaths.east}/serengeti.jpeg`,
+    ],
     color: "#CDEAC0",
     countries: [
       "Burundi",
@@ -86,9 +106,9 @@ export const africaRegions = {
     blurb:
       "Dense jungles, rich biodiversity, and unique cultures make this region special.",
     images: [
-      "/images/central1.jpg",
-      "/images/central2.jpg",
-      "/images/central3.jpg",
+      `${africaImagePaths.central}/diamond.jpg`,
+      `${africaImagePaths.central}/gorrila.jpeg`,
+      `${africaImagePaths.central}/river.jpeg`,
     ],
     color: "#A0CED9",
     countries: [
@@ -109,12 +129,13 @@ export const africaRegions = {
     blurb:
       "Diverse landscapes, wildlife, and vibrant cities define Southern Africa.",
     images: [
-      "/images/southern1.jpg",
-      "/images/southern2.jpg",
-      "/images/southern3.jpg",
+      `${africaImagePaths.southern}/cape.jpeg`,
+      `${africaImagePaths.southern}/elephants.jpeg`,
+      `${africaImagePaths.southern}/nelson_mandela.jpg`,
     ],
     color: "#FFB6B9",
     countries: ["Botswana", "Eswatini", "Lesotho", "Namibia", "South Africa"],
   },
 };
+
 export type RegionKey = keyof typeof africaRegions;
