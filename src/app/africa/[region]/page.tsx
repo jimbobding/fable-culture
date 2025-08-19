@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { africaRegions, RegionKey } from "@/data/africaRegions";
+import { africaRegions } from "@/data/africaRegions";
 import { db } from "@/firebaseConfig";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
