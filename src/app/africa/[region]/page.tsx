@@ -5,20 +5,19 @@ import { africaRegions, RegionKey } from "@/data/africaRegions";
 import { db } from "@/firebaseConfig";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import Link from "next/link";
+import Image from "next/image";
+import { useParams } from "next/navigation";
 
-type Props = {
-  params: { region: string };
-};
-
-export default function RegionPage({ params }: Props) {
-  const regionKey = params.region;
-  const localRegion = africaRegions[regionKey as RegionKey];
+export default function RegionPage() {
+  const params = useParams();
+  const regionKey = params?.region as RegionKey;
+  const localRegion = africaRegions[regionKey];
 
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
 
-  // Fetch Firestore facts for this region
   useEffect(() => {
+    if (!regionKey) return;
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
@@ -30,137 +29,175 @@ export default function RegionPage({ params }: Props) {
     fetchFacts();
   }, [regionKey]);
 
-  // Add a new fact
   const handleAddFact = async () => {
-    if (!newFact) return;
-    await addDoc(collection(db, "regionFacts"), {
-      regionKey,
-      fact: newFact,
-    });
+    if (!newFact.trim()) return;
+    await addDoc(collection(db, "regionFacts"), { regionKey, fact: newFact });
     setNewFact("");
-    // Refresh added facts
     const snapshot = await getDocs(
       query(collection(db, "regionFacts"), where("regionKey", "==", regionKey))
     );
     setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
   };
 
-  if (!localRegion) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-8">
-        <p className="text-xl text-red-600">Region not found</p>
-      </div>
-    );
-  }
+  if (!localRegion) return <p>Region not found</p>;
 
-  // Pick 3 facts from data file (you can extend your data structure to include multiple facts if desired)
-  const topFacts = Array.isArray(localRegion.fact)
-    ? localRegion.fact.slice(0, 3)
-    : [localRegion.fact];
+  const headingShadow = "2px 2px 4px rgba(0,0,0,0.5)";
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row relative">
-      {/* Left Side - Static region data */}
+    <div className="min-h-screen flex flex-col lg:flex-row">
+      {/* ---------------- LEFT COLUMN: REGION INFO ---------------- */}
       <div
-        className="flex-1 p-12 flex flex-col justify-start"
+        className="lg:w-1/2 p-8 flex flex-col"
         style={{ background: localRegion.color }}
       >
-        {/* Colorful title */}
+        {/* Region Title */}
         <h1
-          className={`text-5xl font-extrabold mb-6`}
+          className="text-5xl font-extrabold mb-6 text-center"
           style={{
-            color:
-              regionKey === "north"
-                ? "#D97706"
-                : regionKey === "west"
-                  ? "#059669"
-                  : regionKey === "east"
-                    ? "#3B82F6"
-                    : regionKey === "central"
-                      ? "#8B5CF6"
-                      : "#EF4444",
+            color: localRegion.color,
+            textShadow: headingShadow,
+            WebkitTextStroke: "1px black",
           }}
         >
           {localRegion.title}
         </h1>
 
-        {/* Countries */}
-        <h2 className="text-2xl font-semibold mb-2">Countries</h2>
-        <div className="flex flex-wrap gap-2 mb-6">
+        {/* Countries with Emoji Flags */}
+        <h2
+          className="text-2xl font-semibold mb-4 text-center"
+          style={{ textShadow: headingShadow }}
+        >
+          Countries
+        </h2>
+        <div className="flex flex-wrap gap-2 justify-center mb-8">
           {localRegion.countries.map((country, i) => (
             <span
               key={i}
-              className="bg-white text-gray-800 px-3 py-1 rounded-full shadow-sm text-sm hover:scale-105 transition"
+              className="bg-white text-gray-800 px-3 py-1 rounded-full shadow-sm text-sm"
             >
-              {country}
+              {country.emojiFlag} {country.name}
             </span>
           ))}
         </div>
 
         {/* Top Facts */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold mb-2">Top Facts</h2>
-          <ul className="list-disc pl-5">
-            {topFacts.map((fact, i) => (
-              <li key={i} className="mb-1">
-                {fact}
-              </li>
-            ))}
-          </ul>
+        <h2
+          className="text-2xl font-semibold mb-6 text-center"
+          style={{ textShadow: headingShadow }}
+        >
+          Top Facts
+        </h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 mb-12">
+          {localRegion.fact.map((fact, i) => (
+            <div
+              key={i}
+              className="rounded-xl bg-white/80 backdrop-blur-md p-4 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5"
+            >
+              <p className="text-gray-800 text-sm font-medium">{fact}</p>
+            </div>
+          ))}
         </div>
 
-        {/* Added facts from Firebase */}
+        {/* Things We’ve Learned */}
         {addedFacts.length > 0 && (
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2">Additional Facts</h3>
-            <ul className="list-disc pl-5">
+          <section className="mt-12">
+            <h3
+              className="text-2xl font-bold mb-6 text-center"
+              style={{ textShadow: headingShadow }}
+            >
+              Things We’ve Learned
+            </h3>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {addedFacts.map((fact, i) => (
-                <li key={i}>{fact}</li>
+                <div
+                  key={i}
+                  className="rounded-xl bg-white/70 backdrop-blur-md p-4 shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5"
+                >
+                  <p className="text-gray-800 text-sm font-medium">{fact}</p>
+                </div>
               ))}
-            </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Add New Fact */}
+        <div className="mt-12 mb-6 rounded-2xl border border-black/5 bg-white/80 backdrop-blur p-4 shadow-sm">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Add a New Fact
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="e.g., The Sahel is a semi-arid belt south of the Sahara."
+              value={newFact}
+              onChange={(e) => setNewFact(e.target.value)}
+              className="w-full rounded-xl border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              onClick={handleAddFact}
+              className="shrink-0 rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white shadow hover:bg-blue-700 transition"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        {/* Music Player */}
+        {localRegion.music && (
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-2 text-center">
+              Listen to Music
+            </h3>
+            <audio controls className="w-full rounded-lg">
+              <source src={localRegion.music} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
           </div>
         )}
 
-        {/* Add new fact */}
-        <div className="mb-6">
-          <input
-            type="text"
-            placeholder="Add a new fact"
-            value={newFact}
-            onChange={(e) => setNewFact(e.target.value)}
-            className="border p-2 w-full mb-2"
-          />
-          <button
-            onClick={handleAddFact}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
-          >
-            Add Fact
-          </button>
-        </div>
+        {/* YouTube Video */}
+        {localRegion.videoUrl && (
+          <div className="mt-8">
+            <h3 className="text-xl font-semibold mb-2 text-center">
+              Watch Video
+            </h3>
+            <Link
+              href={localRegion.videoUrl}
+              target="_blank"
+              className="text-blue-600 underline text-center block"
+            >
+              Open Video in YouTube
+            </Link>
+          </div>
+        )}
 
-        {/* Back button */}
-        <div>
-          <Link
-            href="/africa"
-            className="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition mt-4 inline-block text-center"
-          >
-            ← Back to Regions
-          </Link>
-        </div>
+        {/* Back Button */}
+        <Link
+          href="/africa"
+          className="bg-gray-700 text-white px-4 py-2 rounded mt-4 inline-block text-center"
+        >
+          ← Back to Regions
+        </Link>
       </div>
-
-      {/* Right Side - Image Gallery */}
-      <div className="flex-1 h-full p-8 bg-gray-100 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* ---------------- RIGHT COLUMN: IMAGE GRID ---------------- */}
+      <div className="lg:w-1/2 p-8 lg:pl-4 bg-gray-100 grid grid-cols-2 gap-4">
         {localRegion.images.map((img, i) => (
           <div
             key={i}
-            className="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+            className="overflow-hidden rounded-xl shadow-lg relative transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+            style={{ height: "200px" }}
           >
-            <img
-              src={img}
-              alt={`${localRegion.title} image ${i + 1}`}
-              className="w-full h-64 object-cover"
+            <Image
+              src={img.src}
+              alt={img.caption}
+              fill // 🔹 makes image cover the entire parent div
+              className="object-cover w-full h-full rounded-xl"
             />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <p className="text-white text-sm font-semibold px-2 py-1 rounded bg-black/50 text-center">
+                {img.caption}
+              </p>
+            </div>
           </div>
         ))}
       </div>
