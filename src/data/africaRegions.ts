@@ -45,7 +45,7 @@ export const africaRegions: Record<RegionKey, Region> = {
     regionImage: "/images/region/north-region.jpg",
     images: [
       {
-        src: `${africaImagePaths.north}/north-berberVillage-culture.jpg`,
+        src: `${africaImagePaths.north}/north-berberVillagePic-culture.jpg`,
         caption: "Berber village in Morocco",
       },
       {
