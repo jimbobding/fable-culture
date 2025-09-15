@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import { africaRegions, RegionKey } from "@/data/africaRegions";
 
 export default function AfricaOverview() {
@@ -32,10 +34,12 @@ export default function AfricaOverview() {
             <Link key={key} href={`/africa/${key}`} className="group">
               <div className="p-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 bg-white flex flex-col items-center justify-center h-80">
                 <div className="w-full h-48 overflow-hidden rounded-xl mb-4">
-                  <img
-                    src={region.images[0]}
+                  <Image
+                    src={region.regionImage}
                     alt={`${region.title} preview`}
-                    className="w-full h-full object-cover"
+                    width={400} // or your desired card width
+                    height={250} // or your desired card height
+                    className="object-cover rounded-xl"
                   />
                 </div>
                 <h2

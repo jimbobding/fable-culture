@@ -156,7 +156,7 @@ export default function RegionPage() {
         )}
 
         {/* YouTube Video */}
-        {localRegion.videoUrl && (
+        {/* {localRegion.videoUrl && (
           <div className="mt-8">
             <h3 className="text-xl font-semibold mb-2 text-center">
               Watch Video
@@ -169,7 +169,7 @@ export default function RegionPage() {
               Open Video in YouTube
             </Link>
           </div>
-        )}
+        )} */}
 
         {/* Back Button */}
         <Link

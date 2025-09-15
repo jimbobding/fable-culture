@@ -1,90 +1,112 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
+  const facts = [
+    {
+      icon: "🌍",
+      text: "Africa is the world’s second-largest continent by area & population.",
+      color: "text-yellow-500",
+    },
+    {
+      icon: "🏞️",
+      text: "The Nile is one of the longest rivers on Earth (over 6,600 km).",
+      color: "text-blue-500",
+    },
+    {
+      icon: "🏜️",
+      text: "Home to the Sahara—largest hot desert in the world.",
+      color: "text-orange-500",
+    },
+  ];
+
+  const resources = [
+    {
+      href: "https://en.wikipedia.org/wiki/Africa",
+      label: "Wikipedia: Africa",
+    },
+    {
+      href: "https://www.nationalgeographic.com/places/africa",
+      label: "National Geographic: Africa",
+    },
+    {
+      href: "https://www.britannica.com/place/Africa",
+      label: "Britannica: Africa",
+    },
+  ];
+
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-b from-blue-50 to-white flex flex-col items-center">
-      {/* Main Title */}
-      <h1 className="text-5xl font-extrabold mb-8 text-center text-blue-700 drop-shadow-md">
-        🌍 Welcome to Fable-Culture
-      </h1>
+    <main className="relative min-h-screen w-full overflow-hidden bg-gray-50">
+      {/* Background Map */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/map2.jpg"
+          alt="Map of Africa"
+          fill
+          className="object-cover object-center opacity-10 md:opacity-20"
+          sizes="100vw"
+          priority
+        />
+      </div>
 
-      {/* About Africa */}
-      <section className="max-w-3xl w-full mb-8 p-8 bg-yellow-50 rounded-2xl shadow-lg border border-yellow-200">
-        <h2 className="text-3xl font-bold mb-4 text-yellow-800 text-center">
-          About Africa
-        </h2>
-        <p className="text-gray-700 mb-3 text-center">
-          Africa is the second largest continent and home to incredible
-          diversity in culture, wildlife, and landscapes.
-        </p>
-        <p className="text-gray-700 mb-3 text-center">
-          From the Sahara Desert to the Serengeti, Africa is full of history,
-          vibrant communities, and natural wonders.
-        </p>
-      </section>
+      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
+        {/* Header */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+            Fable-Culture
+          </h1>
+          <p className="mt-3 text-lg text-gray-700">
+            Explore Africa’s regions, cultures, and stories.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/africa"
+              className="inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-700 transition"
+            >
+              Explore Regions →
+            </Link>
+          </div>
+        </header>
 
-      {/* Resources */}
-      <section className="max-w-3xl w-full mb-8 p-8 bg-green-50 rounded-2xl shadow-lg border border-green-200">
-        <h2 className="text-3xl font-bold mb-4 text-green-800 text-center">
-          Resources
-        </h2>
-        <ul className="list-disc pl-8 text-blue-600 space-y-2">
-          <li>
-            <a
-              href="https://en.wikipedia.org/wiki/Africa"
-              target="_blank"
-              rel="noopener noreferrer"
+        {/* Facts Section */}
+        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+          {facts.map((fact, i) => (
+            <div
+              key={i}
+              className="rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl"
+              style={{ transitionDelay: `${i * 150}ms` }}
             >
-              Wikipedia: Africa
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.nationalgeographic.com/places/africa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              National Geographic: Africa
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.britannica.com/place/Africa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Britannica: Africa
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.africa.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Africa.com
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.worldatlas.com/africa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              World Atlas: Africa
-            </a>
-          </li>
-        </ul>
-      </section>
+              <div className="flex items-start gap-4">
+                <span className={`text-3xl ${fact.color}`}>{fact.icon}</span>
+                <p className="text-gray-800 font-medium">{fact.text}</p>
+              </div>
+            </div>
+          ))}
+        </section>
 
-      {/* Explore Regions Button */}
-      <Link href="/africa">
-        <button className="bg-blue-600 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition text-lg font-semibold mt-4 shadow-md">
-          Explore Regions →
-        </button>
-      </Link>
-    </div>
+        {/* Resources Section */}
+        <section>
+          <h2 className="text-2xl font-bold mb-6 text-center">Resources</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {resources.map((r) => (
+              <a
+                key={r.href}
+                href={r.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-5 shadow-md hover:shadow-lg transition flex justify-between items-center"
+              >
+                <span className="font-medium text-blue-700 group-hover:underline">
+                  {r.label}
+                </span>
+                <span aria-hidden>↗</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }

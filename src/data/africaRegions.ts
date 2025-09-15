@@ -14,6 +14,7 @@ export type Region = {
   title: string;
   fact: string[];
   blurb: string;
+  regionImage: string; // high-res preview for region selection
   images: ImageWithCaption[];
   color: string;
   countries: Country[];
@@ -29,7 +30,9 @@ export const africaImagePaths = {
   southern: "/images/southern-africa",
 } as const;
 
-export const africaRegions = {
+export type RegionKey = "north" | "west" | "east" | "central" | "southern";
+
+export const africaRegions: Record<RegionKey, Region> = {
   north: {
     title: "North Africa",
     fact: [
@@ -39,10 +42,11 @@ export const africaRegions = {
     ],
     blurb:
       "North Africa is known for ancient civilizations, deserts, and Mediterranean culture.",
+    regionImage: "/images/region/north-region.jpg",
     images: [
       {
-        src: `${africaImagePaths.north}/north-carpet-culture.jpg`,
-        caption: "Traditional carpet market in Morocco",
+        src: `${africaImagePaths.north}/north-berberVillage-culture.jpg`,
+        caption: "Berber village in Morocco",
       },
       {
         src: `${africaImagePaths.north}/north-casa-modern.webp`,
@@ -55,6 +59,14 @@ export const africaRegions = {
       {
         src: `${africaImagePaths.north}/north-pyramid-famous.jpeg`,
         caption: "The Pyramids of Giza",
+      },
+      {
+        src: `${africaImagePaths.north}/north-tagine-food.jpg`,
+        caption: "Tagine dish from Morocco",
+      },
+      {
+        src: `${africaImagePaths.north}/north-painting-art.jpg`,
+        caption: "Traditional Nubian wall painting in Sudan",
       },
     ],
     color: "#EAE2B7",
@@ -70,6 +82,7 @@ export const africaRegions = {
     music: "/music/north.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_NORTH",
   },
+
   west: {
     title: "West Africa",
     fact: [
@@ -78,22 +91,31 @@ export const africaRegions = {
       "Ancient kingdoms like Mali and Ghana thrived here.",
     ],
     blurb: "Vibrant music, history, and cultural diversity define this region.",
+    regionImage: "/images/region/west-region.jpg",
     images: [
       {
-        src: `${africaImagePaths.west}/festival.jpeg`,
-        caption: "Colorful festival in Lagos",
+        src: `${africaImagePaths.west}/west-weaving-culture.jpg`,
+        caption: "Traditional weaving in West Africa",
       },
       {
-        src: `${africaImagePaths.west}/lagos.jpg`,
+        src: `${africaImagePaths.west}/west-lagos-modern.jpg`,
         caption: "Modern skyline of Lagos",
       },
       {
-        src: `${africaImagePaths.west}/savanna.jpg`,
-        caption: "Savanna wildlife",
+        src: `${africaImagePaths.west}/west-gambiaHippo-wildlife.webp`,
+        caption: "Hippos in Gambia",
       },
       {
-        src: `${africaImagePaths.west}/west-africa-women.jpg`,
-        caption: "Local culture and dress",
+        src: `${africaImagePaths.west}/west-independenceSquare.jpg`,
+        caption: "Place de l'Independance (Independence Square), Tunis",
+      },
+      {
+        src: `${africaImagePaths.west}/west-stew-food.jpg`,
+        caption: "West African stew dish",
+      },
+      {
+        src: `${africaImagePaths.west}/west-mask-art.webp`,
+        caption: " Burkina Faso’s Festival of African Masks",
       },
     ],
     color: "#FFD6A5",
@@ -118,6 +140,7 @@ export const africaRegions = {
     music: "/music/west.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_WEST",
   },
+
   east: {
     title: "East Africa",
     fact: [
@@ -127,19 +150,31 @@ export const africaRegions = {
     ],
     blurb:
       "East Africa is famous for wildlife safaris, stunning landscapes, and diverse cultures.",
+    regionImage: "/images/region/east-region.jpeg",
     images: [
-      { src: `${africaImagePaths.east}/lake.png`, caption: "Lake Victoria" },
       {
-        src: `${africaImagePaths.east}/mountain.webp`,
+        src: `${africaImagePaths.east}/east-massai-culture.jpg`,
+        caption: "Maasai culture",
+      },
+      {
+        src: `${africaImagePaths.east}/east-narobiStreetArt-art.jpg`,
+        caption: "Street art in Nairobi",
+      },
+      {
+        src: `${africaImagePaths.east}/east-gorilla-wildlife.jpeg`,
+        caption: "Mountain gorilla",
+      },
+      {
+        src: `${africaImagePaths.east}/east-matoke-food.jpeg`,
+        caption: "Matoke dish",
+      },
+      {
+        src: `${africaImagePaths.east}/east-kilamanjaro-landmark.jpeg`,
         caption: "Mount Kilimanjaro",
       },
       {
-        src: `${africaImagePaths.east}/serengeti.jpeg`,
-        caption: "Serengeti wildlife safari",
-      },
-      {
-        src: `${africaImagePaths.east}/maasai.webp`,
-        caption: "Maasai culture",
+        src: `${africaImagePaths.east}/east-lakeVictoria.webp`,
+        caption: "Lake Victoria",
       },
     ],
     color: "#CDEAC0",
@@ -166,6 +201,7 @@ export const africaRegions = {
     music: "/music/east.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_EAST",
   },
+
   central: {
     title: "Central Africa",
     fact: [
@@ -175,19 +211,31 @@ export const africaRegions = {
     ],
     blurb:
       "Dense jungles, rich biodiversity, and unique cultures make this region special.",
+    regionImage: "/images/region/central-region.jpg",
     images: [
       {
-        src: `${africaImagePaths.central}/diamond.jpg`,
-        caption: "Central African diamond mines",
+        src: `${africaImagePaths.central}/cental-bakasCongo-cultural.jpeg`,
+        caption: "Baka people in the Congo",
       },
       {
-        src: `${africaImagePaths.central}/gorrila.jpeg`,
-        caption: "Mountain gorilla",
+        src: `${africaImagePaths.central}/central-La Nouvelle Liberte-modern.jpg`,
+        caption: "La Nouvelle Liberte monument",
       },
-      { src: `${africaImagePaths.central}/river.jpeg`, caption: "Congo River" },
       {
-        src: `${africaImagePaths.central}/rainforest.jpg`,
-        caption: "Congo rainforest",
+        src: `${africaImagePaths.central}/central-okapi-wildlfe.jpeg`,
+        caption: "Okapi in the rainforest",
+      },
+      {
+        src: `${africaImagePaths.central}/central-congoRiver-landmark.jpeg`,
+        caption: "Congo River landmark",
+      },
+      {
+        src: `${africaImagePaths.central}/central-gabonGrilledFish-food.avif`,
+        caption: "Grilled fish dish from Gabon",
+      },
+      {
+        src: `${africaImagePaths.central}/cnetral-The_Flame_of_Peace_sculpture-art.jpg`,
+        caption: "The Flame of Peace sculpture",
       },
     ],
     color: "#A0CED9",
@@ -205,6 +253,7 @@ export const africaRegions = {
     music: "/music/central.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_CENTRAL",
   },
+
   southern: {
     title: "Southern Africa",
     fact: [
@@ -214,22 +263,31 @@ export const africaRegions = {
     ],
     blurb:
       "Diverse landscapes, wildlife, and vibrant cities define Southern Africa.",
+    regionImage: "/images/region/south-region.jpg",
     images: [
       {
-        src: `${africaImagePaths.southern}/cape.jpeg`,
-        caption: "Cape Town city view",
+        src: `${africaImagePaths.southern}/south-kwaZulu-cultural.jpeg`,
+        caption: "KwaZulu cultural heritage",
       },
       {
-        src: `${africaImagePaths.southern}/elephants.jpeg`,
-        caption: "Elephants in Kruger National Park",
+        src: `${africaImagePaths.southern}/south-capetown-modern.jpeg`,
+        caption: "Modern Cape Town cityscape",
       },
       {
-        src: `${africaImagePaths.southern}/nelson_mandela.jpg`,
-        caption: "Nelson Mandela statue",
+        src: `${africaImagePaths.southern}/south-lions-wildlife.jpeg`,
+        caption: "Lions in the wild",
       },
       {
-        src: `${africaImagePaths.southern}/victoria-falls.jpg`,
+        src: `${africaImagePaths.southern}/south-victoria-landmark.jpeg`,
         caption: "Victoria Falls",
+      },
+      {
+        src: `${africaImagePaths.southern}/south-bobotie-food.jpeg`,
+        caption: "Traditional Bobotie dish",
+      },
+      {
+        src: `${africaImagePaths.southern}/south-marimbaZimbabwe-music.webp`,
+        caption: "Marimba performance in Zimbabwe",
       },
     ],
     color: "#FFB6B9",
@@ -240,9 +298,7 @@ export const africaRegions = {
       { name: "Namibia", emojiFlag: "🇳🇦" },
       { name: "South Africa", emojiFlag: "🇿🇦" },
     ],
-    music: "/music/southern.mp3",
+    music: "/music/south.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_SOUTH",
   },
-} as const;
-
-export type RegionKey = keyof typeof africaRegions;
+};
