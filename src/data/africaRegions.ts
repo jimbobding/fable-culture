@@ -79,7 +79,7 @@ export const africaRegions: Record<RegionKey, Region> = {
       { name: "Tunisia", emojiFlag: "🇹🇳" },
       { name: "Western Sahara", emojiFlag: "🇪🇭" },
     ],
-    music: "/music/north.mp3",
+    music: "/music/north.app.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_NORTH",
   },
 
@@ -137,7 +137,7 @@ export const africaRegions: Record<RegionKey, Region> = {
       { name: "Sierra Leone", emojiFlag: "🇸🇱" },
       { name: "Togo", emojiFlag: "🇹🇬" },
     ],
-    music: "/music/west.mp3",
+    music: "/music/west.app.mp3",
     videoUrl: "https://www.youtube.com/embed/VIDEO_ID_WEST",
   },
 
