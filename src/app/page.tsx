@@ -42,7 +42,7 @@ export default function HomePage() {
       {/* Background Map */}
       <div className="absolute inset-0">
         <Image
-          src="/images/map2.jpg"
+          src="/images/map.jpg"
           alt="Map of Africa"
           fill
           className="object-cover object-center opacity-10 md:opacity-20"
