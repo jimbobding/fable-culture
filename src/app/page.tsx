@@ -24,8 +24,8 @@ export default function HomePage() {
 
   const resources = [
     {
-      href: "https://en.wikipedia.org/wiki/Africa",
-      label: "Wikipedia: Africa",
+      href: "https://www.twinkl.co.uk/resource/africa-our-continent-comprehension-za-ss-58",
+      label: "Africa Our Continent Comprehension (Twinkl)",
     },
     {
       href: "https://www.nationalgeographic.com/places/africa",
