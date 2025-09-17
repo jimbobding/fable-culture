@@ -28,6 +28,14 @@ export default function HomePage() {
       label: "Africa Our Continent Comprehension (Twinkl)",
     },
     {
+      href: "https://www.twinkl.co.uk/resource/t2-g-208-africa-worksheet",
+      label: "KS2 Africa Facts Worksheet (Twinkl)",
+    },
+    {
+      href: "https://www.twinkl.co.uk/resource/africa-fact-file-template-t-g-1664273192",
+      label: "KS2 Africa Fact File (Twinkl)",
+    },
+    {
       href: "https://www.nationalgeographic.com/places/africa",
       label: "National Geographic: Africa",
     },
