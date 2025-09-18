@@ -21,7 +21,8 @@ export default function RegionPage() {
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
-        where("regionKey", "==", regionKey)
+        where("regionKey", "==", regionKey),
+        where("status", "==", "approved") // ✅ only fetch approved facts
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
@@ -31,10 +32,20 @@ export default function RegionPage() {
 
   const handleAddFact = async () => {
     if (!newFact.trim()) return;
-    await addDoc(collection(db, "regionFacts"), { regionKey, fact: newFact });
+    await addDoc(collection(db, "regionFacts"), {
+      regionKey,
+      fact: newFact,
+      status: "pending", // ✅ submissions are pending
+      createdAt: new Date(),
+    });
     setNewFact("");
+    // Re-fetch only approved facts
     const snapshot = await getDocs(
-      query(collection(db, "regionFacts"), where("regionKey", "==", regionKey))
+      query(
+        collection(db, "regionFacts"),
+        where("regionKey", "==", regionKey),
+        where("status", "==", "approved")
+      )
     );
     setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
   };
@@ -50,7 +61,6 @@ export default function RegionPage() {
         className="lg:w-1/2 p-8 flex flex-col"
         style={{ background: localRegion.color }}
       >
-        {/* Region Title */}
         <h1
           className="text-5xl font-extrabold mb-6 text-center"
           style={{
@@ -62,7 +72,6 @@ export default function RegionPage() {
           {localRegion.title}
         </h1>
 
-        {/* Countries with Emoji Flags */}
         <h2
           className="text-2xl font-semibold mb-4 text-center"
           style={{ textShadow: headingShadow }}
@@ -80,7 +89,6 @@ export default function RegionPage() {
           ))}
         </div>
 
-        {/* Top Facts */}
         <h2
           className="text-2xl font-semibold mb-6 text-center"
           style={{ textShadow: headingShadow }}
@@ -98,7 +106,6 @@ export default function RegionPage() {
           ))}
         </div>
 
-        {/* Things We’ve Learned */}
         {addedFacts.length > 0 && (
           <section className="mt-12">
             <h3
@@ -140,9 +147,11 @@ export default function RegionPage() {
               Add
             </button>
           </div>
+          <p className="mt-2 text-xs text-gray-500">
+            Your submission will be reviewed before it appears.
+          </p>
         </div>
 
-        {/* Music Player */}
         {localRegion.music && (
           <div className="mt-8">
             <h3 className="text-xl font-semibold mb-2 text-center">
@@ -155,23 +164,6 @@ export default function RegionPage() {
           </div>
         )}
 
-        {/* YouTube Video */}
-        {/* {localRegion.videoUrl && (
-          <div className="mt-8">
-            <h3 className="text-xl font-semibold mb-2 text-center">
-              Watch Video
-            </h3>
-            <Link
-              href={localRegion.videoUrl}
-              target="_blank"
-              className="text-blue-600 underline text-center block"
-            >
-              Open Video in YouTube
-            </Link>
-          </div>
-        )} */}
-
-        {/* Back Button */}
         <Link
           href="/africa"
           className="bg-gray-700 text-white px-4 py-2 rounded mt-4 inline-block text-center"
@@ -179,6 +171,7 @@ export default function RegionPage() {
           ← Back to Regions
         </Link>
       </div>
+
       {/* ---------------- RIGHT COLUMN: IMAGE GRID ---------------- */}
       <div className="lg:w-1/2 p-8 lg:pl-4 bg-gray-100 grid grid-cols-2 gap-4">
         {localRegion.images.map((img, i) => (
@@ -190,7 +183,7 @@ export default function RegionPage() {
             <Image
               src={img.src}
               alt={img.caption}
-              fill // 🔹 makes image cover the entire parent div
+              fill
               className="object-cover w-full h-full rounded-xl"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
