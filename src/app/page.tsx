@@ -1,9 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { resourceCategories } from "@/data/resources";
 
 export default function HomePage() {
+  const [playVideo, setPlayVideo] = useState(false);
+  const VIDEO_ID = "WnXOQKNKjAE";
+
   const facts = [
     {
       icon: "🌍",
@@ -19,29 +24,6 @@ export default function HomePage() {
       icon: "🏜️",
       text: "Home to the Sahara—largest hot desert in the world.",
       color: "text-orange-500",
-    },
-  ];
-
-  const resources = [
-    {
-      href: "https://www.twinkl.co.uk/resource/africa-our-continent-comprehension-za-ss-58",
-      label: "Africa Our Continent Comprehension (Twinkl)",
-    },
-    {
-      href: "https://www.twinkl.co.uk/resource/t2-g-208-africa-worksheet",
-      label: "KS2 Africa Facts Worksheet (Twinkl)",
-    },
-    {
-      href: "https://www.twinkl.co.uk/resource/africa-fact-file-template-t-g-1664273192",
-      label: "KS2 Africa Fact File (Twinkl)",
-    },
-    {
-      href: "https://www.nationalgeographic.com/places/africa",
-      label: "National Geographic: Africa",
-    },
-    {
-      href: "https://www.britannica.com/place/Africa",
-      label: "Britannica: Africa",
     },
   ];
 
@@ -94,24 +76,56 @@ export default function HomePage() {
           ))}
         </section>
 
-        {/* Resources Section */}
+        {/* Resources Hub */}
         <section>
           <h2 className="text-2xl font-bold mb-6 text-center">Resources</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {resources.map((r) => (
-              <a
-                key={r.href}
-                href={r.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-5 shadow-md hover:shadow-lg transition flex justify-between items-center"
+
+          {/* Resource cards */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+            {resourceCategories.map((category) => (
+              <Link
+                key={category.category}
+                href={`/resources/${category.category.toLowerCase().replace(/\s+/g, "-")}`}
+                className="group rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-6 shadow-md hover:shadow-xl transform transition hover:-translate-y-1 text-center"
               >
-                <span className="font-medium text-blue-700 group-hover:underline">
-                  {r.label}
+                <h3 className="text-2xl font-semibold mb-2">
+                  {category.category}
+                </h3>
+                <p className="text-gray-600">
+                  {category.resources.length} resources
+                </p>
+                <span className="text-blue-500 text-xl mt-2 inline-block group-hover:translate-x-1 transition-transform">
+                  →
                 </span>
-                <span aria-hidden>↗</span>
-              </a>
+              </Link>
             ))}
+          </div>
+
+          {/* Video */}
+          <div className="flex justify-center mb-12">
+            <div
+              className="w-full max-w-3xl relative rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+              onClick={() => setPlayVideo(true)}
+            >
+              {playVideo ? (
+                <iframe
+                  className="w-full h-[300px] md:h-[350px] rounded-2xl"
+                  src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&rel=0`}
+                  title="Intro video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <Image
+                  src={`https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`}
+                  alt="Video thumbnail"
+                  width={640} // YouTube thumbnails are 480-640px wide
+                  height={360} // Maintain 16:9 ratio
+                  className="w-full h-[300px] md:h-[350px] object-cover"
+                />
+              )}
+            </div>
           </div>
         </section>
       </div>

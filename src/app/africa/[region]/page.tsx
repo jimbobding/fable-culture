@@ -15,6 +15,7 @@ export default function RegionPage() {
 
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
+  const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
     if (!regionKey) return;
@@ -132,6 +133,12 @@ export default function RegionPage() {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Add a New Fact
           </label>
+          <p mb-02>
+            <strong>
+              Remember to check your sources. Be aware of misinformation and
+              disinformation
+            </strong>
+          </p>
           <div className="flex gap-2">
             <input
               type="text"
@@ -147,9 +154,13 @@ export default function RegionPage() {
               Add
             </button>
           </div>
-          <p className="mt-2 text-xs text-gray-500">
-            Your submission will be reviewed before it appears.
-          </p>
+
+          {/* ✅ Pending Submission Message */}
+          {isPending && (
+            <p className="mt-2 text-sm text-yellow-700 font-medium">
+              Your submission is pending approval. It will appear once reviewed.
+            </p>
+          )}
         </div>
 
         {localRegion.music && (
