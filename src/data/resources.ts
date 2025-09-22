@@ -50,10 +50,6 @@ export const resourceCategories: ResourceCategory[] = [
         href: "/resoutrce/a-recipe-a-day-seven-kwanzaa-recipes_ver_1.pdf",
         label: "A Recipe a Day: Seven Kwanzaa Recipes",
       },
-      {
-        href: "/resoutrce/kwanzaa-benne-cakes-recipe_ver_5.pdf",
-        label: "Kwanzaa Benne Cakes Recipe",
-      },
     ],
   },
   {
