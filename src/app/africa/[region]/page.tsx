@@ -33,22 +33,15 @@ export default function RegionPage() {
 
   const handleAddFact = async () => {
     if (!newFact.trim()) return;
+    setIsPending(true); // start pending state
     await addDoc(collection(db, "regionFacts"), {
       regionKey,
       fact: newFact,
-      status: "pending", // ✅ submissions are pending
+      status: "pending",
       createdAt: new Date(),
     });
     setNewFact("");
-    // Re-fetch only approved facts
-    const snapshot = await getDocs(
-      query(
-        collection(db, "regionFacts"),
-        where("regionKey", "==", regionKey),
-        where("status", "==", "approved")
-      )
-    );
-    setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
+    setIsPending(true); // keep showing the pending message
   };
 
   if (!localRegion) return <p>Region not found</p>;
