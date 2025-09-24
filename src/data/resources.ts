@@ -47,12 +47,24 @@ export const resourceCategories: ResourceCategory[] = [
         label: "African Countries Quiz",
       },
       {
-        href: "/resoutrce/a-recipe-a-day-seven-kwanzaa-recipes_ver_1.pdf",
+        href: "/resource/a-recipe-a-day-seven-kwanzaa-recipes_ver_1.pdf",
         label: "A Recipe a Day: Seven Kwanzaa Recipes",
       },
       {
-        href: "/resoutrce/kwanzaa-benne-cakes-recipe_ver_5.pdf",
+        href: "/resource/kwanzaa-benne-cakes-recipe_ver_5.pdf",
         label: "Kwanzaa Benne Cakes Recipe",
+      },
+      {
+        href: "/resource/t-fd-1741252548-fruits-of-africa-instant-photo-style-display-images_ver_1.pdf",
+        label: "Fruits of Africa Instant Photo-Style Display Images",
+      },
+      {
+        href: "/resource/t-tp-1625736924-african-silhouette-art-activity_ver_5.pdf",
+        label: "Fruits of Africa Instant Photo-Style Display Images",
+      },
+      {
+        href: "/resource/t-fd-1741252548-fruits-of-africa-instant-photo-style-display-images_ver_1.pdf",
+        label: "Fruits of Africa Instant Photo-Style Display Images",
       },
     ],
   },

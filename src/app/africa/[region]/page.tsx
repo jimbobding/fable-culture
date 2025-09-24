@@ -147,6 +147,16 @@ export default function RegionPage() {
               Add
             </button>
           </div>
+          <p className="my-4">
+            <a
+              href="https://www.bbc.co.uk/bitesize/articles/z3hhvj6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-lg shadow hover:bg-blue-200 transition-colors"
+            >
+              ❓ Misinformation vs disinformation: What’s the difference?
+            </a>
+          </p>
 
           {/* ✅ Pending Submission Message */}
           {isPending && (

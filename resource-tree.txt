@@ -1,0 +1,38 @@
+public/resource
+├── a-recipe-a-day-seven-kwanzaa-recipes_ver_1.pdf
+├── african-countries-quiz_ver_1.pdf
+├── ca-ss-1742068403-foods-across-africa-display-cards_ver_1.pdf
+├── Cultural Development at Fable House.doc
+├── Cultural Development at Fable House.pdf
+├── kwanzaa-benne-cakes-recipe_ver_5.pdf
+├── roi-va-1744011341-african-art-colour-with-patterns-activity_ver_1 (2).pdf
+├── SMSC+Cultural+Development+Plan.pdf
+├── t-fd-1741252548-fruits-of-africa-instant-photo-style-display-images_ver_1.pdf
+├── t-g-1646823398-kenyan-animal-habitats-cut-and-stick-activity_ver_2.pdf
+├── t-g-1649407843-africa-mind-map_ver_4.pdf
+├── t-g-1675716448-africa-fact-cards_ver_3.pdf
+├── t-g-1743749367-south-africa-imports-and-exports_ver_1.pdf
+├── t-h-1650285343-ancient-egyptians-fact-file-template_ver_2.pdf
+├── t-h-752-egyptian-bread-recipe-information-card_ver_2.pdf
+├── t-par-1639727889-moroccan-couscous-recipe_ver_1.pdf
+├── t-par-1657111109-explore-egypt-booklet-ks2_ver_3.pdf
+├── t-t-2516-ancient-egypt-word-mat_ver_4.pdf
+├── t-tc-1742468922-african-safari-animal-weaving-pack_ver_1.pdf
+├── t-tp-1625736924-african-silhouette-art-activity_ver_5.pdf
+├── t-tp-1709843849-black-representation-ks2-nigeria-information-sheet_ver_1.pdf
+├── t-tp-1721989776-african-animal-crossword-puzzle_ver_2.pdf
+├── T-TP-6942-KS1-Life-in-Egypt-Photo-Pack-_ver_2.pdf
+├── t-tp-7594-african-animal-footprint-matching-activity-_ver_2.pdf
+├── t-tp-8035-ks1-life-in-morocco-photo-pack-_ver_1.pdf
+├── t2-e-41465-uks2-moroccan-vegetable-tagine-healthy-eating-recipe_ver_7.pdf
+├── t2-g-639-africa-map-with-and-without-names-activity-sheets_ver_8.pdf
+├── t2-h-033-ancient-egypt-ks2-timeline-poster_ver_3.pdf
+├── t2-h-4436-design-an-ancient-egyptian-mask-activity-_ver_2.pdf
+├── t2-h-5793-egypt-landmarks-worksheet--_ver_3.pdf
+├── us-t-252396-kwanzaa-mat-craft-instructions_ver_3.pdf
+├── za-kps-1721111490-food-from-south-africa-mind-map_ver_1.pdf
+├── za-m-349-sa-money-coins-and-notes-word-mat_ver_1.pdf
+├── za-ss-58-africa-our-continent-comprehension_ver_4.pdf
+└── za2-m-7-milk-tart-recipe-activity-sheet_ver_3.pdf
+
+1 directory, 35 files
