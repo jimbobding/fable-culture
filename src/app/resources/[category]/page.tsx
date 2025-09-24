@@ -2,21 +2,47 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { resourceCategories } from "@/data/resources";
+import { resourceCategories, Resource } from "@/data/resources";
+
+// Map category → hover colors
+const categoryColors: Record<string, string> = {
+  "Food / Recipes":
+    "hover:bg-yellow-100 hover:text-yellow-700 hover:border-yellow-300 hover:shadow-yellow-200",
+  "Art / Craft / Activities":
+    "hover:bg-pink-100 hover:text-pink-700 hover:border-pink-300 hover:shadow-pink-200",
+  "Culture / History / Geography":
+    "hover:bg-blue-100 hover:text-blue-700 hover:border-blue-300 hover:shadow-blue-200",
+  "Worksheets / Fact Files":
+    "hover:bg-green-100 hover:text-green-700 hover:border-green-300 hover:shadow-green-200",
+  "Food / Display Cards":
+    "hover:bg-amber-100 hover:text-amber-700 hover:border-amber-300 hover:shadow-amber-200",
+  "Twinkl Resources":
+    "hover:bg-indigo-100 hover:text-indigo-700 hover:border-indigo-300 hover:shadow-indigo-200",
+  "Internal Resources":
+    "hover:bg-green-100 hover:text-green-700 hover:border-green-300 hover:shadow-green-200",
+  "External Resources":
+    "hover:bg-purple-100 hover:text-purple-700 hover:border-purple-300 hover:shadow-purple-200",
+};
+
+// Helper to pick icon per resource type
+function getResourceIcon(href: string) {
+  if (href.startsWith("http")) return "🌐"; // external link
+  if (href.endsWith(".pdf")) return "📄"; // PDF
+  if (href.toLowerCase().includes("recipe")) return "🥘"; // recipe/food
+  if (
+    href.toLowerCase().includes("art") ||
+    href.toLowerCase().includes("craft")
+  )
+    return "🎨"; // art/craft
+  return "📌"; // default
+}
 
 export default function ResourceCategoryPage() {
   const params = useParams();
-  const categoryKey = (params?.category as string) || "";
+  const categorySlug = (params?.category as string) || "";
 
-  // Convert URL segment back to category name
-  const formattedCategory = categoryKey
-    .split("-")
-    .map((w) => w[0].toUpperCase() + w.slice(1))
-    .join(" ");
-
-  const category = resourceCategories.find(
-    (c) => c.category.toLowerCase() === formattedCategory.toLowerCase()
-  );
+  // Find category by slug
+  const category = resourceCategories.find((c) => c.slug === categorySlug);
 
   if (!category) {
     return (
@@ -34,37 +60,9 @@ export default function ResourceCategoryPage() {
     );
   }
 
-  // Assign colors per category
-  const categoryColors: Record<
-    string,
-    { bg: string; text: string; border: string; shadow: string }
-  > = {
-    "Twinkl Resources": {
-      bg: "hover:bg-blue-100",
-      text: "hover:text-blue-700",
-      border: "hover:border-blue-300",
-      shadow: "hover:shadow-blue-200",
-    },
-    "Internal Resources": {
-      bg: "hover:bg-green-100",
-      text: "hover:text-green-700",
-      border: "hover:border-green-300",
-      shadow: "hover:shadow-green-200",
-    },
-    "External Resources": {
-      bg: "hover:bg-purple-100",
-      text: "hover:text-purple-700",
-      border: "hover:border-purple-300",
-      shadow: "hover:shadow-purple-200",
-    },
-  };
-
-  const colors = categoryColors[category.category] || {
-    bg: "hover:bg-gray-100",
-    text: "hover:text-gray-700",
-    border: "hover:border-gray-300",
-    shadow: "hover:shadow-gray-200",
-  };
+  const colors =
+    categoryColors[category.category] ||
+    "hover:bg-gray-100 hover:text-gray-700 hover:border-gray-300 hover:shadow-gray-200";
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 p-8">
@@ -84,17 +82,16 @@ export default function ResourceCategoryPage() {
 
         {/* Resources grid */}
         <ul className="grid gap-4 sm:grid-cols-2">
-          {category.resources.map((r) => (
+          {category.resources.map((r: Resource) => (
             <li key={r.href}>
               <a
                 href={r.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex justify-between items-center rounded-2xl border border-gray-200 p-4 shadow-md bg-white/80 backdrop-blur transition-transform hover:scale-105 ${colors.bg} ${colors.text} ${colors.border} ${colors.shadow}`}
+                className={`group flex justify-between items-center rounded-2xl border border-gray-200 p-4 shadow-md bg-white/80 backdrop-blur transition-transform hover:scale-105 ${colors}`}
               >
-                <span
-                  className={`font-medium transition-colors ${colors.text}`}
-                >
+                <span className="flex items-center gap-2 font-medium">
+                  <span>{getResourceIcon(r.href)}</span>
                   {r.label}
                 </span>
                 <span
