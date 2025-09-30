@@ -1,101 +1,71 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { resourceCategories } from "@/data/resources";
+import ContinentCard from "@/components/ContinentCard";
 
-export default function HomePage() {
-  const facts = [
-    {
-      icon: "🌍",
-      text: "Africa is the world’s second-largest continent by area & population.",
-      color: "text-yellow-500",
-    },
-    {
-      icon: "🏞️",
-      text: "The Nile is one of the longest rivers on Earth (over 6,600 km).",
-      color: "text-blue-500",
-    },
-    {
-      icon: "🏜️",
-      text: "Home to the Sahara—largest hot desert in the world.",
-      color: "text-orange-500",
-    },
-  ];
+const continents = [
+  {
+    name: "Africa",
+    image: "/images/continents/africa/africa.jpeg",
+    href: "/africa",
+  },
+  {
+    name: "Europe",
+    image: "/images/continents/europe/europe.jpeg",
+    href: "/europe",
+  },
+];
 
+// Sample events for the calendar
+const upcomingEvents = [
+  { date: "2025-10-05", title: "African Storytelling Workshop" },
+  { date: "2025-10-12", title: "European Culture Video Launch" },
+  { date: "2025-10-20", title: "Interactive Map Session" },
+];
+
+export default function LandingPage() {
   return (
-    <main className="relative min-h-screen w-full overflow-hidden bg-gray-50">
-      {/* Background Map */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/map.jpg"
-          alt="Map of Africa"
-          fill
-          className="object-cover object-center opacity-10 md:opacity-20"
-          sizes="100vw"
-          priority
-        />
-      </div>
+    <main className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="text-center py-16 px-6">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-6">
+          Fable-Culture
+        </h1>
+        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
+          Explore the cultures, regions, and fascinating stories of Africa and
+          Europe. Discover facts, interactive resources, music, videos, and more
+          — all in one place!
+        </p>
+      </header>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
-        {/* Header */}
-        <header className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            Fable-Culture
-          </h1>
-          <p className="mt-3 text-lg text-gray-700">
-            Explore Africa’s regions, cultures, and stories.
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/africa"
-              className="inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-700 transition"
-            >
-              Explore Regions →
-            </Link>
-          </div>
-        </header>
+      {/* Continent Cards */}
+      <section className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16 px-6">
+        {continents.map((continent) => (
+          <ContinentCard
+            key={continent.name}
+            name={continent.name}
+            image={continent.image}
+            href={continent.href}
+          />
+        ))}
+      </section>
 
-        {/* Facts Section */}
-        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
-          {facts.map((fact, i) => (
+      {/* Upcoming Events / Calendar */}
+      <section className="max-w-4xl mx-auto px-6 mb-16">
+        <h2 className="text-3xl font-bold mb-6 text-center">Upcoming Events</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {upcomingEvents.map((event, i) => (
             <div
               key={i}
-              className="rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-6 shadow-md transform transition duration-500 hover:scale-105 hover:shadow-xl"
-              style={{ transitionDelay: `${i * 150}ms` }}
+              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
             >
-              <div className="flex items-start gap-4">
-                <span className={`text-3xl ${fact.color}`}>{fact.icon}</span>
-                <p className="text-gray-800 font-medium">{fact.text}</p>
-              </div>
+              <p className="font-semibold text-blue-600">
+                {new Date(event.date).toDateString()}
+              </p>
+              <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
             </div>
           ))}
-        </section>
-
-        {/* Resources Hub */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6 text-center">Resources</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {resourceCategories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/resources/${category.slug}`}
-                className="group rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-6 shadow-md hover:shadow-xl transform transition hover:-translate-y-1 text-center"
-              >
-                <h3 className="text-2xl font-semibold mb-2">
-                  {category.category}
-                </h3>
-                <p className="text-gray-600">
-                  {category.resources.length} resources
-                </p>
-                <span className="text-blue-500 text-xl mt-2 inline-block group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
