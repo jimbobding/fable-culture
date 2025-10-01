@@ -48,7 +48,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8">
             <Link
-              href="/africa"
+              href="/africa/regions"
               className="inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-700 transition"
             >
               Explore Regions →
