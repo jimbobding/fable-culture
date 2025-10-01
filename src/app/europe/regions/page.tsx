@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 import { europeRegions, RegionKey } from "@/data/europeRegions";
 
@@ -14,12 +15,21 @@ export default function EuropeOverview() {
   ];
 
   const regionColors: Record<RegionKey, string> = {
-    north: "#AEC6CF",
-    south: "#FFB347",
-    east: "#77DD77",
-    west: "#CBAACB",
-    central: "#FDFD96",
+    northern: "#AEC6CF",
+    southern: "#FFB347",
+    eastern: "#77DD77",
+    western: "#CBAACB",
   };
+
+  // Pick one random image per region and save it in state
+  const [regionImages] = useState(() => {
+    return regionKeys.map((key) => {
+      const region = europeRegions[key];
+      const randomImage =
+        region.images[Math.floor(Math.random() * region.images.length)];
+      return { key, image: randomImage };
+    });
+  });
 
   return (
     <div className="min-h-screen p-8 bg-gray-100">
@@ -28,21 +38,19 @@ export default function EuropeOverview() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {regionKeys.map((key) => {
+        {regionImages.map(({ key, image }) => {
           const region = europeRegions[key];
           return (
             <Link key={key} href={`/europe/${key}`} className="group">
               <div className="p-4 rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 bg-white flex flex-col items-center justify-center h-80">
                 <div className="w-full h-48 overflow-hidden rounded-xl mb-4">
-                  <div className="w-full h-48 overflow-hidden rounded-xl mb-4">
-                    <Image
-                      src={region.regionImage}
-                      alt={`${region.title} preview`}
-                      width={400} // force width
-                      height={250} // force height
-                      className="object-cover w-full h-full rounded-xl"
-                    />
-                  </div>
+                  <Image
+                    src={image.src}
+                    alt={image.caption}
+                    width={400}
+                    height={250}
+                    className="object-cover w-full h-full rounded-xl"
+                  />
                 </div>
                 <h2
                   className="text-2xl font-extrabold text-center"

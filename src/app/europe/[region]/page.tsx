@@ -11,18 +11,28 @@ export default function EuropeRegionPage() {
   const params = useParams();
   const regionKey = params?.region as RegionKey;
   const region = europeRegions[regionKey];
+
+  // Always call useState at top level
+  const [heroImage] = useState(
+    region
+      ? region.images[Math.floor(Math.random() * region.images.length)]
+      : null
+  );
+
   if (!region) return <p>Region not found</p>;
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* ---------------- REGION BANNER ---------------- */}
       <div className="relative h-64 w-full mb-8">
-        <Image
-          src={region.regionImage}
-          alt={region.title}
-          fill
-          className="object-cover w-full h-full rounded-b-2xl"
-        />
+        {heroImage && (
+          <Image
+            src={heroImage.src}
+            alt={heroImage.caption}
+            fill
+            className="object-cover w-full h-full rounded-b-2xl"
+          />
+        )}
         <h1 className="absolute bottom-4 left-4 text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">
           {region.title}
         </h1>
@@ -118,10 +128,10 @@ export default function EuropeRegionPage() {
         )}
 
         {/* ---------------- BACK LINK ---------------- */}
-        <div className="mt-12 mb-8  text-center">
+        <div className="mt-12 mb-8 text-center">
           <Link
             href="/europe/regions"
-            className="bg-gray-700 text-white  px-6 py-2 rounded hover:bg-gray-800 transition"
+            className="bg-gray-700 text-white px-6 py-2 rounded hover:bg-gray-800 transition"
           >
             ← Back to Europe Regions
           </Link>
