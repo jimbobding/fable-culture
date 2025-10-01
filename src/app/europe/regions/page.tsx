@@ -11,7 +11,6 @@ export default function EuropeOverview() {
     "southern",
     "eastern",
     "western",
-    "central",
   ];
 
   const regionColors: Record<RegionKey, string> = {
