@@ -68,6 +68,22 @@ export default function FactsSection({ regionKey }: Props) {
           onChange={(e) => setNewFact(e.target.value)}
           className="border p-2 w-full mb-2 rounded"
         />
+        <p mb-02>
+          <strong>
+            Remember to check your sources. Be aware of misinformation and
+            disinformation
+          </strong>
+        </p>
+        <p className="my-4">
+          <a
+            href="https://www.bbc.co.uk/bitesize/articles/z3hhvj6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-lg shadow hover:bg-blue-200 transition-colors"
+          >
+            ❓ Misinformation vs disinformation: What’s the difference?
+          </a>
+        </p>
         <button
           onClick={handleAddFact}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"

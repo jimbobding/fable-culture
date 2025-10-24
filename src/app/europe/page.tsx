@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { resourceCategories } from "@/data/resources";
+import { europeResourceCategories } from "@/data/europeResources";
 
 export default function EuropePage() {
   const facts = [
@@ -69,7 +69,7 @@ export default function EuropePage() {
         <section className="mb-12">
           <h2 className="text-2xl font-bold mb-6 text-center">Resources</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {resourceCategories.map((category) => (
+            {europeResourceCategories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/europe/resources/${category.slug}`}

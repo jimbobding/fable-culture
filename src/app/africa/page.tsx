@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { resourceCategories } from "@/data/resources";
 
-export default function HomePage() {
+export default function AfricaPage() {
   const facts = [
     {
       icon: "🌍",
@@ -41,7 +41,7 @@ export default function HomePage() {
         {/* Header */}
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            Fable-Culture
+            Fable-Culture: Africa
           </h1>
           <p className="mt-3 text-lg text-gray-700">
             Explore Africa’s regions, cultures, and stories.
@@ -79,7 +79,7 @@ export default function HomePage() {
             {resourceCategories.map((category) => (
               <Link
                 key={category.slug}
-                href={`/resources/${category.slug}`}
+                href={`/africa/resources/${category.slug}`}
                 className="group rounded-2xl border border-gray-200 bg-white/80 backdrop-blur p-6 shadow-md hover:shadow-xl transform transition hover:-translate-y-1 text-center"
               >
                 <h3 className="text-2xl font-semibold mb-2">
