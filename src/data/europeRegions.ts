@@ -73,7 +73,7 @@ export const europeRegions: Record<RegionKey, Region> = {
       },
       {
         src: `${northernEuropePath}/uk-OldTrafford.jpeg`,
-        caption: "Old Trafford Stadium, United Kingdom",
+        caption: "Old Trafford Stadium, Manchester United Kingdom, (heaven)",
       },
       {
         src: `${northernEuropePath}/den-NyhavnCope.jpg`,
