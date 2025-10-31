@@ -23,7 +23,7 @@ export type Region = {
 };
 
 export const africaImagePaths = {
-  north: "/images/north-africa",
+  north: "/images/continents/africa/regions/north-africa",
   west: "/images/west-africa",
   east: "/images/east-africa",
   central: "/images/central-africa",
