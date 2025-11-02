@@ -24,10 +24,10 @@ export type Region = {
 
 export const africaImagePaths = {
   north: "/images/continents/africa/regions/north-africa",
-  west: "/images/west-africa",
-  east: "/images/east-africa",
-  central: "/images/central-africa",
-  southern: "/images/southern-africa",
+  west: "/images/continents/africa/regions/west-africa",
+  east: "/images/continents/africa/regions/east-africa",
+  central: "/images/continents/africa/regions/central-africa",
+  southern: "/images/continents/africa/regions/southern-africa",
 } as const;
 
 export type RegionKey = "north" | "west" | "east" | "central" | "southern";
@@ -42,7 +42,7 @@ export const africaRegions: Record<RegionKey, Region> = {
     ],
     blurb:
       "North Africa is known for ancient civilizations, deserts, and Mediterranean culture.",
-    regionImage: "/images/region/north-region.jpg",
+    regionImage: "/images/continents/africa/region-cards/north-region.jpg",
     images: [
       {
         src: `${africaImagePaths.north}/north-berberVillagePic-culture.jpg`,
@@ -91,7 +91,7 @@ export const africaRegions: Record<RegionKey, Region> = {
       "Ancient kingdoms like Mali and Ghana thrived here.",
     ],
     blurb: "Vibrant music, history, and cultural diversity define this region.",
-    regionImage: "/images/region/west-region.jpg",
+    regionImage: "/images/continents/africa/region-cards/west-region.jpg",
     images: [
       {
         src: `${africaImagePaths.west}/west-weaving-culture.jpg`,
@@ -115,7 +115,7 @@ export const africaRegions: Record<RegionKey, Region> = {
       },
       {
         src: `${africaImagePaths.west}/west-mask-art.webp`,
-        caption: " Burkina Faso’s Festival of African Masks",
+        caption: "Burkina Faso’s Festival of African Masks",
       },
     ],
     color: "#FFD6A5",
@@ -150,10 +150,10 @@ export const africaRegions: Record<RegionKey, Region> = {
     ],
     blurb:
       "East Africa is famous for wildlife safaris, stunning landscapes, and diverse cultures.",
-    regionImage: "/images/region/east-region.jpeg",
+    regionImage: "/images/continents/africa/region-cards/east-region.jpeg",
     images: [
       {
-        src: `${africaImagePaths.east}/east-massai-culture.jpg`,
+        src: `${africaImagePaths.east}/east-massai-culture.jpeg`,
         caption: "Maasai culture",
       },
       {
@@ -211,7 +211,7 @@ export const africaRegions: Record<RegionKey, Region> = {
     ],
     blurb:
       "Dense jungles, rich biodiversity, and unique cultures make this region special.",
-    regionImage: "/images/region/central-region.jpg",
+    regionImage: "/images/continents/africa/region-cards/central-region.webp",
     images: [
       {
         src: `${africaImagePaths.central}/cental-bakasCongo-cultural.jpeg`,
@@ -263,7 +263,7 @@ export const africaRegions: Record<RegionKey, Region> = {
     ],
     blurb:
       "Diverse landscapes, wildlife, and vibrant cities define Southern Africa.",
-    regionImage: "/images/region/south-region.jpg",
+    regionImage: "/images/continents/africa/region-cards/south-region.jpg",
     images: [
       {
         src: `${africaImagePaths.southern}/south-kwaZulu-cultural.jpeg`,

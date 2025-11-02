@@ -54,7 +54,7 @@ export default function AfricaOverview() {
         })}
       </div>
       <div className="mt-6">
-        <Link href="/">
+        <Link href="/africa">
           <button className="bg-gray-700 text-white px-6 py-3 rounded hover:bg-gray-800 transition">
             ← Back to Home
           </button>
