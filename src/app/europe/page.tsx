@@ -39,7 +39,7 @@ export default function EuropePage() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         {/* Header */}
-        <header className="text-center mb-12">
+        <header className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             Fable-Culture: Europe
           </h1>
@@ -47,6 +47,16 @@ export default function EuropePage() {
             Explore Europe’s regions, cultures, and stories. Learn about
             traditions, cuisine, art, and upcoming events.
           </p>
+          {/* Back to Landing Button */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/"
+              className="group inline-flex items-center rounded-xl bg-gray-100 px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-200 transition"
+            >
+              <span className="mr-2">🏠</span>
+              Back to Landing Page
+            </Link>
+          </div>
         </header>
 
         {/* Facts Section */}
@@ -88,6 +98,7 @@ export default function EuropePage() {
             ))}
           </div>
         </section>
+
         <Link
           href="/europe/regions"
           className="inline-block rounded-xl bg-green-600 px-6 py-3 font-semibold text-white shadow hover:bg-green-700 transition"

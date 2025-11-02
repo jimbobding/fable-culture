@@ -13,11 +13,13 @@ export default function FactsSection({ regionKey }: Props) {
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Fetch only approved facts
   useEffect(() => {
     const fetchFacts = async () => {
       const q = query(
-        collection(db, "europeRegionFacts"),
-        where("regionKey", "==", regionKey)
+        collection(db, "regionFacts"),
+        where("regionKey", "==", regionKey),
+        where("status", "==", "approved") // ✅ only approved facts
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
@@ -26,36 +28,35 @@ export default function FactsSection({ regionKey }: Props) {
   }, [regionKey]);
 
   const handleAddFact = async () => {
-    if (!newFact.trim() || addedFacts.includes(newFact.trim())) return;
+    const trimmedFact = newFact.trim();
+    if (!trimmedFact || addedFacts.includes(trimmedFact)) return;
 
-    await addDoc(collection(db, "europeRegionFacts"), {
+    // Add new fact with correct field for Firestore rules
+    await addDoc(collection(db, "regionFacts"), {
       regionKey,
-      fact: newFact.trim(),
+      fact: trimmedFact,
+      status: "pending", // ✅ matches Firestore create rule
     });
 
     setNewFact("");
     inputRef.current?.focus();
-
-    // Refresh facts
-    const snapshot = await getDocs(
-      query(
-        collection(db, "europeRegionFacts"),
-        where("regionKey", "==", regionKey)
-      )
-    );
-    setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
   };
 
   return (
     <div className="mt-6">
       {addedFacts.length > 0 && (
-        <div className="mb-4">
-          <h3 className="text-xl font-semibold mb-2">Additional Facts</h3>
-          <ul className="list-disc pl-5">
+        <div className="mb-6">
+          <h3 className="text-xl font-semibold mb-4">Additional Facts</h3>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {addedFacts.map((fact, i) => (
-              <li key={i}>{fact}</li>
+              <div
+                key={i}
+                className="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-md transition-shadow"
+              >
+                <p className="text-gray-800">{fact}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
 
@@ -68,7 +69,7 @@ export default function FactsSection({ regionKey }: Props) {
           onChange={(e) => setNewFact(e.target.value)}
           className="border p-2 w-full mb-2 rounded"
         />
-        <p mb-02>
+        <p className="mb-2">
           <strong>
             Remember to check your sources. Be aware of misinformation and
             disinformation

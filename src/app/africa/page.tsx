@@ -39,14 +39,26 @@ export default function AfricaPage() {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6 py-12">
         {/* Header */}
-        <header className="text-center mb-12">
+        <header className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             Fable-Culture: Africa
           </h1>
           <p className="mt-3 text-lg text-gray-700">
             Explore Africa’s regions, cultures, and stories.
           </p>
-          <div className="mt-8">
+          {/* Back to Landing Button */}
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/"
+              className="group inline-flex items-center rounded-xl bg-gray-100 px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-200 transition"
+            >
+              {/* Optional icon/image */}
+              <span className="mr-2">🏠</span>
+              Back to Landing Page
+            </Link>
+          </div>
+
+          <div className="mt-6">
             <Link
               href="/africa/regions"
               className="inline-block rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white shadow hover:bg-blue-700 transition"
