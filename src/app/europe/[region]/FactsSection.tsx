@@ -11,6 +11,7 @@ type Props = {
 export default function FactsSection({ regionKey }: Props) {
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
+  const [isPending, setIsPending] = useState(false); // ✅ pending state
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Fetch only approved facts
@@ -31,11 +32,12 @@ export default function FactsSection({ regionKey }: Props) {
     const trimmedFact = newFact.trim();
     if (!trimmedFact || addedFacts.includes(trimmedFact)) return;
 
-    // Add new fact with correct field for Firestore rules
+    setIsPending(true); // ✅ show pending message
+
     await addDoc(collection(db, "regionFacts"), {
       regionKey,
       fact: trimmedFact,
-      status: "pending", // ✅ matches Firestore create rule
+      status: "pending", // mark as pending in Firestore
     });
 
     setNewFact("");
@@ -85,12 +87,20 @@ export default function FactsSection({ regionKey }: Props) {
             ❓ Misinformation vs disinformation: What’s the difference?
           </a>
         </p>
+
         <button
           onClick={handleAddFact}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
         >
           Add Fact
         </button>
+
+        {/* ✅ Pending Submission Message */}
+        {isPending && (
+          <p className="mt-2 text-sm text-yellow-700 font-medium">
+            Your submission is pending approval. It will appear once reviewed.
+          </p>
+        )}
       </div>
     </div>
   );
