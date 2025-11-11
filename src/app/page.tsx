@@ -75,7 +75,7 @@ export default function LandingPage() {
             alt="Fable-Culture Logo"
             width={160}
             height={160}
-            className=" drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)] mx-auto"
+            className=" drop-shadow-[0_5px_10px_rgba(0,0,0,.5)] mx-auto"
           />
         </div>
 
