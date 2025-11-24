@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const continents = [
   {
@@ -17,33 +18,67 @@ const continents = [
   },
 ];
 
-// Sample events for the calendar
+// ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
-    date: "2025-10-05",
-    title: "African Storytelling Workshop",
+    start: "2025-11-11",
+    end: "2025-11-11",
+    title: "Remembrance Day",
     color: "bg-orange-100 border-orange-300",
   },
   {
-    date: "2025-10-12",
-    title: "European Culture Video Launch",
+    start: "2025-11-10",
+    end: "2025-11-14",
+    title: "Anti-Bullying Week",
     color: "bg-blue-100 border-blue-300",
   },
   {
-    date: "2025-10-20",
-    title: "Interactive Map Session",
+    start: "2025-11-14",
+    end: "2025-11-14",
+    title: "Children in Need",
     color: "bg-green-100 border-green-300",
   },
 ];
 
 export default function LandingPage() {
+  const now = new Date();
+  const monthName = now.toLocaleString("default", { month: "long" });
+
+  const formatDateRange = (start: string, end: string) => {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const sameDay = startDate.toDateString() === endDate.toDateString();
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "short",
+    };
+
+    if (sameDay) return startDate.toLocaleDateString(undefined, options);
+    if (startDate.getMonth() !== endDate.getMonth()) {
+      return `${startDate.toLocaleDateString(undefined, options)}–${endDate.toLocaleDateString(undefined, options)}`;
+    }
+    return `${startDate.getDate()}–${endDate.toLocaleDateString(undefined, options)}`;
+  };
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-pink-50 to-yellow-50">
+    <main className="bg-gradient-to-br from-pink-50 to-yellow-50 min-h-[90vh] pb-8">
       {/* Header */}
       <header className="text-center py-16 px-6">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-pink-600">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-pink-600">
           Fable-Culture
         </h1>
+
+        {/* ✅ Logo under title */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/images/FHLogo-Horizontal.svg" // <-- replace this with your logo path
+            alt="Fable-Culture Logo"
+            width={160}
+            height={160}
+            className=" drop-shadow-[0_5px_10px_rgba(0,0,0,.5)] mx-auto"
+          />
+        </div>
+
         <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
           Explore the cultures, regions, and fascinating stories of Africa and
           Europe. Discover facts, interactive resources, music, videos, and more
@@ -71,8 +106,8 @@ export default function LandingPage() {
 
       {/* Upcoming Events / Calendar */}
       <section className="max-w-4xl mx-auto px-6 mb-16">
-        <h2 className="text-3xl font-bold mb-6 text-center text-green-700">
-          Upcoming Events
+        <h2 className="text-3xl font-bold mb-6 text-center text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)]">
+          Important Events: {monthName}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {upcomingEvents.map((event, i) => (
@@ -81,7 +116,7 @@ export default function LandingPage() {
               className={`p-6 rounded-2xl shadow hover:shadow-lg transition border ${event.color}`}
             >
               <p className="font-semibold text-pink-600">
-                {new Date(event.date).toDateString()}
+                {formatDateRange(event.start, event.end)}
               </p>
               <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
             </div>
