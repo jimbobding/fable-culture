@@ -6,7 +6,7 @@ export const drummingGallery = [
 ];
 
 export const drummingVideo = {
-  mediaUrl: "/videos/LBK-drumming.mp4",
+  src: "/videos/LBK-drumming-small.mp4",
   description:
     "A short performance from the drumming workshop. Students explore traditional rhythms, teamwork, and West African music.",
 };
