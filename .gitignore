@@ -44,3 +44,7 @@ js-practice/
 
 node_modules/
 
+# Videos (too large for GitHub)
+public/videos/
+
+
