@@ -21,21 +21,21 @@ const continents = [
 // ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
-    start: "2025-11-11",
-    end: "2025-11-11",
-    title: "Remembrance Day",
+    start: "2025-12-14",
+    end: "2025-12-22",
+    title: "Hannakah",
     color: "bg-orange-100 border-orange-300",
   },
   {
-    start: "2025-11-10",
-    end: "2025-11-14",
-    title: "Anti-Bullying Week",
+    start: "2025-12-25",
+    end: "2025-12-25",
+    title: "Christmas Day",
     color: "bg-blue-100 border-blue-300",
   },
   {
-    start: "2025-11-14",
-    end: "2025-11-14",
-    title: "Children in Need",
+    start: "2025-12-10",
+    end: "2025-12-10",
+    title: "International Animals Rights Day",
     color: "bg-green-100 border-green-300",
   },
 ];
