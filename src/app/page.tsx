@@ -21,6 +21,12 @@ const continents = [
 // ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
+    start: "2025-12-10",
+    end: "2025-12-10",
+    title: "International Animals Rights Day",
+    color: "bg-green-100 border-green-300",
+  },
+  {
     start: "2025-12-14",
     end: "2025-12-22",
     title: "Hannakah",
@@ -31,12 +37,6 @@ const upcomingEvents = [
     end: "2025-12-25",
     title: "Christmas Day",
     color: "bg-blue-100 border-blue-300",
-  },
-  {
-    start: "2025-12-10",
-    end: "2025-12-10",
-    title: "International Animals Rights Day",
-    color: "bg-green-100 border-green-300",
   },
 ];
 
