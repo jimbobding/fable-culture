@@ -8,7 +8,7 @@ export const africaGallery = [
 
 // Example video item
 export const africaVideo = {
-  mediaUrl: "/videos/LBK-drumming.mp4",
+  mediaUrl: "/videos/LBK-drumming-sm.mov",
   title: "African Drumming Performance",
   description:
     "A short performance from the drumming workshop. Students explore traditional rhythms, teamwork, and West African music.",
