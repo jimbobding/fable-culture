@@ -77,7 +77,7 @@ export default function EuropeRegionPage() {
         )}
 
         {/* ---------------- USER ADDED FACTS ---------------- */}
-        <FactsSection regionKey={regionKey} />
+        <FactsSection continent="europe" regionKey={regionKey} />
 
         {/* ---------------- GALLERY ---------------- */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

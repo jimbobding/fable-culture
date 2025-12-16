@@ -5,37 +5,39 @@ import { db } from "@/firebaseConfig";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 type Props = {
-  regionKey: string;
+  continent: string; // e.g., "africa", "europe"
+  regionKey: string; // e.g., "west", "southern"
 };
 
-export default function FactsSection({ regionKey }: Props) {
+export default function FactsSection({ continent, regionKey }: Props) {
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Fetch only approved facts
+  // Fetch only approved facts for this continent + region
   useEffect(() => {
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
         where("regionKey", "==", regionKey),
-        where("status", "==", "approved") // ✅ only approved facts
+        where("continent", "==", continent), // ✅ dynamic continent
+        where("status", "==", "approved")
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
     };
     fetchFacts();
-  }, [regionKey]);
+  }, [continent, regionKey]);
 
   const handleAddFact = async () => {
     const trimmedFact = newFact.trim();
     if (!trimmedFact || addedFacts.includes(trimmedFact)) return;
 
-    // Add new fact with correct field for Firestore rules
     await addDoc(collection(db, "regionFacts"), {
+      continent, // ✅ dynamic
       regionKey,
       fact: trimmedFact,
-      status: "pending", // ✅ matches Firestore create rule
+      status: "pending",
     });
 
     setNewFact("");
@@ -44,21 +46,16 @@ export default function FactsSection({ regionKey }: Props) {
 
   return (
     <div className="mt-6">
-      {addedFacts.length > 0 && (
-        <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-4">Additional Facts</h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {addedFacts.map((fact, i) => (
-              <div
-                key={i}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-md transition-shadow"
-              >
-                <p className="text-gray-800">{fact}</p>
-              </div>
-            ))}
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4 mb-4">
+        {addedFacts.map((fact, i) => (
+          <div
+            key={i}
+            className="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-md transition-shadow break-inside-avoid"
+          >
+            <p className="text-gray-800">{fact}</p>
           </div>
-        </div>
-      )}
+        ))}
+      </div>
 
       <div className="mb-6">
         <input
