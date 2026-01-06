@@ -1,30 +1,29 @@
-// src/app/africa/gallery/components/JollofGallery.tsx
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { jollofGallery } from "@/data/africa/jollofGallery";
 
 export default function JollofGallery() {
   return (
-    <section className="bg-yellow-50 p-8 rounded-lg mb-12">
+    <section className="py-12">
       {/* Main heading */}
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4 text-orange-600 drop-shadow-lg">
-        Jollof Showdown!
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-4 tracking-tight drop-shadow-sm text-orange-600">
+        Jollof Showdown! 🍚
       </h2>
 
-      {/* Subheading with fun effect */}
-      <h3 className="text-2xl md:text-3xl font-black text-center text-red-500 mb-4 animate-pulse">
-        Ghanaian Style 🇬🇭 VS Kenyan Style 🇰🇪
+      {/* Subtitle */}
+      <h3 className="text-xl md:text-2xl font-black text-center text-red-500 mb-6 animate-pulse">
+        Ghana 🇬🇭 VS Kenya 🇰🇪
       </h3>
 
-      {/* Description / blurb */}
-      <p className="text-center text-gray-700 mb-8 text-lg md:text-xl">
-        Our resident chef, Jessica, decided to try two different styles of
-        Jollof rice! Each country claims theirs is the best — Ghanaian or
-        Kenyan? Dive in and see which one steals the spotlight!
+      {/* Description */}
+      <p className="text-center text-gray-700 mb-12 max-w-3xl mx-auto text-lg">
+        Our resident chef Jessica tried two styles of Jollof rice — which one
+        wins?
       </p>
 
-      {/* Gallery grid */}
+      {/* Gallery content */}
       <div className="flex flex-col md:flex-row gap-8">
         {jollofGallery.map((recipe, i) => (
           <div key={i} className="flex-1 flex flex-col gap-6">
@@ -35,21 +34,32 @@ export default function JollofGallery() {
                 alt={`${recipe.title} Hero`}
                 width={600}
                 height={400}
-                className="rounded-lg shadow-xl"
+                className="rounded-lg shadow-lg hover:shadow-xl transition"
               />
               {recipe.description && (
-                <p className="text-center text-gray-700 mt-3 text-md md:text-lg">
+                <p className="text-center text-gray-700 mt-4 max-w-2xl">
                   {recipe.description}
                 </p>
               )}
+
+              {recipe.recipeUrl && (
+                <Link
+                  href={recipe.recipeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block bg-orange-600 text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-orange-700 transition"
+                >
+                  🍽 View Recipe
+                </Link>
+              )}
             </div>
 
-            {/* Smaller images grid */}
+            {/* Steps / smaller images */}
             <div className="grid grid-cols-2 gap-4 mt-4">
               {recipe.images.map((imgSrc, j) => (
                 <div
                   key={j}
-                  className="rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+                  className="rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition"
                 >
                   <Image
                     src={imgSrc}
