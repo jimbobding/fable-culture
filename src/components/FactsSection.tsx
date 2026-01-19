@@ -5,24 +5,37 @@ import { db } from "@/firebaseConfig";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 type Props = {
-  continent: string; // "africa" | "europe" | "uk"
-  regionKey: string; // region OR country key
+  continent: string;
+  regionKey: string;
+
+  // NEW – makes it reusable
+  sectionHeading?: string;
+  inputHeading?: string;
+  placeholder?: string;
+  staticItems?: string[];
 };
 
-export default function FactsSection({ continent, regionKey }: Props) {
+export default function FactsSection({
+  continent,
+  regionKey,
+  sectionHeading = "Things We’ve Learned",
+  inputHeading = "Add a new fact",
+  placeholder = "Check your source before submitting",
+  staticItems = [],
+}: Props) {
   const [facts, setFacts] = useState<string[]>([]);
   const [newFact, setNewFact] = useState("");
   const [isPending, setIsPending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // ✅ Fetch approved facts only
+  // Fetch approved facts from Firebase
   useEffect(() => {
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
         where("continent", "==", continent),
         where("regionKey", "==", regionKey),
-        where("status", "==", "approved")
+        where("status", "==", "approved"),
       );
 
       const snapshot = await getDocs(q);
@@ -32,7 +45,7 @@ export default function FactsSection({ continent, regionKey }: Props) {
     fetchFacts();
   }, [continent, regionKey]);
 
-  // ✅ Add pending fact
+  // Add pending submission
   const handleAddFact = async () => {
     const trimmed = newFact.trim();
     if (!trimmed) return;
@@ -51,36 +64,40 @@ export default function FactsSection({ continent, regionKey }: Props) {
     inputRef.current?.focus();
   };
 
+  // Combine static + firebase items
+  const allItems = [...staticItems, ...facts];
+
   return (
     <section className="mt-12">
-      {facts.length > 0 && (
+      {allItems.length > 0 && (
         <>
           <h3 className="text-2xl font-bold mb-6 text-center">
-            Things We’ve Learned
+            {sectionHeading}
           </h3>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            {facts.map((fact, i) => (
+            {allItems.map((item, i) => (
               <div
                 key={i}
                 className="rounded-xl bg-white/80 p-4 shadow hover:shadow-md transition"
               >
-                <p className="text-gray-800 text-sm font-medium">{fact}</p>
+                <p className="text-gray-800 text-sm font-medium">{item}</p>
               </div>
             ))}
           </div>
         </>
       )}
 
+      {/* Input card */}
       <div className="mt-8 rounded-2xl bg-white/80 p-4 shadow">
-        <label className="block text-sm font-medium mb-2">Add a new fact</label>
+        <label className="block text-sm font-medium mb-2">{inputHeading}</label>
 
         <input
           ref={inputRef}
           type="text"
           value={newFact}
           onChange={(e) => setNewFact(e.target.value)}
-          placeholder="Check your source before submitting"
+          placeholder={placeholder}
           className="w-full rounded-lg border px-3 py-2 mb-2"
         />
 
@@ -88,12 +105,12 @@ export default function FactsSection({ continent, regionKey }: Props) {
           onClick={handleAddFact}
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
         >
-          Add Fact
+          Add
         </button>
 
         {isPending && (
           <p className="mt-2 text-sm text-yellow-700">
-            Your fact is pending approval.
+            Your submission is pending approval.
           </p>
         )}
       </div>

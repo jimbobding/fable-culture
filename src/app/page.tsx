@@ -27,22 +27,25 @@ const continents = [
 // ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
-    start: "2025-12-10",
-    end: "2025-12-10",
+    start: "2026-01-27",
+    end: "2026-01-27",
     title: "International Animals Rights Day",
     color: "bg-green-100 border-green-300",
+    text: "Holocaust Memorial Day is about commemorating and continuing to learn from the events of the Holocaust. HMD is marked each year on 27 January – the anniversary of the date of the liberation of Nazi death camp Auschwitz-Birkenau.",
   },
   {
-    start: "2025-12-14",
-    end: "2025-12-22",
-    title: "Hannakah",
-    color: "bg-orange-100 border-orange-300",
-  },
-  {
-    start: "2025-12-25",
-    end: "2025-12-25",
-    title: "Christmas Day",
+    start: "2026-01-25",
+    end: "2026-01-25",
+    title: "Burns Night",
     color: "bg-blue-100 border-blue-300",
+    text: "Robert Burns is the best loved Scottish poet, admired not only for his verse and great love-songs, but also for his character and wit, his high spirits, ‘kirk-defying’, hard drinking and womanising!",
+  },
+  {
+    start: "2026-01-28",
+    end: "2026-01-29",
+    title: "RSPB Big Garden Birdwatch Weekend",
+    color: "bg-orange-100 border-orange-300",
+    text: "The RSPB’s Big Garden Birdwatch is the world’s biggest bird survey and the results help the RSPB to keep track of bird populations right across the UK. Just watch and count the birds in your garden or local park for an hour and submit your results.",
   },
 ];
 
@@ -125,6 +128,7 @@ export default function LandingPage() {
                 {formatDateRange(event.start, event.end)}
               </p>
               <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
+              {event.text && <p className="text-gray-500 mt-1">{event.text}</p>}
             </div>
           ))}
         </div>

@@ -15,7 +15,7 @@ export const britishValues: Record<
       primary: string;
       accent: string;
     };
-    examples: string[];
+    question: string | string[];
   }
 > = {
   democracy: {
@@ -27,7 +27,7 @@ export const britishValues: Record<
       primary: "#1D4ED8", // blue
       accent: "#93C5FD",
     },
-    examples: ["Voting in elections", "Classroom votes", "Student councils"],
+    question: ["What would you do if you were prime minister for the day?"],
   },
 
   "rule-of-law": {
@@ -39,11 +39,7 @@ export const britishValues: Record<
       primary: "#065F46", // green
       accent: "#6EE7B7",
     },
-    examples: [
-      "School rules",
-      "Laws that protect people",
-      "Consequences for breaking rules",
-    ],
+    question: ["Why do we need rules?"],
   },
 
   "individual-liberty": {
@@ -55,11 +51,7 @@ export const britishValues: Record<
       primary: "#7C2D12", // warm orange
       accent: "#FDBA74",
     },
-    examples: [
-      "Choosing hobbies",
-      "Expressing opinions respectfully",
-      "Personal beliefs",
-    ],
+    question: ["What does freedom mean to you?"],
   },
 
   "mutual-respect": {
@@ -71,11 +63,7 @@ export const britishValues: Record<
       primary: "#6B21A8", // purple
       accent: "#D8B4FE",
     },
-    examples: [
-      "Respecting cultures",
-      "Listening to others",
-      "Challenging discrimination",
-    ],
+    question: ["How can we show respect to others?"],
   },
   "tolerance-of-faiths": {
     title: "Tolerance of Different Faiths and Beliefs",
@@ -86,10 +74,6 @@ export const britishValues: Record<
       primary: "#92400E", // amber
       accent: "#FCD34D",
     },
-    examples: [
-      "Learning about different religions",
-      "Respecting cultural traditions",
-      "Challenging stereotypes",
-    ],
+    question: ["What can we learn from different beliefs?"],
   },
 };

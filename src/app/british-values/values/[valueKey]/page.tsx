@@ -1,4 +1,3 @@
-// src/app/british-values/[valueKey]/page.tsx
 import { notFound } from "next/navigation";
 import { britishValues, BritishValueKey } from "@/data/britishValues";
 import FactsSection from "@/components/FactsSection";
@@ -25,27 +24,28 @@ export default async function BritishValuePage({ params }: Props) {
       </div>
 
       <div className="max-w-4xl mx-auto p-8">
+        {/* Description */}
         <p className="text-lg mb-6">{value.description}</p>
 
-        {/* Examples */}
+        {/* Question */}
         <section className="bg-white rounded-xl shadow p-6 mb-10">
-          <h2 className="text-2xl font-semibold mb-4">Examples</h2>
-          <ul className="list-disc list-inside space-y-2">
-            {value.examples.map((example) => (
-              <li key={example}>{example}</li>
-            ))}
-          </ul>
+          <h2 className="text-2xl font-semibold mb-4">Question</h2>
+          <p className="text-gray-800">
+            {Array.isArray(value.question) ? value.question[0] : value.question}
+          </p>
         </section>
 
-        {/* Firebase Facts */}
-        <FactsSection continent="british-values" regionKey={valueKey} />
-
-        {/* Game Placeholder */}
-        {/* <section className="mt-10 p-6 border-2 border-dashed rounded-xl text-center">
-          <p className="text-gray-500">🎮 Interactive activity coming soon</p>
-        </section> */}
+        {/* Answers (Firebase-powered) */}
+        <FactsSection
+          continent="british-values"
+          regionKey={valueKey}
+          sectionHeading="Answers"
+          inputHeading="Type your answer"
+          placeholder="Write your answer here"
+        />
       </div>
-      {/* Themed Back Link */}
+
+      {/* Back Link */}
       <div className="mt-8 text-center">
         <Link
           href="/british-values/values"

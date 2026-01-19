@@ -20,7 +20,7 @@ export default function FactsSection({ regionKey, continent }: Props) {
       const q = query(
         collection(db, "regionFacts"),
         where("regionKey", "==", regionKey),
-        where("continent", "==", continent)
+        where("continent", "==", continent),
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
@@ -47,8 +47,8 @@ export default function FactsSection({ regionKey, continent }: Props) {
       query(
         collection(db, "regionFacts"),
         where("regionKey", "==", regionKey),
-        where("continent", "==", continent)
-      )
+        where("continent", "==", continent),
+      ),
     );
     setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
   };
