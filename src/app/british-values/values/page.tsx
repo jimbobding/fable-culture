@@ -1,6 +1,7 @@
 // src/app/british-values/values/page.tsx
 import Link from "next/link";
 import { britishValues, BritishValueKey } from "@/data/britishValues";
+import type { JSX } from "react";
 
 // Demo icons (replace with animations/SVGs later)
 const valueIcons: Record<BritishValueKey, JSX.Element> = {
