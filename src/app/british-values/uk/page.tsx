@@ -1,47 +1,37 @@
+// src/app/british-values/uk/page.tsx
 import Link from "next/link";
-
-const ukCountries = {
-  england: {
-    title: "England",
-    description: "Home to London and famous for history and culture.",
-  },
-  scotland: {
-    title: "Scotland",
-    description: "Known for mountains, castles, and strong traditions.",
-  },
-  wales: {
-    title: "Wales",
-    description: "Famous for its language, music, and community spirit.",
-  },
-  "northern-ireland": {
-    title: "Northern Ireland",
-    description: "Part of the island of Ireland with rich history.",
-  },
-};
+import { ukCountries } from "@/data/ukCountries";
 
 export default function UKOverviewPage() {
   const countryKeys = Object.keys(ukCountries);
 
   return (
-    <main className="min-h-screen p-8 bg-gray-100">
-      <h1 className="text-4xl font-bold text-center mb-8">🇬🇧 UK Countries</h1>
+    <main className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-4xl font-bold text-center mb-10">🇬🇧 UK Countries</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center max-w-4xl mx-auto">
         {countryKeys.map((key) => {
           const country = ukCountries[key as keyof typeof ukCountries];
           return (
             <Link
               key={key}
               href={`/british-values/uk/${key}`}
-              className="p-6 rounded-xl shadow-lg bg-white flex flex-col justify-center items-center text-center hover:scale-105 transition"
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center text-center transition hover:scale-105"
+              style={{ minWidth: "220px", minHeight: "250px" }}
             >
-              <h2 className="text-2xl font-bold mb-2">{country.title}</h2>
-              <p className="text-gray-700 text-sm">{country.description}</p>
+              <img
+                src={country.heroImage}
+                alt={`${country.title} flag`}
+                className="w-20 h-20 mb-4 object-contain"
+              />
+              <h2 className="text-xl font-semibold mb-2">{country.title}</h2>
+              <p className="text-gray-700">{country.intro}</p>
             </Link>
           );
         })}
       </div>
 
+      {/* Back Link */}
       <div className="mt-8 text-center">
         <Link
           href="/british-values"

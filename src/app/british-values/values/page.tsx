@@ -1,44 +1,75 @@
+// src/app/british-values/values/page.tsx
 import Link from "next/link";
-import { valuesContent, BritishValueKey } from "@/data/britishValues";
+import { britishValues, BritishValueKey } from "@/data/britishValues";
 
-const valueKeys: BritishValueKey[] = [
-  "democracy",
-  "rule-of-law",
-  "individual-liberty",
-  "mutual-respect",
-  "tolerance",
-];
+// Demo icons (replace with animations/SVGs later)
+const valueIcons: Record<BritishValueKey, JSX.Element> = {
+  democracy: <span className="text-6xl">⚖️</span>,
+  "rule-of-law": <span className="text-6xl">📜</span>,
+  "individual-liberty": <span className="text-6xl">🕊️</span>,
+  "mutual-respect": <span className="text-6xl">🤝</span>,
+  "tolerance-of-faiths": <span className="text-6xl">🕌</span>,
+};
 
 export default function BritishValuesOverview() {
-  return (
-    <div className="min-h-screen p-8 bg-gray-100">
-      <h1 className="text-4xl font-bold text-center mb-8">🇬🇧 British Values</h1>
+  const valueKeys = Object.keys(britishValues) as BritishValueKey[];
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {valueKeys.map((key) => {
-          const value = valuesContent[key];
-          return (
-            <Link
-              key={key}
-              href={`/british-values/values/${key}`}
-              className="p-6 rounded-xl shadow-lg bg-white flex flex-col items-center justify-center text-center hover:scale-105 transition"
+  // Split into rows of max 3 cards
+  const topRow = valueKeys.slice(0, 3);
+  const bottomRow = valueKeys.slice(3);
+
+  const renderRow = (row: BritishValueKey[]) => (
+    <div className={`flex justify-center gap-6 mb-6`}>
+      {row.map((key) => {
+        const value = britishValues[key];
+        return (
+          <Link
+            key={key}
+            href={`/british-values/values/${key}`}
+            className="group relative bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-between text-center overflow-hidden hover:scale-105 transition-transform"
+            style={{
+              borderTop: `4px solid ${value.theme.primary}`,
+              height: "320px", // fixed height
+              minWidth: "320px", // ensures minimum width
+              maxWidth: "260px", // keeps cards consistent
+              width: "100%", // allows flex/grid to scale
+            }}
+          >
+            <div
+              className="mb-4 p-4 rounded-full"
+              style={{ backgroundColor: value.theme.accent + "33" }}
             >
-              <span className="text-4xl mb-3">{value.icon}</span>
-              <h2 className="text-2xl font-bold mb-1">{value.title}</h2>
-              <p className="text-gray-700 text-sm">{value.description}</p>
-            </Link>
-          );
-        })}
-      </div>
+              {valueIcons[key]}
+            </div>
+            <h2 className="text-xl font-semibold mb-2">{value.title}</h2>
+            <p className="text-gray-700">{value.intro}</p>
 
-      <div className="mt-6 text-center">
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-40 transition" />
+          </Link>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <main className="min-h-screen bg-gray-50 p-8">
+      <h1 className="text-4xl font-bold text-center mb-10">
+        🇬🇧 British Values
+      </h1>
+
+      {renderRow(topRow)}
+      {bottomRow.length > 0 && renderRow(bottomRow)}
+
+      {/* Back Link */}
+      <div className="mt-8 text-center">
         <Link
-          href="/british-values"
-          className="px-6 py-3 rounded bg-gray-700 text-white hover:bg-gray-800 transition inline-block"
+          href="/british-values/"
+          className="inline-block bg-gray-700 text-white px-6 py-3 rounded hover:bg-gray-800 transition"
         >
-          ← Back to British Values Home
+          ← Back to UK Overview
         </Link>
       </div>
-    </div>
+    </main>
   );
 }

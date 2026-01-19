@@ -16,6 +16,12 @@ const continents = [
     description: "Discover Europe’s rich history, art, and modern traditions.",
     color: "from-blue-400 to-purple-400",
   },
+  {
+    name: "United Kingdom",
+    href: "/british-values/",
+    description: "Discover the countries and values that make up the UK.",
+    color: "from-red-500 to-blue-700",
+  },
 ];
 
 // ✅ Events — support single or multi-day events
