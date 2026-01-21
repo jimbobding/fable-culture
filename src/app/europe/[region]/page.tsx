@@ -16,7 +16,7 @@ export default function EuropeRegionPage() {
   const [heroImage] = useState(
     region
       ? region.images[Math.floor(Math.random() * region.images.length)]
-      : null
+      : null,
   );
 
   if (!region) return <p>Region not found</p>;
@@ -77,7 +77,7 @@ export default function EuropeRegionPage() {
         )}
 
         {/* ---------------- USER ADDED FACTS ---------------- */}
-        <FactsSection regionKey={regionKey} />
+        <FactsSection continent="europe" regionKey={regionKey} />
 
         {/* ---------------- GALLERY ---------------- */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">

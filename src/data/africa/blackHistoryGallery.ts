@@ -9,7 +9,7 @@ export const blackHistoryImages = [
   {
     src: "/images/continents/africa/gallery/black-history/birthday.jpg",
     alt: "Birthday Celebration",
-    tagline: "WHat famous person shares your birthday?",
+    tagline: "What famous person shares your birthday?",
   },
   {
     src: "/images/continents/africa/gallery/black-history/timeline.jpg",

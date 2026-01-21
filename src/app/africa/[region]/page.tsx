@@ -17,13 +17,16 @@ export default function RegionPage() {
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
   const [isPending, setIsPending] = useState(false);
 
+  const continent = "africa";
+
   useEffect(() => {
     if (!regionKey) return;
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
         where("regionKey", "==", regionKey),
-        where("status", "==", "approved") // ✅ only fetch approved facts
+        where("continent", "==", continent), // ✅ filter by continent
+        where("status", "==", "approved"),
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
@@ -36,10 +39,12 @@ export default function RegionPage() {
     setIsPending(true); // start pending state
     await addDoc(collection(db, "regionFacts"), {
       regionKey,
+      continent, // ✅ include continent
       fact: newFact,
       status: "pending",
       createdAt: new Date(),
     });
+
     setNewFact("");
     setIsPending(true); // keep showing the pending message
   };

@@ -6,39 +6,49 @@ import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 
 type Props = {
   regionKey: string;
+  continent: string; // ✅ new prop to distinguish continents
 };
 
-export default function FactsSection({ regionKey }: Props) {
+export default function FactsSection({ regionKey, continent }: Props) {
   const [newFact, setNewFact] = useState("");
   const [addedFacts, setAddedFacts] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Fetch only facts for this continent + region
   useEffect(() => {
     const fetchFacts = async () => {
       const q = query(
         collection(db, "regionFacts"),
-        where("regionKey", "==", regionKey)
+        where("regionKey", "==", regionKey),
+        where("continent", "==", continent)
       );
       const snapshot = await getDocs(q);
       setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
     };
     fetchFacts();
-  }, [regionKey]);
+  }, [regionKey, continent]);
 
   const handleAddFact = async () => {
-    if (!newFact.trim() || addedFacts.includes(newFact.trim())) return;
+    const trimmedFact = newFact.trim();
+    if (!trimmedFact || addedFacts.includes(trimmedFact)) return;
 
     await addDoc(collection(db, "regionFacts"), {
       regionKey,
-      fact: newFact.trim(),
+      continent,
+      fact: trimmedFact,
+      status: "pending", // optional: track fact approval
     });
 
     setNewFact("");
     inputRef.current?.focus();
 
-    // Refresh facts
+    // Refresh facts after adding
     const snapshot = await getDocs(
-      query(collection(db, "regionFacts"), where("regionKey", "==", regionKey))
+      query(
+        collection(db, "regionFacts"),
+        where("regionKey", "==", regionKey),
+        where("continent", "==", continent)
+      )
     );
     setAddedFacts(snapshot.docs.map((doc) => doc.data().fact as string));
   };

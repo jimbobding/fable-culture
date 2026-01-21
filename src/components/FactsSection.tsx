@@ -1,0 +1,102 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { db } from "@/firebaseConfig";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+
+type Props = {
+  continent: string; // "africa" | "europe" | "uk"
+  regionKey: string; // region OR country key
+};
+
+export default function FactsSection({ continent, regionKey }: Props) {
+  const [facts, setFacts] = useState<string[]>([]);
+  const [newFact, setNewFact] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // ✅ Fetch approved facts only
+  useEffect(() => {
+    const fetchFacts = async () => {
+      const q = query(
+        collection(db, "regionFacts"),
+        where("continent", "==", continent),
+        where("regionKey", "==", regionKey),
+        where("status", "==", "approved")
+      );
+
+      const snapshot = await getDocs(q);
+      setFacts(snapshot.docs.map((doc) => doc.data().fact as string));
+    };
+
+    fetchFacts();
+  }, [continent, regionKey]);
+
+  // ✅ Add pending fact
+  const handleAddFact = async () => {
+    const trimmed = newFact.trim();
+    if (!trimmed) return;
+
+    setIsPending(true);
+
+    await addDoc(collection(db, "regionFacts"), {
+      continent,
+      regionKey,
+      fact: trimmed,
+      status: "pending",
+      createdAt: new Date(),
+    });
+
+    setNewFact("");
+    inputRef.current?.focus();
+  };
+
+  return (
+    <section className="mt-12">
+      {facts.length > 0 && (
+        <>
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            Things We’ve Learned
+          </h3>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {facts.map((fact, i) => (
+              <div
+                key={i}
+                className="rounded-xl bg-white/80 p-4 shadow hover:shadow-md transition"
+              >
+                <p className="text-gray-800 text-sm font-medium">{fact}</p>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      <div className="mt-8 rounded-2xl bg-white/80 p-4 shadow">
+        <label className="block text-sm font-medium mb-2">Add a new fact</label>
+
+        <input
+          ref={inputRef}
+          type="text"
+          value={newFact}
+          onChange={(e) => setNewFact(e.target.value)}
+          placeholder="Check your source before submitting"
+          className="w-full rounded-lg border px-3 py-2 mb-2"
+        />
+
+        <button
+          onClick={handleAddFact}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Add Fact
+        </button>
+
+        {isPending && (
+          <p className="mt-2 text-sm text-yellow-700">
+            Your fact is pending approval.
+          </p>
+        )}
+      </div>
+    </section>
+  );
+}

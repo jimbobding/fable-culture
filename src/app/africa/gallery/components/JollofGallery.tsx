@@ -14,7 +14,7 @@ export default function JollofGallery() {
 
       {/* Subtitle */}
       <h3 className="text-xl md:text-2xl font-black text-center text-red-500 mb-6 animate-pulse">
-        Ghana 🇬🇭 VS Kenya 🇰🇪
+        Kenya 🇰🇪 VS Ghana 🇬🇭
       </h3>
 
       {/* Description */}
@@ -73,6 +73,28 @@ export default function JollofGallery() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Winner reveal */}
+      <div className="mt-12 flex flex-col items-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-green-600 drop-shadow-md animate-pulse mb-4">
+          🏆 And the winner is…Ghana! 🇬🇭
+        </h2>
+
+        <div className="relative rounded-lg overflow-hidden shadow-2xl animate-bounce">
+          <Image
+            src="/images/continents/africa/gallery/jollof/ghana-hero.jpg" // Replace with your Kenyan rice image
+            alt="Kenyan Jollof Rice"
+            width={600}
+            height={400}
+            className="w-full h-auto object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
+              🎉 Ghana wins by popular vote! 🎉
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );

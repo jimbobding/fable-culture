@@ -41,6 +41,3 @@ yarn-error.log*
 next-env.d.ts
 
 js-practice/
-
-node_modules/
-
