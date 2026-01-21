@@ -81,7 +81,7 @@ export default function JollofGallery() {
           🏆 And the winner is…Ghana! 🇬🇭
         </h2>
 
-        <div className="relative rounded-lg overflow-hidden shadow-2xl animate-bounce">
+        {/* <div className="relative rounded-lg overflow-hidden shadow-2xl animate-bounce">
           <Image
             src="/images/continents/africa/gallery/jollof/ghana-hero.jpg" // Replace with your Kenyan rice image
             alt="Kenyan Jollof Rice"
@@ -93,6 +93,55 @@ export default function JollofGallery() {
             <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
               🎉 Ghana wins by popular vote! 🎉
             </span>
+          </div>
+        </div> */}
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 mt-8">
+          {/* 🌟 BOUNCE */}
+          <div className="relative rounded-lg overflow-hidden shadow-2xl animate-bounce w-72">
+            <Image
+              src="/images/continents/africa/gallery/jollof/ghana-hero.jpg"
+              alt="Ghana Jollof Rice"
+              width={600}
+              height={400}
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none bg-black/30">
+              <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
+                🎉 Ghana wins by popular vote! 🎉
+              </span>
+            </div>
+          </div>
+
+          {/* 💖 PULSE */}
+          <div className="relative rounded-lg overflow-hidden shadow-2xl animate-pulse w-72">
+            <Image
+              src="/images/continents/africa/gallery/jollof/ghana-hero.jpg"
+              alt="Ghana Jollof Rice"
+              width={600}
+              height={400}
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none bg-black/30">
+              <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
+                🎉 Ghana wins by popular vote! 🎉
+              </span>
+            </div>
+          </div>
+
+          {/* ✨ HOVER GLOW */}
+          <div className="relative rounded-lg overflow-hidden shadow-2xl transition-shadow hover:shadow-[0_0_30px_10px_rgba(255,215,0,0.7)] w-72">
+            <Image
+              src="/images/continents/africa/gallery/jollof/ghana-hero.jpg"
+              alt="Ghana Jollof Rice"
+              width={600}
+              height={400}
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none bg-black/30">
+              <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg text-center px-4">
+                🎉 Ghana wins by popular vote! 🎉
+              </span>
+            </div>
           </div>
         </div>
       </div>
