@@ -27,25 +27,25 @@ const continents = [
 // ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
+    start: "2026-01-14",
+    end: "2026-01-14",
+    title: "Valentines Day",
+    color: "bg-blue-100 border-blue-300",
+    text: "Valentine’s Day started long ago as a day to celebrate love and friendship, named after Saint Valentine. Today, it’s all about sharing cards, flowers, and treats with people you care about—whether that’s friends, family, or someone special—spreading a little extra kindness and heart-shaped fun! 💌💖",
+  },
+  {
+    start: "2026-01-17",
+    end: "2026-01-17",
+    title: "Pancake Day (Shrove Tuesday)",
+    color: "bg-green-100 border-green-300",
+    text: "Pancake Day (Shrove Tuesday) is the day before Lent starts, a time when Christians traditionally prepared by using up rich foods like eggs, milk, and sugar. Today, it’s a fun tradition of flipping pancakes, trying toppings, and sometimes even racing them—mixing history with a tasty treat! 🥞",
+  },
+  {
     start: "2026-01-27",
     end: "2026-01-27",
-    title: "International Animals Rights Day",
-    color: "bg-green-100 border-green-300",
-    text: "Holocaust Memorial Day is about commemorating and continuing to learn from the events of the Holocaust. HMD is marked each year on 27 January – the anniversary of the date of the liberation of Nazi death camp Auschwitz-Birkenau.",
-  },
-  {
-    start: "2026-01-25",
-    end: "2026-01-25",
-    title: "Burns Night",
-    color: "bg-blue-100 border-blue-300",
-    text: "Robert Burns is the best loved Scottish poet, admired not only for his verse and great love-songs, but also for his character and wit, his high spirits, ‘kirk-defying’, hard drinking and womanising!",
-  },
-  {
-    start: "2026-01-28",
-    end: "2026-01-29",
     title: "RSPB Big Garden Birdwatch Weekend",
     color: "bg-orange-100 border-orange-300",
-    text: "The RSPB’s Big Garden Birdwatch is the world’s biggest bird survey and the results help the RSPB to keep track of bird populations right across the UK. Just watch and count the birds in your garden or local park for an hour and submit your results.",
+    text: "Pokémon Day is celebrated every year on February 27th, marking the birthday of the very first Pokémon games back in 1996. Fans around the world celebrate by playing games, trading cards, watching shows, and sharing their favorite Pokémon—basically a day to celebrate all things Pikachu, Charizard, and beyond! ⚡🎉",
   },
 ];
 
@@ -89,9 +89,10 @@ export default function LandingPage() {
         </div>
 
         <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
-          Explore the cultures, regions, and fascinating stories of Africa and
-          Europe. Discover facts, interactive resources, music, videos, and more
-          — all in one place!
+          Explore the cultures, traditions, and shared values of Africa, Europe,
+          and the UK. Learn about different regions, important ideas, and the
+          stories that shape communities, helping us better understand the world
+          we live in.
         </p>
       </header>
 
