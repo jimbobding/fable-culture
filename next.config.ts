@@ -1,13 +1,14 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
 const nextConfig = {
-  reactStrictMode: true,
   images: {
-    domains: ["img.youtube.com"],
+    remotePatterns: [
+      // your remote patterns here
+    ],
   },
-  experimental: {
-    appDir: true, // runtime works
-  },
+  // experimental: {
+  //   appDir: true, // <-- remove this line
+  // },
 } satisfies Partial<NextConfig>;
 
 export default nextConfig;
