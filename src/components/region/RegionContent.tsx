@@ -71,11 +71,12 @@ function CountryDropdown({ country }: { country: CountryFact }) {
             </p>
           )}
           {country.note && <p>{country.note}</p>}
+          {country.flag && (
+            <span className="text-3xl leading-none select-none">
+              {country.flag}
+            </span>
+          )}
         </div>
-        <span className="text-3xl leading-none select-none">
-  {country.flag}
-</span>
-
       )}
     </li>
   );
