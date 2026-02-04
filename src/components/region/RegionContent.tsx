@@ -1,3 +1,4 @@
+// src/components/region/RegionContent.tsx
 "use client";
 
 import { useState } from "react";
@@ -33,18 +34,17 @@ export default function RegionContent({ data }: RegionContentProps) {
 
       <div>
         <h2 className="text-2xl mb-2">Cultural facts</h2>
-        {/* FactsSection */}
+        {/* Future FactsSection or Firestore data for region */}
       </div>
 
       <div>
         <h2 className="text-2xl mb-2">Gallery</h2>
-        {/* Gallery */}
+        {/* Gallery can be added here */}
       </div>
     </section>
   );
 }
 
-// ---------- Dropdown Mini Component ----------
 function CountryDropdown({ country }: { country: CountryFact }) {
   const [open, setOpen] = useState(false);
 
@@ -54,8 +54,7 @@ function CountryDropdown({ country }: { country: CountryFact }) {
         onClick={() => setOpen(!open)}
         className="w-full text-left font-semibold flex justify-between items-center"
       >
-        {country.name}
-        <span>{open ? "▲" : "▼"}</span>
+        {country.name} <span>{open ? "▲" : "▼"}</span>
       </button>
 
       {open && (
@@ -72,9 +71,12 @@ function CountryDropdown({ country }: { country: CountryFact }) {
           )}
           {country.note && <p>{country.note}</p>}
           {country.flag && (
-            <span className="text-3xl leading-none select-none">
-              {country.flag}
-            </span>
+            <p className="text-2xl select-none">{country.flag}</p>
+          )}
+          {country.population && (
+            <p>
+              <strong>Population:</strong> {country.population.toLocaleString()}
+            </p>
           )}
         </div>
       )}
