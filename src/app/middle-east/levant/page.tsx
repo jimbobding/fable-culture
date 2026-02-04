@@ -1,7 +1,7 @@
 "use client";
 
 import RegionContent from "@/components/region/RegionContent";
-import AddFact from "@/components/FactsSection";
+// import AddFact from "@/components/FactsSection"; // remove this
 import { levantData } from "@/data/middleEast/levant";
 // import Gallery from "@/components/Gallery";
 
@@ -29,10 +29,10 @@ export default function LevantPage() {
       </section>
 
       {/* ---------- Region Facts ---------- */}
-      <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner space-y-4">
+      {/* <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner space-y-4">
         <h2 className="text-2xl font-semibold mb-4">Facts about the Levant</h2>
         <AddFact region="levant" />
-      </section>
+      </section> */}
 
       {/* ---------- Country Dropdowns ---------- */}
       <RegionContent data={levantData} />
@@ -40,15 +40,7 @@ export default function LevantPage() {
       {/* ---------- Gallery ---------- */}
       <section className="px-8 py-12">
         <h2 className="text-2xl font-semibold mb-4">Gallery</h2>
-        {/* <Gallery
-          images={[
-            "/images/continents/middle-east/levant/1.jpg",
-            "/images/continents/middle-east/levant/2.jpg",
-            "/images/continents/middle-east/levant/3.jpg",
-          ]}
-          columns={3}
-          hoverEffect="scale"
-        /> */}
+        {/* <Gallery ... /> */}
       </section>
     </main>
   );
