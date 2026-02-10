@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
 import Timeline from "@/components/Timeline";
+import FactsSection from "@/components/FactsSection";
 import { levantTimeline } from "@/data/middleEast/levantTimeline";
 
 // ---------- Type Definitions ----------
@@ -24,20 +25,30 @@ export type RegionData = {
 type RegionContentProps = {
   data: RegionData;
   gallery: { src: string; label: string }[];
+  continent: string; // NEW: needed for FactsSection
+  regionKey: string; // NEW: needed for FactsSection
 };
 
 // ---------- Main RegionContent Component ----------
-export default function RegionContent({ data, gallery }: RegionContentProps) {
+export default function RegionContent({
+  data,
+  gallery,
+  continent,
+  regionKey,
+}: RegionContentProps) {
   return (
-    <section className="px-8 py-16 space-y-12">
+    <section className="px-8 py-16 space-y-16">
+      {/* Timeline */}
       <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner">
-        <h2 className="text-2xl font-semibold mb-4">Historical Timeline</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          Historical Timeline
+        </h2>
         <Timeline items={levantTimeline} />
       </section>
 
       {/* Modern countries */}
       <div>
-        <h2 className="text-2xl mb-4">Modern countries</h2>
+        <h2 className="text-2xl mb-4 text-center">Modern countries</h2>
         <ul className="space-y-4">
           {data.countries.map((country) => (
             <CountryDropdown key={country.name} country={country} />
@@ -45,15 +56,17 @@ export default function RegionContent({ data, gallery }: RegionContentProps) {
         </ul>
       </div>
 
-      {/* Cultural facts placeholder */}
-      <div>
-        <h2 className="text-2xl mb-2">Cultural facts</h2>
-        {/* Could put FactsSection here if needed */}
-      </div>
+      {/* FactsSection */}
+      <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner">
+        <h2 className="text-2xl font-semibold mb-4 text-center">
+          Cultural Facts
+        </h2>
+        <FactsSection continent={continent} regionKey={regionKey} />
+      </section>
 
       {/* Gallery */}
       <div>
-        <h2 className="text-2xl mb-2">Gallery</h2>
+        <h2 className="text-2xl mb-2 text-center">Gallery</h2>
         <Gallery
           images={gallery.map((img) => img.src)}
           captions={gallery.map((img) => img.label)}
