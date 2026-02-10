@@ -41,9 +41,9 @@ const upcomingEvents = [
     text: "Pancake Day (Shrove Tuesday) is the day before Lent starts, a time when Christians traditionally prepared by using up rich foods like eggs, milk, and sugar. Today, it’s a fun tradition of flipping pancakes, trying toppings, and sometimes even racing them—mixing history with a tasty treat! 🥞",
   },
   {
-    start: "2026-01-27",
-    end: "2026-01-27",
-    title: "RSPB Big Garden Birdwatch Weekend",
+    start: "2026-02-27",
+    end: "2026-02-27",
+    title: "Pokémon Day",
     color: "bg-orange-100 border-orange-300",
     text: "Pokémon Day is celebrated every year on February 27th, marking the birthday of the very first Pokémon games back in 1996. Fans around the world celebrate by playing games, trading cards, watching shows, and sharing their favorite Pokémon—basically a day to celebrate all things Pikachu, Charizard, and beyond! ⚡🎉",
   },
