@@ -41,11 +41,11 @@ const upcomingEvents = [
     text: "Robert Burns is the best loved Scottish poet, admired not only for his verse and great love-songs, but also for his character and wit, his high spirits, ‘kirk-defying’, hard drinking and womanising!",
   },
   {
-    start: "2026-01-28",
-    end: "2026-01-29",
-    title: "RSPB Big Garden Birdwatch Weekend",
+    start: "2026-02-27",
+    end: "2026-02-27",
+    title: "Pokémon Day",
     color: "bg-orange-100 border-orange-300",
-    text: "The RSPB’s Big Garden Birdwatch is the world’s biggest bird survey and the results help the RSPB to keep track of bird populations right across the UK. Just watch and count the birds in your garden or local park for an hour and submit your results.",
+    text: "Pokémon Day is celebrated every year on February 27th, marking the birthday of the very first Pokémon games back in 1996. Fans around the world celebrate by playing games, trading cards, watching shows, and sharing their favorite Pokémon—basically a day to celebrate all things Pikachu, Charizard, and beyond! ⚡🎉",
   },
 ];
 
