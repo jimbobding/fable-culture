@@ -4,6 +4,9 @@ import RegionContent from "@/components/region/RegionContent";
 import { levantData } from "@/data/middleEast/levantData";
 import { levantGallery } from "@/data/middleEast/levantGallery";
 
+import { levantTimeline } from "@/data/middleEast/levantTimeline";
+import { levantTheme } from "@/styles/regionThemes";
+
 export default function LevantPage() {
   return (
     <main className="space-y-16">
@@ -67,11 +70,14 @@ export default function LevantPage() {
       </section>
 
       {/* ---------- REUSABLE REGION CONTENT ---------- */}
+
       <RegionContent
         data={levantData}
         gallery={levantGallery}
         continent="Middle East"
         regionKey="levant"
+        timeline={levantTimeline}
+        theme={levantTheme}
       />
     </main>
   );

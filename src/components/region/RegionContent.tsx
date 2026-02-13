@@ -4,49 +4,75 @@ import { useState } from "react";
 import Gallery from "@/components/Gallery";
 import Timeline from "@/components/Timeline";
 import FactsSection from "@/components/FactsSection";
-import { levantTimeline } from "@/data/middleEast/levantTimeline";
+import type { RegionTheme } from "@/styles/regionThemes";
 
-// ---------- Type Definitions ----------
-export type CountryFact = {
+type Country = {
   name: string;
-  capital?: string;
-  languages?: string[];
-  population?: string;
-  note?: string;
-  extra?: string; // Dish + religion
-  flag?: string;
+  capital: string;
+  languages: string[];
+  population: string;
+  note: string;
+  extra: string;
+  flag: string;
 };
 
-export type RegionData = {
+type RegionData = {
   region: string;
-  countries: CountryFact[];
+  countries: Country[];
 };
 
-type RegionContentProps = {
+type GalleryItem = {
+  src: string;
+  label: string;
+};
+
+type TimelineItem = {
+  year: string;
+  event: string;
+};
+
+type Props = {
   data: RegionData;
-  gallery: { src: string; label: string }[];
-  continent: string; // NEW: needed for FactsSection
-  regionKey: string; // NEW: needed for FactsSection
+  gallery: GalleryItem[];
+  continent: string;
+  regionKey: string;
+  timeline: TimelineItem[];
+  theme: RegionTheme;
 };
 
-// ---------- Main RegionContent Component ----------
 export default function RegionContent({
   data,
   gallery,
   continent,
   regionKey,
-}: RegionContentProps) {
+  timeline,
+  theme,
+}: Props) {
   return (
     <section className="px-8 py-16 space-y-16">
-      {/* Timeline */}
-      <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
+      {/* TIMELINE */}
+      <section
+        className={`px-8 py-12 rounded-lg shadow-inner ${theme.timeline.background}`}
+      >
+        <h2
+          className={`text-2xl font-semibold mb-4 text-center ${theme.introTitle}`}
+        >
           Historical Timeline
         </h2>
-        <Timeline items={levantTimeline} />
+
+        <Timeline
+          items={timeline}
+          theme={{
+            background: theme.timeline.background,
+            line: theme.timeline.line,
+            year: theme.timeline.year,
+            text: theme.timeline.text,
+            cardBg: theme.timeline.cardBg,
+          }}
+        />
       </section>
 
-      {/* Modern countries */}
+      {/* COUNTRIES DROPDOWN */}
       <div>
         <h2 className="text-2xl mb-4 text-center">Modern countries</h2>
         <ul className="space-y-4">
@@ -56,15 +82,17 @@ export default function RegionContent({
         </ul>
       </div>
 
-      {/* FactsSection */}
-      <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner">
+      {/* FACTS */}
+      <section
+        className={`px-8 py-12 rounded-lg shadow-inner ${theme.factsBg}`}
+      >
         <h2 className="text-2xl font-semibold mb-4 text-center">
           Cultural Facts
         </h2>
         <FactsSection continent={continent} regionKey={regionKey} />
       </section>
 
-      {/* Gallery */}
+      {/* GALLERY */}
       <div>
         <h2 className="text-2xl mb-2 text-center">Gallery</h2>
         <Gallery
@@ -79,8 +107,7 @@ export default function RegionContent({
   );
 }
 
-// ---------- Country Dropdown Component ----------
-function CountryDropdown({ country }: { country: CountryFact }) {
+function CountryDropdown({ country }: { country: Country }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -90,39 +117,26 @@ function CountryDropdown({ country }: { country: CountryFact }) {
         className="w-full text-left font-semibold flex justify-between items-center"
       >
         <span>
-          {country.flag ? country.flag + " " : ""}
-          {country.name}
+          {country.flag} {country.name}
         </span>
         <span>{open ? "▲" : "▼"}</span>
       </button>
 
       {open && (
         <div className="mt-2 pl-4 text-gray-700 space-y-1">
-          {country.capital && (
-            <p>
-              <strong>Capital:</strong> {country.capital}
-            </p>
-          )}
-          {country.languages && country.languages.length > 0 && (
-            <p>
-              <strong>Languages:</strong> {country.languages.join(", ")}
-            </p>
-          )}
-          {country.population && (
-            <p>
-              <strong>Population:</strong> {country.population}
-            </p>
-          )}
-          {country.note && (
-            <p>
-              <strong>Fact:</strong> {country.note}
-            </p>
-          )}
-          {country.extra && (
-            <p className="italic text-sm text-orange-700 mt-1">
-              🍽️ {country.extra}
-            </p>
-          )}
+          <p>
+            <strong>Capital:</strong> {country.capital}
+          </p>
+          <p>
+            <strong>Languages:</strong> {country.languages.join(", ")}
+          </p>
+          <p>
+            <strong>Population:</strong> {country.population}
+          </p>
+          <p>
+            <strong>Fact:</strong> {country.note}
+          </p>
+          <p className="italic text-sm text-orange-700 mt-1">{country.extra}</p>
         </div>
       )}
     </li>
