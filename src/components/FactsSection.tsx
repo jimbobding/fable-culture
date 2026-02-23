@@ -13,6 +13,15 @@ type Props = {
   inputHeading?: string;
   placeholder?: string;
   staticItems?: string[];
+
+  // 🎨 NEW THEME SUPPORT
+  theme?: {
+    cardBg?: string;
+    cardBorder?: string;
+    cardShadow?: string;
+    text?: string;
+    inputBg?: string;
+  };
 };
 
 export default function FactsSection({
@@ -22,6 +31,7 @@ export default function FactsSection({
   inputHeading = "Add a new fact",
   placeholder = "Check your source before submitting",
   staticItems = [],
+  theme,
 }: Props) {
   const [facts, setFacts] = useState<string[]>([]);
   const [newFact, setNewFact] = useState("");
@@ -89,7 +99,15 @@ export default function FactsSection({
       )}
 
       {/* Input card */}
-      <div className="mt-8 rounded-2xl bg-white/80 p-4 shadow">
+      <div
+        className="rounded-xl p-6"
+        style={{
+          background: theme?.cardBg,
+          border: `1px solid ${theme?.cardBorder}`,
+          boxShadow: theme?.cardShadow,
+          color: theme?.text,
+        }}
+      >
         <label className="block text-sm font-medium mb-2">{inputHeading}</label>
 
         <input
