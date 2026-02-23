@@ -22,6 +22,13 @@ const continents = [
     description: "Discover the countries and values that make up the UK.",
     color: "from-red-500 to-blue-700",
   },
+  {
+    name: "Middle East",
+    href: "/middle-east",
+    description:
+      "Explore the Levant, Arabia, and Persia & Mesopotamia through maps, timelines, and facts.",
+    color: "from-amber-400 to-orange-500",
+  },
 ];
 
 // ✅ Events — support single or multi-day events
@@ -90,9 +97,9 @@ export default function LandingPage() {
 
         <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
           Explore the cultures, traditions, and shared values of Africa, Europe,
-          and the UK. Learn about different regions, important ideas, and the
-          stories that shape communities, helping us better understand the world
-          we live in.
+          the Middle East, and the UK. Learn about different regions, important
+          ideas, and the stories that shape communities—helping us better
+          understand the world we live in.
         </p>
       </header>
 
