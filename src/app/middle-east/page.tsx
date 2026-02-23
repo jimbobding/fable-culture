@@ -6,39 +6,39 @@ import Link from "next/link";
 type Region = {
   name: string;
   href: string;
-  cx: string;
-  cy: string;
-  r: string;
+  points: string; // "x,y x,y x,y"
 };
+
+const W = 1920;
+const H = 1734;
 
 const regions: Region[] = [
   {
     name: "Levant",
     href: "/middle-east/levant",
-    cx: "26%",
-    cy: "22%",
-    r: "5%",
+    points:
+      "531,743 600,763 734,595 828,458 879,308 702,330 592,335 548,483 495,639",
   },
+
   {
     name: "Arabia",
     href: "/middle-east/arabia",
-    cx: "48%",
-    cy: "58%",
-    r: "7%",
+    points:
+      "736,596,524,814,943,1590,1465,1422,1710,1113,1525,935,1155,721,996,749",
   },
+
   {
     name: "Persia",
-    href: "/middle-east/persia",
-    cx: "72%",
-    cy: "38%",
-    r: "6%",
+    href: "/middle-east/persia-mesopotamia",
+    points:
+      "994,739,738,588,719,525,904,296,977,172,1150,169,1325,340,1581,249,1769,340,1735,517,1796,649,1759,729,1849,890,1793,973,1635,961",
   },
 ];
 
 export default function MiddleEastLanding() {
   const [hovered, setHovered] = useState<string | null>(null);
 
-  const stroke = "#5F9EA0"; // steel blue
+  const stroke = "#5F9EA0";
   const fillHover = "rgba(95, 158, 160, 0.18)";
 
   return (
@@ -50,15 +50,15 @@ export default function MiddleEastLanding() {
       {/* Map */}
       <div className="relative w-full">
         <img
-          src="/images/continents/middle-east/map/map-middle-east1.webp"
+          src="/images/continents/middle-east/map/Middle_east_graphic_2003.jpg"
           alt="Middle East map"
-          className="w-full h-auto rounded-lg shadow"
+          className="w-full h-auto rounded-lg shadow block"
         />
 
         {/* SVG overlay */}
         <svg
           className="absolute inset-0 w-full h-full"
-          viewBox="0 0 100 100"
+          viewBox={`0 0 ${W} ${H}`}
           preserveAspectRatio="none"
         >
           {regions.map((region) => {
@@ -71,18 +71,18 @@ export default function MiddleEastLanding() {
                 onMouseEnter={() => setHovered(region.name)}
                 onMouseLeave={() => setHovered(null)}
               >
-                <circle
-                  cx={region.cx}
-                  cy={region.cy}
-                  r={region.r}
+                <polygon
+                  points={region.points}
                   style={{
                     fill: active ? fillHover : "transparent",
-                    stroke,
-                    strokeWidth: 0.8, // VERY thin
+
+                    stroke: active ? stroke : "transparent",
+                    strokeWidth: active ? 6 : 0,
                     cursor: "pointer",
-                    transition: "all 0.35s ease",
+                    transition: "fill 0.25s ease, stroke 0.25s ease",
+
                     filter: active
-                      ? "drop-shadow(0 0 6px rgba(95,158,160,0.6))"
+                      ? "drop-shadow(0 0 10px rgba(95,158,160,0.6))"
                       : "none",
                   }}
                 />
@@ -106,9 +106,7 @@ export default function MiddleEastLanding() {
                 className={`
                   px-4 py-2 rounded-lg border
                   transition-all duration-300
-                  ${
-                    active ? "bg-[rgba(95,158,160,0.15)] shadow-sm" : "bg-white"
-                  }
+                  ${active ? "bg-[rgba(95,158,160,0.15)] shadow-sm" : "bg-white"}
                 `}
                 style={{
                   borderColor: stroke,

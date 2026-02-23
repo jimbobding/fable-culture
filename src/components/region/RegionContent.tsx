@@ -14,6 +14,7 @@ type Country = {
   note: string;
   extra: string;
   flag: string;
+  link?: string;
 };
 
 type RegionData = {
@@ -50,12 +51,12 @@ export default function RegionContent({
 }: Props) {
   return (
     <section className="px-8 py-16 space-y-16">
-      {/* TIMELINE */}
+      {/* ================= TIMELINE ================= */}
       <section
-        className={`px-8 py-12 rounded-lg shadow-inner ${theme.timeline.background}`}
+        className={`px-8 py-12 rounded-lg shadow-lg ${theme.timeline.sectionBg}`}
       >
         <h2
-          className={`text-2xl font-semibold mb-4 text-center ${theme.introTitle}`}
+          className={`text-2xl font-semibold mb-8 text-center ${theme.introTitle}`}
         >
           Historical Timeline
         </h2>
@@ -63,7 +64,7 @@ export default function RegionContent({
         <Timeline
           items={timeline}
           theme={{
-            background: theme.timeline.background,
+            background: theme.timeline.sectionBg,
             line: theme.timeline.line,
             year: theme.timeline.year,
             text: theme.timeline.text,
@@ -72,46 +73,80 @@ export default function RegionContent({
         />
       </section>
 
-      {/* COUNTRIES DROPDOWN */}
-      <div>
-        <h2 className="text-2xl mb-4 text-center">Modern countries</h2>
+      {/* ================= MODERN COUNTRIES ================= */}
+      <section
+        className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}
+      >
+        <h2 className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}>
+          Modern Countries
+        </h2>
         <ul className="space-y-4">
           {data.countries.map((country) => (
-            <CountryDropdown key={country.name} country={country} />
+            <CountryDropdown key={country.name} country={country} theme={theme} />
           ))}
         </ul>
-      </div>
-
-      {/* FACTS */}
-      <section
-        className={`px-8 py-12 rounded-lg shadow-inner ${theme.factsBg}`}
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Cultural Facts
-        </h2>
-        <FactsSection continent={continent} regionKey={regionKey} />
       </section>
 
-      {/* GALLERY */}
-      <div>
-        <h2 className="text-2xl mb-2 text-center">Gallery</h2>
+      {/* ================= FACTS ================= */}
+      <section
+        className={`px-8 py-12 rounded-lg shadow-lg ${theme.factsBg}`}
+      >
+        <h2
+          className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}
+        >
+          Cultural Facts
+        </h2>
+     <FactsSection
+  continent={continent}
+  regionKey={regionKey}
+  theme={{
+    cardBg: theme.cardBg,
+    cardBorder: theme.cardBorder,
+    cardShadow: theme.cardShadow,
+    text: theme.text,
+    inputBg: theme.inputBg,
+  }}
+/>
+
+      </section>
+
+      {/* ================= GALLERY ================= */}
+      <section
+        className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}
+      >
+        <h2
+          className={`text-2xl mb-6 text-center ${theme.introTitle}`}
+        >
+          Gallery
+        </h2>
         <Gallery
           images={gallery.map((img) => img.src)}
           captions={gallery.map((img) => img.label)}
           columns={3}
           hoverEffect="scale"
           showCaptionOnHover={true}
+          borderColor={theme.galleryBorder}
+          shadow="shadow-md"
         />
-      </div>
+      </section>
     </section>
   );
 }
 
-function CountryDropdown({ country }: { country: Country }) {
+// ================= COUNTRY DROPDOWN =================
+function CountryDropdown({
+  country,
+  theme,
+}: {
+  country: Country;
+  theme: RegionTheme;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <li className="border rounded-lg p-4 bg-white shadow-sm">
+    <li
+      className={`border rounded-lg p-4 shadow-md transition-shadow hover:shadow-xl ${theme.cardBg} ${theme.cardBorder}`}
+    >
       <button
         onClick={() => setOpen(!open)}
         className="w-full text-left font-semibold flex justify-between items-center"
@@ -125,7 +160,8 @@ function CountryDropdown({ country }: { country: Country }) {
       {open && (
         <div className="mt-2 pl-4 text-gray-700 space-y-1">
           <p>
-            <strong>Capital:</strong> {country.capital}
+            <strong>Capital:</strong>{" "}
+            {country.link ? <a href={country.link} className="underline text-blue-600">{country.capital}</a> : country.capital}
           </p>
           <p>
             <strong>Languages:</strong> {country.languages.join(", ")}
@@ -136,7 +172,7 @@ function CountryDropdown({ country }: { country: Country }) {
           <p>
             <strong>Fact:</strong> {country.note}
           </p>
-          <p className="italic text-sm text-orange-700 mt-1">{country.extra}</p>
+          <p className="italic text-sm text-gray-600 mt-1">{country.extra}</p>
         </div>
       )}
     </li>
