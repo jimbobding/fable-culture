@@ -1,83 +1,208 @@
-// src/components/region/RegionContent.tsx
 "use client";
 
 import { useState } from "react";
+import Gallery from "@/components/Gallery";
+import Timeline from "@/components/Timeline";
+import FactsSection from "@/components/FactsSection";
+import type { RegionTheme } from "@/styles/regionThemes";
 
-export type CountryFact = {
+type Country = {
   name: string;
-  capital?: string;
-  languages?: string[];
-  note?: string;
-  flag?: string;
-  population?: number;
+  capital: string;
+  languages: string[];
+  population: string;
+  note: string;
+  extra: string;
+  flag: string;
+  link?: string;
 };
 
-export type RegionData = {
-  countries: CountryFact[];
+type RegionData = {
+  region: string;
+  regionFacts?: string[];
+  countries: Country[];
 };
 
-type RegionContentProps = {
+type GalleryItem = {
+  src: string;
+  label: string;
+};
+
+type TimelineItem = {
+  year: string;
+  event: string;
+};
+
+type Props = {
   data: RegionData;
+  gallery: GalleryItem[];
+  continent: string;
+  regionKey: string;
+  timeline: TimelineItem[];
+  theme: RegionTheme;
 };
 
-export default function RegionContent({ data }: RegionContentProps) {
+export default function RegionContent({
+  data,
+  gallery,
+  continent,
+  regionKey,
+  timeline,
+  theme,
+}: Props) {
+  const sectionCardBase = `
+    px-8 py-12
+    rounded-2xl
+    border
+    ${theme.cardBorder}
+    ${theme.cardShadow ?? "shadow-lg"}
+  `;
+
+  const sectionHeadingClass = `
+    text-3xl sm:text-4xl
+    font-bold
+    tracking-tight
+    text-center
+    ${theme.introTitle}
+  `;
+
   return (
-    <section className="px-8 py-16 space-y-12">
-      <div>
-        <h2 className="text-2xl mb-4">Modern countries</h2>
-        <ul className="space-y-2">
+    <section className="space-y-16">
+      {/* ================= TIMELINE ================= */}
+      <section className={`${sectionCardBase} ${theme.timeline.sectionBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-8`}>Historical Timeline</h2>
+
+        <Timeline
+          items={timeline}
+          theme={{
+            sectionBg: theme.timeline.sectionBg,
+            line: theme.timeline.line,
+            year: theme.timeline.year,
+            text: theme.timeline.text,
+            cardBg: theme.timeline.cardBg,
+            dotBorder: theme.cardBorder,
+          }}
+        />
+      </section>
+
+      {/* ================= MODERN COUNTRIES ================= */}
+      <section className={`${sectionCardBase} ${theme.cardBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-6`}>Modern Countries</h2>
+
+        <ul className="space-y-4">
           {data.countries.map((country) => (
-            <CountryDropdown key={country.name} country={country} />
+            <CountryDropdown
+              key={country.name}
+              country={country}
+              theme={theme}
+            />
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div>
-        <h2 className="text-2xl mb-2">Cultural facts</h2>
-        {/* Future FactsSection or Firestore data for region */}
-      </div>
+      {/* ================= FACTS ================= */}
+      <section
+        className={`${sectionCardBase} ${theme.factsBg ?? theme.cardBg}`}
+      >
+        <h2 className={`${sectionHeadingClass} mb-6`}>Cultural Facts</h2>
 
-      <div>
-        <h2 className="text-2xl mb-2">Gallery</h2>
-        {/* Gallery can be added here */}
-      </div>
+        <FactsSection
+          continent={continent}
+          regionKey={regionKey}
+          staticItems={data.regionFacts ?? []}
+          sectionHeading=""
+          theme={{
+            cardBg: theme.cardBg,
+            cardBorder: theme.cardBorder,
+            cardShadow: theme.cardShadow,
+            text: theme.text,
+            inputBg: theme.inputBg,
+          }}
+        />
+      </section>
+
+      {/* ================= GALLERY ================= */}
+      <section className={`${sectionCardBase} ${theme.cardBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-6`}>Gallery</h2>
+
+        <Gallery
+          images={gallery.map((img) => img.src)}
+          captions={gallery.map((img) => img.label)}
+          columns={3}
+          hoverEffect="scale"
+          showCaptionOnHover={true}
+          borderColor={theme.galleryBorder}
+          shadow="shadow-md"
+        />
+      </section>
     </section>
   );
 }
 
-function CountryDropdown({ country }: { country: CountryFact }) {
+// ================= COUNTRY DROPDOWN =================
+function CountryDropdown({
+  country,
+  theme,
+}: {
+  country: Country;
+  theme: RegionTheme;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <li className="border rounded p-4 bg-white shadow-sm">
+    <li
+      className={`
+        border
+        rounded-2xl
+        p-4
+        transition-all
+        ${theme.cardBg}
+        ${theme.cardBorder}
+        ${theme.cardShadow ?? "shadow-md"}
+        hover:shadow-xl
+        ${open ? "ring-2 ring-black/10" : ""}
+      `}
+    >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left font-semibold flex justify-between items-center"
+        className={`w-full text-left font-semibold flex justify-between items-center ${theme.text}`}
+        aria-expanded={open}
       >
-        {country.name} <span>{open ? "▲" : "▼"}</span>
+        <span>
+          {country.flag} {country.name}
+        </span>
+        <span className="opacity-70">{open ? "▲" : "▼"}</span>
       </button>
 
       {open && (
-        <div className="mt-2 pl-4 text-gray-700 space-y-1">
-          {country.capital && (
-            <p>
-              <strong>Capital:</strong> {country.capital}
-            </p>
-          )}
-          {country.languages && (
-            <p>
-              <strong>Languages:</strong> {country.languages.join(", ")}
-            </p>
-          )}
-          {country.note && <p>{country.note}</p>}
-          {country.flag && (
-            <p className="text-2xl select-none">{country.flag}</p>
-          )}
-          {country.population && (
-            <p>
-              <strong>Population:</strong> {country.population.toLocaleString()}
-            </p>
-          )}
+        <div className={`mt-3 pl-4 space-y-1 ${theme.text}`}>
+          <p>
+            <strong>Capital:</strong>{" "}
+            {country.link ? (
+              <a
+                href={country.link}
+                className="underline underline-offset-4 opacity-90 hover:opacity-100"
+              >
+                {country.capital}
+              </a>
+            ) : (
+              country.capital
+            )}
+          </p>
+
+          <p>
+            <strong>Languages:</strong> {country.languages.join(", ")}
+          </p>
+
+          <p>
+            <strong>Population:</strong> {country.population}
+          </p>
+
+          <p>
+            <strong>Fact:</strong> {country.note}
+          </p>
+
+          <p className="italic text-sm opacity-80 mt-1">{country.extra}</p>
         </div>
       )}
     </li>

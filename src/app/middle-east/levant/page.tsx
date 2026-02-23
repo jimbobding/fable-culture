@@ -1,47 +1,118 @@
 "use client";
 
+import Link from "next/link";
 import RegionContent from "@/components/region/RegionContent";
-// import AddFact from "@/components/FactsSection"; // remove this
-import { levantData } from "@/data/middleEast/levant";
-// import Gallery from "@/components/Gallery";
+
+import { levantData } from "@/data/middleEast/levantData";
+import { levantGallery } from "@/data/middleEast/levantGallery";
+import { levantTimeline } from "@/data/middleEast/levantTimeline";
+
+import { levantTheme } from "@/styles/regionThemes";
+
+const theme = levantTheme;
 
 export default function LevantPage() {
   return (
     <main className="space-y-16">
-      {/* ---------- Header ---------- */}
+      {/* ---------- HERO WITH MOSAIC ---------- */}
       <section
-        className="relative px-8 py-20 text-white"
+        className="relative px-8 text-white overflow-hidden min-h-[650px] md:min-h-[750px] lg:min-h-[850px]"
         style={{
           backgroundImage:
-            "url('/images/continents/middle-east/levant-header.jpg')",
+            "url('/images/continents/middle-east/region-headers/petra.avif')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="max-w-3xl bg-black/40 p-8 rounded-lg">
-          <h1 className="text-4xl font-bold mb-4">The Levant</h1>
-          <p className="text-lg">
-            The Levant is a historical region bridging the eastern
-            Mediterranean. It has long been a crossroads of trade, religion, and
-            culture. Today it contains Jordan, Lebanon, and Syria.
-          </p>
+        {/* TOP MOSAIC */}
+        <div className="absolute top-0 left-0 w-full h-12 bg-[url('/images/continents/middle-east/region-pictures/moziac.webp')] bg-repeat-x z-10" />
+
+        {/* OVERLAY (theme-driven) */}
+        <div className={`absolute inset-0 ${theme.heroOverlay} z-20`} />
+
+        {/* CENTER TEXT */}
+        <div className="absolute inset-0 flex items-center justify-center px-6 z-30">
+          <div
+            className={`max-w-3xl w-full bg-black/40 p-10 rounded-2xl border-4 ${theme.heroBorder}/60 text-center`}
+          >
+            <h1
+              className={`text-6xl font-extrabold mb-4 ${theme.heroTitle} drop-shadow-md`}
+            >
+              The Levant
+            </h1>
+            <p className="text-xl text-yellow-100 drop-shadow-sm">
+              A historic eastern Mediterranean region linking Africa, Asia, and
+              Europe through trade, religion, and culture.
+            </p>
+          </div>
         </div>
+
+        {/* BOTTOM CURVE */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden z-20">
+          <svg className="relative block w-full h-24" viewBox="0 0 1200 120">
+            <path
+              d="M0,0 C300,80 900,0 1200,60 L1200,120 L0,120 Z"
+              fill="#FFD580"
+            />
+          </svg>
+        </div>
+
+        {/* BOTTOM MOSAIC */}
+        <div className="absolute bottom-0 left-0 w-full h-12 z-30 bg-[url('/images/continents/middle-east/region-pictures/moziac.webp')] bg-repeat-x" />
       </section>
 
-      {/* ---------- Region Facts ---------- */}
-      {/* <section className="px-8 py-12 bg-gray-50 rounded-lg shadow-inner space-y-4">
-        <h2 className="text-2xl font-semibold mb-4">Facts about the Levant</h2>
-        <AddFact region="levant" />
-      </section> */}
-
-      {/* ---------- Country Dropdowns ---------- */}
-      <RegionContent data={levantData} />
-
-      {/* ---------- Gallery ---------- */}
-      <section className="px-8 py-12">
-        <h2 className="text-2xl font-semibold mb-4">Gallery</h2>
-        {/* <Gallery ... /> */}
+      {/* ---------- LEVANT INTRO (theme-driven) ---------- */}
+      <section
+        className={`px-8 py-12 ${theme.introGradient} rounded-2xl text-center shadow-lg`}
+      >
+        <h2
+          className={`text-3xl font-bold mb-4 ${theme.introTitle} drop-shadow-md`}
+        >
+          Welcome to the Levant
+        </h2>
+        <p
+          className={`text-lg ${theme.introText} drop-shadow-sm max-w-3xl mx-auto leading-relaxed`}
+        >
+          The Levant is one of the world's oldest continuously inhabited
+          regions, stretching along the eastern Mediterranean. From the rise of
+          ancient civilizations like the Canaanites and Phoenicians, through
+          pivotal moments in trade, culture, and religion, it has shaped the
+          course of history. Today, it encompasses Jordan, Lebanon, Syria,
+          Israel, and Palestine, blending ancient traditions with vibrant modern
+          cultures.
+        </p>
       </section>
+
+      {/* ---------- REUSABLE REGION CONTENT ---------- */}
+      <RegionContent
+        data={levantData}
+        gallery={levantGallery}
+        continent="Middle East"
+        regionKey="levant"
+        timeline={levantTimeline}
+        theme={theme}
+      />
+
+      {/* Back to Map Button */}
+      <div className="flex justify-center mt-10">
+        <Link
+          href="/middle-east"
+          className={`
+            inline-flex items-center gap-2
+            px-5 py-2.5
+            rounded-lg border
+            font-medium
+            transition-all duration-300
+            hover:shadow-md hover:scale-[1.02]
+            mb-10
+            ${theme.cardBg}
+            ${theme.cardBorder}
+            ${theme.text}
+          `}
+        >
+          ← Back to Middle East Map
+        </Link>
+      </div>
     </main>
   );
 }
