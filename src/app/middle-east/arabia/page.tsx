@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import RegionContent from "@/components/region/RegionContent";
+
 import { arabianData } from "@/data/middleEast/arabianData";
 import { arabianGallery } from "@/data/middleEast/arabianGallery";
 import { arabianTimeline } from "@/data/middleEast/arabianTimeline";
+
 import { arabianTheme } from "@/styles/regionThemes";
+
 const theme = arabianTheme;
-import Link from "next/link";
 
 export default function ArabianPage() {
   return (
@@ -21,16 +24,20 @@ export default function ArabianPage() {
           backgroundPosition: "center",
         }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#EDC9AF]/40 via-[#D47C2A]/30 to-[#C75B12]/40 z-10" />
+        {/* Overlay (theme-driven) */}
+        <div className={`absolute inset-0 ${theme.heroOverlay} z-10`} />
 
         {/* TEXT BOX */}
         <div className="absolute top-16 left-8 md:left-16 max-w-md z-20">
-          <div className="bg-black/30 backdrop-blur-sm p-8 rounded-2xl border-l-4 border-r-4 border-[#F4A460] shadow-xl">
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-3 text-[#FFF5E1]">
+          <div
+            className={`bg-black/30 backdrop-blur-sm p-8 rounded-2xl border-l-4 border-r-4 ${theme.heroBorder} shadow-xl`}
+          >
+            <h1
+              className={`text-5xl md:text-6xl font-extrabold mb-3 ${theme.heroTitle}`}
+            >
               Arabian Peninsula
             </h1>
-            <p className="text-lg md:text-xl text-[#FFF5E1]">
+            <p className={`text-lg md:text-xl ${theme.heroTitle}`}>
               Deserts, trade routes, and the birthplace of Islam.
             </p>
           </div>
@@ -75,16 +82,16 @@ export default function ArabianPage() {
         </div>
       </section>
 
-      {/* ---------- INTRO BLOCK ---------- */}
+      {/* ---------- INTRO BLOCK (theme-driven) ---------- */}
       <section
-        className={`px-8 py-12 rounded-2xl text-center shadow-lg ${arabianTheme.introGradient}`}
+        className={`px-8 py-12 rounded-2xl text-center shadow-lg ${theme.introGradient}`}
       >
-        <h2 className={`text-3xl font-bold mb-4 ${arabianTheme.introTitle}`}>
+        <h2 className={`text-3xl font-bold mb-4 ${theme.introTitle}`}>
           Life in the Arabian Peninsula
         </h2>
 
         <p
-          className={`text-lg max-w-3xl mx-auto leading-relaxed ${arabianTheme.introText}`}
+          className={`text-lg max-w-3xl mx-auto leading-relaxed ${theme.introText}`}
         >
           The Arabian Peninsula has long been a land of movement, trade, and
           storytelling. Ancient caravan routes once crossed its deserts,
@@ -101,14 +108,13 @@ export default function ArabianPage() {
       </section>
 
       {/* ---------- REUSABLE CONTENT ---------- */}
-
       <RegionContent
         data={arabianData}
         gallery={arabianGallery}
         continent="Middle East"
-        regionKey="levant"
+        regionKey="arabia"
         timeline={arabianTimeline}
-        theme={arabianTheme}
+        theme={theme}
       />
 
       {/* Back to Map Button */}
@@ -116,17 +122,17 @@ export default function ArabianPage() {
         <Link
           href="/middle-east"
           className={`
-      inline-flex items-center gap-2
-      px-5 py-2.5
-      rounded-lg border
-      font-medium
-      transition-all duration-300
-      hover:shadow-md hover:scale-[1.02]
-      mb-10
-      ${theme.cardBg}
-      ${theme.cardBorder}
-      ${theme.text}
-    `}
+            inline-flex items-center gap-2
+            px-5 py-2.5
+            rounded-lg border
+            font-medium
+            transition-all duration-300
+            hover:shadow-md hover:scale-[1.02]
+            mb-10
+            ${theme.cardBg}
+            ${theme.cardBorder}
+            ${theme.text}
+          `}
         >
           ← Back to Middle East Map
         </Link>

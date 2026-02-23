@@ -1,5 +1,13 @@
 export const arabianData = {
   region: "Arabian Peninsula",
+
+  regionFacts: [
+    "The Arabian Peninsula is the birthplace of Islam and home to Mecca and Medina.",
+    "Ancient caravan routes once crossed Arabia carrying spices, incense, and silk.",
+    "Pearl diving was a major industry in the Gulf before the discovery of oil.",
+    "Arabic is the main language spoken across the peninsula.",
+    "Oil discoveries in the 20th century transformed many Arabian countries.",
+  ],
   countries: [
     {
       name: "Saudi Arabia",

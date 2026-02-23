@@ -11,6 +11,9 @@ export type TimelineTheme = {
   year: string;
   text: string;
   cardBg: string;
+
+  // NEW (optional) — lets the dot border match region theme without breaking callers
+  dotBorder?: string;
 };
 
 type Props = {
@@ -19,10 +22,10 @@ type Props = {
 };
 
 export default function Timeline({ items, theme }: Props) {
+  const dotBorder = theme.dotBorder ?? "border-white/80";
+
   return (
-    <div
-      className={`relative px-4 md:px-8 py-12 rounded-xl ${theme.sectionBg}`}
-    >
+    <div className="relative">
       {/* Vertical line: left on mobile, center on md+ */}
       <div
         className={`
@@ -42,11 +45,13 @@ export default function Timeline({ items, theme }: Props) {
               {/* DOT: left on mobile, center on md+ */}
               <div
                 className={`
-                  absolute w-4 h-4 bg-white rounded-full z-10
+                  absolute w-4 h-4 rounded-full z-10
                   left-4 md:left-1/2
                   -translate-x-1/2
-                  border-4 border-yellow-400
                   top-6
+                  ${theme.cardBg}
+                  border-4
+                  ${dotBorder}
                 `}
               />
 
@@ -54,21 +59,26 @@ export default function Timeline({ items, theme }: Props) {
               <div
                 className={`
                   pl-10 md:pl-0
-                  ${isLeft ? "md:pr-8 md:w-1/2 md:flex md:justify-end" : "md:pl-8 md:w-1/2 md:ml-auto"}
+                  ${
+                    isLeft
+                      ? "md:pr-8 md:w-1/2 md:flex md:justify-end"
+                      : "md:pl-8 md:w-1/2 md:ml-auto"
+                  }
                 `}
               >
                 {/* CARD */}
                 <div
                   className={`
-                    rounded-lg shadow-lg
-                    p-4 sm:p-5
+                    rounded-2xl border shadow-sm
+                    p-5 sm:p-6
                     ${theme.cardBg}
                     max-w-none md:max-w-md
+                    border-black/10
                   `}
                 >
                   <p className={`font-bold ${theme.year}`}>{item.year}</p>
                   <p
-                    className={`${theme.text} text-sm sm:text-base leading-relaxed break-words`}
+                    className={`${theme.text} text-sm sm:text-base leading-relaxed break-words mt-1`}
                   >
                     {item.event}
                   </p>

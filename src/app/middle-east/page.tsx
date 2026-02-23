@@ -42,29 +42,40 @@ export default function MiddleEastLanding() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
-      {/* ================= HEADER ================= */}
-      <div
-        className="rounded-2xl border bg-white shadow-md px-6 py-8 sm:px-10 sm:py-10"
-        style={{ borderColor: stroke }}
-      >
-        <div className="text-center space-y-3">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
+      {/* ================= HERO HEADER ================= */}
+      <div className="relative overflow-hidden rounded-3xl shadow-xl">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600 via-sky-500 to-blue-600 opacity-95" />
+
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.15),transparent_60%)]" />
+
+        {/* Content */}
+        <div className="relative px-6 py-12 sm:px-12 sm:py-16 text-center text-white space-y-6">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
             Explore the Middle East
           </h1>
 
-          <p className="max-w-3xl mx-auto text-gray-700 text-base sm:text-lg leading-relaxed">
-            Learn what the Middle East means today, how it connects across
-            history, and explore three learning regions using the interactive
-            map.
+          <p className="max-w-3xl mx-auto text-base sm:text-lg leading-relaxed text-white/90">
+            Discover how geography, culture, trade routes, and empires shaped
+            one of the most historically connected regions in the world.
           </p>
+
+          <div className="flex justify-center gap-6 text-sm sm:text-base font-medium">
+            <span>Levant</span>
+            <span>•</span>
+            <span>Arabia</span>
+            <span>•</span>
+            <span>Persia & Mesopotamia</span>
+          </div>
         </div>
       </div>
 
       {/* ================= INTRO ================= */}
-      <section className="space-y-8">
+      <section className="space-y-8 rounded-3xl border bg-gradient-to-br from-sky-50 via-white to-cyan-50 p-6 sm:p-8 shadow-sm">
         {/* Intro text */}
         <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold">
+          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900">
             What is the Middle East?
           </h2>
 
@@ -79,34 +90,36 @@ export default function MiddleEastLanding() {
         </div>
 
         {/* Info banner */}
-        <div className="max-w-4xl mx-auto rounded-2xl border border-cyan-300/60 bg-cyan-50 px-6 py-5 shadow-sm">
+        <div className="max-w-4xl mx-auto rounded-2xl border border-cyan-300/60 bg-white/70 backdrop-blur px-6 py-5 shadow-sm">
           <p className="text-gray-800 leading-relaxed">
-            <span className="font-semibold">Important:</span> The Middle East is
-            not one country, and there is no single official border that
-            everyone agrees on.
+            <span className="font-semibold text-cyan-700">Important:</span> The
+            Middle East is not one country, and there is no single official
+            border that everyone agrees on.
           </p>
         </div>
 
         {/* Cards */}
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Included */}
-          <div className="rounded-2xl border bg-white p-6 shadow-md">
-            <h3 className="text-xl font-semibold mb-3">
+          {/* Countries Included */}
+          <div className="rounded-2xl border border-t-4 border-t-cyan-500 bg-white/90 backdrop-blur p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <h3 className="text-xl font-semibold mb-3 text-cyan-800">
               Countries generally included
             </h3>
 
-            <ul className="text-gray-700 space-y-1">
+            <ul className="text-gray-700 space-y-1 leading-relaxed">
               <li>• Saudi Arabia, UAE, Qatar, Bahrain, Kuwait, Oman, Yemen</li>
               <li>• Jordan, Israel, Palestine, Lebanon, Syria</li>
               <li>• Iraq, Iran</li>
             </ul>
           </div>
 
-          {/* Sometimes */}
-          <div className="rounded-2xl border bg-white p-6 shadow-md">
-            <h3 className="text-xl font-semibold mb-3">Sometimes included</h3>
+          {/* Sometimes Included */}
+          <div className="rounded-2xl border border-t-4 border-t-sky-500 bg-white/90 backdrop-blur p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <h3 className="text-xl font-semibold mb-3 text-sky-800">
+              Sometimes included
+            </h3>
 
-            <ul className="text-gray-700 space-y-2">
+            <ul className="text-gray-700 space-y-2 leading-relaxed">
               <li>• Turkey</li>
               <li>• Egypt</li>
               <li>• Cyprus</li>
@@ -119,9 +132,9 @@ export default function MiddleEastLanding() {
             </div>
           </div>
 
-          {/* Role in history */}
-          <div className="rounded-2xl border bg-white p-6 shadow-md">
-            <h3 className="text-xl font-semibold mb-3">
+          {/* Role in History */}
+          <div className="rounded-2xl border border-t-4 border-t-blue-500 bg-white/90 backdrop-blur p-6 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+            <h3 className="text-xl font-semibold mb-3 text-blue-900">
               The Middle East’s Role in World History
             </h3>
 
@@ -146,38 +159,45 @@ export default function MiddleEastLanding() {
         </div>
 
         {/* Region split */}
-        <div className="rounded-2xl border bg-white p-6 sm:p-8 shadow-md space-y-6">
-          <h3 className="text-2xl font-bold text-center">
+        <div className="rounded-3xl border bg-white/90 backdrop-blur p-6 sm:p-8 shadow-sm space-y-6">
+          <h3 className="text-2xl font-bold text-center text-slate-900">
             Our 3 Learning Regions
           </h3>
 
-          <p className="text-gray-700 leading-relaxed">
+          <p className="text-gray-700 leading-relaxed text-center max-w-3xl mx-auto">
             Modern borders don’t always match older cultural regions. To make
             learning clearer, we group the Middle East into three broad learning
             regions based on geography and history.
           </p>
 
+          {/* Divider */}
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-200 to-transparent" />
+
           <div className="grid gap-5 md:grid-cols-3">
             {/* Levant */}
-            <div className="rounded-xl border bg-amber-50 p-5">
-              <h4 className="font-semibold mb-2">The Levant</h4>
-              <p className="text-sm text-gray-700">
+            <div className="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5 shadow-sm hover:shadow-md transition">
+              <h4 className="font-semibold mb-2 text-amber-900">The Levant</h4>
+              <p className="text-sm text-gray-700 leading-relaxed">
                 Lebanon, Syria, Jordan, Israel, Palestine
               </p>
             </div>
 
             {/* Arabia */}
-            <div className="rounded-xl border bg-orange-50 p-5">
-              <h4 className="font-semibold mb-2">Arabia</h4>
-              <p className="text-sm text-gray-700">
+            <div className="rounded-2xl border border-orange-200 bg-gradient-to-br from-orange-50 to-white p-5 shadow-sm hover:shadow-md transition">
+              <h4 className="font-semibold mb-2 text-orange-900">Arabia</h4>
+              <p className="text-sm text-gray-700 leading-relaxed">
                 Saudi Arabia, UAE, Qatar, Bahrain, Kuwait, Oman, Yemen
               </p>
             </div>
 
             {/* Persia */}
-            <div className="rounded-xl border bg-emerald-50 p-5">
-              <h4 className="font-semibold mb-2">Persia &amp; Mesopotamia</h4>
-              <p className="text-sm text-gray-700">Iran and Iraq</p>
+            <div className="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 shadow-sm hover:shadow-md transition">
+              <h4 className="font-semibold mb-2 text-emerald-900">
+                Persia &amp; Mesopotamia
+              </h4>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Iran and Iraq
+              </p>
             </div>
           </div>
         </div>

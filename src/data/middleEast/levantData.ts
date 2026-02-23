@@ -1,5 +1,14 @@
 export const levantData = {
   region: "Levant",
+
+  regionFacts: [
+    "The Levant is one of the oldest continuously inhabited regions in the world.",
+    "It sits at the crossroads of Africa, Asia, and Europe.",
+    "Phoenician traders from this region helped spread the alphabet.",
+    "Jerusalem, Damascus, and Beirut are among the region’s most historic cities.",
+    "The Levant has been important to Judaism, Christianity, and Islam.",
+  ],
+
   countries: [
     {
       name: "Jordan",

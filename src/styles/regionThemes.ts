@@ -33,6 +33,16 @@ export type RegionTheme = {
     text: string;
     cardBg: string;
   };
+
+  layout?: {
+    container: string; // max width + horizontal padding
+    sectionPadding: string; // vertical spacing
+    sectionGap: string; // inner spacing between elements
+    title: string; // default H2 style
+    body: string; // default paragraph style
+    cardRadius: string;
+    cardPadding: string;
+  };
 };
 
 //////////////////////////////////////////////////////////
@@ -68,6 +78,15 @@ export const levantTheme: RegionTheme = {
     year: "text-orange-900",
     text: "text-gray-800",
     cardBg: "bg-[#fffaf3]",
+  },
+  layout: {
+    container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+    sectionPadding: "py-12 sm:py-16",
+    sectionGap: "space-y-6",
+    title: "text-3xl sm:text-4xl font-bold tracking-tight",
+    body: "text-base sm:text-lg leading-relaxed",
+    cardRadius: "rounded-2xl",
+    cardPadding: "p-6 sm:p-8",
   },
 };
 
@@ -105,6 +124,15 @@ export const arabianTheme: RegionTheme = {
     text: "text-gray-800",
     cardBg: "bg-[#fffaf5]",
   },
+  layout: {
+    container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+    sectionPadding: "py-12 sm:py-16",
+    sectionGap: "space-y-6",
+    title: "text-3xl sm:text-4xl font-bold tracking-tight",
+    body: "text-base sm:text-lg leading-relaxed",
+    cardRadius: "rounded-2xl",
+    cardPadding: "p-6 sm:p-8",
+  },
 };
 
 //////////////////////////////////////////////////////////
@@ -139,5 +167,15 @@ export const persiaMesopotamiaTheme: RegionTheme = {
     year: "text-[#2E5F56]",
     text: "text-gray-800",
     cardBg: "bg-[#f8fffd]",
+  },
+
+  layout: {
+    container: "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8",
+    sectionPadding: "py-12 sm:py-16",
+    sectionGap: "space-y-6",
+    title: "text-3xl sm:text-4xl font-bold tracking-tight",
+    body: "text-base sm:text-lg leading-relaxed",
+    cardRadius: "rounded-2xl",
+    cardPadding: "p-6 sm:p-8",
   },
 };

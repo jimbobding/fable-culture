@@ -19,6 +19,7 @@ type Country = {
 
 type RegionData = {
   region: string;
+  regionFacts?: string[];
   countries: Country[];
 };
 
@@ -49,17 +50,27 @@ export default function RegionContent({
   timeline,
   theme,
 }: Props) {
+  const sectionCardBase = `
+    px-8 py-12
+    rounded-2xl
+    border
+    ${theme.cardBorder}
+    ${theme.cardShadow ?? "shadow-lg"}
+  `;
+
+  const sectionHeadingClass = `
+    text-3xl sm:text-4xl
+    font-bold
+    tracking-tight
+    text-center
+    ${theme.introTitle}
+  `;
+
   return (
-    <section className="px-8 py-16 space-y-16">
+    <section className="space-y-16">
       {/* ================= TIMELINE ================= */}
-      <section
-        className={`px-8 py-12 rounded-lg shadow-lg ${theme.timeline.sectionBg}`}
-      >
-        <h2
-          className={`text-2xl font-semibold mb-8 text-center ${theme.introTitle}`}
-        >
-          Historical Timeline
-        </h2>
+      <section className={`${sectionCardBase} ${theme.timeline.sectionBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-8`}>Historical Timeline</h2>
 
         <Timeline
           items={timeline}
@@ -69,17 +80,15 @@ export default function RegionContent({
             year: theme.timeline.year,
             text: theme.timeline.text,
             cardBg: theme.timeline.cardBg,
+            dotBorder: theme.cardBorder,
           }}
         />
       </section>
 
       {/* ================= MODERN COUNTRIES ================= */}
-      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}>
-        <h2
-          className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}
-        >
-          Modern Countries
-        </h2>
+      <section className={`${sectionCardBase} ${theme.cardBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-6`}>Modern Countries</h2>
+
         <ul className="space-y-4">
           {data.countries.map((country) => (
             <CountryDropdown
@@ -92,15 +101,16 @@ export default function RegionContent({
       </section>
 
       {/* ================= FACTS ================= */}
-      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.factsBg}`}>
-        <h2
-          className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}
-        >
-          Cultural Facts
-        </h2>
+      <section
+        className={`${sectionCardBase} ${theme.factsBg ?? theme.cardBg}`}
+      >
+        <h2 className={`${sectionHeadingClass} mb-6`}>Cultural Facts</h2>
+
         <FactsSection
           continent={continent}
           regionKey={regionKey}
+          staticItems={data.regionFacts ?? []}
+          sectionHeading=""
           theme={{
             cardBg: theme.cardBg,
             cardBorder: theme.cardBorder,
@@ -112,10 +122,9 @@ export default function RegionContent({
       </section>
 
       {/* ================= GALLERY ================= */}
-      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}>
-        <h2 className={`text-2xl mb-6 text-center ${theme.introTitle}`}>
-          Gallery
-        </h2>
+      <section className={`${sectionCardBase} ${theme.cardBg}`}>
+        <h2 className={`${sectionHeadingClass} mb-6`}>Gallery</h2>
+
         <Gallery
           images={gallery.map((img) => img.src)}
           captions={gallery.map((img) => img.label)}
@@ -142,40 +151,58 @@ function CountryDropdown({
 
   return (
     <li
-      className={`border rounded-lg p-4 shadow-md transition-shadow hover:shadow-xl ${theme.cardBg} ${theme.cardBorder}`}
+      className={`
+        border
+        rounded-2xl
+        p-4
+        transition-all
+        ${theme.cardBg}
+        ${theme.cardBorder}
+        ${theme.cardShadow ?? "shadow-md"}
+        hover:shadow-xl
+        ${open ? "ring-2 ring-black/10" : ""}
+      `}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full text-left font-semibold flex justify-between items-center"
+        className={`w-full text-left font-semibold flex justify-between items-center ${theme.text}`}
+        aria-expanded={open}
       >
         <span>
           {country.flag} {country.name}
         </span>
-        <span>{open ? "▲" : "▼"}</span>
+        <span className="opacity-70">{open ? "▲" : "▼"}</span>
       </button>
 
       {open && (
-        <div className="mt-2 pl-4 text-gray-700 space-y-1">
+        <div className={`mt-3 pl-4 space-y-1 ${theme.text}`}>
           <p>
             <strong>Capital:</strong>{" "}
             {country.link ? (
-              <a href={country.link} className="underline text-blue-600">
+              <a
+                href={country.link}
+                className="underline underline-offset-4 opacity-90 hover:opacity-100"
+              >
                 {country.capital}
               </a>
             ) : (
               country.capital
             )}
           </p>
+
           <p>
             <strong>Languages:</strong> {country.languages.join(", ")}
           </p>
+
           <p>
             <strong>Population:</strong> {country.population}
           </p>
+
           <p>
             <strong>Fact:</strong> {country.note}
           </p>
-          <p className="italic text-sm text-gray-600 mt-1">{country.extra}</p>
+
+          <p className="italic text-sm opacity-80 mt-1">{country.extra}</p>
         </div>
       )}
     </li>

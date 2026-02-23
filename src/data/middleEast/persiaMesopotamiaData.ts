@@ -1,6 +1,15 @@
 // data/middleEast/persiaMesopotamiaData.ts
 export const persiaMesopotamiaData = {
   region: "Persia-Mesopotamia",
+
+  regionFacts: [
+    "Mesopotamia is often called the Cradle of Civilization.",
+    "The earliest known writing system, cuneiform, developed here.",
+    "Ancient Persia was ruled by powerful empires such as the Achaemenids.",
+    "The Tigris and Euphrates rivers supported early farming societies.",
+    "Cities like Babylon, Ur, and Persepolis were major centres of learning and power.",
+  ],
+
   countries: [
     {
       name: "Iran",
