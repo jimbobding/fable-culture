@@ -64,7 +64,7 @@ export default function RegionContent({
         <Timeline
           items={timeline}
           theme={{
-            background: theme.timeline.sectionBg,
+            sectionBg: theme.timeline.sectionBg,
             line: theme.timeline.line,
             year: theme.timeline.year,
             text: theme.timeline.text,
@@ -74,49 +74,46 @@ export default function RegionContent({
       </section>
 
       {/* ================= MODERN COUNTRIES ================= */}
-      <section
-        className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}
-      >
-        <h2 className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}>
+      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}>
+        <h2
+          className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}
+        >
           Modern Countries
         </h2>
         <ul className="space-y-4">
           {data.countries.map((country) => (
-            <CountryDropdown key={country.name} country={country} theme={theme} />
+            <CountryDropdown
+              key={country.name}
+              country={country}
+              theme={theme}
+            />
           ))}
         </ul>
       </section>
 
       {/* ================= FACTS ================= */}
-      <section
-        className={`px-8 py-12 rounded-lg shadow-lg ${theme.factsBg}`}
-      >
+      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.factsBg}`}>
         <h2
           className={`text-2xl font-semibold mb-6 text-center ${theme.introTitle}`}
         >
           Cultural Facts
         </h2>
-     <FactsSection
-  continent={continent}
-  regionKey={regionKey}
-  theme={{
-    cardBg: theme.cardBg,
-    cardBorder: theme.cardBorder,
-    cardShadow: theme.cardShadow,
-    text: theme.text,
-    inputBg: theme.inputBg,
-  }}
-/>
-
+        <FactsSection
+          continent={continent}
+          regionKey={regionKey}
+          theme={{
+            cardBg: theme.cardBg,
+            cardBorder: theme.cardBorder,
+            cardShadow: theme.cardShadow,
+            text: theme.text,
+            inputBg: theme.inputBg,
+          }}
+        />
       </section>
 
       {/* ================= GALLERY ================= */}
-      <section
-        className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}
-      >
-        <h2
-          className={`text-2xl mb-6 text-center ${theme.introTitle}`}
-        >
+      <section className={`px-8 py-12 rounded-lg shadow-lg ${theme.cardBg}`}>
+        <h2 className={`text-2xl mb-6 text-center ${theme.introTitle}`}>
           Gallery
         </h2>
         <Gallery
@@ -161,7 +158,13 @@ function CountryDropdown({
         <div className="mt-2 pl-4 text-gray-700 space-y-1">
           <p>
             <strong>Capital:</strong>{" "}
-            {country.link ? <a href={country.link} className="underline text-blue-600">{country.capital}</a> : country.capital}
+            {country.link ? (
+              <a href={country.link} className="underline text-blue-600">
+                {country.capital}
+              </a>
+            ) : (
+              country.capital
+            )}
           </p>
           <p>
             <strong>Languages:</strong> {country.languages.join(", ")}

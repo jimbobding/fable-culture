@@ -5,7 +5,9 @@ import { persiaMesopotamiaData } from "@/data/middleEast/persiaMesopotamiaData";
 import { persiaMesopotamiaGallery } from "@/data/middleEast/persiaMesopotamiaGallery";
 import { persiaMesopotamiaTimeline } from "@/data/middleEast/persiaMesopotamiaTimeline";
 import { persiaMesopotamiaTheme } from "@/styles/regionThemes";
+import Link from "next/link";
 
+const theme = persiaMesopotamiaTheme;
 export default function PersiaMesopotamiaPage() {
   return (
     <main className={`space-y-16 ${persiaMesopotamiaTheme.factsBg}`}>
@@ -142,6 +144,26 @@ export default function PersiaMesopotamiaPage() {
           timeline={persiaMesopotamiaTimeline}
           theme={persiaMesopotamiaTheme}
         />
+      </div>
+      {/* Back to Map Button */}
+      <div className="flex justify-center mt-10">
+        <Link
+          href="/middle-east"
+          className={`
+      inline-flex items-center gap-2
+      px-5 py-2.5
+      rounded-lg border
+      font-medium
+      transition-all duration-300
+      hover:shadow-md hover:scale-[1.02]
+      mb-10
+      ${theme.cardBg}
+      ${theme.cardBorder}
+      ${theme.text}
+    `}
+        >
+          ← Back to Middle East Map
+        </Link>
       </div>
     </main>
   );

@@ -5,6 +5,8 @@ import { arabianData } from "@/data/middleEast/arabianData";
 import { arabianGallery } from "@/data/middleEast/arabianGallery";
 import { arabianTimeline } from "@/data/middleEast/arabianTimeline";
 import { arabianTheme } from "@/styles/regionThemes";
+const theme = arabianTheme;
+import Link from "next/link";
 
 export default function ArabianPage() {
   return (
@@ -108,6 +110,27 @@ export default function ArabianPage() {
         timeline={arabianTimeline}
         theme={arabianTheme}
       />
+
+      {/* Back to Map Button */}
+      <div className="flex justify-center mt-10">
+        <Link
+          href="/middle-east"
+          className={`
+      inline-flex items-center gap-2
+      px-5 py-2.5
+      rounded-lg border
+      font-medium
+      transition-all duration-300
+      hover:shadow-md hover:scale-[1.02]
+      mb-10
+      ${theme.cardBg}
+      ${theme.cardBorder}
+      ${theme.text}
+    `}
+        >
+          ← Back to Middle East Map
+        </Link>
+      </div>
     </main>
   );
 }

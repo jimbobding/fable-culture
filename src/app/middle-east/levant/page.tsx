@@ -6,6 +6,8 @@ import { levantGallery } from "@/data/middleEast/levantGallery";
 
 import { levantTimeline } from "@/data/middleEast/levantTimeline";
 import { levantTheme } from "@/styles/regionThemes";
+const theme = levantTheme;
+import Link from "next/link";
 
 export default function LevantPage() {
   return (
@@ -79,6 +81,26 @@ export default function LevantPage() {
         timeline={levantTimeline}
         theme={levantTheme}
       />
+      {/* Back to Map Button */}
+      <div className="flex justify-center mt-10">
+        <Link
+          href="/middle-east"
+          className={`
+      inline-flex items-center gap-2
+      px-5 py-2.5
+      rounded-lg border
+      font-medium
+      transition-all duration-300
+      hover:shadow-md hover:scale-[1.02]
+      mb-10
+      ${theme.cardBg}
+      ${theme.cardBorder}
+      ${theme.text}
+    `}
+        >
+          ← Back to Middle East Map
+        </Link>
+      </div>
     </main>
   );
 }
