@@ -120,6 +120,18 @@ export default function LandingPage() {
           </Link>
         ))}
       </section>
+      {/* 🌎 Global Gallery Button */}
+      <section className="flex justify-center mb-16 px-6">
+        <Link
+          href="/gallery" // <-- path to your global gallery page
+          className="w-72 h-48 flex flex-col justify-center items-center rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-500 to-pink-500 text-white text-center shadow-md font-bold text-2xl hover:scale-105 hover:shadow-xl transition-all duration-300"
+        >
+          🎨 Gallery
+          <p className="mt-2 text-sm font-medium">
+            See all cultures and traditions
+          </p>
+        </Link>
+      </section>
 
       {/* Upcoming Events / Calendar */}
       <section className="max-w-4xl mx-auto px-6 mb-16">

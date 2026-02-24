@@ -5,3 +5,29 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-28px);
+  }
+
+  40% {
+    transform: translateY(0);
+  }
+
+  55% {
+    transform: translateY(-14px);
+  }
+
+  70% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}

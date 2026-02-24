@@ -2,21 +2,22 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const url = req.nextUrl.clone();
-  const passwordCookie = req.cookies.get("fable-auth")?.value;
+  const passwordCookie = req.cookies.get("fable-auth")?.value?.trim();
+  const sitePassword = process.env.SITE_PASSWORD?.trim();
 
-  // allow access to password page itself
-  if (url.pathname === "/password") return NextResponse.next();
+  // If authed, allow
+  if (passwordCookie && sitePassword && passwordCookie === sitePassword) {
+    return NextResponse.next();
+  }
 
-  // allow access if cookie matches
-  if (passwordCookie === process.env.SITE_PASSWORD) return NextResponse.next();
+  // Not authed: send to password + remember destination
+  const redirectUrl = req.nextUrl.clone();
+  redirectUrl.pathname = "/password";
+  redirectUrl.searchParams.set("from", req.nextUrl.pathname);
 
-  // otherwise, redirect to password page
-  url.pathname = "/password";
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(redirectUrl);
 }
 
-// Tell Next.js which paths this middleware should run on
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/gallery/:path*"], // ONLY protect gallery
 };
