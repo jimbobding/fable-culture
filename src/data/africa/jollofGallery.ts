@@ -15,10 +15,10 @@ export const jollofGallery: JollofRecipe[] = [
     recipeUrl:
       "https://www.allrecipes.com/chef-johns-jollof-rice-recipe-7499757",
     images: [
-      "/images/continents/africa/gallery/jollof/100_0493.JPG",
-      "/images/continents/africa/gallery/jollof/100_0495.JPG",
-      "/images/continents/africa/gallery/jollof/100_0501.JPG",
-      "/images/continents/africa/gallery/jollof/100_0509.JPG",
+      "/images/continents/africa/gallery/jollof/100_0493.jpg",
+      "/images/continents/africa/gallery/jollof/100_0495.jpg",
+      "/images/continents/africa/gallery/jollof/100_0501.jpg",
+      "/images/continents/africa/gallery/jollof/100_0509.jpg",
     ],
   },
   {
@@ -28,10 +28,10 @@ export const jollofGallery: JollofRecipe[] = [
       "The famous Ghanaian Jollof rice, rich in flavor and tradition.",
     recipeUrl: "https://www.curiouscuisiniere.com/jollof-rice-ghana/",
     images: [
-      "/images/continents/africa/gallery/jollof/100_0477.JPG",
-      "/images/continents/africa/gallery/jollof/100_0490.JPG",
-      "/images/continents/africa/gallery/jollof/100_0516.JPG",
-      "/images/continents/africa/gallery/jollof/100_0518.JPG",
+      "/images/continents/africa/gallery/jollof/100_0477.jpg",
+      "/images/continents/africa/gallery/jollof/100_0490.jpg",
+      "/images/continents/africa/gallery/jollof/100_0516.jpg",
+      "/images/continents/africa/gallery/jollof/100_0518.jpg",
     ],
   },
 ];

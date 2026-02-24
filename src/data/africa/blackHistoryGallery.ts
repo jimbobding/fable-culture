@@ -17,7 +17,7 @@ export const blackHistoryImages = [
     tagline: "A look at key events in Black history.",
   },
   {
-    src: "/images/continents/africa/gallery/black-history/belize-flag.JPG",
+    src: "/images/continents/africa/gallery/black-history/belize-flag.jpg",
     alt: "Belize Flag",
     tagline: "Belize Flag",
   },
