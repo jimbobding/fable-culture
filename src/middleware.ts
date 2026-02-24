@@ -2,15 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const passwordCookie = req.cookies.get("fable-auth")?.value?.trim();
-  const sitePassword = process.env.SITE_PASSWORD?.trim();
+  const authed = req.cookies.get("fable-auth")?.value;
 
-  // If authed, allow
-  if (passwordCookie && sitePassword && passwordCookie === sitePassword) {
-    return NextResponse.next();
-  }
+  if (authed === "true") return NextResponse.next();
 
-  // Not authed: send to password + remember destination
   const redirectUrl = req.nextUrl.clone();
   redirectUrl.pathname = "/password";
   redirectUrl.searchParams.set("from", req.nextUrl.pathname);
@@ -19,5 +14,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/gallery/:path*"], // ONLY protect gallery
+  matcher: ["/gallery/:path*"],
 };

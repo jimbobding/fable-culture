@@ -4,31 +4,27 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { unlock } from "./actions";
 
 export default function PasswordClient() {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
-
   const from = searchParams.get("from") || "/";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
-    const cleaned = input.trim();
-    const expected = process.env.NEXT_PUBLIC_SITE_PASSWORD?.trim();
+    const result = await unlock(new FormData(e.currentTarget));
 
-    if (cleaned === expected) {
-      document.cookie = `fable-auth=${encodeURIComponent(
-        cleaned,
-      )}; path=/; max-age=3600; SameSite=Lax`;
-      router.push(from);
+    if (!result.ok) {
+      setError(result.message);
       return;
     }
 
-    setError("Incorrect password. Try again.");
+    router.replace(from);
   };
 
   return (
@@ -43,15 +39,12 @@ export default function PasswordClient() {
             className="rounded-xl shadow-sm"
             priority
           />
-
           <p className="text-sm font-semibold tracking-widest text-slate-600">
             FABLE CULTURE
           </p>
-
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mt-1">
             Enter Password
           </h1>
-
           <p className="text-slate-600 mt-1">
             This page is protected. Please enter the site password to continue.
           </p>
@@ -65,6 +58,7 @@ export default function PasswordClient() {
               </span>
 
               <input
+                name="password"
                 type="password"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
@@ -107,10 +101,6 @@ export default function PasswordClient() {
             </div>
           </form>
         </div>
-
-        <p className="text-center text-xs text-slate-500 mt-6">
-          Tip: If you’re testing, open an incognito window to see the redirect.
-        </p>
       </div>
     </main>
   );
