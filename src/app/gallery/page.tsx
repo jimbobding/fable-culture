@@ -26,6 +26,44 @@ export default function GlobalGalleryPage() {
   return (
     <main className="bg-slate-50 px-6 py-12">
       <div className="max-w-7xl mx-auto space-y-24">
+        {/* Gallery Hub Navigation */}
+        <section className="bg-white rounded-2xl shadow border border-gray-200 p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Gallery Sections
+          </h2>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Link
+              href="/gallery/celebration-boards"
+              className="rounded-xl border border-gray-200 bg-slate-50 p-4 hover:bg-slate-100 transition shadow-sm"
+            >
+              <div className="text-lg font-semibold text-gray-900">
+                🏆 Celebration Boards
+              </div>
+              <div className="text-sm text-gray-600 mt-1">
+                Monthly displays and school celebrations
+              </div>
+            </Link>
+
+            <div className="rounded-xl border border-gray-200 bg-slate-50 p-4 opacity-70">
+              <div className="text-lg font-semibold text-gray-900">
+                🌍 Africa Term Work
+              </div>
+              <div className="text-sm text-gray-600 mt-1">
+                Drumming, Jollof, Black History
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 opacity-50">
+              <div className="text-lg font-semibold text-gray-700">
+                🚧 More Coming Soon
+              </div>
+              <div className="text-sm text-gray-500 mt-1">
+                Europe, Middle East & more
+              </div>
+            </div>
+          </div>
+        </section>
         {galleryComponents.map((Gallery, i) => (
           <Gallery key={i} />
         ))}
