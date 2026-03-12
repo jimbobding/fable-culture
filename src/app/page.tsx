@@ -34,25 +34,25 @@ const continents = [
 // ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
-    start: "2026-02-14",
-    end: "2026-02-14",
-    title: "Valentines Day",
+    start: "2026-03-05",
+    end: "2026-03-05",
+    title: "World Book Day",
     color: "bg-blue-100 border-blue-300",
-    text: "Valentine’s Day started long ago as a day to celebrate love and friendship, named after Saint Valentine. Today, it’s all about sharing cards, flowers, and treats with people you care about—whether that’s friends, family, or someone special—spreading a little extra kindness and heart-shaped fun! 💌💖",
+    text: "World Book Day is a celebration of books, authors, illustrators, and reading. In the UK and Ireland, it takes place on the first Thursday in March each year. The day encourages children and young people to discover the enjoyment of reading and to develop a lifelong reading habit.Many schools mark the occasion with activities such as dressing up as book characters, reading events, and the distribution of book tokens. Internationally, 23 April is recognised by UNESCO as World Book and Copyright Day",
   },
   {
-    start: "2026-02-17",
-    end: "2026-02-17",
-    title: "Pancake Day (Shrove Tuesday)",
+    start: "2026-03-23",
+    end: "2026-03-29",
+    title: "Shakespeare Week",
     color: "bg-green-100 border-green-300",
-    text: "Pancake Day (Shrove Tuesday) is the day before Lent starts, a time when Christians traditionally prepared by using up rich foods like eggs, milk, and sugar. Today, it’s a fun tradition of flipping pancakes, trying toppings, and sometimes even racing them—mixing history with a tasty treat! 🥞",
+    text: "Shakespeare Week is a national annual celebration of the life and works of William Shakespeare (1564–1616). It is organised to introduce primary school pupils to Shakespeare’s plays and language in accessible and creative ways.The week encourages performance, storytelling, and exploration of themes from his plays. Activities often include drama workshops, readings, and classroom projects designed to make Shakespeare engaging and understandable for young learners.",
   },
   {
-    start: "2026-02-27",
-    end: "2026-02-27",
-    title: "Pokémon Day",
+    start: "2026-03-31",
+    end: "2026-03-31",
+    title: "International Transgender Day of Visibility",
     color: "bg-orange-100 border-orange-300",
-    text: "Pokémon Day is celebrated every year on February 27th, marking the birthday of the very first Pokémon games back in 1996. Fans around the world celebrate by playing games, trading cards, watching shows, and sharing their favorite Pokémon—basically a day to celebrate all things Pikachu, Charizard, and beyond! ⚡🎉",
+    text: "International Transgender Day of Visibility (TDoV) is observed annually on 31 March. It was founded in 2009 by Rachel Crandall-Crocker, a transgender activist from the United States. The day is dedicated to recognising the lives, contributions, and achievements of transgender and non-binary people.It also raises awareness of the discrimination and challenges that many transgender people face globally. Unlike the Transgender Day of Remembrance in November, which commemorates victims of anti-trans violence, TDoV focuses on celebrating people who are living and on promoting understanding  and inclusion.",
   },
 ];
 
