@@ -10,14 +10,14 @@ type Props = {
 };
 
 export default function RotatableImageCard({ src, alt, caption }: Props) {
-  const [rot, setRot] = useState<0 | 90 | 180 | 270>(0);
+  const [rotation, setRotation] = useState(0);
 
   return (
     <figure className="rounded-2xl overflow-hidden bg-white shadow border border-gray-200">
       <div className="relative aspect-[4/3] bg-gray-100">
         <div
           className="absolute inset-0"
-          style={{ transform: `rotate(${rot}deg)` }}
+          style={{ transform: `rotate(${rotation}deg)` }}
         >
           <Image
             src={src}
@@ -30,9 +30,8 @@ export default function RotatableImageCard({ src, alt, caption }: Props) {
 
         <button
           type="button"
-          onClick={() => setRot((r) => ((r + 90) % 360) as 0 | 90 | 180 | 270)}
+          onClick={() => setRotation((prev) => prev + 90)}
           className="absolute right-2 top-2 rounded-lg bg-white/90 px-3 py-1 text-sm font-semibold text-gray-800 shadow hover:bg-white"
-          aria-label="Rotate image"
         >
           ↻ Rotate
         </button>
