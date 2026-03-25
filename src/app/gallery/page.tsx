@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import DrummingGallery from "@/app/africa/gallery/components/DrummingGallery";
@@ -10,27 +8,31 @@ import JollofGallery from "@/app/africa/gallery/components/JollofGallery";
 
 const galleryComponents = [DrummingGallery, BlackHistoryGallery, JollofGallery];
 
-export default function GlobalGalleryPage() {
-  const pathname = usePathname();
+export const dynamic = "force-dynamic";
 
-  useEffect(() => {
-    // When we stop being on /gallery, clear the cookie
-    return () => {
-      // Only clear if we are navigating away from /gallery
-      if (pathname.startsWith("/gallery")) {
-        document.cookie = "fable-auth=; path=/; max-age=0; SameSite=Lax";
-      }
-    };
-  }, [pathname]);
+export default function GlobalGalleryPage() {
+  const handleLogout = () => {
+    document.cookie = "fable-auth=; path=/; max-age=0";
+    document.cookie = "fable-admin=; path=/; max-age=0";
+    window.location.href = "/";
+  };
 
   return (
     <main className="bg-slate-50 px-6 py-12">
       <div className="max-w-7xl mx-auto space-y-24">
-        {/* Gallery Hub Navigation */}
         <section className="bg-white rounded-2xl shadow border border-gray-200 p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Gallery Sections
-          </h2>
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Gallery Sections
+            </h2>
+
+            <button
+              onClick={handleLogout}
+              className="rounded-xl bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 shadow hover:bg-gray-200 transition"
+            >
+              Log out
+            </button>
+          </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Link
@@ -45,35 +47,38 @@ export default function GlobalGalleryPage() {
               </div>
             </Link>
 
-            <div className="rounded-xl border border-gray-200 bg-slate-50 p-4 opacity-70">
+            <Link
+              href="/gallery/student-uploads"
+              className="rounded-xl border border-gray-200 bg-slate-50 p-4 hover:bg-slate-100 transition shadow-sm"
+            >
               <div className="text-lg font-semibold text-gray-900">
-                🌍 Africa Term Work
+                🖼️ Student Uploads
               </div>
               <div className="text-sm text-gray-600 mt-1">
-                Drumming, Jollof, Black History
+                Approved student work submitted to Fable Culture
               </div>
-            </div>
+            </Link>
 
             <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-4 opacity-50">
-              <div className="text-lg font-semibold text-gray-700">
-                🚧 More Coming Soon
-              </div>
               <div className="text-sm text-gray-500 mt-1">
                 Europe, Middle East & more
               </div>
             </div>
           </div>
         </section>
+
         {galleryComponents.map((Gallery, i) => (
           <Gallery key={i} />
         ))}
       </div>
+
       <div className="mt-6 flex justify-center">
         <Link
           href="/"
           className="group inline-flex items-center rounded-xl bg-gray-100 px-4 py-2 font-semibold text-gray-800 shadow hover:bg-gray-200 transition"
           onClick={() => {
-            document.cookie = "fable-auth=; path=/; max-age=0; SameSite=Lax";
+            document.cookie = "fable-auth=; path=/; max-age=0";
+            document.cookie = "fable-admin=; path=/; max-age=0";
           }}
         >
           <span className="mr-2">🏠</span>
