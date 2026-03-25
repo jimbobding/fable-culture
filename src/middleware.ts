@@ -2,17 +2,33 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const authed = req.cookies.get("fable-auth")?.value;
+  const pathname = req.nextUrl.pathname;
 
-  if (authed === "true") return NextResponse.next();
+  const galleryCookie = req.cookies.get("fable-auth")?.value;
+  const adminCookie = req.cookies.get("fable-admin")?.value;
 
-  const redirectUrl = req.nextUrl.clone();
-  redirectUrl.pathname = "/password";
-  redirectUrl.searchParams.set("from", req.nextUrl.pathname);
+  const sitePassword = process.env.SITE_PASSWORD;
+  const adminPassword = process.env.ADMIN_PASSWORD;
 
-  return NextResponse.redirect(redirectUrl);
+  if (pathname.startsWith("/gallery")) {
+    if (galleryCookie && sitePassword && galleryCookie === sitePassword) {
+      return NextResponse.next();
+    }
+  }
+
+  if (pathname.startsWith("/admin")) {
+    if (adminCookie && adminPassword && adminCookie === adminPassword) {
+      return NextResponse.next();
+    }
+  }
+
+  const url = req.nextUrl.clone();
+  url.pathname = "/password";
+  url.searchParams.set("from", pathname);
+
+  return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: ["/gallery/:path*"],
+  matcher: ["/gallery", "/gallery/:path*", "/admin", "/admin/:path*"],
 };

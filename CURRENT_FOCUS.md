@@ -27,3 +27,12 @@ Create a Celebration Boards section under /gallery where:
    - board.images.map(img => img.src / img.caption)
 3. Add optional meta.json to one board and confirm captions render
 4. Test navigation within /gallery so auth cookie isn’t cleared when moving between /gallery routes
+
+### Current Work
+
+Building and refining the Student Upload System:
+
+- Upload → Firebase Storage + Firestore
+- Admin moderation (approve/delete)
+- Public gallery display
+- Styling and UX improvements ongoing
