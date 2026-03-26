@@ -120,11 +120,13 @@ export default function StudentUploadForm() {
         <label htmlFor="image" className="mb-2 block text-sm font-medium">
           Upload image
         </label>
+
         <input
           ref={fileInputRef}
           id="image"
           type="file"
           accept="image/*"
+          capture="environment"
           onChange={(e) => {
             const file = e.target.files?.[0] ?? null;
             setSelectedFile(file);
