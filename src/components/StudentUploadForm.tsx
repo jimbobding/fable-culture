@@ -66,6 +66,10 @@ export default function StudentUploadForm() {
     }
   }
 
+  const isMobile =
+    typeof window !== "undefined" &&
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -117,27 +121,56 @@ export default function StudentUploadForm() {
       </div>
 
       <div>
-        <label htmlFor="image" className="mb-2 block text-sm font-medium">
-          Upload image
-        </label>
-
         <input
           ref={fileInputRef}
           id="image"
           type="file"
           accept="image/*"
-          capture="environment"
+          className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0] ?? null;
             setSelectedFile(file);
           }}
-          className="w-full rounded-md border px-3 py-2"
         />
-        {selectedFile && (
-          <p className="mt-2 text-sm text-gray-600">
-            Selected file: {selectedFile.name}
-          </p>
-        )}
+        <div>
+          <label className="mb-2 block text-sm font-medium">Upload image</label>
+
+          <div className="flex gap-3">
+            {isMobile && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (fileInputRef.current) {
+                    fileInputRef.current.setAttribute("capture", "environment");
+                    fileInputRef.current.click();
+                  }
+                }}
+                className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+              >
+                📸 Take Photo
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={() => {
+                if (fileInputRef.current) {
+                  fileInputRef.current.removeAttribute("capture");
+                  fileInputRef.current.click();
+                }
+              }}
+              className="flex-1 rounded-md bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
+            >
+              📁 Upload File
+            </button>
+          </div>
+
+          {selectedFile && (
+            <p className="mt-2 text-sm text-gray-600">
+              Selected file: {selectedFile.name}
+            </p>
+          )}
+        </div>
       </div>
 
       <button
