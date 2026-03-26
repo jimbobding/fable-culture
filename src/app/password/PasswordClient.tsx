@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { unlock } from "./actions";
-import router from "next/router";
 
 export default function PasswordClient() {
   const [input, setInput] = useState("");
@@ -25,10 +23,13 @@ export default function PasswordClient() {
     // ADMIN LOGIN
     if (from.startsWith("/admin")) {
       if (cleaned === adminPassword) {
-        document.cookie = `fable-admin=${cleaned}; path=/; max-age=86400`;
+        document.cookie = `fable-admin=${cleaned}; path=/; max-age=3600`;
         window.location.href = from;
         return;
       }
+
+      setError("Incorrect admin password. Try again.");
+      return;
     }
 
     // GALLERY LOGIN
@@ -38,7 +39,7 @@ export default function PasswordClient() {
       return;
     }
 
-    router.replace(from);
+    setError("Incorrect password. Try again.");
   };
 
   return (
