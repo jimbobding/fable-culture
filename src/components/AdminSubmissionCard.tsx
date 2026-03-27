@@ -41,37 +41,11 @@ export default function AdminSubmissionCard({
   }
 
   async function handleDelete() {
-    {
-      const confirmed = window.confirm(
-        "Are you sure you want to delete this submission?",
-      );
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this submission?",
+    );
 
-      if (!confirmed) return;
-
-      try {
-        console.log("Deleting submission:", { id, storagePath });
-
-        if (typeof storagePath === "string" && storagePath.trim() !== "") {
-          try {
-            await deleteObject(ref(storage, storagePath));
-          } catch (storageError) {
-            console.warn("Storage delete skipped/failed:", storageError);
-          }
-        }
-
-        await deleteDoc(doc(db, "gallerySubmissions", id));
-
-        window.location.reload();
-      } catch (error) {
-        console.error("Delete failed:", error);
-
-        if (error instanceof Error) {
-          alert(`Delete failed: ${error.message}`);
-        } else {
-          alert("Delete failed.");
-        }
-      }
-    }
+    if (!confirmed) return;
 
     try {
       console.log("Deleting submission:", { id, storagePath });
@@ -79,12 +53,14 @@ export default function AdminSubmissionCard({
       if (typeof storagePath === "string" && storagePath.trim() !== "") {
         try {
           await deleteObject(ref(storage, storagePath));
+          console.log("Storage object deleted.");
         } catch (storageError) {
           console.warn("Storage delete skipped/failed:", storageError);
         }
       }
 
       await deleteDoc(doc(db, "gallerySubmissions", id));
+      console.log("Firestore document deleted.");
 
       alert("Submission deleted.");
       window.location.reload();
