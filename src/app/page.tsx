@@ -31,28 +31,28 @@ const continents = [
   },
 ];
 
-// ✅ Events — support single or multi-day events
 const upcomingEvents = [
   {
-    start: "2026-03-05",
-    end: "2026-03-05",
-    title: "World Book Day",
-    color: "bg-blue-100 border-blue-300",
-    text: "World Book Day is a celebration of books, authors, illustrators, and reading. In the UK and Ireland, it takes place on the first Thursday in March each year. The day encourages children and young people to discover the enjoyment of reading and to develop a lifelong reading habit.Many schools mark the occasion with activities such as dressing up as book characters, reading events, and the distribution of book tokens. Internationally, 23 April is recognised by UNESCO as World Book and Copyright Day",
+    start: "2026-04-15",
+    end: "2026-04-15",
+    title: "🎨 World Art Day",
+    color: "bg-purple-100 border-purple-300",
+    text: "World Art Day celebrates creativity and the importance of art in society. It is a great chance to explore artists, try new techniques, and share creative work in school.",
   },
+
   {
-    start: "2026-03-23",
-    end: "2026-03-29",
-    title: "Shakespeare Week",
+    start: "2026-04-22",
+    end: "2026-04-22",
+    title: "🌍 Earth Day",
     color: "bg-green-100 border-green-300",
-    text: "Shakespeare Week is a national annual celebration of the life and works of William Shakespeare (1564–1616). It is organised to introduce primary school pupils to Shakespeare’s plays and language in accessible and creative ways.The week encourages performance, storytelling, and exploration of themes from his plays. Activities often include drama workshops, readings, and classroom projects designed to make Shakespeare engaging and understandable for young learners.",
+    text: "Earth Day encourages people to care for the planet and think about how we can protect nature. It is a good opportunity to learn about recycling, wildlife, and looking after our environment.",
   },
   {
-    start: "2026-03-31",
-    end: "2026-03-31",
-    title: "International Transgender Day of Visibility",
-    color: "bg-orange-100 border-orange-300",
-    text: "International Transgender Day of Visibility (TDoV) is observed annually on 31 March. It was founded in 2009 by Rachel Crandall-Crocker, a transgender activist from the United States. The day is dedicated to recognising the lives, contributions, and achievements of transgender and non-binary people.It also raises awareness of the discrimination and challenges that many transgender people face globally. Unlike the Transgender Day of Remembrance in November, which commemorates victims of anti-trans violence, TDoV focuses on celebrating people who are living and on promoting understanding  and inclusion.",
+    start: "2026-04-23",
+    end: "2026-04-23",
+    title: "🏴 St George’s Day",
+    color: "bg-red-100 border-red-300",
+    text: "St George’s Day is the feast day of England’s patron saint. It can be used to explore English traditions, stories, symbols, and how national identity is celebrated in different ways.",
   },
 ];
 
@@ -77,25 +77,24 @@ export default function LandingPage() {
   };
 
   return (
-    <main className="bg-gradient-to-br from-pink-50 to-yellow-50 min-h-[90vh] pb-8">
+    <main className="min-h-[90vh] bg-gradient-to-br from-pink-50 to-yellow-50 pb-8">
       {/* Header */}
-      <header className="text-center py-16 px-6">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 text-pink-600">
+      <header className="px-6 py-16 text-center">
+        <h1 className="mb-4 text-5xl font-extrabold text-pink-600 md:text-6xl">
           Fable-Culture
         </h1>
 
-        {/* ✅ Logo under title */}
-        <div className="flex justify-center mb-6">
+        <div className="mb-6 flex justify-center">
           <Image
-            src="/images/FHLogo-Horizontal.svg" // <-- replace this with your logo path
+            src="/images/FHLogo-Horizontal.svg"
             alt="Fable-Culture Logo"
             width={160}
             height={160}
-            className=" drop-shadow-[0_5px_10px_rgba(0,0,0,.5)] mx-auto"
+            className="mx-auto drop-shadow-[0_5px_10px_rgba(0,0,0,.5)]"
           />
         </div>
 
-        <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-10">
+        <p className="mx-auto mb-10 max-w-3xl text-lg text-gray-700 md:text-xl">
           Explore the cultures, traditions, and shared values of Africa, Europe,
           the Middle East, and the UK. Learn about different regions, important
           ideas, and the stories that shape communities—helping us better
@@ -104,51 +103,86 @@ export default function LandingPage() {
       </header>
 
       {/* Continent Hover Cards */}
-      <section className="flex flex-col md:flex-row justify-center items-center gap-8 mb-16 px-6">
+      <section className="mb-16 flex flex-col items-center justify-center gap-8 px-6 md:flex-row">
         {continents.map((continent, i) => (
           <Link
             key={i}
             href={continent.href}
-            className={`group relative w-72 h-48 flex flex-col justify-center items-center rounded-2xl border border-gray-200 bg-white text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:bg-gradient-to-br ${continent.color}`}
+            className={`group relative flex h-48 w-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gradient-to-br hover:shadow-xl ${continent.color}`}
           >
-            <h2 className="text-3xl font-bold mb-2 text-gray-800 group-hover:text-white transition">
+            <h2 className="mb-2 text-3xl font-bold text-gray-800 transition group-hover:text-white">
               {continent.name}
             </h2>
-            <p className="text-gray-700 text-sm px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:text-gray-100">
+            <p className="px-4 text-sm text-gray-700 opacity-0 transition-opacity duration-300 group-hover:text-gray-100 group-hover:opacity-100">
               {continent.description}
             </p>
           </Link>
         ))}
       </section>
-      {/* 🌎 Global Gallery Button */}
-      <section className="flex justify-center mb-16 px-6">
-        <Link
-          href="/gallery" // <-- path to your global gallery page
-          className="w-72 h-48 flex flex-col justify-center items-center rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-500 to-pink-500 text-white text-center shadow-md font-bold text-2xl hover:scale-105 hover:shadow-xl transition-all duration-300"
-        >
-          🎨 Gallery
-          <p className="mt-2 text-sm font-medium">
-            See all cultures and traditions
-          </p>
-        </Link>
+
+      {/* Gallery + Upload */}
+      <section className="mb-16 px-6">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+          <Link
+            href="/gallery"
+            className="flex h-48 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-500 to-pink-500 text-center text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          >
+            <span className="text-2xl font-bold">🎨 Gallery</span>
+            <p className="mt-2 text-sm font-medium">
+              See all cultures and traditions
+            </p>
+          </Link>
+
+          <Link
+            href="/upload"
+            className="flex h-48 flex-col items-center justify-center rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-400 to-orange-500 text-center text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          >
+            <span className="text-2xl font-bold">📤 Upload Your Work</span>
+            <p className="mt-2 max-w-xs text-sm font-medium">
+              Share student work to be reviewed and added to the gallery
+            </p>
+          </Link>
+        </div>
       </section>
 
       {/* Upcoming Events / Calendar */}
-      <section className="max-w-4xl mx-auto px-6 mb-16">
-        <h2 className="text-3xl font-bold mb-6 text-center text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)]">
+      <section className="mx-auto mb-16 max-w-4xl px-6">
+        <h2 className="mb-6 text-center text-3xl font-bold text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)]">
           Important Events: {monthName}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+        {/* Special Month Highlight */}
+        <div className="mb-8 flex justify-center">
+          <div className="w-full max-w-2xl rounded-[2rem] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-yellow-100 p-6 text-center shadow-md">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
+              Special Month
+            </p>
+            <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
+              🐾 National Pet Month
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
+              National Pet Month celebrates the joy that pets bring and helps
+              raise awareness of responsible pet ownership. It is a lovely
+              chance to talk about caring for animals, their needs, and the
+              important role pets can play in people’s lives.
+            </p>
+            <p className="mt-3 text-sm font-medium text-amber-800">
+              1 Apr – 5 May
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
           {upcomingEvents.map((event, i) => (
             <div
               key={i}
-              className={`p-6 rounded-2xl shadow hover:shadow-lg transition border ${event.color}`}
+              className={`rounded-2xl border p-6 shadow transition hover:shadow-lg ${event.color}`}
             >
               <p className="font-semibold text-pink-600">
                 {formatDateRange(event.start, event.end)}
               </p>
               <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
-              {event.text && <p className="text-gray-500 mt-1">{event.text}</p>}
+              {event.text && <p className="mt-1 text-gray-600">{event.text}</p>}
             </div>
           ))}
         </div>

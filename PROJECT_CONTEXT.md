@@ -173,3 +173,32 @@ Fields:
 - Improve styling consistency (logo, colours, layout)
 - Possibly reuse `RotatableImageCard.tsx` for consistency
 - Add upload success feedback UX (instead of alert)
+
+---
+
+## ADDITION — Production behaviour & caching (IMPORTANT)
+
+### Live vs Local behaviour
+
+A key lesson from recent work:
+
+- Local development always fetches fresh data
+- Vercel production may serve cached/static output
+
+This caused a major issue where:
+
+- Firestore documents were correctly deleted
+- but still appeared on the admin page
+
+### Root cause
+
+- Admin submissions page was being treated as static/cached
+
+### Fix applied
+
+Admin page was updated with:
+
+```ts
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+```
