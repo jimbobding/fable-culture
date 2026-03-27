@@ -3,6 +3,9 @@ import { db } from "@/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import AdminSubmissionCard from "../../../components/AdminSubmissionCard";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 type Submission = {
   id: string;
   title?: string;
@@ -42,7 +45,6 @@ export default async function AdminSubmissionsPage() {
   return (
     <main className="min-h-screen bg-stone-50">
       <div className="mx-auto max-w-6xl px-6 py-10">
-        {/* HEADER */}
         <section className="mb-10 rounded-3xl border border-stone-200 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-8 shadow-sm">
           <p className="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-amber-700">
             Fable Culture Admin
@@ -67,7 +69,6 @@ export default async function AdminSubmissionsPage() {
           </div>
         </section>
 
-        {/* PENDING SECTION */}
         <section className="mb-16 rounded-3xl border border-amber-200 bg-amber-50/50 p-8 shadow-sm">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-stone-900">
@@ -99,7 +100,6 @@ export default async function AdminSubmissionsPage() {
           )}
         </section>
 
-        {/* APPROVED SECTION */}
         <section className="rounded-3xl border border-green-200 bg-green-50/40 p-8 shadow-sm">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-stone-900">
