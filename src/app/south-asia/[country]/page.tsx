@@ -9,6 +9,8 @@ type Props = {
   }>;
 };
 
+const timelineIcons = ["🏺", "📜", "👑", "🌍", "🏛️", "✨"];
+
 const placeTagIcons: Record<string, string> = {
   City: "🏙️",
   Landscape: "🌄",
@@ -190,82 +192,132 @@ export default async function CountryPage({ params }: Props) {
           </section>
 
           {/* TIMELINE */}
-          <section className="rounded-[2rem] border border-amber-300/70 bg-gradient-to-br from-[#f4dfbc] via-[#efd3a4] to-[#e5bf85] p-6 shadow-lg sm:p-8">
-            <div className="mb-10 text-center space-y-3">
+          {/* TIMELINE */}
+          <section className="relative overflow-hidden rounded-[2rem] border border-amber-300/70 bg-gradient-to-br from-[#f4dfbc] via-[#efd3a4] to-[#e5bf85] p-6 shadow-lg sm:p-8">
+            <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.8),transparent_30%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.45),transparent_25%),radial-gradient(circle_at_50%_80%,rgba(255,255,255,0.35),transparent_30%)]" />
+
+            <div className="relative mb-12 text-center space-y-3">
               <p
                 className="text-xs font-semibold uppercase tracking-[0.3em]"
                 style={{ color: country.theme.secondary }}
               >
                 Timeline
               </p>
+
               <h2 className="text-3xl font-bold text-[#4a1d0d] sm:text-4xl">
                 The story of {country.name}
               </h2>
+
               <p className="mx-auto max-w-3xl leading-relaxed text-[#6b4226]">
                 Follow a few key moments that help tell the story of{" "}
-                {country.name}.
+                {country.name}, from earlier periods to the modern day.
               </p>
             </div>
 
-            <div className="relative mx-auto max-w-4xl">
-              <div className="absolute left-5 top-0 h-full w-1 rounded-full bg-gradient-to-b from-[#9a3412] via-[#c2410c] to-[#7f1d1d] sm:left-1/2 sm:-translate-x-1/2" />
+            <div className="relative mx-auto max-w-5xl">
+              <div className="absolute left-6 top-0 h-full w-[6px] rounded-full bg-gradient-to-b from-[#9a3412] via-[#c2410c] to-[#7f1d1d] shadow-[0_0_20px_rgba(154,52,18,0.25)] sm:left-1/2 sm:-translate-x-1/2" />
 
-              <div className="space-y-10">
+              <div className="space-y-10 sm:space-y-12">
                 {country.timeline.map((item, index) => {
                   const isLeft = index % 2 === 0;
+                  const icon = timelineIcons[index % timelineIcons.length];
 
                   return (
                     <div
                       key={`${item.year}-${item.title}-${index}`}
                       className="relative grid items-center sm:grid-cols-2"
                     >
-                      <div className="absolute left-5 top-7 z-10 h-5 w-5 rounded-full border-4 border-white bg-[#9a3412] shadow-md sm:left-1/2 sm:-translate-x-1/2" />
+                      <div className="absolute left-6 top-8 z-20 h-6 w-6 rounded-full border-4 border-white bg-[#9a3412] shadow-[0_8px_20px_rgba(0,0,0,0.18)] sm:left-1/2 sm:-translate-x-1/2" />
 
                       <div
-                        className={`${isLeft ? "hidden sm:block sm:pr-10" : "hidden sm:block sm:opacity-0"}`}
+                        className={`${
+                          isLeft
+                            ? "hidden sm:block sm:pr-12"
+                            : "hidden sm:block sm:opacity-0"
+                        }`}
                       >
                         {isLeft && (
-                          <div className="rounded-[1.75rem] border border-[#9a3412]/20 bg-[#fff7ed]/90 p-6 shadow-md">
-                            <span className="inline-flex rounded-full bg-[#9a3412] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white">
-                              {item.year}
-                            </span>
-                            <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
-                              {item.title}
-                            </h3>
-                            <p className="mt-3 leading-relaxed text-[#6b4226]">
-                              {item.text}
-                            </p>
-                          </div>
+                          <article className="relative overflow-hidden rounded-[1.9rem] border border-[#9a3412]/20 bg-[#fff7ed]/92 p-6 shadow-[0_18px_40px_rgba(90,42,20,0.14)] backdrop-blur">
+                            <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[2rem] bg-white/30" />
+
+                            <div className="relative flex items-start gap-4">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-md text-2xl">
+                                {icon}
+                              </div>
+
+                              <div className="flex-1">
+                                <span className="inline-flex rounded-full bg-[#9a3412] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-sm">
+                                  {item.year}
+                                </span>
+
+                                <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
+                                  {item.title}
+                                </h3>
+
+                                <p className="mt-3 leading-relaxed text-[#6b4226]">
+                                  {item.text}
+                                </p>
+                              </div>
+                            </div>
+                          </article>
                         )}
                       </div>
 
                       <div
-                        className={`${!isLeft ? "pl-12 sm:pl-10" : "pl-12 sm:pl-0 sm:opacity-0"}`}
+                        className={`${
+                          !isLeft
+                            ? "pl-14 sm:pl-12"
+                            : "pl-14 sm:pl-0 sm:opacity-0"
+                        }`}
                       >
                         {!isLeft ? (
-                          <div className="rounded-[1.75rem] border border-[#7f1d1d]/20 bg-[#fff7ed]/90 p-6 shadow-md">
-                            <span className="inline-flex rounded-full bg-[#7f1d1d] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white">
-                              {item.year}
-                            </span>
-                            <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
-                              {item.title}
-                            </h3>
-                            <p className="mt-3 leading-relaxed text-[#6b4226]">
-                              {item.text}
-                            </p>
-                          </div>
+                          <article className="relative overflow-hidden rounded-[1.9rem] border border-[#7f1d1d]/20 bg-[#fff7ed]/92 p-6 shadow-[0_18px_40px_rgba(90,42,20,0.14)] backdrop-blur">
+                            <div className="absolute left-0 top-0 h-24 w-24 rounded-br-[2rem] bg-white/30" />
+
+                            <div className="relative flex items-start gap-4">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-md text-2xl">
+                                {icon}
+                              </div>
+
+                              <div className="flex-1">
+                                <span className="inline-flex rounded-full bg-[#7f1d1d] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-sm">
+                                  {item.year}
+                                </span>
+
+                                <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
+                                  {item.title}
+                                </h3>
+
+                                <p className="mt-3 leading-relaxed text-[#6b4226]">
+                                  {item.text}
+                                </p>
+                              </div>
+                            </div>
+                          </article>
                         ) : (
-                          <div className="rounded-[1.75rem] border border-[#9a3412]/20 bg-[#fff7ed]/90 p-6 shadow-md sm:hidden">
-                            <span className="inline-flex rounded-full bg-[#9a3412] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white">
-                              {item.year}
-                            </span>
-                            <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
-                              {item.title}
-                            </h3>
-                            <p className="mt-3 leading-relaxed text-[#6b4226]">
-                              {item.text}
-                            </p>
-                          </div>
+                          <article className="relative overflow-hidden rounded-[1.9rem] border border-[#9a3412]/20 bg-[#fff7ed]/92 p-6 shadow-[0_18px_40px_rgba(90,42,20,0.14)] backdrop-blur sm:hidden">
+                            <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[2rem] bg-white/30" />
+
+                            <div className="relative flex items-start gap-4">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-md text-2xl">
+                                {icon}
+                              </div>
+
+                              <div className="flex-1">
+                                <span className="inline-flex rounded-full bg-[#9a3412] px-4 py-1 text-xs font-bold uppercase tracking-[0.2em] text-white shadow-sm">
+                                  {item.year}
+                                </span>
+
+                                <h3 className="mt-4 text-2xl font-bold text-[#4a1d0d]">
+                                  {item.title}
+                                </h3>
+
+                                <p className="mt-3 leading-relaxed text-[#6b4226]">
+                                  {item.text}
+                                </p>
+                              </div>
+                            </div>
+                          </article>
                         )}
                       </div>
                     </div>
