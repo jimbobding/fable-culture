@@ -1,7 +1,7 @@
 // src/data/middleEast/persiaMesopotamiaTimeline.ts
 "use client";
 
-import type { TimelineItem } from "@/components/Timeline";
+import type { TimelineItem } from "@/components/shared/Timeline";
 
 export const persiaMesopotamiaTimeline: TimelineItem[] = [
   {

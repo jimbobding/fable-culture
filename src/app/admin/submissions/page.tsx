@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { db } from "@/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import AdminSubmissionCard from "../../../components/AdminSubmissionCard";
+import AdminSubmissionCard from "../../../components/admin/AdminSubmissionCard";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

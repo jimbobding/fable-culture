@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import AdminFactCard from "@/components/AdminFactCard";
+import AdminFactCard from "@/components/admin/AdminFactCard";
 import type { Fact } from "@/app/admin/facts/page";
 
 type Props = {

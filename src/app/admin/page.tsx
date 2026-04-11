@@ -16,7 +16,7 @@ export default function AdminPage() {
           <div>
             <h1 className="text-3xl font-bold text-slate-900">Admin</h1>
             <p className="mt-2 text-slate-600">
-              Manage uploads, facts, and future admin tools.
+              Manage uploads, facts, and timeline submissions.
             </p>
           </div>
 
@@ -28,7 +28,9 @@ export default function AdminPage() {
           </button>
         </div>
 
-        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+        {/* 🔥 GRID UPDATED */}
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Uploads */}
           <Link
             href="/admin/submissions"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -41,6 +43,7 @@ export default function AdminPage() {
             </p>
           </Link>
 
+          {/* Facts */}
           <Link
             href="/admin/facts"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -48,6 +51,19 @@ export default function AdminPage() {
             <h2 className="text-xl font-semibold text-slate-900">Facts</h2>
             <p className="mt-2 text-sm text-slate-600">
               Review and approve fact submissions.
+            </p>
+          </Link>
+
+          {/* 🔥 NEW TIMELINE CARD */}
+          <Link
+            href="/admin/timeline-submissions"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <h2 className="text-xl font-semibold text-slate-900">
+              Timeline Submissions
+            </h2>
+            <p className="mt-2 text-sm text-slate-600">
+              Review and approve student timeline ideas.
             </p>
           </Link>
         </div>

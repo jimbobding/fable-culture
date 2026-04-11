@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
-import Timeline from "@/components/Timeline";
+import Timeline from "@/components/shared/Timeline";
 import FactsSection from "@/components/FactsSection";
 import type { RegionTheme } from "@/styles/regionThemes";
 

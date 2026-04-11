@@ -1,0 +1,400 @@
+import { TimelineItem } from "@/components/shared/Timeline";
+
+export const timelines: Record<string, TimelineItem[]> = {
+  india: [
+    {
+      periodKey: "indus-valley",
+      year: "c. 2500–1500 BCE",
+      title: "Indus Valley Civilisation",
+      text: "One of the world’s earliest urban civilisations with planned cities and trade.",
+      emoji: "🏺",
+      questions: [
+        "What made these cities advanced?",
+        "Why did this civilisation decline?",
+      ],
+    },
+    {
+      periodKey: "religion-development",
+      year: "1500 BCE – 500 CE",
+      title: "Religion and Culture Develop",
+      text: "Key ideas like Hinduism and Buddhism began and spread.",
+      emoji: "🕉️",
+      questions: [
+        "What beliefs began here?",
+        "How did religion shape society?",
+      ],
+    },
+    {
+      periodKey: "empires-trade",
+      year: "500–1500",
+      title: "Empires and Trade",
+      text: "Powerful kingdoms and trade routes developed across the region.",
+      emoji: "👑",
+      questions: [
+        "Which empires were strongest?",
+        "How did trade affect India?",
+      ],
+    },
+    {
+      periodKey: "mughal-empire",
+      year: "1500–1800",
+      title: "Mughal Empire",
+      text: "A major empire known for architecture, culture, and government systems.",
+      emoji: "🏛️",
+      questions: ["What buildings were created?", "How did the Mughals rule?"],
+    },
+    {
+      periodKey: "british-rule",
+      year: "1800–1947",
+      title: "British Rule",
+      text: "India became part of the British Empire, bringing major changes.",
+      emoji: "⚙️",
+      questions: [
+        "How did British rule change India?",
+        "Why did people resist?",
+      ],
+    },
+    {
+      periodKey: "independence-growth",
+      year: "1947–2000",
+      title: "Independence and Growth",
+      text: "India became independent and developed into a modern country.",
+      emoji: "🇮🇳",
+      questions: [
+        "Who led India after independence?",
+        "What challenges did the country face?",
+      ],
+    },
+    {
+      periodKey: "modern-india",
+      year: "2000–Present",
+      title: "Modern India",
+      text: "India is now a major global country with growing cities and technology.",
+      emoji: "🌆",
+      questions: ["What makes India important today?", "How is life changing?"],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many important events not included here.",
+      emoji: "❓",
+      isGap: true,
+      prompt: "Can you research and add an important event?",
+    },
+  ],
+
+  pakistan: [
+    {
+      periodKey: "indus-valley",
+      year: "c. 2500–1500 BCE",
+      title: "Indus Valley Civilisation",
+      text: "Early cities like Mohenjo-daro showed advanced planning.",
+      emoji: "🏺",
+      questions: ["What made these cities special?", "Why did they disappear?"],
+    },
+    {
+      periodKey: "empires-trade",
+      year: "1500–1500",
+      title: "Empires and Trade",
+      text: "The region was influenced by many empires and trade routes.",
+      emoji: "👑",
+      questions: [
+        "Which empires controlled this land?",
+        "Why was trade important?",
+      ],
+    },
+    {
+      periodKey: "mughal-period",
+      year: "1500–1800",
+      title: "Mughal Period",
+      text: "The Mughal Empire influenced culture, religion, and architecture.",
+      emoji: "🕌",
+      questions: [
+        "What cultural changes happened?",
+        "What buildings remain today?",
+      ],
+    },
+    {
+      periodKey: "british-rule",
+      year: "1800–1947",
+      title: "British Rule",
+      text: "The region became part of British India.",
+      emoji: "⚙️",
+      questions: [
+        "How did British rule affect people?",
+        "Why did independence movements grow?",
+      ],
+    },
+    {
+      periodKey: "creation-of-pakistan",
+      year: "1947–1971",
+      title: "Creation of Pakistan",
+      text: "Pakistan became an independent country.",
+      emoji: "🇵🇰",
+      questions: ["Why was Pakistan created?", "Who were its leaders?"],
+    },
+    {
+      periodKey: "modern-pakistan",
+      year: "1971–Present",
+      title: "Modern Pakistan",
+      text: "Pakistan continues to develop with growing cities and challenges.",
+      emoji: "🌆",
+      questions: [
+        "What challenges does Pakistan face?",
+        "What successes has it had?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "Missing history",
+      text: "Some important events are not included.",
+      emoji: "❓",
+      isGap: true,
+      prompt: "Can you find an important missing event?",
+    },
+  ],
+
+  bangladesh: [
+    {
+      periodKey: "early-settlements",
+      year: "Ancient–1500",
+      title: "Early Settlements",
+      text: "Communities developed around rivers and farming land.",
+      emoji: "🌾",
+      questions: ["Why are rivers important?", "How did people live?"],
+    },
+    {
+      periodKey: "empires-trade",
+      year: "1500–1800",
+      title: "Empires and Trade",
+      text: "The region was part of large empires and trade networks.",
+      emoji: "👑",
+      questions: ["Who ruled this region?", "What goods were traded?"],
+    },
+    {
+      periodKey: "british-rule",
+      year: "1800–1947",
+      title: "British Rule",
+      text: "Bangladesh was part of British India.",
+      emoji: "⚙️",
+      questions: [
+        "How did British rule change life?",
+        "What resistance movements existed?",
+      ],
+    },
+    {
+      periodKey: "east-pakistan",
+      year: "1947–1971",
+      title: "East Pakistan",
+      text: "Bangladesh was part of Pakistan before independence.",
+      emoji: "🇵🇰",
+      questions: ["Why was it part of Pakistan?", "What problems existed?"],
+    },
+    {
+      periodKey: "independence-growth",
+      year: "1971–Present",
+      title: "Independence and Growth",
+      text: "Bangladesh became independent and developed as a nation.",
+      emoji: "🇧🇩",
+      questions: ["What challenges did it face?", "How has it developed?"],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "Explore more",
+      text: "There is more to learn about Bangladesh.",
+      emoji: "❓",
+      isGap: true,
+      prompt: "What important events are missing?",
+    },
+  ],
+
+  nepal: [
+    {
+      periodKey: "early-kingdoms",
+      year: "Ancient–1500",
+      title: "Early Kingdoms",
+      text: "Small kingdoms developed in the region.",
+      emoji: "🏔️",
+      questions: [
+        "Who ruled these kingdoms?",
+        "How did geography affect life?",
+      ],
+    },
+    {
+      periodKey: "unification",
+      year: "1500–1800",
+      title: "Unification",
+      text: "Nepal began to unify under stronger leadership.",
+      emoji: "👑",
+      questions: ["Who unified Nepal?", "Why was unity important?"],
+    },
+    {
+      periodKey: "isolation-change",
+      year: "1800–2000",
+      title: "Isolation and Change",
+      text: "Nepal remained isolated but slowly modernised.",
+      emoji: "🌄",
+      questions: ["Why was Nepal isolated?", "What changed over time?"],
+    },
+    {
+      periodKey: "modern-nepal",
+      year: "2000–Present",
+      title: "Modern Nepal",
+      text: "Nepal continues to develop politically and socially.",
+      emoji: "🌆",
+      questions: [
+        "What changes happened recently?",
+        "How is Nepal developing?",
+      ],
+    },
+  ],
+
+  "sri-lanka": [
+    {
+      periodKey: "early-kingdoms",
+      year: "Ancient–1500",
+      title: "Early Kingdoms",
+      text: "Powerful kingdoms ruled the island.",
+      emoji: "🏝️",
+      questions: [
+        "What made these kingdoms strong?",
+        "What religion was important?",
+      ],
+    },
+    {
+      periodKey: "european-influence",
+      year: "1500–1800",
+      title: "European Influence",
+      text: "European countries controlled parts of the island.",
+      emoji: "🚢",
+      questions: ["Why did Europeans come?", "What changed?"],
+    },
+    {
+      periodKey: "british-rule",
+      year: "1800–1948",
+      title: "British Rule",
+      text: "Sri Lanka became part of the British Empire.",
+      emoji: "⚙️",
+      questions: ["What changes did Britain bring?", "How did people respond?"],
+    },
+    {
+      periodKey: "independence",
+      year: "1948–Present",
+      title: "Independence",
+      text: "Sri Lanka became an independent country.",
+      emoji: "🇱🇰",
+      questions: [
+        "What challenges did independence bring?",
+        "How has the country changed?",
+      ],
+    },
+  ],
+
+  bhutan: [
+    {
+      periodKey: "early-culture",
+      year: "Ancient–1600",
+      title: "Early Culture",
+      text: "Bhutan developed strong religious and cultural traditions.",
+      emoji: "🕉️",
+      questions: [
+        "What beliefs shaped Bhutan?",
+        "Why is culture important here?",
+      ],
+    },
+    {
+      periodKey: "kingdom-formation",
+      year: "1600–1900",
+      title: "Kingdom Formation",
+      text: "Bhutan became a unified kingdom.",
+      emoji: "👑",
+      questions: ["Who unified Bhutan?", "How was it ruled?"],
+    },
+    {
+      periodKey: "modern-bhutan",
+      year: "1900–Present",
+      title: "Modern Bhutan",
+      text: "Bhutan focuses on happiness and protecting culture.",
+      emoji: "😊",
+      questions: [
+        "What is Gross National Happiness?",
+        "Why protect tradition?",
+      ],
+    },
+  ],
+
+  afghanistan: [
+    {
+      periodKey: "trade-routes",
+      year: "Ancient–1500",
+      title: "Trade Routes",
+      text: "Afghanistan was part of important trade routes.",
+      emoji: "🐪",
+      questions: [
+        "Why was this location important?",
+        "What goods were traded?",
+      ],
+    },
+    {
+      periodKey: "empires-conflict",
+      year: "1500–1900",
+      title: "Empires and Conflict",
+      text: "Many empires fought to control this region.",
+      emoji: "⚔️",
+      questions: [
+        "Why did empires want this land?",
+        "What impact did conflict have?",
+      ],
+    },
+    {
+      periodKey: "modern-afghanistan",
+      year: "1900–Present",
+      title: "Modern Afghanistan",
+      text: "Afghanistan has faced many political changes and challenges.",
+      emoji: "🌍",
+      questions: [
+        "What challenges has Afghanistan faced?",
+        "What is life like today?",
+      ],
+    },
+  ],
+
+  maldives: [
+    {
+      periodKey: "island-settlements",
+      year: "Ancient–1500",
+      title: "Island Settlements",
+      text: "Communities formed across the islands.",
+      emoji: "🏝️",
+      questions: [
+        "How did people live on islands?",
+        "What resources were used?",
+      ],
+    },
+    {
+      periodKey: "trade-influence",
+      year: "1500–1900",
+      title: "Trade and Influence",
+      text: "The Maldives was influenced by trade and nearby regions.",
+      emoji: "🚢",
+      questions: [
+        "Who traded with the Maldives?",
+        "What goods were important?",
+      ],
+    },
+    {
+      periodKey: "modern-maldives",
+      year: "1900–Present",
+      title: "Modern Maldives",
+      text: "The Maldives developed into a tourism-based country.",
+      emoji: "🌊",
+      questions: [
+        "Why is tourism important?",
+        "What challenges does climate change bring?",
+      ],
+    },
+  ],
+};

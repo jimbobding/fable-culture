@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { db } from "@/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
-import AdminFactsClient from "@/components/AdminFactsClient";
+import AdminFactsClient from "@/components/admin/AdminFactsClient";
 
 export type Fact = {
   id: string;

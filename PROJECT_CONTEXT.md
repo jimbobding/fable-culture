@@ -6,199 +6,276 @@ Fable Culture is a school-based educational website designed to showcase world c
 
 It supports classroom learning and SMSC by presenting:
 
-- Region/continent pages (hero + intro + timeline + gallery + facts)
-- A global gallery to showcase work (photos/videos) from terms and events
+- Region/continent pages (hero + intro + timeline + structured learning sections)
+- A global gallery to showcase work (photos/videos)
 - Celebration board galleries (monthly/dated displays)
+- A moderated student upload system
+
+---
 
 ## Core goals
 
 - Easy for staff/students to navigate
 - Easy to add new content each term
 - Reliable on Vercel (Linux/case-sensitive file system)
-- Reusable components so new regions and galleries are quick to build
+- Reusable components without over-engineering
 - Safe access controls for gallery content
-
-## Tech Stack
-
-- Next.js (App Router) + Turbopack (dev)
-- React + TypeScript
-- Tailwind CSS
-- Firebase (Firestore for facts; Storage used/planned for uploads)
-- Vercel (hosting/deployment)
-- Git/GitHub (version control)
-- Namecheap (domain registrar)
-
-Domain: https://www.fable-culture.co.uk
-
-## Git workflow
-
-- main: production/live
-- dev: staging/testing
-- feature/\*: work branches
-  Workflow: feature → dev → main → Vercel
-
-## Project structure (simplified)
-
-src/
-app/
-gallery/ # global gallery hub
-gallery/celebration-boards/ # celebration boards hub (tiles)
-gallery/celebration-boards/[slug]/ # individual board page
-africa/
-europe/
-middle-east/
-components/
-Gallery.tsx
-Timeline.tsx
-FactsSection.tsx
-RegionContent.tsx
-data/
-...gallery data...
-celebrationBoardsManifest.ts # auto-generated (do not hand edit)
-public/
-images/
-continents/
-celebration-boards/ # one folder per board
-
-scripts/
-generateCelebrationBoardsManifest.mjs
-
-## Gallery system
-
-- /gallery is password-protected (middleware + server actions + cookies)
-- Gallery page currently renders a set of gallery components (e.g. Drumming, Black History, Jollof)
-
-## Celebration boards system (build-time manifest)
-
-Goal: staff-friendly workflow:
-
-- Add a new folder under `public/images/celebration-boards/<YYYY-MM-DD-topic>/`
-- Drop images into folder (lowercase extensions)
-- Optional: add meta.json for header/description/captions
-- Commit/push → Vercel rebuild → board appears automatically
-
-### Manifest pattern
-
-Because Vercel serverless can’t reliably read folders at runtime, we generate a build-time “manifest”:
-
-- Script scans folders + images
-- Writes `src/data/celebrationBoardsManifest.ts`
-- Next.js pages import this data (fast/static)
-
-package.json includes:
-
-- "prebuild": "node scripts/generateCelebrationBoardsManifest.mjs"
-
-### Naming rules (important)
-
-- Use lowercase filenames and extensions (.jpg not .JPG)
-- Use ISO folder dates: YYYY-MM-DD-topic
-- Avoid spaces/special characters in filenames/folders
-
-## Known lessons / issues solved
-
-- Vercel/Linux is case-sensitive (JPG vs jpg breaks)
-- Password protection moved server-side for reliability
-- Suspense wrapper used to avoid Next build issues
-- Domain/DNS configured and live
-
-## Next planned feature
-
-User-submitted images:
-
-- Likely Firebase Storage upload + Firestore metadata
-- “pending approval” moderation before images appear publicly
-- School-safe access model (staff-only or moderated student submissions)
-
-## Current Feature: Student Upload System (Gallery Submissions)
-
-### Overview
-
-A Firebase-backed system allowing students/staff to upload images of work, which are then moderated before appearing publicly.
-
-### Routes
-
-- `/upload` → StudentUploadForm (image upload page)
-- `/admin/submissions` → Admin moderation page (approve/delete)
-- `/gallery/student-uploads` → Public gallery of approved uploads
-
-### Flow
-
-1. User uploads image via form
-2. Image stored in Firebase Storage under:
-   `student-uploads/`
-3. Firestore document created in:
-   `gallerySubmissions`
-4. Document starts with:
-   `status: "pending"`
-5. Admin reviews submissions:
-   - Approve → sets `status: "approved"`
-   - Delete → removes Firestore doc + Storage image
-6. Public gallery displays only:
-   `status === "approved"`
-
-### Data structure (Firestore)
-
-Collection: `gallerySubmissions`
-
-Fields:
-
-- title (string)
-- region (string)
-- description (string)
-- imageUrl (string)
-- storagePath (string)
-- status ("pending" | "approved")
-- submittedAt (timestamp)
-
-### Components
-
-- `StudentUploadForm.tsx` → handles uploads
-- `AdminSubmissionCard.tsx` → approve/delete UI
-- `StudentUploadGalleryCard.tsx` → public gallery card (with rotate)
-
-### Notes / Lessons
-
-- Storage delete requires separate rule (`allow delete`)
-- Some older submissions may not have `storagePath`
-- Guard required before calling `deleteObject`
-- UI uses reload after actions (future improvement: state updates instead)
-
-### Next Improvements
-
-- Protect `/admin/submissions` with password/middleware
-- Add navigation links to:
-  - `/gallery/student-uploads`
-  - `/admin/submissions`
-- Improve styling consistency (logo, colours, layout)
-- Possibly reuse `RotatableImageCard.tsx` for consistency
-- Add upload success feedback UX (instead of alert)
+- Visually engaging but still school-friendly
 
 ---
 
-## ADDITION — Production behaviour & caching (IMPORTANT)
+## Tech Stack (WITH PURPOSE)
 
-### Live vs Local behaviour
+### Next.js (framework)
 
-A key lesson from recent work:
+- The main framework running the site
 
-- Local development always fetches fresh data
-- Vercel production may serve cached/static output
+👉 Purpose:
 
-This caused a major issue where:
+- Handles page routing (e.g. `/south-asia/[country]`)
+- Manages server + client rendering
+- Improves performance and structure
 
-- Firestore documents were correctly deleted
-- but still appeared on the admin page
+---
 
-### Root cause
+### React (UI library)
 
-- Admin submissions page was being treated as static/cached
+- Used inside Next.js to build the interface
 
-### Fix applied
+👉 Purpose:
 
-Admin page was updated with:
+- Creates reusable components (Fact File, Timeline, layouts)
+- Keeps UI consistent and modular
 
-```ts
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-```
+---
+
+### TypeScript (programming language)
+
+- Strongly typed version of JavaScript
+
+👉 Purpose:
+
+- Prevents errors in structured data (e.g. country objects)
+- Makes large datasets safer and easier to manage
+- Improves long-term maintainability
+
+---
+
+### Tailwind CSS (styling framework)
+
+- Utility-first CSS system used directly in components
+
+👉 Purpose:
+
+- Fast and consistent styling
+- No need for separate CSS files
+- Keeps design system uniform
+
+---
+
+### Firebase (backend platform)
+
+#### Firestore (database)
+
+- Stores structured data
+
+👉 Purpose:
+
+- Stores facts, submissions, and metadata
+- Enables dynamic content
+
+#### Firebase Storage (file storage)
+
+- Stores uploaded images
+
+👉 Purpose:
+
+- Handles image uploads separately from data
+- Scales easily for user content
+
+---
+
+### Vercel (hosting & deployment platform)
+
+- Hosts and deploys the website
+
+👉 Purpose:
+
+- Automatically deploys from GitHub
+- Handles production environment
+- Important:
+  - Uses Linux → case-sensitive file system
+
+---
+
+### Git (version control system)
+
+- Tracks code changes locally
+
+👉 Purpose:
+
+- Allows safe editing and rollback
+- Supports branching workflow
+
+---
+
+### GitHub (code hosting platform)
+
+- Stores your repository online
+
+👉 Purpose:
+
+- Enables collaboration
+- Connects to Vercel for deployment
+- Manages branches (main / dev / feature)
+
+---
+
+### Namecheap (domain provider)
+
+- Manages your domain name
+
+👉 Purpose:
+
+- Controls domain (fable-culture.co.uk)
+- Connects domain to Vercel
+
+---
+
+## Project structure (SIMPLIFIED DIRECTION)
+
+- Shared components → global reusable components
+- Region-specific components → grouped by region
+
+Example (South Asia used as first clean model):
+
+src/
+components/
+regions/
+south-asia/
+SouthAsiaFactFile.tsx
+SouthAsiaTimeline.tsx (planned)
+
+👉 Important:
+This structure is NOT limited to South Asia — it is the pattern for ALL regions.
+
+---
+
+## Region system (GENERAL PATTERN)
+
+Each region (e.g. South Asia, Africa, Europe) follows:
+
+- Landing page
+- Country pages (dynamic routing)
+- Shared structure
+
+Example:
+
+- `/south-asia/[country]` (example only — applies to all regions)
+
+---
+
+## Image system (IMPORTANT — GENERAL RULE)
+
+Images are stored using a consistent structure so components can remain reusable.
+
+Example structure:
+
+public/images/continents/{region}/countries/{country}/
+
+Example (South Asia only as reference):
+public/images/continents/south-asia/countries/india/
+
+---
+
+### Rules (CRITICAL)
+
+- filenames must be lowercase
+- no spaces in filenames
+- file paths must EXACTLY match data file
+- consistent folder structure across all countries
+
+---
+
+### Why this exists
+
+This system ensures:
+
+- images load correctly in production (Vercel is case-sensitive)
+- no 404 errors from mismatched paths
+- components can dynamically load content without special logic
+
+---
+
+### Key concept
+
+This is NOT country-specific logic.
+
+It is a **repeatable structure applied to ALL countries and regions**.
+
+## 👉 Example pattern:
+
+## Timeline System (NEW SHARED FEATURE)
+
+### Overview
+
+A reusable timeline system has been introduced to improve how historical content is displayed across all regions.
+
+### Structure
+
+- Timeline component is shared:
+
+  - `components/shared/Timeline.tsx`
+
+- Timeline data is separated by region:
+
+  - Example: `/data/southAsia/timelines.ts`
+
+---
+
+### Timeline capabilities
+
+Each timeline item supports:
+
+- Year or time range (e.g. 1947–2000)
+- Title (event or theme)
+- Descriptive text
+- Optional emoji (visual cue)
+- Guided questions (student thinking prompts)
+- Research gaps (areas for enquiry)
+
+---
+
+### Purpose
+
+- Make timelines easier to follow for students
+- Encourage critical thinking and discussion
+- Move away from static “fact-only” timelines
+- Support classroom use and SMSC engagement
+
+---
+
+### Timeline submission system (planned)
+
+A shared submission system will allow:
+
+- Students to submit ideas about timeline periods
+- Submissions stored in Firestore
+- Moderation via admin interface
+
+This will follow the same pattern as:
+
+- Fact submission system
+- Student upload system
+
+---
+
+### Key design rule
+
+The timeline system is:
+
+- NOT region-specific
+- Built once
+- Reused across ALL regions
+
+👉 This prevents duplication and ensures consistency across the site

@@ -23,8 +23,6 @@ export type Country = {
 
   gallery: string[];
 
-  timeline: TimelineItem[];
-
   facts: string[];
 
   factFile: {
@@ -60,29 +58,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/india/places/kerala-backwaters.jpeg",
       "/images/continents/south-asia/countries/india/places/varanasi.jpeg",
       "/images/continents/south-asia/countries/india/places/taj-mahal.jpg",
-    ],
-
-    timeline: [
-      {
-        year: "c. 2500 BCE",
-        title: "Indus Valley Civilisation",
-        text: "One of the world's earliest urban civilisations developed in this region.",
-      },
-      {
-        year: "Ancient period",
-        title: "Growth of Culture and Religion",
-        text: "Important ideas, beliefs, and traditions developed and spread.",
-      },
-      {
-        year: "Medieval period",
-        title: "Empires and Trade",
-        text: "Large empires and trade routes shaped life across the region.",
-      },
-      {
-        year: "1947",
-        title: "Independence",
-        text: "India became an independent country.",
-      },
     ],
 
     facts: [
@@ -183,24 +158,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/pakistan/places/Mohenjo-daro-ancient ruins.jpg",
     ],
 
-    timeline: [
-      {
-        year: "Ancient period",
-        title: "Indus Valley Civilisation",
-        text: "Some of the earliest cities were built in this region.",
-      },
-      {
-        year: "Medieval period",
-        title: "Trade and Empires",
-        text: "Trade routes connected this region to the wider world.",
-      },
-      {
-        year: "1947",
-        title: "Creation of Pakistan",
-        text: "Pakistan became an independent country.",
-      },
-    ],
-
     facts: [
       "Pakistan is home to some of the world's highest mountains.",
       "The Indus River runs through the country.",
@@ -296,19 +253,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/bangladesh/places/Lalbagh-Fort-Dhaka.jpeg",
       "/images/continents/south-asia/countries/bangladesh/places/Sundarbans-Mangrove-Forest.jpg",
       "/images/continents/south-asia/countries/bangladesh/places/sixty-dome-mosque.jpeg",
-    ],
-
-    timeline: [
-      {
-        year: "Ancient period",
-        title: "Early Settlements",
-        text: "Communities developed around rivers and farming land.",
-      },
-      {
-        year: "1971",
-        title: "Independence",
-        text: "Bangladesh became an independent country.",
-      },
     ],
 
     facts: [
@@ -408,19 +352,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/nepal/places/kathamandu-durbar-square.jpg",
     ],
 
-    timeline: [
-      {
-        year: "Ancient period",
-        title: "Early Kingdoms",
-        text: "Small kingdoms developed in the region.",
-      },
-      {
-        year: "Modern era",
-        title: "Modern Nepal",
-        text: "Nepal developed into the country we know today.",
-      },
-    ],
-
     facts: [
       "Mount Everest is located in Nepal.",
       "The country is mostly mountainous.",
@@ -518,19 +449,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/sri-lanka/places/Temple-of-the-Tooth-Kandy.webp",
     ],
 
-    timeline: [
-      {
-        year: "Ancient period",
-        title: "Early Kingdoms",
-        text: "Powerful kingdoms ruled the island.",
-      },
-      {
-        year: "Modern era",
-        title: "Modern Sri Lanka",
-        text: "Sri Lanka developed into a modern country.",
-      },
-    ],
-
     facts: [
       "Sri Lanka is famous for tea production.",
       "It has beautiful beaches and wildlife.",
@@ -625,14 +543,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/bhutan/places/dochula-pass.jpg",
       "/images/continents/south-asia/countries/bhutan/places/punakha-dzong.jpeg",
       "/images/continents/south-asia/countries/bhutan/places/Tigers-Nest-Monastery-Paro-Taktsang-Bhutan-1140x550-1.jpg",
-    ],
-
-    timeline: [
-      {
-        year: "Historical period",
-        title: "Kingdom of Bhutan",
-        text: "Bhutan developed as a unique kingdom.",
-      },
     ],
 
     facts: [
@@ -732,14 +642,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/afghanistan/places/herat-citadel.jpeg",
     ],
 
-    timeline: [
-      {
-        year: "Ancient period",
-        title: "Trade Routes",
-        text: "Important trade routes passed through this region.",
-      },
-    ],
-
     facts: [
       "Afghanistan has many mountains and valleys.",
       "It has been part of important trade routes.",
@@ -834,14 +736,6 @@ export const countries: Country[] = [
       "/images/continents/south-asia/countries/maldives/places/Coral-reefs-maldives.webp",
       "/images/continents/south-asia/countries/maldives/places/sandbanks-maldives.jpeg",
       "/images/continents/south-asia/countries/maldives/places/Overwater-villas-maldives.jpg",
-    ],
-
-    timeline: [
-      {
-        year: "Historical period",
-        title: "Island Settlements",
-        text: "Communities developed across the islands.",
-      },
     ],
 
     facts: [
