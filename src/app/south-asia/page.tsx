@@ -73,20 +73,49 @@ const countries = [
 
 const timelineItems = [
   {
-    title: "Ancient Civilisations",
-    text: "Some of the world’s earliest cities, trade routes, and organised societies developed in South Asia.",
+    year: "2500 BCE",
+    title: "Indus Valley Civilisation",
+    text: "One of the world’s earliest civilisations developed in South Asia, with planned cities, drainage systems, and trade networks across the region.",
   },
   {
-    title: "Religions and Ideas",
-    text: "South Asia has been an important centre for major religions, philosophy, art, and learning.",
+    year: "1500 BCE",
+    title: "Early Beliefs and Traditions",
+    text: "Religious ideas and traditions began to form, shaping cultures, daily life, and ways of thinking that still influence South Asia today.",
   },
   {
-    title: "Trade and Empires",
-    text: "The region connected land and sea trade routes, helping ideas, goods, and cultures spread.",
+    year: "500 BCE",
+    title: "Rise of New Religions",
+    text: "Major religions such as Hinduism and Buddhism spread across the region, influencing art, architecture, and ways of life.",
   },
   {
-    title: "Modern South Asia",
-    text: "Today, South Asia includes many countries with different identities, languages, and traditions, while also sharing deep historical links.",
+    year: "300 BCE",
+    title: "Mauryan Empire",
+    text: "One of the first large empires unified much of South Asia, helping spread ideas, trade, and political organisation.",
+  },
+  {
+    year: "1200 CE",
+    title: "Trade and Cultural Exchange",
+    text: "South Asia became a key part of global trade routes, connecting Asia, the Middle East, and beyond.",
+  },
+  {
+    year: "1500 CE",
+    title: "Mughal Empire",
+    text: "A powerful empire brought new art, architecture, and cultural blending, including famous landmarks like the Taj Mahal.",
+  },
+  {
+    year: "1700–1900",
+    title: "European Influence",
+    text: "European powers arrived for trade and gradually took control of parts of South Asia, changing politics and economies.",
+  },
+  {
+    year: "1947",
+    title: "Independence and Partition",
+    text: "Countries like India and Pakistan gained independence, leading to major political changes and the creation of new nations.",
+  },
+  {
+    year: "Modern Day",
+    title: "South Asia Today",
+    text: "South Asia is home to diverse countries with unique identities, languages, and cultures, while sharing deep historical connections.",
   },
 ];
 
@@ -184,127 +213,155 @@ export default function SouthAsiaPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
-            <div className="overflow-hidden rounded-[1.75rem] border border-orange-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <img
-                src="/images/south-asia/geography.jpg"
-                alt="Mountains and landscape in South Asia"
-                className="h-52 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-3 text-orange-900">
-                  Geography
-                </h3>
-                <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                  <li>• The Himalayas rise in the north.</li>
-                  <li>• Major rivers support farming and settlement.</li>
-                  <li>
-                    • The region includes plains, forests, coasts, and islands.
-                  </li>
-                </ul>
+          {/* <div className="grid gap-6 lg:grid-cols-3">
+            <Link href="/south-asia/geography">
+              <div className="overflow-hidden rounded-[1.75rem] border border-orange-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <img
+                  src="/images/south-asia/geography.jpg"
+                  alt="Mountains and landscape in South Asia"
+                  className="h-52 w-full object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-3 text-orange-900">
+                    Geography
+                  </h3>
+                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
+                    <li>• The Himalayas rise in the north.</li>
+                    <li>• Major rivers support farming and settlement.</li>
+                    <li>
+                      • The region includes plains, forests, coasts, and
+                      islands.
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="overflow-hidden rounded-[1.75rem] border border-rose-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <img
-                src="/images/south-asia/culture.jpg"
-                alt="South Asian culture, clothing, festivals, or daily life"
-                className="h-52 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-3 text-rose-900">
-                  Culture
-                </h3>
-                <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                  <li>• South Asia is home to many languages and religions.</li>
-                  <li>
-                    • Music, food, clothing, art, and festivals vary widely.
-                  </li>
-                  <li>
-                    • Families and traditions often play an important role.
-                  </li>
-                </ul>
+            <Link href="/south-asia/culture">
+              <div className="overflow-hidden rounded-[1.75rem] border border-rose-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <img
+                  src="/images/south-asia/culture.jpg"
+                  alt="South Asian culture, clothing, festivals, or daily life"
+                  className="h-52 w-full object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-3 text-rose-900">
+                    Culture
+                  </h3>
+                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
+                    <li>
+                      • South Asia is home to many languages and religions.
+                    </li>
+                    <li>
+                      • Music, food, clothing, art, and festivals vary widely.
+                    </li>
+                    <li>
+                      • Families and traditions often play an important role.
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            <div className="overflow-hidden rounded-[1.75rem] border border-amber-400 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <img
-                src="/images/south-asia/history.jpg"
-                alt="Historic buildings, trade, or cultural heritage in South Asia"
-                className="h-52 w-full object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-3 text-amber-900">
-                  Why it matters
-                </h3>
-                <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                  <li>• Ancient civilisations developed here.</li>
-                  <li>• Trade routes linked South Asia to other regions.</li>
-                  <li>• Ideas, inventions, and beliefs spread worldwide.</li>
-                </ul>
+            <Link href="/south-asia/importance">
+              <div className="overflow-hidden rounded-[1.75rem] border border-amber-400 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                <img
+                  src="/images/south-asia/history.jpg"
+                  alt="Historic buildings, trade, or cultural heritage in South Asia"
+                  className="h-52 w-full object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-3 text-amber-900">
+                    Why it matters
+                  </h3>
+                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
+                    <li>• Ancient civilisations developed here.</li>
+                    <li>• Trade routes linked South Asia to other regions.</li>
+                    <li>• Ideas, inventions, and beliefs spread worldwide.</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          </div> */}
         </section>
 
         {/* ================= TIMELINE ================= */}
-        {timelineItems.map((item, index) => {
-          const isLeft = index % 2 === 0;
+        <div className="text-center space-y-3 mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#9a3412]">
+            Timeline
+          </p>
 
-          return (
-            <div
-              key={item.title}
-              className="relative grid sm:grid-cols-2 items-center"
-            >
-              {/* CENTER DOT */}
-              <div className="absolute left-5 sm:left-1/2 sm:-translate-x-1/2 top-6 z-10 h-5 w-5 rounded-full bg-[#9a3412] border-4 border-white shadow-md" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#4a1d0d]">
+            The Story of South Asia
+          </h2>
 
-              {/* LEFT SIDE */}
+          <p className="max-w-2xl mx-auto text-[#6b4226] leading-relaxed">
+            Explore key moments that shaped South Asia — from ancient
+            civilisations to the modern world.
+          </p>
+        </div>
+        <section className="relative">
+          {/* CENTER LINE */}
+          <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-[#9a3412]/30 -translate-x-1/2" />
+
+          {timelineItems.map((item, index) => {
+            const isLeft = index % 2 === 0;
+
+            return (
               <div
-                className={`${isLeft ? "sm:pr-10" : "sm:opacity-0"} hidden sm:block`}
+                key={item.title}
+                className="relative grid sm:grid-cols-2 items-center"
               >
-                {isLeft && (
-                  <div className="rounded-2xl border border-[#9a3412]/30 bg-[#fff7ed]/80 p-5 shadow-md">
-                    <p className="text-sm font-semibold text-[#9a3412] uppercase tracking-wide">
-                      {item.year}
-                    </p>
-                    <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-[#6b4226]">{item.text}</p>
-                  </div>
-                )}
-              </div>
+                {/* CENTER DOT */}
+                <div className="absolute left-5 sm:left-1/2 sm:-translate-x-1/2 top-6 z-10 h-5 w-5 rounded-full bg-[#9a3412] border-4 border-white shadow-md" />
 
-              {/* RIGHT SIDE */}
-              <div
-                className={`${!isLeft ? "sm:pl-10" : "sm:opacity-0"} pl-12 sm:pl-0`}
-              >
-                {!isLeft ? (
-                  <div className="rounded-2xl border border-[#7f1d1d]/30 bg-[#fff7ed]/80 p-5 shadow-md">
-                    <p className="text-sm font-semibold text-[#7f1d1d] uppercase tracking-wide">
-                      {item.year}
-                    </p>
-                    <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-[#6b4226]">{item.text}</p>
-                  </div>
-                ) : (
-                  <div className="sm:hidden rounded-2xl border border-[#9a3412]/30 bg-[#fff7ed]/80 p-5 shadow-md">
-                    <p className="text-sm font-semibold text-[#9a3412] uppercase tracking-wide">
-                      {item.year}
-                    </p>
-                    <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-[#6b4226]">{item.text}</p>
-                  </div>
-                )}
+                {/* LEFT SIDE */}
+                <div
+                  className={`${isLeft ? "sm:pr-10" : "sm:opacity-0"} hidden sm:block`}
+                >
+                  {isLeft && (
+                    <div className="rounded-2xl border border-[#9a3412]/30 bg-[#fff7ed]/80 p-5 shadow-md">
+                      <p className="text-sm font-semibold text-[#9a3412] uppercase tracking-wide">
+                        {item.year}
+                      </p>
+                      <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[#6b4226]">{item.text}</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* RIGHT SIDE */}
+                <div
+                  className={`${!isLeft ? "sm:pl-10" : "sm:opacity-0"} pl-12 sm:pl-0`}
+                >
+                  {!isLeft ? (
+                    <div className="rounded-2xl border border-[#7f1d1d]/30 bg-[#fff7ed]/80 p-5 shadow-md">
+                      <p className="text-sm font-semibold text-[#7f1d1d] uppercase tracking-wide">
+                        {item.year}
+                      </p>
+                      <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[#6b4226]">{item.text}</p>
+                    </div>
+                  ) : (
+                    <div className="sm:hidden rounded-2xl border border-[#9a3412]/30 bg-[#fff7ed]/80 p-5 shadow-md">
+                      <p className="text-sm font-semibold text-[#9a3412] uppercase tracking-wide">
+                        {item.year}
+                      </p>
+                      <h3 className="text-xl font-bold text-[#4a1d0d] mt-1">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[#6b4226]">{item.text}</p>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </section>
 
         {/* ================= MAP PLACEHOLDER ================= */}
         <section className="rounded-[2rem] border border-teal-200/70 bg-gradient-to-br from-[#dff7ef] via-[#e6fbff] to-[#dfefff] p-6 sm:p-8 shadow-lg space-y-6">
@@ -354,7 +411,7 @@ export default function SouthAsiaPage() {
         </section>
 
         {/* ================= PRINTABLE RESOURCES ================= */}
-        <section className="rounded-[2rem] border border-rose-200/70 bg-gradient-to-br from-[#fff0ea] via-[#ffe6df] to-[#ffe0f0] p-6 sm:p-8 shadow-lg space-y-6">
+        {/* <section className="rounded-[2rem] border border-rose-200/70 bg-gradient-to-br from-[#fff0ea] via-[#ffe6df] to-[#ffe0f0] p-6 sm:p-8 shadow-lg space-y-6">
           <div className="text-center space-y-3">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#4a1d0d]">
               Printable Resources
@@ -381,7 +438,7 @@ export default function SouthAsiaPage() {
               </a>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* ================= BACK BUTTON ================= */}
         <div className="mt-6 flex justify-center">

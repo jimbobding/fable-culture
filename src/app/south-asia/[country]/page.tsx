@@ -126,8 +126,8 @@ export default async function CountryPage({ params }: Props) {
               >
                 Languages
               </p>
-              <p className="mt-2 text-lg font-semibold text-[#4a1d0d]">
-                {country.languages ?? "Various"}
+              <p className="mt-2 text-sm sm:text-base font-semibold text-[#4a1d0d] break-words">
+                {country.languages?.join(", ") || "Various"}
               </p>
             </div>
 
@@ -138,8 +138,8 @@ export default async function CountryPage({ params }: Props) {
               >
                 Currency
               </p>
-              <p className="mt-2 text-lg font-semibold text-[#4a1d0d]">
-                {country.currency ?? "Local currency"}
+              <p className="mt-2 text-sm sm:text-base font-semibold text-[#4a1d0d] break-words">
+                {country.currency}
               </p>
             </div>
           </div>

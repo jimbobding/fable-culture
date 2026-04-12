@@ -14,6 +14,7 @@ export type VisualItem = {
 export type Country = {
   slug: string;
   name: string;
+  nativeName?: string;
   flag: string;
   population: string;
   capital: string;
@@ -46,6 +47,7 @@ export const countries: Country[] = [
   {
     slug: "india",
     name: "India",
+    nativeName: "भारत",
     flag: "🇮🇳",
     population: "1.4+ billion",
     capital: "New Delhi",
@@ -152,6 +154,7 @@ export const countries: Country[] = [
   {
     slug: "pakistan",
     name: "Pakistan",
+    nativeName: "پاکستان",
     flag: "🇵🇰",
     population: "240+ million",
     capital: "Islamabad",
@@ -245,6 +248,7 @@ export const countries: Country[] = [
   {
     slug: "bangladesh",
     name: "Bangladesh",
+    nativeName: "বাংলাদেশ",
     flag: "🇧🇩",
     population: "170+ million",
     capital: "Dhaka",
@@ -338,6 +342,7 @@ export const countries: Country[] = [
   {
     slug: "nepal",
     name: "Nepal",
+    nativeName: "नेपाल",
     flag: "🇳🇵",
     population: "30+ million",
     capital: "Kathmandu",
@@ -431,6 +436,7 @@ export const countries: Country[] = [
   {
     slug: "sri-lanka",
     name: "Sri Lanka",
+    nativeName: "ශ්‍රී ලංකාව",
     flag: "🇱🇰",
     population: "22+ million",
     capital: "Sri Jayawardenepura Kotte",
@@ -524,6 +530,7 @@ export const countries: Country[] = [
   {
     slug: "bhutan",
     name: "Bhutan",
+    nativeName: "འབྲུག་ཡུལ་",
     flag: "🇧🇹",
     population: "800k+",
     capital: "Thimphu",
@@ -617,6 +624,7 @@ export const countries: Country[] = [
   {
     slug: "afghanistan",
     name: "Afghanistan",
+    nativeName: "افغانستان",
     flag: "🇦🇫",
     population: "40+ million",
     capital: "Kabul",
@@ -710,6 +718,7 @@ export const countries: Country[] = [
   {
     slug: "maldives",
     name: "Maldives",
+    nativeName: "ދިވެހިރާއްޖެ",
     flag: "🇲🇻",
     population: "500k+",
     capital: "Malé",
