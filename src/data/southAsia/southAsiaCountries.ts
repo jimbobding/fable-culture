@@ -21,7 +21,8 @@ export type Country = {
 
   heroImage: string;
 
-  gallery: string[];
+  languages: string[];
+  currency: string;
 
   facts: string[];
 
@@ -53,12 +54,20 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/india/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/india/places/jaipur.avif",
-      "/images/continents/south-asia/countries/india/places/kerala-backwaters.jpeg",
-      "/images/continents/south-asia/countries/india/places/varanasi.jpeg",
-      "/images/continents/south-asia/countries/india/places/taj-mahal.jpg",
+    languages: [
+      "Hindi",
+      "English",
+      "Bengali",
+      "Telugu",
+      "Marathi",
+      "Tamil",
+      "Urdu",
+      "Gujarati",
+      "Kannada",
+      "Malayalam",
+      "Punjabi",
     ],
+    currency: "Indian Rupee",
 
     facts: [
       "India has one of the largest populations in the world.",
@@ -151,12 +160,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/pakistan/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/pakistan/places/badshahi-mosque-lahore.avif",
-      "/images/continents/south-asia/countries/pakistan/places/Faisal-Mosque-Islamabad.jpeg",
-      "/images/continents/south-asia/countries/pakistan/places/hunza-valley.jpg",
-      "/images/continents/south-asia/countries/pakistan/places/Mohenjo-daro-ancient ruins.jpg",
-    ],
+    languages: ["Urdu", "Punjabi", "Sindhi", "Pashto", "Balochi", "English"],
+    currency: "Pakistani Rupee",
 
     facts: [
       "Pakistan is home to some of the world's highest mountains.",
@@ -248,12 +253,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/bangladesh/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/bangladesh/places/Cox’s-Bazar-Beach.jpg",
-      "/images/continents/south-asia/countries/bangladesh/places/Lalbagh-Fort-Dhaka.jpeg",
-      "/images/continents/south-asia/countries/bangladesh/places/Sundarbans-Mangrove-Forest.jpg",
-      "/images/continents/south-asia/countries/bangladesh/places/sixty-dome-mosque.jpeg",
-    ],
+    languages: ["Bengali"],
+    currency: "Bangladeshi Taka",
 
     facts: [
       "Bangladesh has many rivers and fertile land.",
@@ -345,12 +346,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/nepal/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/nepal/places/Lumbini-birthplace-Buddha.jpeg",
-      "/images/continents/south-asia/countries/nepal/places/Pokhara-lakes- mountains.jpg",
-      "/images/continents/south-asia/countries/nepal/places/Mount-Everest.webp",
-      "/images/continents/south-asia/countries/nepal/places/kathamandu-durbar-square.jpg",
-    ],
+    languages: ["Nepali"],
+    currency: "Nepalese Rupee",
 
     facts: [
       "Mount Everest is located in Nepal.",
@@ -442,12 +439,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/sri-lanka/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/sri-lanka/places/Ella-tea hills-Nine-Arch-Bridge.jpg",
-      "/images/continents/south-asia/countries/sri-lanka/places/galle-fort.jpeg",
-      "/images/continents/south-asia/countries/sri-lanka/places/sigiriya-rock-fortress.webp",
-      "/images/continents/south-asia/countries/sri-lanka/places/Temple-of-the-Tooth-Kandy.webp",
-    ],
+    languages: ["Sinhala", "Tamil"],
+    currency: "Sri Lankan Rupee",
 
     facts: [
       "Sri Lanka is famous for tea production.",
@@ -539,11 +532,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/bhutan/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/bhutan/places/dochula-pass.jpg",
-      "/images/continents/south-asia/countries/bhutan/places/punakha-dzong.jpeg",
-      "/images/continents/south-asia/countries/bhutan/places/Tigers-Nest-Monastery-Paro-Taktsang-Bhutan-1140x550-1.jpg",
-    ],
+    languages: ["Dzongkha"],
+    currency: "Ngultrum",
 
     facts: [
       "Bhutan measures success with happiness.",
@@ -635,12 +625,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/afghanistan/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/afghanistan/places/Bamiyan-Valley-Buddha site.webp",
-      "/images/continents/south-asia/countries/afghanistan/places/Blue-Mosque-Mazar-i-Sharif.jpeg",
-      "/images/continents/south-asia/countries/afghanistan/places/band-e-amir-national-park.jpg",
-      "/images/continents/south-asia/countries/afghanistan/places/herat-citadel.jpeg",
-    ],
+    languages: ["Pashto", "Dari"],
+    currency: "Afghan Afghani",
 
     facts: [
       "Afghanistan has many mountains and valleys.",
@@ -732,11 +718,8 @@ export const countries: Country[] = [
 
     heroImage: "/images/south-asia/maldives/hero.jpg",
 
-    gallery: [
-      "/images/continents/south-asia/countries/maldives/places/Coral-reefs-maldives.webp",
-      "/images/continents/south-asia/countries/maldives/places/sandbanks-maldives.jpeg",
-      "/images/continents/south-asia/countries/maldives/places/Overwater-villas-maldives.jpg",
-    ],
+    languages: ["Dhivehi"],
+    currency: "Maldivian Rufiyaa",
 
     facts: [
       "The Maldives is made up of many small islands.",

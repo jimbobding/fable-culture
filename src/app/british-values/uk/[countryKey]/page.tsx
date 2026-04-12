@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ukCountries } from "@/data/ukCountries";
-import FactsSection from "@/components/FactsSection";
+import FactsSection from "@/components/shared/FactsSection";
 import CountryGallery from "@/components/CountryGallery";
 
 type Props = {

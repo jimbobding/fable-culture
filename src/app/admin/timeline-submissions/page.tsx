@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { db } from "@/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import AdminTimelineClient from "@/components/admin/AdminTimelineClient";
+import AdminTimelineClient from "@/components/admin/Timeline/AdminTimelineClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

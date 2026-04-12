@@ -53,6 +53,10 @@ export default function FactsSection({
     };
 
     fetchFacts();
+
+    const interval = setInterval(fetchFacts, 3000); // auto refresh
+
+    return () => clearInterval(interval);
   }, [continent, regionKey]);
 
   // Add pending submission
@@ -84,43 +88,48 @@ export default function FactsSection({
   const inputBg = theme?.inputBg ?? "bg-white/80";
 
   return (
-    <section className="mt-12">
+    <section className="mt-12 space-y-8">
       {allItems.length > 0 && (
         <>
-          <h3 className={`text-2xl font-bold mb-6 text-center ${text}`}>
+          <h3 className={`text-2xl font-bold text-center ${text}`}>
             {sectionHeading}
           </h3>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {allItems.map((item, i) => (
               <div
                 key={i}
                 className={`
-                  rounded-2xl border p-4 transition
-                  ${cardBg}
-                  ${cardBorder}
-                  ${cardShadow}
-                  hover:shadow-md
-                `}
+                rounded-[1.75rem]
+                border border-orange-200/70
+                bg-[#fff7ed]/85
+                p-5
+                leading-relaxed
+                text-[#6b4226]
+                shadow-md
+                transition-all duration-300
+                hover:-translate-y-1
+                hover:shadow-xl
+              `}
               >
-                <p className={`text-sm font-medium ${text}`}>{item}</p>
+                <p>{item}</p>
               </div>
             ))}
           </div>
         </>
       )}
 
-      {/* Input card */}
+      {/* INPUT */}
       <div
         className={`
-          mt-10 rounded-2xl border p-6
-          ${cardBg}
-          ${cardBorder}
-          ${cardShadow}
-          ${text}
-        `}
+        rounded-2xl border p-6 space-y-4
+        ${cardBg}
+        ${cardBorder}
+        ${cardShadow}
+        ${text}
+      `}
       >
-        <label className="block text-sm font-medium mb-2">{inputHeading}</label>
+        <label className="block text-sm font-medium">{inputHeading}</label>
 
         <input
           ref={inputRef}
@@ -129,23 +138,35 @@ export default function FactsSection({
           onChange={(e) => setNewFact(e.target.value)}
           placeholder={placeholder}
           className={`
-            w-full rounded-lg border px-3 py-2 mb-2 outline-none
-            ${inputBg}
-            ${cardBorder}
-            ${text}
-            focus:ring-2 focus:ring-black/10
-          `}
+          w-full rounded-lg border px-3 py-2 outline-none
+          ${inputBg}
+          ${cardBorder}
+          ${text}
+          focus:ring-2 focus:ring-black/10
+        `}
         />
+
+        {/* FACT CHECK LINK */}
+        <div>
+          <a
+            href="https://www.bbc.co.uk/bitesize/articles/z3hhvj6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-lg shadow hover:bg-blue-200 transition-colors text-sm"
+          >
+            ❓ Misinformation vs disinformation: What’s the difference?
+          </a>
+        </div>
 
         <button
           onClick={handleAddFact}
-          className="px-4 py-2 rounded-lg font-medium transition bg-blue-600 text-white hover:bg-blue-700"
+          className="w-full sm:w-auto px-4 py-2 rounded-lg font-medium transition bg-blue-600 text-white hover:bg-blue-700"
         >
           Add
         </button>
 
         {isPending && (
-          <p className="mt-2 text-sm text-yellow-700">
+          <p className="text-sm text-yellow-700">
             Your submission is pending approval.
           </p>
         )}

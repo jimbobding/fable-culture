@@ -175,6 +175,39 @@ Example:
 
 ---
 
+## Data-driven country page system (IMPORTANT)
+
+Country pages are built using a single shared dynamic route:
+
+- `/south-asia/[country]`
+
+Each country is rendered using a structured data object.
+
+This data includes:
+
+- content (text, facts, descriptions)
+- theme (colours, styling)
+- image paths (matching the image folder system)
+
+---
+
+### Purpose
+
+- Avoids creating separate pages for each country
+- Ensures consistency across all country pages
+- Makes it easy to scale to new countries and regions
+- Allows layout and structure to remain reusable while content changes
+
+---
+
+### Key concept
+
+The page is fixed.
+
+The data changes.
+
+👉 This is a core architectural pattern used across regions.
+
 ## Image system (IMPORTANT — GENERAL RULE)
 
 Images are stored using a consistent structure so components can remain reusable.

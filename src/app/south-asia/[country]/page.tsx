@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { countries } from "@/data/southAsia/southAsiaCountries";
 import SouthAsiaFactFile from "@/components/regions/south-asia/SouthAsiaFactFile";
 import { timelines } from "@/data/southAsia/timelines";
+import FactsSection from "@/components/shared/FactsSection";
 
 import Timeline from "@/components/shared/Timeline";
 
@@ -52,13 +53,12 @@ export default async function CountryPage({ params }: Props) {
     <div className="min-h-screen bg-gradient-to-br from-[#f6ead8] via-[#f1e1ca] to-[#e8d5bd]">
       <div className="mx-auto max-w-6xl px-4 pb-12">
         {/* HERO */}
-        <section className="relative min-h-[500px] overflow-hidden rounded-[2.25rem] shadow-2xl">
-          <img
-            src={country.heroImage}
-            alt={`${country.name} hero`}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-
+        <section
+          className="relative min-h-[400px] overflow-hidden rounded-[2.25rem] shadow-2xl flex items-end"
+          style={{
+            background: `linear-gradient(135deg, ${country.theme.primary}, ${country.theme.secondary})`,
+          }}
+        >
           <div
             className="absolute inset-0"
             style={{
@@ -119,16 +119,15 @@ export default async function CountryPage({ params }: Props) {
                 {country.capital}
               </p>
             </div>
-
             <div className="rounded-[1.75rem] border border-white/60 bg-[#fff7ed]/90 p-5 shadow-xl backdrop-blur">
               <p
                 className="text-xs font-semibold uppercase tracking-[0.25em]"
                 style={{ color: country.theme.primary }}
               >
-                Country
+                Languages
               </p>
               <p className="mt-2 text-lg font-semibold text-[#4a1d0d]">
-                {country.name}
+                {country.languages ?? "Various"}
               </p>
             </div>
 
@@ -137,26 +136,23 @@ export default async function CountryPage({ params }: Props) {
                 className="text-xs font-semibold uppercase tracking-[0.25em]"
                 style={{ color: country.theme.primary }}
               >
-                Region
+                Currency
               </p>
               <p className="mt-2 text-lg font-semibold text-[#4a1d0d]">
-                South Asia
+                {country.currency ?? "Local currency"}
               </p>
             </div>
           </div>
         </section>
-
-        <div className="mt-12 space-y-14">
-          {/* FACT FILE */}
-          <SouthAsiaFactFile
-            countryName={country.name}
-            theme={country.theme}
-            factFile={country.factFile}
-          />
-
-          {/* OVERVIEW */}
-          <section className="grid items-stretch gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-            <div className="rounded-[2rem] border border-orange-200/70 bg-[#fff7ed]/90 p-6 shadow-lg sm:p-8">
+        {/* OVERVIEW */}
+        <section className="mt-14 grid items-stretch gap-6 max-w-4xl mx-auto">
+          <div
+            className="rounded-[2rem] p-[2px] shadow-xl"
+            style={{
+              background: `linear-gradient(135deg, ${country.theme.primary}, ${country.theme.secondary})`,
+            }}
+          >
+            <div className="rounded-[2rem] bg-[#fff7ed]/95 p-6 sm:p-8 border border-white/60">
               <p
                 className="text-xs font-semibold uppercase tracking-[0.3em]"
                 style={{ color: country.theme.secondary }}
@@ -188,15 +184,16 @@ export default async function CountryPage({ params }: Props) {
                 )}
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="min-h-[320px] overflow-hidden rounded-[2rem] border border-orange-200/70 shadow-lg">
-              <img
-                src={country.heroImage}
-                alt={`${country.name} feature`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </section>
+        <div className="mt-12 space-y-14">
+          {/* FACT FILE */}
+          <SouthAsiaFactFile
+            countryName={country.name}
+            theme={country.theme}
+            factFile={country.factFile}
+          />
 
           {/* TIMELINE */}
 
@@ -328,18 +325,14 @@ export default async function CountryPage({ params }: Props) {
               </h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {country.facts.map((fact, index) => (
-                <div
-                  key={fact}
-                  className={`rounded-[1.75rem] border border-orange-200/70 bg-[#fff7ed]/85 p-5 leading-relaxed text-[#6b4226] shadow-md ${
-                    index % 2 === 0 ? "md:mr-6" : "md:ml-6"
-                  }`}
-                >
-                  {fact}
-                </div>
-              ))}
-            </div>
+            <FactsSection
+              continent="south-asia"
+              regionKey={country.slug}
+              sectionHeading="Things We’ve Learned"
+              inputHeading="Add a new fact"
+              placeholder="Share something interesting (check your source!)"
+              staticItems={country.facts}
+            />
           </section>
 
           {/* BACK */}

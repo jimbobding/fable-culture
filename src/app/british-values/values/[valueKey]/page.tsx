@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { britishValues, BritishValueKey } from "@/data/britishValues";
-import FactsSection from "@/components/FactsSection";
+import FactsSection from "@/components/shared/FactsSection";
 import Link from "next/link";
 
 type Props = {

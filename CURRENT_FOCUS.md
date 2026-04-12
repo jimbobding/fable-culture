@@ -1,8 +1,8 @@
-# Current Focus — Student Upload System, Homepage Entry Point, South Asia Build, and Timeline System
+# Current Focus — South Asia Polish, UX Refinement, and System Stabilisation
 
 ## Goal
 
-Stabilise and polish the Student Upload System, improve how students access it, actively build the South Asia region, and introduce a reusable timeline system with future student interaction.
+With core systems now complete (student uploads, facts, timeline submissions, and admin tools), the focus shifts to refining user experience, improving content quality, and preparing the project for scale across multiple regions.
 
 ---
 
@@ -10,35 +10,62 @@ Stabilise and polish the Student Upload System, improve how students access it, 
 
 ### Student Upload System
 
-- Student uploads are working:
-
+- Fully functional:
   - Upload image
   - Save to Firebase Storage
   - Save submission to Firestore
-
-- Admin moderation is working:
-
+- Admin moderation:
   - Approve submissions
   - Delete submissions
-
-- Public gallery display is in place
-- Upload form styling has been improved
-- Homepage now includes a clearer upload entry point
+  - Instant UI updates (no reload)
+- Public gallery display working
+- Upload entry point improved on homepage
 
 ---
 
-### Production issue fixed
+### Timeline System (COMPLETED)
 
-- The old “delete removes image but not card” issue on live was traced to stale page data on the admin submissions page
-- The fix was to make the admin submissions page dynamic instead of allowing stale cached output on production
-- Fresh live submissions now appear and delete correctly
+- Timeline is now a shared reusable component
+- Timeline data separated by region
+- Supports:
+  - Year ranges
+  - Titles and descriptions
+  - Emojis
+  - Guided questions
+  - Research gaps
+
+---
+
+### Timeline Submission System (NEW — COMPLETED)
+
+- Students can submit timeline ideas with:
+
+  - title
+  - explanation
+  - student name
+  - region
+  - country
+  - periodKey
+  - createdAt timestamp
+  - status (pending / approved)
+
+- Admin system includes:
+
+  - Approve / delete submissions
+  - Instant updates (no reload)
+  - Filters (status, region, country, period)
+  - Search (title, name, explanation)
+  - Sorting (newest first)
+  - Submission counts
+
+- Approved ideas now display inside timeline items
 
 ---
 
 ### Homepage improvements
 
-- Upload entry point has been moved to a better place on the homepage
-- Homepage also includes April event cards and a featured month section
+- Upload entry point repositioned for clarity
+- Featured month and event cards added
 
 ---
 
@@ -47,163 +74,96 @@ Stabilise and polish the Student Upload System, improve how students access it, 
 ### What is already built
 
 - South Asia landing page
-- Interactive SVG map with clickable country regions
-- Dynamic routing:
-
-  - `/south-asia/[country]`
-
-- Data-driven country system:
-
-  - slug-based routing
-  - country dataset powering pages
-
-- Initial country page layout:
-
-  - Hero section (with native name support)
+- Interactive SVG map
+- Dynamic country routing (`/south-asia/[country]`)
+- Data-driven country system
+- Country pages include:
+  - Hero
   - Quick facts
-  - Timeline (NOW SHARED COMPONENT)
-  - Gallery
-  - Facts section
+  - Timeline (shared)
+  - Gallery (to be refined)
+  - Facts (Firestore)
 
 ---
 
-### 🧠 Timeline system (NEW — IMPORTANT)
+### Fact File Visual Section (IN PROGRESS)
 
-- Timeline has been extracted into a **shared reusable component**
-- Timeline data has been separated into:
-
-  - `/data/southAsia/timelines.ts`
-
-- Timeline now supports:
-
-  - Year ranges (e.g. 1947–2000)
-  - Title + descriptive text
-  - Emoji icons
-  - Guided learning questions per time period
-  - Research gaps (student enquiry prompts)
-
-👉 Purpose:
-
-- Make timelines easier to understand for students
-- Encourage thinking, not just reading
-- Create a reusable system for all regions
-
----
-
-### 🚧 Timeline submission system (PLANNED)
-
-A new feature will allow:
-
-- Students to submit ideas about what happened in a time period
-- Submissions linked to:
-
-  - region
-  - country
-  - timeline period (year range)
-
-- Admin moderation (same pattern as facts system)
-
-👉 Important:
-
-- This will be built as a **shared reusable component**
-- It must work across:
-  - South Asia
-  - Middle East
-  - All future regions
+- Replacing gallery as primary visual learning section
+- Includes:
+  - Capital
+  - Food
+  - Culture
+  - Wildlife
+- Uses structured image folders
+- Will become standard across all regions
 
 ---
 
 ### ⚠️ Known issue
 
-- Middle East timeline component is currently not rendering correctly after timeline system changes
-- This will be reviewed AFTER timeline submission system is introduced
+- Middle East timeline not rendering correctly after shared timeline changes
+- Deferred until after South Asia polish phase
 
 ---
 
-### Image system (IMPORTANT — DO NOT CHANGE WITHOUT ASKING)
-
-public/images/continents/south-asia/countries/{country}/
-
-Each country contains:
-
-- capital/1.jpg → capital city image (must show city, not landmark)
-- food/1.jpg
-- culture/1.jpg
-- wildlife/1.jpg
-- places/1.jpg → 4.jpg
-
----
-
-### Design direction
+## Design direction
 
 Moving away from:
 
-- repetitive boxed card layouts
+- Box-heavy layouts
 
 Towards:
 
-- more flowy page structure
-- overlapping sections
-- split layouts
-- strong hero sections
-- image-led learning
-
----
-
-### New feature in progress
-
-#### Fact File Visual Section
-
-Replacing generic gallery with:
-
-- Capital (city image)
-- Food
-- Wildlife
-- Culture
-
-Each includes:
-
-- image
-- title
-- short educational description
+- Flow-based layouts
+- Strong visual hierarchy
+- Image-led learning
+- Cleaner section transitions
 
 ---
 
 ## Current priority
 
-1. Final polish on Student Upload pages and flow
-2. Build South Asia country pages properly (data + layout)
-3. Implement Fact File Visual section
-4. Improve layout flow (less boxy, more immersive)
-5. Implement timeline submission system (shared + moderated)
-6. Ensure timeline system works across multiple regions
+1. South Asia country page polish
+
+   - Clean layout and spacing
+   - Improve structure consistency
+   - Remove weak or unused sections
+
+2. Finalise Fact File Visual Section
+
+   - Ensure consistency across all countries
+   - Improve educational descriptions
+
+3. Improve overall layout flow
+
+   - Reduce boxiness
+   - Improve visual transitions
+
+4. Component structure scaling
+
+   - Introduce feature-based folders (e.g. admin/timeline)
+   - Maintain shared vs region separation
+
+5. Stability check
+   - Ensure timeline system works across regions
 
 ---
 
 ## Folder structure direction
 
-Current concern:
-
-- The main `components` folder is becoming too large and too mixed
-
-Planned direction:
-
-- Shared reusable components → `/components/shared`
-- Region-specific components → `/components/regions/{region}`
-
-👉 Timeline is now a **shared component baseline**
+components/
+shared/ → reusable components
+regions/{region}/ → region-specific components
+admin/
+timeline/ → timeline admin components
 
 ---
 
 ## Next steps
 
-1. Confirm Student Upload pages are styled and working as expected
-2. Continue South Asia country page build
-3. Implement Fact File Visual section using image folders
-4. Build timeline submission system (shared + reusable)
-5. Fix Middle East timeline compatibility
-6. Start a new chat focused on:
-
-   - Timeline system + submissions
-   - South Asia polish
-   - Shared vs region component architecture
+1. Merge completed timeline system into south-asia branch
+2. Create new feature branch for polish (`feature/south-asia-polish`)
+3. Clean and refine South Asia country pages
+4. Finalise Fact File Visual section
+5. Improve layout flow and visuals
+6. Prepare for next region or homepage improvements

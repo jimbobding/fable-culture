@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import AdminTimelineCard from "@/components/admin/AdminTimelineCard";
+import AdminTimelineCard from "@/components/admin/Timeline/AdminTimelineCard";
 
 type TimelineSubmission = {
   id: string;
