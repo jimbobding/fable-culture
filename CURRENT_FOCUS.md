@@ -167,3 +167,83 @@ timeline/ → timeline admin components
 4. Finalise Fact File Visual section
 5. Improve layout flow and visuals
 6. Prepare for next region or homepage improvements
+
+---
+
+## 🌏 South Asia — POST-LAUNCH STATE
+
+### What is now complete
+
+- South Asia page is live
+- Timeline structure improved:
+  - Alternating layout (left/right)
+  - Central vertical line added
+  - Year-based timeline entries now supported
+- Intro cards (Geography, Culture, Why it matters):
+  - Now fully clickable
+  - Ready for future deep-dive pages
+- Facts system integrated into country pages:
+  - Static + Firebase facts combined
+  - Student submissions working
+- Quick facts updated:
+  - Languages added
+  - Currency added
+  - Layout refined
+
+---
+
+## ⚠️ Known limitations (accepted for launch)
+
+- Timeline content is still shallow in some areas
+- Country timelines need deeper historical coverage
+- Geography / Culture / Importance pages are placeholders
+- Some images are functional but not optimised for learning
+
+---
+
+## 🎯 Immediate next priorities (post-launch)
+
+1. Add South Asia entry point to homepage
+
+   - Clear button or section linking to `/south-asia`
+   - Make it visually consistent with other entry points
+
+2. Improve South Asia timeline content
+
+   - Replace basic entries with deeper, more meaningful history
+   - Keep student-friendly language
+   - Maintain chronological clarity
+
+3. Rebuild weakest country timelines first
+
+   - Bhutan
+   - Maldives
+   - Afghanistan
+   - Nepal
+
+4. Build out clickable intro pages
+
+   - `/south-asia/geography`
+   - `/south-asia/culture`
+   - `/south-asia/importance`
+
+5. Image upgrade pass
+
+   - Replace generic images with purposeful learning visuals
+   - Ensure naming consistency with project structure
+
+6. Final homepage polish
+
+   - Improve layout flow
+   - Check spacing and visual hierarchy
+   - Ensure South Asia sits naturally within site structure
+
+---
+
+## 🧠 Development note
+
+This phase prioritises:
+
+- Shipping working features over perfection
+- Improving content depth after release
+- Maintaining reusable systems for scaling to future regions

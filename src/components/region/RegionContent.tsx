@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
-import Timeline from "@/components/shared/Timeline";
+// import Timeline from "@/components/shared/Timeline";
+import Timeline, { type TimelineItem } from "@/components/shared/Timeline";
 import FactsSection from "@/components/shared/FactsSection";
 import type { RegionTheme } from "@/styles/regionThemes";
 
@@ -28,10 +29,10 @@ type GalleryItem = {
   label: string;
 };
 
-type TimelineItem = {
-  year: string;
-  event: string;
-};
+// type TimelineItem = {
+//   year: string;
+//   event: string;
+// };
 
 type Props = {
   data: RegionData;
@@ -75,13 +76,14 @@ export default function RegionContent({
         <Timeline
           items={timeline}
           theme={{
-            sectionBg: theme.timeline.sectionBg,
             line: theme.timeline.line,
             year: theme.timeline.year,
             text: theme.timeline.text,
             cardBg: theme.timeline.cardBg,
             dotBorder: theme.cardBorder,
           }}
+          region={continent.toLowerCase().replace(/\s+/g, "-")}
+          country={regionKey}
         />
       </section>
 

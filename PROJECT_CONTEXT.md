@@ -311,4 +311,131 @@ The timeline system is:
 - Built once
 - Reused across ALL regions
 
-👉 This prevents duplication and ensures consistency across the site
+## 👉 This prevents duplication and ensures consistency across the site
+
+## 🌏 South Asia Implementation (REFERENCE MODEL)
+
+South Asia is now the first fully implemented region following the intended system design.
+
+It acts as the **reference model for future regions**.
+
+### What has been implemented
+
+- Region landing page (`/south-asia`)
+- Dynamic country routing:
+  - `/south-asia/[country]`
+- Data-driven country pages
+- Shared layout structure across all countries
+
+---
+
+### Country page structure (CURRENT STANDARD)
+
+Each country page now includes:
+
+- Overview section (top of page, replaces heavy hero reliance)
+- Quick facts section:
+  - Population
+  - Capital
+  - Languages
+  - Currency
+- Timeline (shared component)
+- Fact File Visual Section:
+  - Capital
+  - Food
+  - Culture
+  - Wildlife
+- Facts section:
+  - Static facts (from data file)
+  - Dynamic facts (Firestore submissions)
+
+---
+
+### Key UX changes introduced
+
+- Reduced reliance on large hero images
+- Moved towards **content-first layout**
+- Improved readability and flow
+- Replaced gallery-first approach with structured learning sections
+- Introduced clickable intro cards for deeper exploration
+
+---
+
+### Timeline system (UPDATED IMPLEMENTATION)
+
+The timeline system has now been visually enhanced:
+
+- Alternating left/right layout
+- Central vertical timeline line
+- Year-based structure (required in data)
+- Designed for readability and classroom discussion
+
+---
+
+### Facts system (CONFIRMED PATTERN)
+
+Facts now follow a hybrid model:
+
+- Static facts defined in data files
+- Dynamic facts submitted by students (Firestore)
+- Combined at render level
+
+👉 This pattern is now the standard across all regions.
+
+---
+
+### Navigation update (REQUIRED)
+
+South Asia now needs a **clear entry point on the homepage**.
+
+👉 This establishes the pattern:
+
+- Homepage → Region → Country → Content
+
+This navigation structure will apply to all future regions.
+
+---
+
+## ⚠️ Known limitations (POST-LAUNCH)
+
+- Timeline depth is currently uneven across countries
+- Some country timelines are too shallow (e.g. Bhutan, Maldives)
+- Intro deep-dive pages are placeholders:
+  - `/south-asia/geography`
+  - `/south-asia/culture`
+  - `/south-asia/importance`
+- Image selection is functional but not optimised for learning
+
+---
+
+## 🎯 Next development phase
+
+The next phase focuses on **content depth and educational quality**, not system building.
+
+Priority order:
+
+1. Improve region timeline content (South Asia)
+2. Deepen weakest country timelines:
+   - Bhutan
+   - Maldives
+   - Afghanistan
+   - Nepal
+3. Build out intro deep-dive pages:
+   - Geography
+   - Culture
+   - Importance
+4. Improve image quality and consistency
+5. Add homepage entry points for regions
+
+---
+
+## 🧠 Key architectural confirmation
+
+The following systems are now **proven and stable**:
+
+- Data-driven country pages
+- Shared timeline component
+- Hybrid facts system (static + Firestore)
+- Region-based component structure
+
+👉 These should now be reused for all future regions without redesign.
