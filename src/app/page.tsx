@@ -29,6 +29,12 @@ const continents = [
       "Explore the Levant, Arabia, and Persia & Mesopotamia through maps, timelines, and facts.",
     color: "from-amber-400 to-orange-500",
   },
+  {
+    name: "South Asia",
+    href: "/south-asia",
+    description: "Explore countries, cultures, and history across South Asia.",
+    color: "from-rose-400 to-orange-400",
+  },
 ];
 
 const upcomingEvents = [
@@ -93,12 +99,11 @@ export default function LandingPage() {
             className="mx-auto drop-shadow-[0_5px_10px_rgba(0,0,0,.5)]"
           />
         </div>
-
         <p className="mx-auto mb-10 max-w-3xl text-lg text-gray-700 md:text-xl">
           Explore the cultures, traditions, and shared values of Africa, Europe,
-          the Middle East, and the UK. Learn about different regions, important
-          ideas, and the stories that shape communities—helping us better
-          understand the world we live in.
+          South Asia, the Middle East, and the UK. Learn about different
+          regions, important ideas, and the stories that shape
+          communities—helping us better understand the world we live in.
         </p>
       </header>
 
