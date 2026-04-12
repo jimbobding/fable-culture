@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Gallery from "@/components/Gallery";
-// import Timeline from "@/components/shared/Timeline";
 import Timeline, { type TimelineItem } from "@/components/shared/Timeline";
 import FactsSection from "@/components/shared/FactsSection";
 import type { RegionTheme } from "@/styles/regionThemes";
@@ -29,17 +28,18 @@ type GalleryItem = {
   label: string;
 };
 
-// type TimelineItem = {
-//   year: string;
-//   event: string;
-// };
-
 type Props = {
   data: RegionData;
   gallery: GalleryItem[];
   continent: string;
   regionKey: string;
-  timeline: TimelineItem[];
+  timeline: Array<
+    | TimelineItem
+    | {
+        year: string;
+        event: string;
+      }
+  >;
   theme: RegionTheme;
 };
 
@@ -67,6 +67,20 @@ export default function RegionContent({
     ${theme.introTitle}
   `;
 
+  // 🔥 COMPATIBILITY LAYER (OLD + NEW TIMELINE SUPPORT)
+  const normalizedTimeline: TimelineItem[] = timeline.map((item, index) => {
+    if ("title" in item && "text" in item) {
+      return item;
+    }
+
+    return {
+      year: item.year,
+      title: item.event,
+      text: item.event,
+      periodKey: `${regionKey}-${index}`,
+    };
+  });
+
   return (
     <section className="space-y-16">
       {/* ================= TIMELINE ================= */}
@@ -74,7 +88,7 @@ export default function RegionContent({
         <h2 className={`${sectionHeadingClass} mb-8`}>Historical Timeline</h2>
 
         <Timeline
-          items={timeline}
+          items={normalizedTimeline}
           theme={{
             line: theme.timeline.line,
             year: theme.timeline.year,
