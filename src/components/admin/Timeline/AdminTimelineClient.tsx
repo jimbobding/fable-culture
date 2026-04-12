@@ -164,11 +164,7 @@ export default function AdminTimelineClient({ submissions }: Props) {
         ) : (
           <div className="grid gap-6">
             {pending.map((item) => (
-              <AdminTimelineCard
-                key={item.id}
-                {...item}
-                setLocalSubs={setLocalSubs}
-              />
+              <AdminTimelineCard key={item.id} {...item} />
             ))}
           </div>
         )}
@@ -184,12 +180,8 @@ export default function AdminTimelineClient({ submissions }: Props) {
           </div>
         ) : (
           <div className="grid gap-6">
-            {approved.map((item) => (
-              <AdminTimelineCard
-                key={item.id}
-                {...item}
-                setLocalSubs={setLocalSubs}
-              />
+            {pending.map((item) => (
+              <AdminTimelineCard key={item.id} {...item} />
             ))}
           </div>
         )}

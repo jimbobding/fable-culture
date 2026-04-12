@@ -1,9 +1,12 @@
 // src/data/middleEast/persiaMesopotamiaTimeline.ts
 "use client";
 
-import type { TimelineItem } from "@/components/shared/Timeline";
+type LegacyTimelineItem = {
+  year: string;
+  event: string;
+};
 
-export const persiaMesopotamiaTimeline: TimelineItem[] = [
+export const persiaMesopotamiaTimeline: LegacyTimelineItem[] = [
   {
     year: "c. 4500–1900 BCE",
     event:
