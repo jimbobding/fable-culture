@@ -439,3 +439,215 @@ The following systems are now **proven and stable**:
 - Region-based component structure
 
 👉 These should now be reused for all future regions without redesign.
+
+## Timeline System — Compatibility Layer (IMPORTANT UPDATE)
+
+The timeline system now supports **two data formats**:
+
+### Legacy format (older regions)
+
+```ts
+{ year: string, event: string }
+```
+
+### New format (current standard)
+
+```ts
+{
+  year: string,
+  title: string,
+  text: string,
+  periodKey: string
+}
+```
+
+---
+
+### How this is handled
+
+A **normalisation layer** has been introduced in `RegionContent`:
+
+- Converts legacy timeline items into the new format
+- Prevents breaking existing regions (e.g. Middle East)
+- Allows gradual migration without rewriting all data
+
+---
+
+### Purpose
+
+- Maintain backward compatibility
+- Avoid rushed refactors
+- Support stable deployment while improving systems
+
+---
+
+## Timeline Depth Standard (NEW RULE)
+
+All country timelines should now:
+
+- Include **minimum 10 events**
+- Follow clear chronological order
+- Use student-friendly language
+- Include:
+
+  - emoji (visual cue)
+  - guided questions
+  - research gap at the end
+
+---
+
+### Purpose
+
+- Improve educational value
+- Encourage discussion and critical thinking
+- Move beyond surface-level timelines
+
+---
+
+## South Asia — Confirmed Reference Model (UPDATED)
+
+South Asia is now the **fully implemented reference model** for the entire platform.
+
+It demonstrates:
+
+- Data-driven country pages
+- Fully structured timelines (10+ events)
+- Hybrid facts system (static + Firebase)
+- Content-first layout design
+- Improved UX and readability
+
+---
+
+### Key implication
+
+All future regions must:
+
+- Follow the South Asia structure
+- Match its content depth
+- Reuse its component patterns
+
+---
+
+## Post-Launch Reality (CONFIRMED)
+
+The system is now:
+
+- Stable
+- Scalable
+- Reusable across regions
+
+---
+
+### Focus has shifted to:
+
+- Content quality
+- Educational depth
+- Visual clarity
+- Consistency across regions
+
+---
+
+## Key architectural confirmation (UPDATED)
+
+The following systems are now **fully proven**:
+
+- Data-driven country pages
+- Shared timeline component (with compatibility support)
+- Hybrid facts system (static + Firestore)
+- Region-based component structure
+- Timeline depth model (10+ structured events)
+
+---
+
+👉 These systems should now be reused without redesign across all future regions.
+
+## Branching & Workflow (IMPORTANT)
+
+This project follows a structured Git workflow to keep development safe, clean, and scalable.
+
+### Core branches
+
+- `main` → Production (live site on Vercel)
+- `dev` → Main development branch (staging before production)
+
+---
+
+### Region branches
+
+Each region has its own working branch:
+
+- `south-asia`
+- `africa`
+- `europe`
+- etc.
+
+👉 Purpose:
+
+- Acts as a **development branch for that specific region**
+- All feature work for that region branches from here
+
+---
+
+### Feature branches
+
+All new work is created from the relevant region branch:
+
+Example:
+
+- `feature/geography-page`
+- `feature/culture-page`
+- `feature/image-updates`
+
+Workflow:
+
+1. Branch from region branch (e.g. `south-asia`)
+2. Complete the feature
+3. Merge back into the region branch
+4. Delete the feature branch after completion
+
+---
+
+### Cleanup branches
+
+If small tweaks or fixes are needed after a feature is merged:
+
+- Create a short-lived cleanup branch:
+
+  `cleanup/...`
+
+👉 Purpose:
+
+- Avoid keeping old feature branches alive
+- Keep repository clean and organised
+
+---
+
+### Merge flow
+
+Final flow of work:
+
+feature → region (e.g. south-asia) → dev → main
+
+---
+
+### Critical rules
+
+- NEVER work directly on `main`
+- NEVER skip `dev` when promoting changes
+- ALWAYS branch from the correct region branch
+- DELETE feature branches after merging
+- Use cleanup branches instead of keeping old branches alive
+
+---
+
+### Sync rule (VERY IMPORTANT)
+
+Before starting any new work:
+
+👉 Ensure `main` and `dev` are at the SAME level
+
+This prevents:
+
+- merge conflicts
+- missing features in production
+- deployment inconsistencies
