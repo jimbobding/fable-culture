@@ -376,10 +376,6 @@ export default function SouthAsiaPage() {
           </div>
 
           <SouthAsiaMap />
-
-          <p className="text-center text-[#245b59]">
-            The country cards below can stay as a mobile-friendly fallback.
-          </p>
         </section>
 
         {/* ================= COUNTRIES ================= */}
