@@ -651,3 +651,225 @@ This prevents:
 - merge conflicts
 - missing features in production
 - deployment inconsistencies
+
+## 🛠️ Admin & Moderation Systems (SHARED ARCHITECTURE)
+
+### Overview
+
+Fable Culture includes multiple admin systems that allow **safe student contribution and content moderation** across the platform.
+
+These systems follow a **shared moderation pattern** and are designed to be reused across all regions and content types.
+
+---
+
+## Core Principle (IMPORTANT)
+
+All admin systems follow the same workflow:
+
+1. User submits content → stored in Firestore with `status: "pending"`
+2. Admin reviews content via admin interface
+3. Admin can:
+
+   - Approve → content becomes visible on the site
+   - Delete → content is permanently removed
+
+4. UI updates instantly (no page reload)
+
+---
+
+## 1️⃣ Student Upload System (Gallery Moderation)
+
+### What it does
+
+- Allows students to upload images to the platform
+
+### Data flow
+
+- Image → Firebase Storage
+- Metadata → Firestore (`gallerySubmissions`)
+
+### Stored fields include:
+
+- title
+- description
+- imageUrl
+- storagePath
+- region
+- submittedAt
+- status (`pending` / `approved`)
+
+---
+
+### Admin capabilities
+
+- View pending submissions
+- Approve uploads → visible in public gallery
+- Delete uploads:
+
+  - Removes image from Storage
+  - Removes document from Firestore
+
+---
+
+### Key purpose
+
+- Enables student participation
+- Maintains safe, moderated gallery content
+- Prevents inappropriate uploads from being public
+
+---
+
+## 2️⃣ Facts System (Fact Moderation)
+
+### What it does
+
+- Allows users to submit cultural or regional facts
+
+### Data stored in:
+
+- Firestore collection: `regionFacts`
+
+### Structure includes:
+
+- fact
+- continent
+- regionKey
+- status (`pending` / `approved`)
+
+---
+
+### Admin capabilities
+
+- View pending facts
+- Approve → displayed on region/country pages
+- Delete → removed permanently
+
+---
+
+### Rendering pattern
+
+Facts displayed on pages are a combination of:
+
+- Static facts (from data files)
+- Approved dynamic facts (from Firestore)
+
+---
+
+### Key purpose
+
+- Expands content dynamically
+- Encourages student contribution
+- Keeps information moderated and accurate
+
+---
+
+## 3️⃣ Timeline Submission System (ADVANCED SYSTEM)
+
+### What it does
+
+- Allows students to submit ideas for timeline events
+
+### Data stored in Firestore includes:
+
+- title
+- explanation
+- student name
+- region
+- country
+- periodKey
+- createdAt
+- status (`pending` / `approved`)
+
+---
+
+### Admin capabilities
+
+- Approve / delete submissions
+- Filter by:
+
+  - status
+  - region
+  - country
+  - periodKey
+
+- Search by:
+
+  - title
+  - explanation
+  - student name
+
+- Sort:
+
+  - newest first
+
+- View submission counts
+- Instant UI updates (no reload)
+
+---
+
+### Integration with timeline
+
+- Approved submissions are injected into timeline items
+- Enhances timelines with real student contributions
+
+---
+
+### Key purpose
+
+- Turns timelines into interactive learning tools
+- Encourages research and engagement
+- Maintains quality through moderation
+
+---
+
+## 🧠 Shared System Pattern (CRITICAL DESIGN RULE)
+
+All admin systems:
+
+- Use Firestore as the source of truth
+- Use a `status` field for moderation control
+- Separate submission from public display
+- Require admin approval before visibility
+
+---
+
+## 🔁 Reusability
+
+This moderation system is:
+
+- NOT feature-specific
+- NOT region-specific
+
+👉 It is a **reusable pattern** that can be applied to:
+
+- future regions
+- new content types
+- additional student interaction features
+
+---
+
+## 🚀 Future Expansion Potential
+
+The admin system can be extended to support:
+
+- Timeline editing tools
+- Bulk moderation actions
+- Content quality indicators
+- Teacher/admin dashboards
+- Additional submission types (e.g. quizzes, resources)
+
+---
+
+## 🧠 Architectural Significance
+
+This system transforms Fable Culture from:
+
+- A static educational website
+
+into:
+
+- A **moderated, student-driven content platform**
+
+---
+
+👉 This is now a core part of the project architecture and should be maintained across all future development.

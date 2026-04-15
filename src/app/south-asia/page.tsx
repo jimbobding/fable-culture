@@ -213,7 +213,7 @@ export default function SouthAsiaPage() {
             </p>
           </div>
 
-          {/* <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-3">
             <Link href="/south-asia/geography">
               <div className="overflow-hidden rounded-[1.75rem] border border-orange-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                 <img
@@ -282,7 +282,7 @@ export default function SouthAsiaPage() {
                 </div>
               </div>
             </Link>
-          </div> */}
+          </div>
         </section>
 
         {/* ================= TIMELINE ================= */}
