@@ -9,6 +9,7 @@ type Props = {
   country: string;
   periodKey: string;
   onSuccess?: () => void;
+  submittedAt?: any;
 };
 
 export default function TimelineSubmissionForm({
@@ -38,7 +39,8 @@ export default function TimelineSubmissionForm({
         country,
         periodKey,
         status: "pending",
-        createdAt: serverTimestamp(),
+
+        submittedAt: serverTimestamp(),
       });
 
       setTitle("");

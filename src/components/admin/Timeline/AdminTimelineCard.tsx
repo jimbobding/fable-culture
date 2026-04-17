@@ -11,6 +11,7 @@ type Props = {
   country?: string;
   periodKey?: string;
   studentName?: string;
+  submittedAt?: any;
 };
 
 export default function AdminTimelineCard({
@@ -21,6 +22,7 @@ export default function AdminTimelineCard({
   country,
   periodKey,
   studentName,
+  submittedAt,
 }: Props) {
   const handleApprove = async () => {
     await updateDoc(doc(db, "timelineSubmissions", id), {
@@ -60,6 +62,19 @@ export default function AdminTimelineCard({
 
         <p className="text-sm text-stone-600 leading-relaxed">
           {explanation || "No explanation provided."}
+        </p>
+        <p>
+          {submittedAt && submittedAt.seconds && (
+            <p className="text-xs text-stone-400">
+              {new Date(submittedAt.seconds * 1000).toLocaleString("en-GB", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+          )}
         </p>
       </div>
 

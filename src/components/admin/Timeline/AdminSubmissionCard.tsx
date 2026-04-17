@@ -12,6 +12,7 @@ type Props = {
   imageUrl?: string;
   storagePath?: string;
   status?: string;
+  submittedAt?: any;
 };
 
 export default function AdminSubmissionCard({
@@ -22,6 +23,7 @@ export default function AdminSubmissionCard({
   imageUrl,
   storagePath,
   status,
+  submittedAt,
 }: Props) {
   async function handleApprove() {
     try {
@@ -106,6 +108,11 @@ export default function AdminSubmissionCard({
         <p className="min-h-[72px] text-sm leading-6 text-stone-700">
           {description || "No description provided."}
         </p>
+        {submittedAt && (
+          <p className="text-xs text-stone-500 mt-2">
+            Submitted: {new Date(submittedAt.seconds * 1000).toLocaleString()}
+          </p>
+        )}
 
         <div className="flex gap-3 pt-2">
           {status !== "approved" && (

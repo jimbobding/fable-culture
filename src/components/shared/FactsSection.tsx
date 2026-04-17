@@ -2,7 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import { db } from "@/firebaseConfig";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  serverTimestamp,
+} from "firebase/firestore";
 
 type Props = {
   continent: string;
@@ -33,10 +40,11 @@ export default function FactsSection({
   staticItems = [],
   theme,
 }: Props) {
-  const [facts, setFacts] = useState<string[]>([]);
+  const [facts, setFacts] = useState<any[]>([]);
   const [newFact, setNewFact] = useState("");
   const [isPending, setIsPending] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [name, setName] = useState("");
 
   // Fetch approved facts from Firebase
   useEffect(() => {
@@ -49,7 +57,16 @@ export default function FactsSection({
       );
 
       const snapshot = await getDocs(q);
-      setFacts(snapshot.docs.map((doc) => doc.data().fact as string));
+
+      const fetched = snapshot.docs.map((doc) => doc.data());
+
+      fetched.sort((a, b) => {
+        const aTime = a.submittedAt?.seconds || 0;
+        const bTime = b.submittedAt?.seconds || 0;
+        return bTime - aTime;
+      });
+
+      setFacts(fetched);
     };
 
     fetchFacts();
@@ -67,14 +84,16 @@ export default function FactsSection({
     setIsPending(true);
 
     await addDoc(collection(db, "regionFacts"), {
+      name,
       continent,
       regionKey,
       fact: trimmed,
       status: "pending",
-      createdAt: new Date(),
+      submittedAt: serverTimestamp(),
     });
 
     setNewFact("");
+    setName("");
     inputRef.current?.focus();
   };
 
@@ -112,7 +131,38 @@ export default function FactsSection({
                 hover:shadow-xl
               `}
               >
-                <p>{item}</p>
+                <p>{typeof item === "string" ? item : item.fact}</p>
+                {typeof item !== "string" && item.name && (
+                  <p className="text-xs text-stone-500 mt-1">By: {item.name}</p>
+                )}
+                {typeof item !== "string" &&
+                  (item.submittedAt || item.createdAt) && (
+                    <p className="text-xs text-stone-400">
+                      {(() => {
+                        const timestamp = item.submittedAt || item.createdAt;
+
+                        if (timestamp?.seconds) {
+                          return new Date(
+                            timestamp.seconds * 1000,
+                          ).toLocaleString("en-GB", {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          });
+                        }
+
+                        return new Date(timestamp).toLocaleString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        });
+                      })()}
+                    </p>
+                  )}
               </div>
             ))}
           </div>
@@ -130,6 +180,17 @@ export default function FactsSection({
       `}
       >
         <label className="block text-sm font-medium">{inputHeading}</label>
+
+        <label className="mb-2 block text-sm font-semibold text-stone-800">
+          Your name
+        </label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. J D"
+          className="w-full max-w-xs rounded-lg border border-stone-300 px-3 py-2 text-sm"
+        />
 
         <input
           ref={inputRef}

@@ -14,6 +14,7 @@ type Submission = {
   imageUrl?: string;
   status?: string;
   storagePath?: string;
+  submittedAt?: any;
 };
 
 export default async function AdminSubmissionsPage() {
@@ -94,6 +95,7 @@ export default async function AdminSubmissionsPage() {
                   description={submission.description}
                   imageUrl={submission.imageUrl}
                   storagePath={submission.storagePath}
+                  submittedAt={submission.submittedAt}
                 />
               ))}
             </div>

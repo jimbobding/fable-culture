@@ -22,6 +22,7 @@ export default async function StudentUploadsGalleryPage() {
     region?: string;
     description?: string;
     imageUrl?: string;
+    submittedAt?: any;
   }[];
 
   return (
@@ -89,6 +90,7 @@ export default async function StudentUploadsGalleryPage() {
                 region={upload.region}
                 description={upload.description}
                 imageUrl={upload.imageUrl}
+                submittedAt={upload.submittedAt}
               />
             ))}
           </section>

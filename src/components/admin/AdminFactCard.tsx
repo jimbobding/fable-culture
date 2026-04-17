@@ -13,6 +13,7 @@ type Props = {
   regionKey: string;
   status: string;
   setLocalFacts: Dispatch<SetStateAction<Fact[]>>;
+  submittedAt?: any;
 };
 
 export default function AdminFactCard({
@@ -22,6 +23,7 @@ export default function AdminFactCard({
   regionKey,
   status,
   setLocalFacts,
+  submittedAt,
 }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedFact, setEditedFact] = useState(fact);
@@ -78,6 +80,19 @@ export default function AdminFactCard({
         />
       ) : (
         <p className="text-stone-800">{fact}</p>
+      )}
+      {name && <p className="text-xs text-stone-500 mt-2">By: {name}</p>}
+
+      {submittedAt && submittedAt.seconds && (
+        <p className="text-xs text-stone-400">
+          {new Date(submittedAt.seconds * 1000).toLocaleString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       )}
 
       <div className="mt-4 flex flex-wrap gap-2">

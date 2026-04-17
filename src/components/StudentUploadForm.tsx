@@ -13,6 +13,7 @@ export default function StudentUploadForm() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [name, setName] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -35,6 +36,7 @@ export default function StudentUploadForm() {
       const imageUrl = await getDownloadURL(storageRef);
 
       await addDoc(collection(db, "gallerySubmissions"), {
+        name,
         title,
         region,
         description,
@@ -45,7 +47,7 @@ export default function StudentUploadForm() {
       });
 
       alert("Upload submitted for review!");
-
+      setName("");
       setTitle("");
       setRegion("");
       setDescription("");
@@ -102,9 +104,20 @@ export default function StudentUploadForm() {
 
           <form onSubmit={handleSubmit} className="space-y-6 p-8">
             <div>
+              <label className="mb-2 block text-sm font-semibold text-stone-800">
+                Your name
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="e.g. Jim Bobbins"
+                className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-stone-900 shadow-sm outline-none transition focus:border-amber-400 focus:ring-2 focus:ring-amber-100"
+              />
+
               <label
                 htmlFor="title"
-                className="mb-2 block text-sm font-semibold text-stone-800"
+                className="mb-2 block text-sm font-semibold text-stone-800 mt-2"
               >
                 Title of work
               </label>
@@ -207,7 +220,7 @@ export default function StudentUploadForm() {
 
               {selectedFile ? (
                 <div className="mt-4 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
-                  Selected file:{" "}
+                  {selectedFile.name}
                   <span className="font-medium">{selectedFile.name}</span>
                 </div>
               ) : (

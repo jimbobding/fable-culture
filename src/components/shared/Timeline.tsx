@@ -1,4 +1,5 @@
 "use client";
+
 import TimelineSubmissionForm from "@/components/shared/TimelineSubmissionForm";
 import { useEffect, useState } from "react";
 import { db } from "@/firebaseConfig";
@@ -17,14 +18,12 @@ export type TimelineItem = {
 };
 
 export type TimelineTheme = {
-  // NEW system (South Asia)
   lineColor?: string;
   yearColor?: string;
   textColor?: string;
   cardBg?: string;
   dotColor?: string;
 
-  // OLD system (Middle East)
   line?: string;
   year?: string;
   text?: string;
@@ -42,6 +41,7 @@ export default function Timeline({ items, theme, region, country }: Props) {
   const dotBorder = theme.dotBorder ?? "border-white/80";
   const [activeFormIndex, setActiveFormIndex] = useState<number | null>(null);
   const [approvedIdeas, setApprovedIdeas] = useState<any[]>([]);
+
   useEffect(() => {
     async function fetchApproved() {
       const q = query(
@@ -63,16 +63,17 @@ export default function Timeline({ items, theme, region, country }: Props) {
 
     fetchApproved();
   }, [region, country]);
+
   return (
     <div className="relative">
       {/* Vertical line */}
       <div
         className={`
-    absolute inset-y-0 w-1
-    left-4 md:left-1/2
-    md:-translate-x-1/2
-    ${theme.line ?? ""}
-  `}
+          absolute inset-y-0 w-1
+          left-4 md:left-1/2
+          md:-translate-x-1/2
+          ${theme.line ?? ""}
+        `}
         style={{
           backgroundColor: theme.lineColor ?? undefined,
         }}
@@ -126,6 +127,7 @@ export default function Timeline({ items, theme, region, country }: Props) {
                         : undefined,
                   }}
                 >
+                  {/* Year */}
                   <p
                     className={`font-bold ${theme.year ?? ""}`}
                     style={{ color: theme.yearColor ?? undefined }}
@@ -133,17 +135,21 @@ export default function Timeline({ items, theme, region, country }: Props) {
                     {item.year}
                   </p>
 
+                  {/* Title */}
                   <h3 className="font-semibold mt-1">
                     {item.emoji ? `${item.emoji} ` : ""}
                     {item.title}
                   </h3>
 
+                  {/* Text */}
                   <p
                     className={`text-sm sm:text-base leading-relaxed mt-1 ${theme.text ?? ""}`}
                     style={{ color: theme.textColor ?? undefined }}
                   >
                     {item.text}
                   </p>
+
+                  {/* STUDENT IDEAS */}
                   {(() => {
                     const ideasForThisItem = approvedIdeas.filter(
                       (idea) => idea.periodKey === item.periodKey,
@@ -162,18 +168,38 @@ export default function Timeline({ items, theme, region, country }: Props) {
                             key={idea.id}
                             className="rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm"
                           >
+                            {/* Title + Name */}
                             <p className="font-semibold">
                               {idea.title} —{" "}
                               <span className="text-xs text-stone-500">
                                 {idea.studentName || "Anonymous"}
                               </span>
                             </p>
+
+                            {/* Explanation */}
                             <p>{idea.explanation}</p>
+
+                            {/* Timestamp */}
+                            {idea.submittedAt && idea.submittedAt.seconds && (
+                              <p className="text-xs text-stone-400 mt-1">
+                                {new Date(
+                                  idea.submittedAt.seconds * 1000,
+                                ).toLocaleString("en-GB", {
+                                  day: "numeric",
+                                  month: "short",
+                                  year: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </p>
+                            )}
                           </div>
                         ))}
                       </div>
                     );
                   })()}
+
+                  {/* QUESTIONS */}
                   {item.questions && (
                     <ul className="mt-2 space-y-1 text-sm italic opacity-80">
                       {item.questions.map((q, i) => (
@@ -182,12 +208,14 @@ export default function Timeline({ items, theme, region, country }: Props) {
                     </ul>
                   )}
 
+                  {/* GAP PROMPT */}
                   {item.isGap && item.prompt && (
                     <p className="mt-2 text-sm italic opacity-80">
                       🔍 {item.prompt}
                     </p>
                   )}
 
+                  {/* FORM TO ADD IDEA */}
                   <div className="mt-4">
                     <button
                       onClick={() =>

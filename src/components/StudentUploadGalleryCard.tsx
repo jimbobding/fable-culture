@@ -7,6 +7,7 @@ type Props = {
   region?: string;
   description?: string;
   imageUrl?: string;
+  submittedAt?: any;
 };
 
 export default function StudentUploadGalleryCard({
@@ -14,6 +15,7 @@ export default function StudentUploadGalleryCard({
   region,
   description,
   imageUrl,
+  submittedAt,
 }: Props) {
   const [rotation, setRotation] = useState(0);
 
@@ -61,6 +63,11 @@ export default function StudentUploadGalleryCard({
           <p className="mt-1 text-sm font-medium text-amber-700">
             {region || "Region not provided"}
           </p>
+          {submittedAt && (
+            <p className="text-xs text-stone-500 mt-2">
+              Submitted: {new Date(submittedAt.seconds * 1000).toLocaleString()}
+            </p>
+          )}
         </div>
 
         <p className="text-sm leading-6 text-stone-700">
