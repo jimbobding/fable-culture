@@ -11,6 +11,8 @@ export type Fact = {
   continent: string;
   regionKey: string;
   status: string;
+  submittedAt?: any;
+  name?: string;
 };
 
 export default async function AdminFactsPage() {
