@@ -438,4 +438,281 @@ The following systems are now **proven and stable**:
 - Hybrid facts system (static + Firestore)
 - Region-based component structure
 
-👉 These should now be reused for all future regions without redesign.
+## 👉 These should now be reused for all future regions without redesign.
+
+## 🌴 Caribbean — NEXT DEVELOPMENT PHASE (NEW FOCUS)
+
+### Overview
+
+South Asia is now **COMPLETE as a system and reference model**.
+
+The next region to be built is:
+
+👉 **The Caribbean**
+
+---
+
+### Core Strategy (CRITICAL)
+
+The Caribbean must follow:
+
+👉 **“Same system, faster build, improved quality”**
+
+This means:
+
+- Reuse ALL existing systems
+- Do NOT rebuild core architecture
+- Focus on content and expansion
+
+---
+
+### Key Principle
+
+👉 **The system is already built — we are now applying it**
+
+---
+
+## 🟢 Phase 1 — STRUCTURE FIRST (FAST BUILD)
+
+### Goal
+
+Get the Caribbean region live **quickly and cleanly**
+
+---
+
+### What MUST be done
+
+- Create `/caribbean` landing page
+
+- Create dynamic route:
+
+  `/caribbean/[country]`
+
+- Build country data file (same structure as South Asia)
+
+- Add:
+
+  - overview content
+  - quick facts
+  - base timelines
+  - fact file sections
+
+---
+
+### What MUST NOT be done
+
+- ❌ Do NOT redesign layout
+- ❌ Do NOT rebuild components
+- ❌ Do NOT introduce new systems
+
+---
+
+### Expected outcome
+
+👉 Fully working Caribbean region using existing architecture
+
+---
+
+## 🟡 Phase 2 — CONTENT ENHANCEMENT
+
+Once structure is complete:
+
+- Improve descriptions
+- Improve educational clarity
+- Upgrade images
+- Add video content (safe embeds only)
+
+---
+
+## 🔴 Phase 3 — INTERACTIVITY (CONTROLLED)
+
+Only AFTER stability:
+
+- Audio/music integration
+- Interactive maps
+- Student activities
+
+---
+
+### ⚠️ Critical Warning
+
+Interactivity can:
+
+- Increase complexity
+- Introduce bugs
+- Slow development
+
+👉 Must NOT block Phase 1 completion
+
+---
+
+## 🧠 Development Reality
+
+Compared to South Asia:
+
+- System work = DONE
+- Build time = SIGNIFICANTLY FASTER
+
+👉 Focus shifts from:
+
+**building systems → scaling content**
+
+---
+
+## 🧠 Development Rules (ENFORCED)
+
+### System rule
+
+👉 Reuse before creating anything new
+
+---
+
+### Admin rule (CRITICAL)
+
+👉 ALL admin pages MUST:
+
+```ts
+export const dynamic = "force-dynamic";
+```
+
+👉 This is NON-NEGOTIABLE
+
+---
+
+### Branching rule (STRICT)
+
+Workflow MUST always follow:
+
+```
+feature → region → dev → main
+```
+
+---
+
+### Sync rule
+
+Before starting ANY work:
+
+- `main` and `dev` MUST be aligned
+
+---
+
+### File-first rule
+
+ALL development must:
+
+- Identify exact file before editing
+- Avoid “blind edits”
+- Follow existing structure
+
+---
+
+## 🚀 Caribbean — STARTUP CHECKLIST (FOR NEW CHAT)
+
+When starting Caribbean work, the assistant MUST ask:
+
+---
+
+### 1. Branching
+
+- Are `main` and `dev` synced?
+- What branch are you currently on?
+- Create new branch:
+
+```bash
+git checkout south-asia
+git pull
+git checkout -b caribbean
+```
+
+---
+
+### 2. File creation (CONFIRM BEFORE WRITING CODE)
+
+- `/app/caribbean/page.tsx`
+- `/app/caribbean/[country]/page.tsx`
+- `/data/caribbeanCountries.ts`
+
+---
+
+### 3. Data structure
+
+- Confirm structure matches South Asia
+- Confirm fields:
+
+  - name
+  - population
+  - capital
+  - languages
+  - currency
+  - facts
+  - timeline
+
+---
+
+### 4. Component reuse
+
+- Use existing:
+
+  - `RegionContent`
+  - `Timeline`
+  - `FactsSection`
+
+👉 DO NOT duplicate components
+
+---
+
+### 5. Image system
+
+- Confirm correct path:
+
+```
+/public/images/continents/caribbean/countries/{country}/
+```
+
+- Ensure:
+
+  - lowercase
+  - no spaces
+  - exact match
+
+---
+
+### 6. First working goal
+
+👉 “Can we load ONE country page correctly?”
+
+---
+
+### 7. Then scale
+
+- Add more countries
+- Add timelines
+- Improve content
+
+---
+
+## 🧠 Assistant Behaviour Rule (FOR FUTURE CHATS)
+
+The assistant MUST:
+
+- Ask what file is being edited BEFORE giving code
+- Confirm structure BEFORE changes
+- Avoid large refactors
+- Work step-by-step
+- Keep changes safe and reversible
+
+---
+
+## 🎯 Immediate Next Step
+
+👉 Begin Caribbean Phase 1:
+
+- Create region branch
+- Set up landing page
+- Set up dynamic country route
+- Create initial data file
+
+---
+
+👉 DO NOT jump ahead to interactivity yet

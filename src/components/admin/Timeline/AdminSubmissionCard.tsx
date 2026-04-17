@@ -11,6 +11,7 @@ type Props = {
   description?: string;
   imageUrl?: string;
   storagePath?: string;
+  status?: string;
 };
 
 export default function AdminSubmissionCard({
@@ -20,6 +21,7 @@ export default function AdminSubmissionCard({
   description,
   imageUrl,
   storagePath,
+  status,
 }: Props) {
   async function handleApprove() {
     try {
@@ -106,12 +108,15 @@ export default function AdminSubmissionCard({
         </p>
 
         <div className="flex gap-3 pt-2">
-          <button
-            onClick={handleApprove}
-            className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700"
-          >
-            Approve
-          </button>
+          {status !== "approved" && (
+            <button
+              onClick={handleApprove}
+              className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-700"
+            >
+              Approve
+            </button>
+          )}
+
           <button
             type="button"
             onClick={handleDelete}

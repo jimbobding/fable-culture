@@ -873,3 +873,189 @@ into:
 ---
 
 👉 This is now a core part of the project architecture and should be maintained across all future development.
+
+## 🚨 Production vs Local Behaviour (CRITICAL SYSTEM RULE)
+
+### Overview
+
+Fable Culture runs in two different environments:
+
+- Local development (your machine)
+- Production (Vercel)
+
+These environments behave differently due to **Next.js caching**.
+
+---
+
+### Key Issue
+
+By default, Next.js may **cache pages at build time** in production.
+
+This means:
+
+- Data is fetched once during deployment
+- The page does NOT update when Firestore data changes
+
+---
+
+### Real Example (IMPORTANT)
+
+Admin pages previously:
+
+- Showed old data on live site
+- Did NOT show new submissions
+- Appeared “broken” despite working locally
+
+---
+
+### Root Cause
+
+Pages were being **statically cached by Vercel**
+
+---
+
+### Solution (MANDATORY RULE FOR ADMIN)
+
+ALL admin pages MUST include:
+
+```ts
+export const dynamic = "force-dynamic";
+```
+
+---
+
+### Why this matters
+
+This forces:
+
+- Fresh data on every request
+- No caching
+- Live data always matches Firestore
+
+---
+
+### Where this MUST be used
+
+| Page Type                    | Rule               |
+| ---------------------------- | ------------------ |
+| Admin pages (`/admin/...`)   | ✅ ALWAYS dynamic  |
+| Moderation pages             | ✅ ALWAYS dynamic  |
+| Student-driven content views | ⚠️ Usually dynamic |
+| Static region pages          | ❌ DO NOT use      |
+
+---
+
+### Key Principle
+
+👉 **If data can change without a deploy, DO NOT cache it**
+
+---
+
+### Developer Rule (IMPORTANT)
+
+Before debugging live issues:
+
+- Always consider caching
+- Always compare local vs production behaviour
+
+---
+
+👉 This rule prevents:
+
+- “Works locally but not live” bugs
+- Stale admin data
+- Moderation failures
+
+---
+
+## 🎯 Admin System Stability Rule (NEW)
+
+To prevent production issues:
+
+- Admin systems MUST always use dynamic rendering
+- Admin UI must reflect real-time Firestore data
+- No admin functionality should rely on cached pages
+
+---
+
+👉 This ensures:
+
+- Safe moderation
+- Reliable student submissions
+- Accurate live data
+
+---
+
+## 🌍 Region Expansion Strategy (NEW)
+
+### Core Principle
+
+New regions are NOT built from scratch.
+
+They are created using the **South Asia reference model**.
+
+---
+
+### Build Approach
+
+Each new region should follow:
+
+1. Reuse existing components
+2. Reuse data structure
+3. Reuse page layouts
+4. Focus on content, not system building
+
+---
+
+### Development Phases (MANDATORY)
+
+#### 🟢 Phase 1 — Structure First (FAST BUILD)
+
+- Create region landing page
+- Create dynamic country pages
+- Add base facts
+- Add initial timelines
+- Use existing components only
+
+👉 Goal: **Get region live quickly**
+
+---
+
+#### 🟡 Phase 2 — Content Enhancement
+
+- Improve descriptions
+- Add better images
+- Add video content (YouTube embeds etc.)
+- Improve educational value
+
+---
+
+#### 🔴 Phase 3 — Interactivity (ADVANCED)
+
+- Audio/music features
+- Interactive maps
+- Student activities
+
+⚠️ WARNING:
+
+- This phase is time-heavy
+- Must NOT block Phase 1 completion
+
+---
+
+### Key Rule
+
+👉 **Do NOT introduce new systems during Phase 1**
+
+---
+
+### Time Expectation
+
+Compared to South Asia:
+
+- Region setup is significantly faster
+- System work is already complete
+
+---
+
+👉 Focus shifts from **building** → **expanding**
