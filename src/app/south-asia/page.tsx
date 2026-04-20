@@ -3,6 +3,11 @@
 import Link from "next/link";
 
 import SouthAsiaMap from "@/components/regions/south-asia/SouthAsiaMap";
+import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
+import {
+  southAsiaDiscoveries,
+  southAsiaThemes,
+} from "@/data/southAsia/discoveries";
 
 const countries = [
   {
@@ -203,8 +208,25 @@ export default function SouthAsiaPage() {
               systems, busy cities, coastal regions, and islands in the Indian
               Ocean.
             </p>
+
+            {/* 🔹 Simple visual keywords (SEND friendly) */}
+            <div className="flex justify-center gap-4 text-sm sm:text-base text-[#6b4226] font-medium">
+              <span>🏔️ Mountains</span>
+              <span>🌊 Rivers</span>
+              <span>🏙️ Cities</span>
+            </div>
           </div>
 
+          {/* 🔥 CENTERED IMAGE */}
+          <div className="flex justify-center">
+            <img
+              src="/images/continents/south-asia/hero.jpg"
+              alt="Map and landscapes of South Asia"
+              className="rounded-2xl shadow-lg max-h-72 object-cover w-full md:w-2/3"
+            />
+          </div>
+
+          {/* 🔴 IMPORTANT BOX */}
           <div className="max-w-4xl mx-auto rounded-2xl border border-rose-300/70 bg-white/45 backdrop-blur px-6 py-5 shadow-sm">
             <p className="text-[#5f3b27] leading-relaxed">
               <span className="font-semibold text-rose-700">Important:</span>{" "}
@@ -212,77 +234,6 @@ export default function SouthAsiaPage() {
               each have their own identity, languages, traditions, and history.
             </p>
           </div>
-
-          {/* <div className="grid gap-6 lg:grid-cols-3">
-            <Link href="/south-asia/geography">
-              <div className="overflow-hidden rounded-[1.75rem] border border-orange-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <img
-                  src="/images/south-asia/geography.jpg"
-                  alt="Mountains and landscape in South Asia"
-                  className="h-52 w-full object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-3 text-orange-900">
-                    Geography
-                  </h3>
-                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                    <li>• The Himalayas rise in the north.</li>
-                    <li>• Major rivers support farming and settlement.</li>
-                    <li>
-                      • The region includes plains, forests, coasts, and
-                      islands.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/south-asia/culture">
-              <div className="overflow-hidden rounded-[1.75rem] border border-rose-300 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <img
-                  src="/images/south-asia/culture.jpg"
-                  alt="South Asian culture, clothing, festivals, or daily life"
-                  className="h-52 w-full object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-3 text-rose-900">
-                    Culture
-                  </h3>
-                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                    <li>
-                      • South Asia is home to many languages and religions.
-                    </li>
-                    <li>
-                      • Music, food, clothing, art, and festivals vary widely.
-                    </li>
-                    <li>
-                      • Families and traditions often play an important role.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/south-asia/importance">
-              <div className="overflow-hidden rounded-[1.75rem] border border-amber-400 bg-[#fff7ed]/90 shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                <img
-                  src="/images/south-asia/history.jpg"
-                  alt="Historic buildings, trade, or cultural heritage in South Asia"
-                  className="h-52 w-full object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-3 text-amber-900">
-                    Why it matters
-                  </h3>
-                  <ul className="space-y-2 text-[#6b4226] leading-relaxed">
-                    <li>• Ancient civilisations developed here.</li>
-                    <li>• Trade routes linked South Asia to other regions.</li>
-                    <li>• Ideas, inventions, and beliefs spread worldwide.</li>
-                  </ul>
-                </div>
-              </div>
-            </Link>
-          </div> */}
         </section>
 
         {/* ================= TIMELINE ================= */}
@@ -362,6 +313,12 @@ export default function SouthAsiaPage() {
             );
           })}
         </section>
+
+        {/* ================= STUDENT DISCOVERIES ================= */}
+        <StudentDiscoveries
+          items={southAsiaDiscoveries}
+          themes={southAsiaThemes}
+        />
 
         {/* ================= MAP PLACEHOLDER ================= */}
         <section className="rounded-[2rem] border border-teal-200/70 bg-gradient-to-br from-[#dff7ef] via-[#e6fbff] to-[#dfefff] p-6 sm:p-8 shadow-lg space-y-6">
