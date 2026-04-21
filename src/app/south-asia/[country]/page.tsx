@@ -52,6 +52,15 @@ export default async function CountryPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f6ead8] via-[#f1e1ca] to-[#e8d5bd]">
       <div className="mx-auto max-w-6xl px-4 pb-12">
+        <div className="flex justify-center pt-6 pb-6">
+          <Link href="/">
+            <img
+              src="/images/FHLogo-Horizontal.svg"
+              alt="Fable Culture logo"
+              className="h-14 sm:h-16 w-auto cursor-pointer hover:scale-105 transition-transform duration-200"
+            />
+          </Link>
+        </div>
         {/* HERO */}
         <section
           className="relative min-h-[400px] overflow-hidden rounded-[2.25rem] shadow-2xl flex items-end"

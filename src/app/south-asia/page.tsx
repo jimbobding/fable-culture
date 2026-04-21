@@ -153,6 +153,15 @@ export default function SouthAsiaPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#fff3e0] via-[#fde2d1] to-[#f8e7d8]">
       <div className="max-w-6xl mx-auto px-4 py-10 space-y-12">
+        <div className="flex justify-center pt-6 pb-6">
+          <Link href="/">
+            <img
+              src="/images/FHLogo-Horizontal.svg"
+              alt="Fable Culture logo"
+              className="h-14 sm:h-16 w-auto cursor-pointer hover:scale-105 transition-transform duration-200"
+            />
+          </Link>
+        </div>
         {/* ================= HERO ================= */}
         <div className="relative overflow-hidden rounded-[2rem] shadow-2xl">
           <div className="absolute inset-0 bg-gradient-to-br from-[#c2410c] via-[#db2777] to-[#7c3aed] opacity-95" />
