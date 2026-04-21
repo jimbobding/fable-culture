@@ -1059,3 +1059,170 @@ Compared to South Asia:
 ---
 
 👉 Focus shifts from **building** → **expanding**
+
+## 🌟 Student Discoveries System (NEW FEATURE)
+
+### Overview
+
+The Student Discoveries system allows students to contribute useful external resources (websites) to support learning across regions.
+
+It introduces a new type of content:
+
+👉 student-led research and shared resources
+
+---
+
+### How it works (Current Implementation)
+
+- Discoveries are stored in region-specific data files
+- Rendered using a shared reusable component
+- Displayed on region landing pages
+
+---
+
+### Data Structure
+
+Each discovery item includes:
+
+- title
+- description
+- topic (e.g. Geography, Culture)
+- country
+- href (external link or placeholder)
+
+---
+
+### Dual-purpose design
+
+The system supports two types of entries:
+
+#### 🟢 Real Discoveries
+
+- Student finds a useful website
+- Link is added to the page
+- Other students can access it
+
+#### 🟡 Guided Discovery Tasks
+
+- Placeholder prompts (e.g. “Find a website about rivers”)
+- Encourages independent research
+- Supports classroom activities
+
+---
+
+### Component Architecture (IMPORTANT)
+
+Shared component:
+
+components/shared/StudentDiscoveries.tsx
+
+Region-specific data:
+
+data/southAsia/discoveries.ts
+data/caribbean/discoveries.ts
+
+---
+
+### Key Design Rule
+
+- Component MUST remain fully reusable
+- NO region-specific content inside component
+- ALL content must come from data files
+
+---
+
+### Purpose
+
+- Encourage independent research
+- Increase student engagement
+- Allow students to contribute beyond facts and uploads
+- Build a shared bank of learning resources
+
+---
+
+### Future Expansion (Planned)
+
+The system may evolve into:
+
+- Firestore-backed submissions
+- Student-submitted links
+- Admin moderation (approve/delete)
+- Filtering by topic or country
+
+---
+
+### Educational Impact
+
+This system supports:
+
+- curiosity
+- research skills
+- ownership of learning
+- collaborative knowledge building
+
+---
+
+## 🔗 Global Navigation — Logo Link (NEW UX RULE)
+
+### Overview
+
+A clickable logo has been added to pages to improve navigation and usability.
+
+---
+
+### Behaviour
+
+- Logo appears at the top of pages
+- Clicking the logo returns the user to the Homepage (Landing Page)
+
+---
+
+### Implementation (Current)
+
+- Added to South Asia country pages
+- Positioned above the hero section
+- Styled for visibility and consistency
+
+---
+
+### Purpose
+
+- Provides a clear navigation reset point
+- Prevents users getting lost in deep page navigation
+- Improves usability for:
+
+  - students
+  - staff
+  - SEND learners
+
+---
+
+### Design Rule (IMPORTANT)
+
+- Logo should be:
+
+  - visible
+  - consistent across pages
+  - clickable
+
+- Must always link to: /
+
+---
+
+### Future Improvement
+
+The logo should be moved into a shared component:
+
+components/shared/Header.tsx
+
+This will allow:
+
+- reuse across all regions
+- consistent global navigation
+- easier maintenance
+
+---
+
+### UX Principle
+
+👉 Users should always have a simple way back to the start
