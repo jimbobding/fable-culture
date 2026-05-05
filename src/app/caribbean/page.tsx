@@ -141,7 +141,7 @@ export default function CaribbeanPage() {
         </section>
 
         {/* ================= DISCOVERIES ================= */}
-        <StudentDiscoveries items={[]} />
+        {/* <StudentDiscoveries items={[]} /> */}
 
         {/* ================= MAP ================= */}
         <section className="space-y-6 text-center max-w-5xl mx-auto relative z-0">
