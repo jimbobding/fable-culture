@@ -6,8 +6,8 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 type Props = {
   region: string;
-  country: string;
-  periodKey: string;
+  country?: string;
+  periodKey?: string;
   onSuccess?: () => void;
   submittedAt?: any;
 };

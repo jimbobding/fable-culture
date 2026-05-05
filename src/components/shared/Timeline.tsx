@@ -6,7 +6,7 @@ import { db } from "@/firebaseConfig";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 export type TimelineItem = {
-  periodKey: string;
+  periodKey?: string;
   year: string;
   title: string;
   text: string;
@@ -34,7 +34,7 @@ type Props = {
   items: TimelineItem[];
   theme: TimelineTheme;
   region: string;
-  country: string;
+  country?: string;
 };
 
 export default function Timeline({ items, theme, region, country }: Props) {
@@ -75,28 +75,31 @@ export default function Timeline({ items, theme, region, country }: Props) {
           ${theme.line ?? ""}
         `}
         style={{
-          backgroundColor: theme.lineColor ?? undefined,
+          background:
+            theme.lineColor ??
+            "linear-gradient(to bottom, #22d3ee, #0ea5e9, #f97316)",
         }}
       />
 
-      <ul className="space-y-10 md:space-y-12">
+      <ul className="space-y-14 md:space-y-20">
         {items.map((item, index) => {
           const isLeft = index % 2 === 0;
 
           return (
-            <li key={index} className="relative">
+            <li key={index} className="relative mb-6">
               {/* DOT */}
               <div
                 className={`
-                  absolute w-4 h-4 rounded-full z-10
+                  absolute w-5 h-5 rounded-full z-10
                   left-4 md:left-1/2
                   -translate-x-1/2
                   top-6
-                  border-4
+                  border-4 shadow-lg
                   ${dotBorder}
                 `}
                 style={{
-                  backgroundColor: theme.dotColor ?? undefined,
+                  backgroundColor: "#ffffff",
+                  borderColor: theme.dotColor ?? "#0ea5e9",
                 }}
               />
 
@@ -114,18 +117,13 @@ export default function Timeline({ items, theme, region, country }: Props) {
                 {/* CARD */}
                 <div
                   className={`
-                    rounded-2xl border shadow-sm
+                    rounded-2xl border border-white/60
+                    shadow-lg backdrop-blur
                     p-5 sm:p-6
                     max-w-none md:max-w-md
-                    border-black/10
-                    ${theme.cardBg ?? ""}
+                    bg-white/80
+                    hover:-translate-y-1 transition-all duration-300
                   `}
-                  style={{
-                    backgroundColor:
-                      theme.cardBg && !theme.cardBg.startsWith("bg-")
-                        ? theme.cardBg
-                        : undefined,
-                  }}
                 >
                   {/* Year */}
                   <p
@@ -135,19 +133,23 @@ export default function Timeline({ items, theme, region, country }: Props) {
                     {item.year}
                   </p>
 
-                  {/* Title */}
-                  <h3 className="font-semibold mt-1">
-                    {item.emoji ? `${item.emoji} ` : ""}
-                    {item.title}
-                  </h3>
+                  {/* Content */}
+                  <div className="flex items-start gap-3 mt-2">
+                    {item.emoji && (
+                      <div className="text-3xl leading-none">{item.emoji}</div>
+                    )}
 
-                  {/* Text */}
-                  <p
-                    className={`text-sm sm:text-base leading-relaxed mt-1 ${theme.text ?? ""}`}
-                    style={{ color: theme.textColor ?? undefined }}
-                  >
-                    {item.text}
-                  </p>
+                    <div>
+                      <h3 className="font-semibold text-lg">{item.title}</h3>
+
+                      <p
+                        className={`text-sm sm:text-base leading-relaxed mt-1 ${theme.text ?? ""}`}
+                        style={{ color: theme.textColor ?? undefined }}
+                      >
+                        {item.text}
+                      </p>
+                    </div>
+                  </div>
 
                   {/* STUDENT IDEAS */}
                   {(() => {
@@ -168,7 +170,6 @@ export default function Timeline({ items, theme, region, country }: Props) {
                             key={idea.id}
                             className="rounded-lg bg-amber-50 border border-amber-200 p-3 text-sm"
                           >
-                            {/* Title + Name */}
                             <p className="font-semibold">
                               {idea.title} —{" "}
                               <span className="text-xs text-stone-500">
@@ -176,11 +177,9 @@ export default function Timeline({ items, theme, region, country }: Props) {
                               </span>
                             </p>
 
-                            {/* Explanation */}
                             <p>{idea.explanation}</p>
 
-                            {/* Timestamp */}
-                            {idea.submittedAt && idea.submittedAt.seconds && (
+                            {idea.submittedAt?.seconds && (
                               <p className="text-xs text-stone-400 mt-1">
                                 {new Date(
                                   idea.submittedAt.seconds * 1000,
@@ -215,7 +214,7 @@ export default function Timeline({ items, theme, region, country }: Props) {
                     </p>
                   )}
 
-                  {/* FORM TO ADD IDEA */}
+                  {/* FORM */}
                   <div className="mt-4">
                     <button
                       onClick={() =>

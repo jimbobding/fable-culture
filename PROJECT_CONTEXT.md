@@ -1129,6 +1129,11 @@ data/caribbean/discoveries.ts
 - NO region-specific content inside component
 - ALL content must come from data files
 
+- Follows the same architectural pattern as Timeline:
+  - shared component
+  - data-driven content
+  - no region-specific logic inside component
+
 ---
 
 ### Purpose

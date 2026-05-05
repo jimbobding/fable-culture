@@ -6,6 +6,7 @@ type Theme = {
 
 type Discovery = {
   title: string;
+  name: string;
   description: string;
   topic: string;
   country: string;
@@ -92,6 +93,7 @@ export default function StudentDiscoveries({ items, themes }: Props) {
               <p className="text-[#6b4226] text-sm leading-relaxed">
                 {item.description}
               </p>
+              <p className="text-sm text-rose-700 mt-2">{item.name}</p>
 
               {!isPlaceholder && (
                 <p className="mt-4 text-sm font-semibold text-rose-700">

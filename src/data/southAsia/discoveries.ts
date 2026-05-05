@@ -3,22 +3,25 @@ export const southAsiaDiscoveries = [
     title: "Mount Everest Explained 🏔️",
     description:
       "TN found this website on Mount Everest, it is great for learning about the geography and culture of the region.",
+    name: "TN 🏔️",
     topic: "Geography",
+
     country: "Nepal 🇳🇵",
     href: "https://www.nepalhikingteam.com/",
   },
   {
     title: "Can you find a website about the great rivers? 🌊",
-    description:
-      "Try to find a website that explains rivers like the Ganges or Indus. Think about how rivers help people live and work.",
-    topic: "Your Task",
+    description: "I have found a website about great rivers in South Asia.",
+    name: "TN 🌊",
+    topic: "Geography/Rivers",
     country: "South Asia 🌍",
-    href: "#",
+    href: "https://banotes.org/south-asia/major-rivers-south-asia-lifelines-region/",
   },
   {
     title: "Can you find out about festivals? 🎉",
     description:
       "Look for a website that shows how people celebrate festivals in South Asia. What makes them special?",
+    name: "TN 🎉",
     topic: "Your Task",
     country: "India / Bangladesh / Nepal",
     href: "#",
