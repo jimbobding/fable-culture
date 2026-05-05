@@ -6,7 +6,7 @@ type Theme = {
 
 type Discovery = {
   title: string;
-  name: string;
+  name?: string;
   description: string;
   topic: string;
   country: string;
