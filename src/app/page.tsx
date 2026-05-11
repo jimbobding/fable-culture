@@ -43,7 +43,7 @@ const upcomingEvents = [
     end: "2026-05-12",
     title: "💙 International Nurses Day",
     color: "bg-purple-100 border-purple-300",
-    text: "International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙",
+    text: "International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙",
   },
 
   {
