@@ -39,26 +39,26 @@ const continents = [
 
 const upcomingEvents = [
   {
-    start: "2026-04-15",
-    end: "2026-04-15",
-    title: "🎨 World Art Day",
+    start: "2026-05-12",
+    end: "2026-05-12",
+    title: "💙 International Nurses Day",
     color: "bg-purple-100 border-purple-300",
-    text: "World Art Day celebrates creativity and the importance of art in society. It is a great chance to explore artists, try new techniques, and share creative work in school.",
+    text: "International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙",
   },
 
   {
-    start: "2026-04-22",
-    end: "2026-04-22",
-    title: "🌍 Earth Day",
+    start: "2026-05-20",
+    end: "2026-05-20",
+    title: "🐝 World Bee Day",
     color: "bg-green-100 border-green-300",
-    text: "Earth Day encourages people to care for the planet and think about how we can protect nature. It is a good opportunity to learn about recycling, wildlife, and looking after our environment.",
+    text: "World Bee Day is celebrated on 20th May and helps us learn how important bees are to our planet. Bees play a huge role in pollinating plants, which means they help grow much of the food we eat, including fruits and vegetables. Without bees, our food supply would be very different. This day also reminds us that bee populations are under threat from pollution, pesticides, and habitat loss. We can help by planting flowers, protecting green spaces, and being mindful of the environment. 🌸🐝🍯",
   },
   {
-    start: "2026-04-23",
-    end: "2026-04-23",
-    title: "🏴 St George’s Day",
+    start: "2026-05-11",
+    end: "2026-05-17",
+    title: " mental health awareness week",
     color: "bg-red-100 border-red-300",
-    text: "St George’s Day is the feast day of England’s patron saint. It can be used to explore English traditions, stories, symbols, and how national identity is celebrated in different ways.",
+    text: "Mental Health Awareness Week is a time to focus on our emotional wellbeing and how we take care of our minds. It encourages people to talk openly about how they feel, support one another, and learn ways to manage stress. Looking after mental health is just as important as looking after physical health, and small actions like talking to a friend, getting outside, or taking time to relax can make a big difference. 💚",
   },
 ];
 
@@ -163,17 +163,24 @@ export default function LandingPage() {
               Special Month
             </p>
             <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
-              🐾 National Pet Month
+              🎉 David Attenborough – 100th Birthday
             </h3>
             <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
-              National Pet Month celebrates the joy that pets bring and helps
-              raise awareness of responsible pet ownership. It is a lovely
-              chance to talk about caring for animals, their needs, and the
-              important role pets can play in people’s lives.
+              In 2026, Sir David Attenborough celebrates his 100th birthday.
+              Born in London in 1926, he became one of Britain’s most famous
+              broadcasters, biologists, and natural historians. For over 70
+              years, he has created groundbreaking wildlife documentaries that
+              have helped people explore jungles, oceans, deserts, and frozen
+              landscapes from all around the world. Programmes such as Planet
+              Earth and Blue Planet inspired millions of viewers to learn more
+              about animals, habitats, and conservation. David Attenborough is
+              also well known for raising awareness about climate change,
+              pollution, and protecting endangered species. His calm
+              storytelling and passion for nature have encouraged generations of
+              people to care more about the environment and the future of our
+              planet. 🌍🐢🦋
             </p>
-            <p className="mt-3 text-sm font-medium text-amber-800">
-              1 Apr – 5 May
-            </p>
+            <p className="mt-3 text-sm font-medium text-amber-800">8th May</p>
           </div>
         </div>
 
