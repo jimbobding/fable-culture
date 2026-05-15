@@ -7,6 +7,10 @@ import { caribbeanCountries } from "@/data/caribbean/caribbeanCountries";
 import Timeline from "@/components/shared/Timeline";
 import { caribbeanTimeline } from "@/data/caribbean/timeline";
 import CaribbeanMap from "@/components/regions/caribbean/CaribbeanMap";
+import {
+  caribbeanDiscoveries,
+  caribbeanThemes,
+} from "@/data/caribbean/discoveries";
 
 export default function CaribbeanPage() {
   return (
@@ -141,7 +145,10 @@ export default function CaribbeanPage() {
         </section>
 
         {/* ================= DISCOVERIES ================= */}
-        {/* <StudentDiscoveries items={[]} /> */}
+        <StudentDiscoveries
+          items={caribbeanDiscoveries}
+          themes={caribbeanThemes}
+        />
 
         {/* ================= MAP ================= */}
         <section className="space-y-6 text-center max-w-5xl mx-auto relative z-0">
@@ -156,6 +163,7 @@ export default function CaribbeanPage() {
           </div>
           {/* <div className="text-red-500">Hovered: {hoveredCountry}</div> */}
         </section>
+        {/* ================= DEEP DIVES ================= */}
 
         {/* ================= COUNTRIES ================= */}
         <section className="space-y-10 relative z-10">
@@ -179,6 +187,73 @@ export default function CaribbeanPage() {
                 </p>
               </Link>
             ))}
+          </div>
+        </section>
+        <section className="space-y-10">
+          <h2 className="text-4xl font-bold text-center text-[#0f172a]">
+            Deep Dive Topics
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <Link
+              href="/caribbean/windrush"
+              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
+            >
+              <img
+                src="/images/continents/caribbean/topics/windrush.jpg"
+                alt="Windrush"
+                className="h-52 w-full object-cover"
+              />
+
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">🚢 Windrush Generation</h3>
+
+                <p className="text-slate-700">
+                  Learn about Caribbean migration to the UK and how it shaped
+                  modern Britain.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/caribbean/topics/carnival"
+              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
+            >
+              <img
+                src="/images/continents/caribbean/topics/carnival.jpg"
+                alt="Carnival"
+                className="h-52 w-full object-cover"
+              />
+
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">🎭 Carnival Culture</h3>
+
+                <p className="text-slate-700">
+                  Explore colourful festivals, music, costumes, and Caribbean
+                  celebrations.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="/caribbean/music"
+              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
+            >
+              <img
+                src="/images/continents/caribbean/topics/music.jpg"
+                alt="Music"
+                className="h-52 w-full object-cover"
+              />
+
+              <div className="p-6 space-y-3">
+                <h3 className="text-2xl font-bold">🎶 Caribbean Music</h3>
+
+                <p className="text-slate-700">
+                  Discover reggae, calypso, steel pan, and the sounds of the
+                  Caribbean.
+                </p>
+              </div>
+            </Link>
           </div>
         </section>
       </div>
