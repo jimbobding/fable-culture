@@ -1231,3 +1231,76 @@ This will allow:
 ### UX Principle
 
 👉 Users should always have a simple way back to the start
+
+## Caribbean Region System (Current Expansion)
+
+The Caribbean region is now being developed using a more advanced, data-driven structure inspired by the South Asia rebuild.
+
+### Current architecture direction
+
+- Dynamic country routing via:
+
+  - `/caribbean/[country]`
+
+- Shared typed country data structure:
+
+  - `src/data/caribbean/caribbeanCountries.ts`
+
+- Topic/deep-dive pages separated from country routes:
+  - `/caribbean/topics/carnival`
+  - future:
+    - `/caribbean/topics/windrush`
+    - `/caribbean/topics/music`
+
+This prevents conflicts between dynamic country pages and fixed educational topic pages.
+
+### Caribbean design direction
+
+The Caribbean pages are shifting toward:
+
+- immersive cultural storytelling
+- museum/exhibit-style educational layouts
+- visually rich section design
+- layered gradients and themed visuals
+- stronger emotional and historical storytelling
+
+The Carnival page established a new visual direction using:
+
+- floating circular image cards
+- rotated colourful character layouts
+- dynamic gradients
+- cultural storytelling sections
+- UK/local Caribbean cultural connections
+
+### Educational direction
+
+The Caribbean content focuses on:
+
+- identity
+- resistance
+- celebration
+- oral traditions
+- cultural preservation
+- migration and diaspora connections
+
+rather than purely tourism-style country summaries.
+
+### Planned Caribbean systems
+
+Planned reusable systems include:
+
+- fact file layouts
+- timeline integration
+- discoveries integration
+- themed country pages
+- local cultural connections
+- interactive student experiences
+
+### Interactive concepts being explored
+
+Potential future interactive features include:
+
+- “Design Your Own Mas” Carnival activity
+- clickable Carnival maps
+- character exploration systems
+- culture/storytelling interaction pages

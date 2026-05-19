@@ -156,14 +156,11 @@ export default function CaribbeanPage() {
 
           <p className="text-[#334155]">Click a country to explore more.</p>
 
-          {/* Replace with real map */}
-
           <div className="rounded-2xl">
             <CaribbeanMap />
           </div>
           {/* <div className="text-red-500">Hovered: {hoveredCountry}</div> */}
         </section>
-        {/* ================= DEEP DIVES ================= */}
 
         {/* ================= COUNTRIES ================= */}
         <section className="space-y-10 relative z-10">

@@ -1,10 +1,10 @@
-# Current Focus — Caribbean Phase 1 (Structure Build)
+# Current Focus — Caribbean Phase 2 (Country Architecture Build)
 
 ## 🎯 Goal
 
-Build the Caribbean region using the **existing Fable Culture system**.
+Build the Caribbean country system using the proven South Asia reference model.
 
-👉 Focus on structure first — NOT new systems.
+👉 Focus on reusable structure, typed data, and scalable educational content.
 
 ---
 
@@ -12,113 +12,161 @@ Build the Caribbean region using the **existing Fable Culture system**.
 
 ### ✅ Completed
 
-- Caribbean landing page created (`/caribbean`)
-- Core page sections built:
+- Caribbean landing page completed and stable
 
-  - Hero
-  - Intro (“What is the Caribbean?”)
-  - Theme cards
+- Interactive map integrated
 
-- Timeline integrated (shared system)
-- Student Discoveries integrated (shared system)
-- Interactive map implemented (stable, region-specific)
+- Shared Timeline system integrated
+
+- Shared Student Discoveries system integrated
+
 - Country card grid implemented
 
+- Caribbean topic/deep-dive structure introduced:
+
+  - `/caribbean/topics/carnival`
+
+- Carnival deep-dive page significantly expanded:
+
+  - historical storytelling
+  - Carnival character system
+  - UK Carnival connections
+  - immersive visual design
+  - cultural identity themes
+
+- Caribbean architecture direction confirmed:
+
+  - content-first
+  - storytelling-focused
+  - visually immersive
+  - educationally deeper than tourism-style layouts
+
 ---
 
-### 🟡 In Progress
+## 🟡 Current Focus
 
-- Refining layout and visual flow
-- Preparing for country page build
+### Caribbean Country Architecture
+
+The next stage is building the reusable Caribbean country page system.
+
+This follows the confirmed Fable Culture architecture:
+
+- shared dynamic route
+- typed data structure
+- reusable components
+- region-driven content
 
 ---
 
-### 🔴 Next Steps (Immediate)
+## 🔴 Immediate Next Steps
 
-1. Create dynamic route:
+### 1️⃣ Create new feature branch
+
+```bash
+feature/caribbean-countries
+```
+
+---
+
+### 2️⃣ Build shared Caribbean country data structure
+
+Target file:
+
+```bash
+src/data/caribbean/caribbeanCountries.ts
+```
+
+This will become the central source for:
+
+- country facts
+- hero images
+- timelines
+- fact files
+- places
+- themes
+- discoveries
+
+---
+
+### 3️⃣ Create dynamic country route
 
 ```bash
 /app/caribbean/[country]/page.tsx
 ```
 
-2. Create Caribbean country data file:
+---
 
-```bash
-/data/caribbeanCountries.ts
-```
+### 4️⃣ Build ONE complete reference country
 
-3. Build first working country page (ONE only):
+Recommended first build:
 
-- Example: Jamaica
+- Jamaica
 
-👉 Goal:
-“Can one country page fully render using existing systems?”
+Goal:
+
+👉 Fully prove the Caribbean country architecture before scaling.
 
 ---
 
-## 🧠 Development Rules (STRICT)
+## 🧠 Architectural Direction (CONFIRMED)
 
-- Reuse existing systems:
+The Caribbean region will follow the same proven system as South Asia:
 
-  - Timeline
-  - StudentDiscoveries
-  - RegionContent (if used)
-
-- ❌ Do NOT:
-
-  - rebuild components
-  - redesign layout
-  - introduce new systems
-
-- ✔️ Follow South Asia as the reference model
+- typed country objects
+- reusable layouts
+- shared Timeline component
+- hybrid facts system
+- data-driven rendering
 
 ---
 
-## 🗂️ File Targets (NEXT)
+## 🎯 Important Design Direction
 
-- `/app/caribbean/[country]/page.tsx`
-- `/data/caribbeanCountries.ts`
+The Caribbean region is introducing stronger:
+
+- storytelling
+- cultural identity
+- emotional depth
+- visual immersion
+
+while still maintaining:
+
+- reusable systems
+- structured educational layouts
+- scalability
 
 ---
 
 ## 🧪 Build Strategy
 
-1. Build ONE country page
-2. Confirm:
-
-   - layout works
-   - data structure works
-   - components render correctly
-
-3. Then scale to all countries
+1. Create country data structure
+2. Build dynamic country route
+3. Build ONE complete country
+4. Test all systems
+5. Scale to additional countries
 
 ---
 
-## 🌍 Map System (CONFIRMED)
+## 🚫 Important Rules
 
-- Map is region-specific (not shared)
-- Map controls its own hover state
-- Used for navigation only
+- ❌ Do NOT redesign core architecture
 
-👉 No further work needed at this stage
+- ❌ Do NOT create region-specific systems unnecessarily
 
----
+- ❌ Do NOT over-focus on interactivity yet
 
-## 🚫 What NOT to Do
+- ✅ Reuse existing systems
 
-- Do NOT jump to:
+- ✅ Follow South Asia structure
 
-  - advanced interactivity
-  - animations
-  - extra features
-
-👉 Stay in Phase 1
+- ✅ Prioritise scalable content architecture
 
 ---
 
 ## 🎯 Success Criteria
 
-- Caribbean region loads correctly
-- At least ONE country page fully working
-- Systems reused correctly
-- No new architecture introduced
+- Dynamic Caribbean country pages working
+- Typed data structure stable
+- Jamaica page fully renders
+- Existing systems reused successfully
+- Caribbean architecture scalable for future countries
