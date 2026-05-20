@@ -2298,4 +2298,188 @@ export const caribbeanCountries = [
       "Trinidad and Tobago has one of the Caribbean’s largest oil and gas industries.",
     ],
   },
+  {
+    slug: "saint-vincent-and-the-grenadines",
+
+    name: "Saint Vincent and the Grenadines",
+
+    flag: "🇻🇨",
+
+    capital: "Kingstown",
+
+    population: "110,000",
+
+    languages: ["English", "Vincentian Creole"],
+
+    currency: "East Caribbean Dollar",
+
+    heroImage:
+      "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/hero/saint-vincent-and-the-grenadines-flag.jpg",
+
+    intro:
+      "Saint Vincent and the Grenadines is known for volcanic landscapes, sailing islands, coral reefs, black sand beaches, and Caribbean adventure culture.",
+
+    overview:
+      "Saint Vincent and the Grenadines is made up of a chain of Caribbean islands shaped by volcanic activity, African heritage, British colonial history, fishing traditions, sailing culture, and tropical marine environments. The country became internationally recognised for the Tobago Cays, black sand beaches, rainforest mountains, and filming locations connected to the Pirates of the Caribbean movies.",
+
+    tags: ["Volcanoes", "Sailing", "Pirates", "Coral Reefs", "Island Chains"],
+
+    theme: {
+      primary: "#1565c0",
+
+      secondary: "#2e7d32",
+
+      accent: "#ffb300",
+
+      background: "linear-gradient(180deg, #e1f5fe 0%, #b2ebf2 100%)",
+
+      card: "rgba(255,255,255,0.88)",
+
+      text: "#2f3e2f",
+
+      timeline: "#0277bd",
+    },
+
+    factFile: {
+      history: {
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/fact-file/black-sand-beach.jpg",
+
+        title: "Black Sand Beaches",
+
+        description:
+          "Volcanic activity helped create Saint Vincent’s famous black sand beaches, which became one of the country’s most recognisable natural features along the Caribbean coastline.",
+      },
+
+      food: {
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/fact-file/roasted-breadfruit.jpg",
+
+        title: "Roasted Breadfruit",
+
+        description:
+          "Roasted breadfruit became an important Caribbean food tradition in Saint Vincent and the Grenadines and is often served with fish, spices, and local dishes.",
+      },
+
+      wildlife: {
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/fact-file/saint-vincent-parrot.jpg",
+
+        title: "Saint Vincent Parrot",
+
+        description:
+          "The Saint Vincent Parrot is a colourful bird found only on the island and became an important national symbol connected to rainforest conservation.",
+      },
+
+      culture: {
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/fact-file/vincy-mas-costumes.jpg",
+
+        title: "Vincy Mas",
+
+        description:
+          "Vincy Mas is the country’s major Carnival celebration and includes colourful costumes, soca music, dancing, steelpan performances, and Caribbean street culture.",
+      },
+    },
+
+    places: [
+      {
+        title: "Tobago Cays",
+
+        tag: "Marine Nature",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/places/tobago-cays-aerial.jpg",
+
+        description:
+          "The Tobago Cays are famous for turquoise waters, coral reefs, sea turtles, sailing boats, and tropical Caribbean marine life.",
+      },
+
+      {
+        title: "La Soufrière",
+
+        tag: "Volcano",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/places/la-soufriere-volcano.jpg",
+
+        description:
+          "La Soufrière volcano became one of the Caribbean’s most dramatic volcanic landmarks and offers mountain views, rainforest trails, and volcanic landscapes.",
+      },
+
+      {
+        title: "Wallilabou Bay",
+
+        tag: "Film Location",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/places/wallilabou-bay.jpg",
+
+        description:
+          "Wallilabou Bay became internationally recognised after being used as a filming location for the Pirates of the Caribbean movies.",
+      },
+
+      {
+        title: "Kingstown",
+
+        tag: "Capital City",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/places/kingstown.jpg",
+
+        description:
+          "Kingstown is the capital city of Saint Vincent and the Grenadines and became known for colonial buildings, markets, harbours, and Caribbean trade routes.",
+      },
+    ],
+
+    influentialFigures: [
+      {
+        name: "Joseph Chatoyer",
+
+        role: "Garifuna Chief",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/joseph-chatoyer.jpg",
+
+        description:
+          "Joseph Chatoyer became a national hero after leading resistance against British colonial rule in Saint Vincent during the 1700s.",
+      },
+
+      {
+        name: "Kevin Lyttle",
+
+        role: "Musician",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/kevin-lyttle.jpg",
+
+        description:
+          "Kevin Lyttle became internationally known for Caribbean soca music and helped bring Vincentian music to global audiences.",
+      },
+
+      {
+        name: "Hasely Crawford",
+
+        role: "Athlete",
+
+        image:
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/hasely-crawford.jpg",
+
+        description:
+          "Hasely Crawford has Vincentian family roots and became one of the Caribbean’s most recognised Olympic athletes.",
+      },
+    ],
+
+    facts: [
+      "Saint Vincent and the Grenadines is made up of multiple Caribbean islands.",
+
+      "The Tobago Cays became famous for sailing and coral reefs.",
+
+      "La Soufrière is an active volcano on Saint Vincent.",
+
+      "Wallilabou Bay was used in Pirates of the Caribbean filming.",
+
+      "The Saint Vincent Parrot is found only on the island.",
+    ],
+  },
 ];

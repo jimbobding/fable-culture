@@ -1304,3 +1304,196 @@ Potential future interactive features include:
 - clickable Carnival maps
 - character exploration systems
 - culture/storytelling interaction pages
+
+## 🌍 Caribbean Region — Educational & Visual Standards (NEW)
+
+### Core Direction
+
+The Caribbean region now follows a stronger educational storytelling approach focused on:
+
+- identity
+- resistance
+- celebration
+- migration
+- music
+- colonial history
+- cultural preservation
+
+The goal is to avoid shallow tourism-style summaries.
+
+---
+
+## 🧠 Country Identity Rule (IMPORTANT)
+
+Each country must have a clear and distinct identity.
+
+Country pages should avoid:
+
+- repeated wildlife
+- repeated visuals
+- generic “beaches and culture” summaries
+- interchangeable fact file content
+
+Instead, each country should highlight:
+
+- unique history
+- recognisable landmarks
+- important cultural traditions
+- famous people
+- distinct environmental features
+- educational talking points
+
+---
+
+## 🖼️ Image Philosophy (MAJOR UPDATE)
+
+Images are no longer treated as simple decoration.
+
+They are now considered:
+
+👉 educational storytelling tools
+
+### Image goals
+
+Images should:
+
+- feel cinematic and immersive
+- support educational understanding
+- visually communicate country identity
+- work well across responsive layouts
+- avoid low-quality tourist stock imagery
+
+---
+
+## 📁 Image Naming Convention (CRITICAL RULE)
+
+Generic filenames are no longer allowed.
+
+❌ BAD:
+
+```txt
+history.jpg
+culture.jpg
+food.jpg
+```
+
+✅ GOOD:
+
+```txt
+pitons-landscape.jpg
+spice-market.jpg
+vincy-mas-costumes.jpg
+green-fig-saltfish.jpg
+```
+
+### Key rule
+
+Filenames should match:
+
+👉 what would realistically be searched into Google
+
+---
+
+## 🧱 Fact File System (UPDATED ARCHITECTURE)
+
+Fact File cards are now flexible.
+
+The system is no longer restricted to:
+
+- capital
+- food
+- wildlife
+- culture
+
+Countries may now include:
+
+- history
+- environment
+- identity
+- music
+- independence
+- industry
+- geography
+
+### Purpose
+
+Allows stronger country distinctiveness and avoids repetitive layouts.
+
+---
+
+## 🎨 Visual Distinctiveness Rule
+
+Each country page should feel visually unique.
+
+Examples:
+
+- Grenada → spice markets / nutmeg / colour
+- Trinidad → Carnival / steelpan / energy
+- Saint Lucia → volcanic elegance / rainforest
+- Saint Vincent → sailing / volcanoes / adventure
+
+---
+
+## 🧭 Country Build Workflow (NEW STANDARD)
+
+Each country should now be completed in this order:
+
+1. Dataset
+2. Hero image
+3. Fact file images
+4. Places images
+5. Influential figures images
+
+👉 Complete the FULL country before moving to the next one.
+
+---
+
+## 🖼️ Image Selection Standards
+
+Preferred image traits:
+
+- wide landscape composition
+- cinematic framing
+- educational focus
+- clear subjects
+- strong colour balance
+- recognisable landmarks/features
+
+Avoid:
+
+- blurry images
+- screenshots
+- portrait crops for landscape cards
+- oversaturated AI-looking edits
+- low-resolution photos
+
+---
+
+## 🧠 Educational Content Rule
+
+Descriptions should now include:
+
+- historical context
+- cultural significance
+- why the subject matters
+- stronger educational detail
+
+Avoid:
+
+- shallow one-line descriptions
+- filler content
+- repeated phrasing across countries
+
+---
+
+## 🌟 Caribbean Expansion Direction
+
+The Caribbean region now acts as the most visually ambitious region on the platform.
+
+Focus areas include:
+
+- exhibit-style storytelling
+- cultural immersion
+- layered educational sections
+- emotional and historical connection
+- stronger visual identity between countries
