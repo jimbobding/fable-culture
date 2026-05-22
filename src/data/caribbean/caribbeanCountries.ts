@@ -209,42 +209,50 @@ export const caribbeanCountries = [
     influentialFigures: [
       {
         name: "Bob Marley",
-        role: "Musician",
+
+        role: "Music",
+
         image:
           "/images/continents/caribbean/countries/jamaica/figures/bob-marley.jpg",
 
         description:
-          "Bob Marley helped spread reggae music around the world and became a global symbol of Jamaican culture and identity.",
+          "Helped spread reggae music around the world and became a global symbol of Jamaican culture, peace, and identity.",
       },
 
       {
         name: "Usain Bolt",
-        role: "Athlete",
+
+        role: "Sport",
+
         image:
           "/images/continents/caribbean/countries/jamaica/figures/usain-bolt.jpg",
 
         description:
-          "Usain Bolt became one of the fastest sprinters in history and inspired millions through athletics and Jamaican pride.",
+          "Became one of the fastest sprinters in history and inspired millions through athletics, confidence, and national pride.",
       },
 
       {
         name: "Marcus Garvey",
-        role: "Political Activist",
+
+        role: "Leadership",
+
         image:
           "/images/continents/caribbean/countries/jamaica/figures/marcus-garvey.jpg",
 
         description:
-          "Marcus Garvey was an important activist who promoted Black pride, unity, and empowerment across the world.",
+          "Promoted Black pride, unity, and empowerment through activism and political movements that influenced people around the world.",
       },
 
       {
         name: "Nanny of the Maroons",
-        role: "National Hero",
+
+        role: "Resistance",
+
         image:
           "/images/continents/caribbean/countries/jamaica/figures/nanny.jpg",
 
         description:
-          "Nanny of the Maroons was a leader of resistance movements against slavery and is remembered as a Jamaican national hero.",
+          "Led resistance movements against slavery and became one of Jamaica’s most important national heroes.",
       },
     ],
 
@@ -375,37 +383,37 @@ export const caribbeanCountries = [
       {
         name: "Viv Richards",
 
-        role: "Cricketer",
+        role: "Cricket",
 
         image:
           "/images/continents/caribbean/countries/antigua-and-barbuda/figures/viv-richards.jpg",
 
         description:
-          "Viv Richards became one of the most famous cricketers in history and represented Caribbean sporting excellence.",
+          "Became one of the Caribbean’s most respected cricket players and represented sporting excellence across the world.",
       },
 
       {
         name: "Heather Doram",
 
-        role: "Artist",
+        role: "Art",
 
         image:
           "/images/continents/caribbean/countries/antigua-and-barbuda/figures/heather-doram.jpg",
 
         description:
-          "Heather Doram is known for celebrating Antiguan and Barbudan identity through art, design, and culture.",
+          "Celebrated Antiguan and Barbudan identity through art, design, costume work, and cultural expression.",
       },
 
       {
         name: "Tim Hector",
 
-        role: "Activist",
+        role: "Activism",
 
         image:
           "/images/continents/caribbean/countries/antigua-and-barbuda/figures/tim-hector.jpg",
 
         description:
-          "Tim Hector was an important writer and activist who spoke about Caribbean politics, identity, and freedom.",
+          "Spoke about Caribbean politics, identity, freedom, and social change through writing and activism.",
       },
     ],
 
@@ -543,37 +551,37 @@ export const caribbeanCountries = [
       {
         name: "Sidney Poitier",
 
-        role: "Actor",
+        role: "Cinema",
 
         image:
           "/images/continents/caribbean/countries/bahamas/figures/sidney-poitier.jpg",
 
         description:
-          "Sidney Poitier became the first Black man to win the Academy Award for Best Actor and helped break racial barriers in Hollywood cinema. He became one of the Bahamas’ most internationally recognised cultural figures.",
+          "Helped break racial barriers in international cinema and became one of the most respected actors of his generation.",
       },
 
       {
         name: "Lenny Kravitz",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/bahamas/figures/lenny-kravitz.jpg",
 
         description:
-          "Lenny Kravitz is a Bahamian-American musician known for combining rock, funk, soul, and Caribbean influences in his music. His work helped introduce Bahamian cultural connections to international audiences.",
+          "Combined rock, funk, soul, and Caribbean influences to create internationally successful music.",
       },
 
       {
         name: "Myles Munroe",
 
-        role: "Writer and Speaker",
+        role: "Leadership",
 
         image:
           "/images/continents/caribbean/countries/bahamas/figures/myles-munroe.jpg",
 
         description:
-          "Myles Munroe became internationally known for leadership teaching, writing, and motivational speaking. His books and speeches reached audiences across many countries.",
+          "Became internationally known for leadership teaching, motivational speaking, and inspirational writing.",
       },
     ],
 
@@ -733,37 +741,37 @@ export const caribbeanCountries = [
       {
         name: "Rihanna",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/barbados/figures/rihanna.jpg",
 
         description:
-          "Rihanna became one of the world’s most famous music artists and entrepreneurs. She has helped bring international attention to Barbadian culture and was named a National Hero of Barbados.",
+          "Became one of the world’s most influential music artists and entrepreneurs while helping spotlight Barbadian culture globally.",
       },
 
       {
         name: "Sir Garfield Sobers",
 
-        role: "Cricketer",
+        role: "Cricket",
 
         image:
           "/images/continents/caribbean/countries/barbados/figures/garfield-sobers.jpg",
 
         description:
-          "Sir Garfield Sobers is considered one of the greatest cricketers in history and represented Barbados as part of the famous West Indies cricket team.",
+          "Widely regarded as one of the greatest cricketers in history and an important figure in Caribbean sport.",
       },
 
       {
         name: "Bussa",
 
-        role: "Freedom Fighter",
+        role: "Resistance",
 
         image:
           "/images/continents/caribbean/countries/barbados/figures/bussa.jpg",
 
         description:
-          "Bussa led one of the largest slave rebellions in Barbadian history in 1816. He became an important symbol of resistance and freedom in Barbados.",
+          "Led one of the largest resistance movements against slavery in Barbadian history and became a symbol of freedom.",
       },
     ],
 
@@ -919,49 +927,49 @@ export const caribbeanCountries = [
       {
         name: "José Martí",
 
-        role: "Writer and Revolutionary",
+        role: "Revolution",
 
         image:
           "/images/continents/caribbean/countries/cuba/figures/jose-marti.jpg",
 
         description:
-          "José Martí became one of Cuba’s most important national heroes after campaigning for Cuban independence from Spain through writing, activism, and political leadership.",
+          "Became one of Cuba’s most important national heroes through writing, activism, and campaigns for independence and freedom.",
       },
 
       {
         name: "Celia Cruz",
 
-        role: "Singer",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/cuba/figures/celia-cruz.jpg",
 
         description:
-          "Celia Cruz became internationally famous as the ‘Queen of Salsa’ and helped spread Cuban and Afro-Caribbean music around the world.",
+          "Helped spread salsa and Afro-Caribbean music across the world through powerful performances and cultural influence.",
       },
 
       {
         name: "Fidel Castro",
 
-        role: "Political Leader",
+        role: "Politics",
 
         image:
           "/images/continents/caribbean/countries/cuba/figures/fidel-castro.jpg",
 
         description:
-          "Fidel Castro led the Cuban Revolution in 1959 and later became one of the most influential and controversial political leaders of the Cold War era.",
+          "Led the Cuban Revolution and became one of the most influential and controversial political leaders of the Cold War era.",
       },
 
       {
         name: "Compay Segundo",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/cuba/figures/compay-segundo.jpg",
 
         description:
-          "Compay Segundo helped introduce traditional Cuban music to global audiences through the Buena Vista Social Club movement.",
+          "Helped introduce traditional Cuban music to global audiences through internationally celebrated performances and recordings.",
       },
     ],
 
@@ -1120,37 +1128,37 @@ export const caribbeanCountries = [
       {
         name: "Jean Rhys",
 
-        role: "Writer",
+        role: "Literature",
 
         image:
           "/images/continents/caribbean/countries/dominica/figures/jean-rhys.jpg",
 
         description:
-          "Jean Rhys became internationally known for novels exploring identity, colonial history, and Caribbean life.",
+          "Became internationally known for writing about identity, colonial history, and Caribbean life through influential novels.",
       },
 
       {
         name: "Ophelia Marie",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/dominica/figures/ophelia-marie.jpg",
 
         description:
-          "Ophelia Marie became known as the ‘Lady of Creole Music’ and helped promote Dominican Creole culture and Caribbean music traditions.",
+          "Helped promote Dominican Creole culture and Caribbean music traditions through internationally recognised performances.",
       },
 
       {
         name: "Alwin Bully",
 
-        role: "Artist and Cultural Leader",
+        role: "Art",
 
         image:
           "/images/continents/caribbean/countries/dominica/figures/alwin-bully.jpg",
 
         description:
-          "Alwin Bully became known for theatre, art, and helping design Dominica’s national flag and cultural identity.",
+          "Became known for theatre, visual art, and helping shape Dominica’s cultural and national identity.",
       },
     ],
 
@@ -1308,37 +1316,37 @@ export const caribbeanCountries = [
       {
         name: "Juan Luis Guerra",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/dominican-republic/figures/juan-luis-guerra.jpg",
 
         description:
-          "Juan Luis Guerra became internationally famous for merengue and Latin music that helped spread Dominican culture around the world.",
+          "Helped spread merengue and Latin Caribbean music around the world through internationally successful songs and performances.",
       },
 
       {
         name: "Pedro Martínez",
 
-        role: "Baseball Player",
+        role: "Baseball",
 
         image:
           "/images/continents/caribbean/countries/dominican-republic/figures/pedro-martinez.jpg",
 
         description:
-          "Pedro Martínez became one of the Dominican Republic’s most successful baseball players and inspired generations of Caribbean athletes.",
+          "Became one of the Caribbean’s most successful baseball players and inspired generations of athletes.",
       },
 
       {
         name: "Óscar de la Renta",
 
-        role: "Fashion Designer",
+        role: "Design",
 
         image:
           "/images/continents/caribbean/countries/dominican-republic/figures/oscar-de-la-renta.jpg",
 
         description:
-          "Óscar de la Renta became one of the world’s most famous fashion designers and helped bring international attention to Dominican creativity and design.",
+          "Became one of the world’s most famous fashion designers and helped spotlight Dominican creativity internationally.",
       },
     ],
 
@@ -1492,37 +1500,37 @@ export const caribbeanCountries = [
       {
         name: "Kirani James",
 
-        role: "Athlete",
+        role: "Sport",
 
         image:
           "/images/continents/caribbean/countries/grenada/figures/kirani-james.jpg",
 
         description:
-          "Kirani James became Grenada’s first Olympic gold medal winner and inspired Caribbean athletes through international athletics.",
+          "Won Grenada’s first Olympic gold medal and inspired Caribbean athletes through international sporting success.",
       },
 
       {
         name: "The Mighty Sparrow",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/grenada/figures/mighty-sparrow.jpg",
 
         description:
-          "The Mighty Sparrow was born in Grenada before becoming one of the Caribbean’s most famous calypso musicians and cultural performers.",
+          "Became one of the Caribbean’s most influential calypso performers and helped shape regional music culture.",
       },
 
       {
         name: "Jason deCaires Taylor",
 
-        role: "Artist",
+        role: "Art",
 
         image:
           "/images/continents/caribbean/countries/grenada/figures/jason-decaires.jpg",
 
         description:
-          "Jason deCaires Taylor became internationally known for underwater sculpture art connected to Grenada’s marine environments.",
+          "Became internationally recognised for underwater sculptures connected to marine environments and conservation.",
       },
     ],
 
@@ -1675,37 +1683,37 @@ export const caribbeanCountries = [
       {
         name: "Toussaint Louverture",
 
-        role: "Revolutionary Leader",
+        role: "Revolution",
 
         image:
           "/images/continents/caribbean/countries/haiti/figures/toussaint-louverture.jpg",
 
         description:
-          "Toussaint Louverture became one of the most important leaders of the Haitian Revolution and played a major role in the fight against slavery and colonial rule.",
+          "Played a major role in the fight against slavery and colonial rule during one of the most important revolutions in history.",
       },
 
       {
         name: "Jean-Michel Basquiat",
 
-        role: "Artist",
+        role: "Art",
 
         image:
           "/images/continents/caribbean/countries/haiti/figures/basquiat.jpg",
 
         description:
-          "Jean-Michel Basquiat was a globally influential artist with Haitian heritage whose artwork helped shape modern art and street art culture.",
+          "Helped shape modern art and street art culture through bold, expressive artwork influenced by Caribbean heritage.",
       },
 
       {
         name: "Wyclef Jean",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/haiti/figures/wyclef-jean.jpg",
 
         description:
-          "Wyclef Jean helped bring Haitian and Caribbean musical influences to global audiences through hip-hop, reggae, and world music.",
+          "Helped bring Haitian and Caribbean musical influences to global audiences through hip-hop, reggae, and world music.",
       },
     ],
 
@@ -1860,30 +1868,29 @@ export const caribbeanCountries = [
           "The Saint Kitts Scenic Railway was originally built to transport sugar cane around the island before later becoming one of the Caribbean’s best-known railway tourist attractions.",
       },
     ],
-
     influentialFigures: [
       {
         name: "Kim Collins",
 
-        role: "Athlete",
+        role: "Sport",
 
         image:
           "/images/continents/caribbean/countries/saint-kitts-and-nevis/figures/kim-collins.jpg",
 
         description:
-          "Kim Collins became one of the Caribbean’s most successful sprinters and represented Saint Kitts and Nevis in international athletics competitions.",
+          "Became one of the Caribbean’s most successful sprinters and represented Saint Kitts and Nevis in international athletics competitions.",
       },
 
       {
         name: "Joan Armatrading",
 
-        role: "Singer and Songwriter",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/saint-kitts-and-nevis/figures/joan-armatrading.jpg",
 
         description:
-          "Joan Armatrading is an internationally recognised singer-songwriter with family roots connected to Saint Kitts and Nevis.",
+          "Became internationally recognised for songwriting and music blending Caribbean roots with global musical influences.",
       },
     ],
 
@@ -2044,49 +2051,49 @@ export const caribbeanCountries = [
       {
         name: "Derek Walcott",
 
-        role: "Poet and Writer",
+        role: "Literature",
 
         image:
           "/images/continents/caribbean/countries/saint-lucia/figures/derek-walcott.jpg",
 
         description:
-          "Derek Walcott won the Nobel Prize in Literature and became one of the Caribbean’s most important poets and writers.",
+          "Won the Nobel Prize in Literature and became one of the Caribbean’s most important poets and writers.",
       },
 
       {
         name: "Arthur Lewis",
 
-        role: "Economist",
+        role: "Economics",
 
         image:
           "/images/continents/caribbean/countries/saint-lucia/figures/arthur-lewis.jpg",
 
         description:
-          "Sir Arthur Lewis became the first Black person to win the Nobel Prize in Economics and helped shape global economic thinking.",
+          "Became the first Black person to win the Nobel Prize in Economics and helped shape global economic thinking.",
       },
 
       {
         name: "Julien Alfred",
 
-        role: "Athlete",
+        role: "Sport",
 
         image:
           "/images/continents/caribbean/countries/saint-lucia/figures/julien-alfred.jpg",
 
         description:
-          "Julien Alfred became one of Saint Lucia’s most successful international sprinters and inspired Caribbean athletes through global athletics competitions.",
+          "Inspired Caribbean athletes through international sprinting success and global athletics competitions.",
       },
 
       {
         name: "Teddyson John",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/saint-lucia/figures/teddyson-john.jpg",
 
         description:
-          "Teddyson John became known for music blending Creole culture, Caribbean rhythms, and Saint Lucian identity.",
+          "Blended Creole culture and Caribbean rhythms through music celebrating Saint Lucian identity and traditions.",
       },
     ],
 
@@ -2240,49 +2247,49 @@ export const caribbeanCountries = [
       {
         name: "Machel Montano",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/trinidad-and-tobago/figures/machel-montano.jpg",
 
         description:
-          "Machel Montano became one of the Caribbean’s most famous soca artists and helped bring Trinidadian music and Carnival culture to international audiences.",
+          "Helped bring soca music and Carnival culture to international audiences through energetic performances and Caribbean musical influence.",
       },
 
       {
         name: "Brian Lara",
 
-        role: "Cricketer",
+        role: "Cricket",
 
         image:
           "/images/continents/caribbean/countries/trinidad-and-tobago/figures/brian-lara.jpg",
 
         description:
-          "Brian Lara became one of the greatest cricketers in history and represented Trinidad and Tobago as part of the famous West Indies cricket team.",
+          "Became one of the greatest cricketers in history and an important figure in Caribbean sport.",
       },
 
       {
         name: "The Mighty Sparrow",
 
-        role: "Calypso Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/trinidad-and-tobago/figures/mighty-sparrow.jpg",
 
         description:
-          "The Mighty Sparrow became one of the Caribbean’s most influential calypso musicians and helped shape Trinidad’s musical identity.",
+          "Helped shape calypso music and became one of the Caribbean’s most influential musical performers.",
       },
 
       {
         name: "Nicki Minaj",
 
-        role: "Musician",
+        role: "Performance",
 
         image:
           "/images/continents/caribbean/countries/trinidad-and-tobago/figures/nicki-minaj.jpg",
 
         description:
-          "Nicki Minaj was born in Trinidad and later became one of the world’s most famous rap artists and performers.",
+          "Became one of the world’s most famous rap artists and performers while bringing Caribbean influences into global music culture.",
       },
     ],
 
@@ -2436,37 +2443,37 @@ export const caribbeanCountries = [
       {
         name: "Joseph Chatoyer",
 
-        role: "Garifuna Chief",
+        role: "Resistance",
 
         image:
-          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/joseph-chatoyer.jpg",
+          "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/chatoyer.jpg",
 
         description:
-          "Joseph Chatoyer became a national hero after leading resistance against British colonial rule in Saint Vincent during the 1700s.",
+          "Led resistance movements against colonial rule and became one of Saint Vincent’s most important national heroes.",
       },
 
       {
         name: "Kevin Lyttle",
 
-        role: "Musician",
+        role: "Music",
 
         image:
           "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/kevin-lyttle.jpg",
 
         description:
-          "Kevin Lyttle became internationally known for Caribbean soca music and helped bring Vincentian music to global audiences.",
+          "Helped bring Caribbean soca music to global audiences through internationally successful songs and performances.",
       },
 
       {
         name: "Hasely Crawford",
 
-        role: "Athlete",
+        role: "Sport",
 
         image:
           "/images/continents/caribbean/countries/saint-vincent-and-the-grenadines/figures/hasely-crawford.jpg",
 
         description:
-          "Hasely Crawford has Vincentian family roots and became one of the Caribbean’s most recognised Olympic athletes.",
+          "Inspired Caribbean athletics through international sprinting success and Olympic achievement.",
       },
     ],
 

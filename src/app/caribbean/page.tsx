@@ -1,6 +1,3 @@
-"use client";
-import { useState } from "react";
-
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 import Link from "next/link";
 import { caribbeanCountries } from "@/data/caribbean/caribbeanCountries";
@@ -19,50 +16,6 @@ export default async function CaribbeanPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e0f7fa] via-[#f8fafc] to-[#fff7ed] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-28">
-        {/* ================= HERO ================= */}
-        {/* <section className="relative overflow-hidden rounded-[3rem] min-h-[75vh] flex items-center shadow-2xl">
-          <img
-            src="/images/continents/caribbean/hero/caribbean-hero.jpg"
-            alt="Caribbean"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
-
-          <div className="relative z-10 max-w-3xl px-8 md:px-16 py-24 text-white space-y-8">
-            <p className="uppercase tracking-[0.4em] text-sm text-cyan-200 font-semibold">
-              Fable Culture
-            </p>
-
-            <h1 className="text-5xl md:text-7xl font-black leading-tight">
-              🌴 The Caribbean
-            </h1>
-
-            <p className="text-lg md:text-2xl text-white/90 leading-relaxed">
-              A region shaped by music, migration, resistance, celebration,
-              revolution, and the sea.
-            </p>
-
-            <div className="flex flex-wrap gap-3 pt-2">
-              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
-                🎶 Music
-              </div>
-
-              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
-                🚢 Migration
-              </div>
-
-              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
-                🌊 Island Cultures
-              </div>
-
-              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
-                🎭 Carnival
-              </div>
-            </div>
-          </div>
-        </section> */}
-
         {/* ================= FLOATING TYPOGRAPHY HERO ================= */}
 
         <section className="relative overflow-hidden min-h-[95vh] flex items-center justify-center bg-[#f8fafc]">
@@ -411,7 +364,7 @@ export default async function CaribbeanPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            <Link
+            {/* <Link
               href="/caribbean/topics/windrush"
               className="group rounded-[2rem] overflow-hidden shadow-2xl"
             >
@@ -435,7 +388,7 @@ export default async function CaribbeanPage() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </Link> */}
 
             <Link
               href="/caribbean/topics/carnival"
@@ -460,7 +413,7 @@ export default async function CaribbeanPage() {
               </div>
             </Link>
 
-            <Link
+            {/* <Link
               href="/caribbean/music"
               className="group rounded-[2rem] overflow-hidden shadow-2xl"
             >
@@ -481,7 +434,7 @@ export default async function CaribbeanPage() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </section>
 

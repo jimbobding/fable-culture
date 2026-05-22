@@ -6,7 +6,7 @@ export default function CarnivalPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50 to-yellow-50 text-slate-800">
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden" id="fact-file">
         <img
           src="/images/continents/caribbean/carnival/carnival-hero3.jpg"
           alt="Caribbean Carnival"
@@ -319,14 +319,14 @@ export default function CarnivalPage() {
               </a>
             </div>
 
-            <div className="rounded-[2rem] overflow-hidden shadow-2xl">
+            {/* <div className="rounded-[2rem] overflow-hidden shadow-2xl">
               <iframe
                 className="w-full aspect-video"
                 src="https://www.youtube.com/embed/X6mcYQtu6xA"
                 title="Notting Hill Carnival"
                 allowFullScreen
               />
-            </div>
+            </div> */}
           </div>
 
           {/* LOCAL CONNECTIONS */}

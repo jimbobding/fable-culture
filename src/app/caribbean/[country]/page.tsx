@@ -76,7 +76,7 @@ export default async function CaribbeanCountryPage({ params }: Props) {
 
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen pt-6 "
       style={{
         background: country.theme.background,
       }}
@@ -84,7 +84,7 @@ export default async function CaribbeanCountryPage({ params }: Props) {
       <div className="mx-auto max-w-7xl px-4 pb-20">
         {/* HERO */}
         <section
-          className="relative overflow-hidden rounded-[2.5rem] shadow-2xl mt-6"
+          className="relative  overflow-hidden rounded-[2.5rem] shadow-2xl"
           style={{
             background: `linear-gradient(135deg, ${country.theme.primary}, ${country.theme.secondary})`,
           }}
@@ -310,14 +310,14 @@ export default async function CaribbeanCountryPage({ params }: Props) {
             inputBg: "bg-white/80",
           }}
         />
-      </div>
-      <div className="mb-10 flex justify-start">
-        <Link
-          href="/caribbean"
-          className="inline-flex items-center gap-2 rounded-full border border-orange-300 bg-white px-5 py-3 text-sm font-semibold text-stone-800 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
-        >
-          ← Back to Caribbean
-        </Link>
+        <div className=" flex justify-center mt-10">
+          <Link
+            href="/caribbean"
+            className="inline-flex items-center gap-2 rounded-full border border-orange-300 bg-white px-5 py-3 text-sm font-semibold text-stone-800 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+          >
+            ← Back to Caribbean
+          </Link>
+        </div>
       </div>
     </div>
   );
