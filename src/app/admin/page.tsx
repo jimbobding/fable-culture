@@ -66,6 +66,9 @@ export default function AdminPage() {
               Review and approve student timeline ideas.
             </p>
           </Link>
+          <Link href="/admin/resources" className="...">
+            🌍 Resource Moderation
+          </Link>
         </div>
       </div>
     </main>

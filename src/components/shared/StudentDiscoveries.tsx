@@ -1,66 +1,76 @@
-type Theme = {
-  title: string;
-  points: string[];
-  image: string;
-};
+import ResourceSubmissionForm from "@/components/shared/ResourceSubmissionForm";
 
 type Discovery = {
   title: string;
+
   name?: string;
+
   description: string;
+
   topic: string;
+
   country: string;
+
   href: string;
 };
 
 type Props = {
   items: Discovery[];
-  themes: Theme[];
+
+  region: string;
+
+  countries: string[];
+
+  topics: string[];
+
+  title?: string;
+
+  description?: string;
 };
 
-export default function StudentDiscoveries({ items, themes }: Props) {
+export default function StudentDiscoveries({
+  items,
+
+  region,
+
+  countries,
+
+  topics,
+
+  title = "🌍 Student Discoveries",
+
+  description = "Help expand Fable Culture by finding useful websites, videos, museums, music, recipes, and educational resources connected to this region.",
+}: Props) {
   return (
-    <section className="rounded-[2rem] border border-orange-200/70 bg-gradient-to-br from-[#fff1dc] via-[#ffe8d6] to-[#ffe4ef] p-6 sm:p-8 shadow-lg space-y-10">
+    <section className="max-w-4xl mx-auto py-8 space-y-20 text-center">
       {/* HEADER */}
-      <div className="text-center space-y-3">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#4a1d0d]">
-          🌟 Student Discoveries
-        </h2>
-        <p className="max-w-3xl mx-auto text-[#6b4226]">
-          Explore this region through student-found websites and guided
-          discovery tasks.
+      <div className="space-y-6">
+        <p className="uppercase tracking-[0.35em] text-xs font-semibold text-slate-400">
+          Student Contribution
         </p>
-      </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {themes?.map((theme) => (
-          <div
-            key={theme.title}
-            className="overflow-hidden rounded-2xl border border-orange-300 bg-white/60 shadow-md"
-          >
-            <img
-              src={theme.image}
-              alt={theme.title}
-              className="h-40 w-full object-cover"
-            />
+        <h2 className="text-4xl sm:text-5xl font-black text-slate-900">
+          {title}
+        </h2>
 
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-[#4a1d0d] mb-2">
-                {theme.title}
-              </h3>
+        <p className="max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
+          {description}
+        </p>
 
-              <ul className="text-[#6b4226] text-sm space-y-2">
-                {theme.points.map((point, i) => (
-                  <li key={i}>• {point}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
+        {/* TRAITS */}
+        <div className="flex flex-wrap justify-center gap-5 pt-2 text-sm text-slate-500">
+          <span>🌍 Educational</span>
+
+          <span>🎶 Cultural</span>
+
+          <span>📚 Reliable</span>
+
+          <span>👀 Safe for school</span>
+        </div>
       </div>
 
       {/* DISCOVERIES */}
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="space-y-10 text-center">
         {items.map((item) => {
           const isPlaceholder = item.href === "#";
 
@@ -70,40 +80,68 @@ export default function StudentDiscoveries({ items, themes }: Props) {
               href={item.href}
               target={!isPlaceholder ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className={`rounded-2xl border p-6 shadow-md transition-all duration-300 ${
-                isPlaceholder
-                  ? "border-dashed border-amber-400 bg-amber-50 opacity-90 cursor-default"
-                  : "border-rose-300 bg-white/70 backdrop-blur hover:shadow-xl hover:-translate-y-1"
-              }`}
+              className="
+                group
+                block
+                max-w-2xl
+                mx-auto
+                rounded-[2rem]
+                bg-white/30
+                backdrop-blur-sm
+                border
+                border-white/40
+                px-8
+                py-8
+                shadow-sm
+                transition-all
+                duration-300
+                hover:bg-white/45
+                hover:shadow-lg
+                hover:-translate-y-1
+              "
             >
               {isPlaceholder && (
-                <p className="text-xs font-semibold text-amber-600 mb-2">
-                  🔍 Your Task
+                <p className="uppercase tracking-[0.25em] text-xs font-semibold text-amber-600">
+                  Research Task
                 </p>
               )}
 
-              <h3 className="text-xl font-semibold text-[#4a1d0d] mb-2">
-                {item.title}
-              </h3>
+              <div className="space-y-3">
+                <h3 className="text-2xl font-black text-slate-900 group-hover:text-slate-700 transition-colors">
+                  {item.title}
+                </h3>
 
-              <p className="text-sm text-rose-700 mb-2">
-                {item.topic} • {item.country}
-              </p>
-
-              <p className="text-[#6b4226] text-sm leading-relaxed">
-                {item.description}
-              </p>
-              <p className="text-sm text-rose-700 mt-2">{item.name}</p>
-
-              {!isPlaceholder && (
-                <p className="mt-4 text-sm font-semibold text-rose-700">
-                  Visit site →
+                <p className="text-sm text-slate-400 tracking-[0.15em] uppercase">
+                  {item.topic} • {item.country}
                 </p>
-              )}
+
+                <p className="text-slate-600 leading-relaxed">
+                  {item.description}
+                </p>
+
+                {item.name && (
+                  <p className="text-sm italic text-slate-400">
+                    Shared by {item.name}
+                  </p>
+                )}
+
+                {!isPlaceholder && (
+                  <p className="pt-1 text-sm font-semibold text-slate-700">
+                    Explore Resource →
+                  </p>
+                )}
+              </div>
             </a>
           );
         })}
       </div>
+
+      {/* SUBMISSION FORM */}
+      <ResourceSubmissionForm
+        region={region}
+        countries={countries}
+        topics={topics}
+      />
     </section>
   );
 }

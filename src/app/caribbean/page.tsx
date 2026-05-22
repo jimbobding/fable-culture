@@ -11,125 +11,492 @@ import {
   caribbeanDiscoveries,
   caribbeanThemes,
 } from "@/data/caribbean/discoveries";
+import { getApprovedResources } from "@/app/lib/getApprovedResources";
+export default async function CaribbeanPage() {
+  const approvedResources = await getApprovedResources("caribbean");
 
-export default function CaribbeanPage() {
+  const allResources = [...caribbeanDiscoveries, ...approvedResources];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#e0f7fa] via-[#f0fdfa] to-[#fff7ed]">
-      <div className="max-w-6xl mx-auto px-4 py-10 space-y-20">
+    <div className="min-h-screen bg-gradient-to-br from-[#e0f7fa] via-[#f8fafc] to-[#fff7ed] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 py-10 space-y-28">
         {/* ================= HERO ================= */}
-        <section className="relative overflow-hidden rounded-[2rem] shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#22d3ee] via-[#38bdf8] to-[#f97316]" />
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.3),transparent_40%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.2),transparent_35%)]" />
+        {/* <section className="relative overflow-hidden rounded-[3rem] min-h-[75vh] flex items-center shadow-2xl">
+          <img
+            src="/images/continents/caribbean/hero/caribbean-hero.jpg"
+            alt="Caribbean"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
 
-          <div className="relative px-6 py-16 sm:px-12 sm:py-24 text-center text-white space-y-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-white/80 font-semibold">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+
+          <div className="relative z-10 max-w-3xl px-8 md:px-16 py-24 text-white space-y-8">
+            <p className="uppercase tracking-[0.4em] text-sm text-cyan-200 font-semibold">
               Fable Culture
             </p>
 
-            <h1 className="text-4xl sm:text-6xl font-bold">
-              🌴 Explore the Caribbean 🌊
+            <h1 className="text-5xl md:text-7xl font-black leading-tight">
+              🌴 The Caribbean
             </h1>
 
-            <p className="max-w-3xl mx-auto text-base sm:text-xl text-white/90">
-              A region of islands, oceans, cultures, and history shaped by the
-              sea.
+            <p className="text-lg md:text-2xl text-white/90 leading-relaxed">
+              A region shaped by music, migration, resistance, celebration,
+              revolution, and the sea.
+            </p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
+                🎶 Music
+              </div>
+
+              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
+                🚢 Migration
+              </div>
+
+              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
+                🌊 Island Cultures
+              </div>
+
+              <div className="rounded-full bg-white/10 backdrop-blur px-4 py-2 text-sm">
+                🎭 Carnival
+              </div>
+            </div>
+          </div>
+        </section> */}
+
+        {/* ================= FLOATING TYPOGRAPHY HERO ================= */}
+
+        <section className="relative overflow-hidden min-h-[95vh] flex items-center justify-center bg-[#f8fafc]">
+          {/* MAP OUTLINE */}
+          <img
+            src="/images/continents/caribbean/hero/caribbean-map-outline.png"
+            alt="Caribbean Map"
+            className="absolute inset-0 m-auto w-[88%] max-w-6xl opacity-[0.08] object-contain"
+          />
+
+          {/* ROUTE LINES */}
+          <div className="absolute inset-0 opacity-40 pointer-events-none">
+            <div className="absolute top-[34%] left-[15%] w-[30%] border-t border-dashed border-cyan-400 rotate-[10deg]" />
+
+            <div className="absolute top-[56%] left-[42%] w-[20%] border-t border-dashed border-orange-400 -rotate-[10deg]" />
+
+            <div className="absolute top-[44%] right-[16%] w-[18%] border-t border-dashed border-purple-400 rotate-[14deg]" />
+          </div>
+
+          {/* FLOATING COUNTRY LABELS */}
+          <div className="absolute top-[18%] left-[12%]">
+            <p className="text-cyan-600 font-bold tracking-[0.3em] uppercase text-sm">
+              Jamaica
+            </p>
+
+            <p className="text-cyan-500/70 text-xs tracking-[0.2em]">
+              18.1096° N, 77.2975° W
             </p>
           </div>
-        </section>
 
-        {/* ================= WHAT IS THE CARIBBEAN ================= */}
-        <section className="space-y-8 text-center">
-          <h2 className="text-4xl font-bold text-[#0f172a]">
-            What is the Caribbean?
-          </h2>
+          <div className="absolute top-[24%] right-[16%]">
+            <p className="text-orange-500 font-bold tracking-[0.3em] uppercase text-sm">
+              Barbados
+            </p>
 
-          <p className="max-w-3xl mx-auto text-[#334155]">
-            The Caribbean is a region made up of many islands surrounded by warm
-            tropical seas. It is known for its climate, cultures, and powerful
-            history.
-          </p>
-
-          {/* CENTER IMAGE */}
-          <div className="flex justify-center">
-            <img
-              src="/images/caribbean/hero.jpg"
-              alt="Caribbean islands"
-              className="rounded-[2rem] shadow-lg max-h-[350px] object-cover"
-            />
+            <p className="text-orange-400/70 text-xs tracking-[0.2em]">
+              13.1939° N, 59.5432° W
+            </p>
           </div>
 
-          {/* QUICK LEARNING */}
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 text-[#334155]">
-            <div>🌍 Group of islands</div>
-            <div>☀️ Tropical climate</div>
-            <div>🌊 Surrounded by ocean</div>
-            <div>🌋 Some volcanic islands</div>
+          <div className="absolute bottom-[24%] left-[18%]">
+            <p className="text-purple-600 font-bold tracking-[0.3em] uppercase text-sm">
+              Haiti
+            </p>
+
+            <p className="text-purple-500/70 text-xs tracking-[0.2em]">
+              18.9712° N, 72.2852° W
+            </p>
+          </div>
+
+          <div className="absolute bottom-[18%] right-[18%]">
+            <p className="text-amber-500 font-bold tracking-[0.3em] uppercase text-sm">
+              Saint Lucia
+            </p>
+
+            <p className="text-amber-400/70 text-xs tracking-[0.2em]">
+              13.9094° N, 60.9789° W
+            </p>
+          </div>
+
+          {/* MAIN CONTENT */}
+          <div className="relative z-10 text-center px-6 max-w-7xl">
+            {/* TOP LABEL */}
+            <p className="uppercase tracking-[0.55em] text-slate-700 text-xs md:text-sm font-semibold mb-10">
+              Fable Culture
+            </p>
+
+            {/* TITLE */}
+            <div className="space-y-2">
+              <h1 className="text-6xl md:text-8xl font-black text-slate-800 leading-none">
+                THE
+              </h1>
+
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4 leading-none">
+                <span className="text-6xl md:text-[10rem] font-black text-cyan-500 drop-shadow-[0_12px_18px_rgba(8,145,178,0.35)]">
+                  C
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-orange-500 drop-shadow-[0_12px_18px_rgba(249,115,22,0.35)]">
+                  A
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-purple-500 drop-shadow-[0_12px_18px_rgba(147,51,234,0.35)]">
+                  R
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-yellow-400 drop-shadow-[0_12px_18px_rgba(250,204,21,0.35)]">
+                  I
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-blue-600 drop-shadow-[0_12px_18px_rgba(37,99,235,0.35)]">
+                  B
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-lime-500 drop-shadow-[0_12px_18px_rgba(101,163,13,0.35)]">
+                  B
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-red-500 drop-shadow-[0_12px_18px_rgba(239,68,68,0.35)]">
+                  E
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-teal-500 drop-shadow-[0_12px_18px_rgba(20,184,166,0.35)]">
+                  A
+                </span>
+
+                <span className="text-6xl md:text-[10rem] font-black text-amber-400 drop-shadow-[0_12px_18px_rgba(251,191,36,0.35)]">
+                  N
+                </span>
+              </div>
+            </div>
+
+            {/* ICON ROW */}
+            <div className="mt-16 flex flex-wrap justify-center gap-8 md:gap-12">
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-3xl">🎶</span>
+
+                <p className="tracking-[0.3em] uppercase text-cyan-700 text-sm">
+                  Music
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-3xl">🚢</span>
+
+                <p className="tracking-[0.3em] uppercase text-orange-700 text-sm">
+                  Migration
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-3xl">🎭</span>
+
+                <p className="tracking-[0.3em] uppercase text-purple-700 text-sm">
+                  Carnival
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-3xl">✊</span>
+
+                <p className="tracking-[0.3em] uppercase text-red-700 text-sm">
+                  Resistance
+                </p>
+              </div>
+
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-3xl">🌍</span>
+
+                <p className="tracking-[0.3em] uppercase text-lime-700 text-sm">
+                  Identity
+                </p>
+              </div>
+            </div>
+
+            {/* SUBTEXT */}
+            <div className="mt-16 space-y-4 px-4">
+              <p
+                className="
+    inline-block
+    rounded-full
+    bg-white/35
+    backdrop-blur-[2px]
+    px-6
+    py-3
+    tracking-[0.22em]
+    md:tracking-[0.38em]
+    uppercase
+    text-slate-900
+    font-black
+    text-base
+    md:text-lg
+    shadow-lg
+    drop-shadow-[0_3px_10px_rgba(255,255,255,0.25)]
+  "
+              >
+                More Than Islands.
+              </p>
+
+              <p
+                className="
+    max-w-3xl
+    mx-auto
+    text-base
+    md:text-2xl
+    text-slate-800
+    leading-relaxed
+    font-semibold
+    bg-white/28
+    backdrop-blur-[2px]
+    rounded-2xl
+    px-6
+    py-4
+    shadow-[0_6px_24px_rgba(15,23,42,0.08)]
+    border
+    border-white/20
+    [text-shadow:0_1px_6px_rgba(255,255,255,0.2)]
+  "
+              >
+                A region shaped by movement, culture, resistance, and the sea.
+              </p>
+            </div>
+
+            {/* SCROLL */}
+            <div className="mt-20 flex flex-col items-center gap-3 text-slate-500">
+              <div className="text-3xl">🧭</div>
+
+              <p className="tracking-[0.3em] uppercase text-xs">
+                Scroll To Explore
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ================= THEMES ================= */}
-        <section className="space-y-10">
-          <h2 className="text-4xl font-bold text-center text-[#0f172a]">
-            Explore the Caribbean
-          </h2>
+        {/* ================= IDENTITY SECTION ================= */}
+        <section className="space-y-10 text-center">
+          <div className="space-y-5 max-w-4xl mx-auto">
+            <h2 className="text-5xl font-black text-slate-900">
+              The Caribbean Is...
+            </h2>
+
+            <p className="text-lg text-slate-600 leading-relaxed">
+              More than beaches and islands. The Caribbean is a region connected
+              by movement, storytelling, music, identity, and survival.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-[2rem] bg-white/70 backdrop-blur p-8 shadow-xl text-left space-y-4">
+              <div className="text-4xl">🎶</div>
+
+              <h3 className="text-2xl font-bold">Music & Celebration</h3>
+
+              <p className="text-slate-600">
+                Reggae, calypso, soca, steelpan, Carnival, and dance became
+                global cultural influences connected to Caribbean creativity.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] bg-white/70 backdrop-blur p-8 shadow-xl text-left space-y-4">
+              <div className="text-4xl">🚢</div>
+
+              <h3 className="text-2xl font-bold">Migration & Movement</h3>
+
+              <p className="text-slate-600">
+                Caribbean migration shaped communities across the world,
+                especially in the UK, United States, and Canada.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] bg-white/70 backdrop-blur p-8 shadow-xl text-left space-y-4">
+              <div className="text-4xl">⚔️</div>
+
+              <h3 className="text-2xl font-bold">History & Resistance</h3>
+
+              <p className="text-slate-600">
+                The Caribbean played a major role in colonial trade, slavery,
+                revolution, independence, and cultural resistance.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ================= MAP ================= */}
+        <section className="space-y-10 relative">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl font-black text-slate-900">
+              Explore the Region
+            </h2>
+
+            <p className="text-slate-600 text-lg">
+              Click a country to begin exploring the Caribbean.
+            </p>
+          </div>
+
+          <div className="rounded-[3rem] overflow-hidden bg-gradient-to-br from-cyan-100 via-sky-50 to-orange-50 shadow-2xl p-8">
+            <CaribbeanMap />
+          </div>
+        </section>
+
+        {/* ================= COUNTRIES ================= */}
+        <section className="space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl font-black text-slate-900">
+              Caribbean Countries
+            </h2>
+
+            <p className="text-slate-600 text-lg">
+              Explore cultures, histories, wildlife, music, and traditions
+              across the Caribbean.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {caribbeanCountries.map((country) => (
+              <Link
+                key={country.slug}
+                href={`/caribbean/${country.slug}`}
+                className="
+          group
+          rounded-[1.75rem]
+          overflow-hidden
+          bg-white/70
+          backdrop-blur
+          shadow-lg
+          hover:-translate-y-1.5
+          hover:shadow-2xl
+          transition-all
+          duration-500
+        "
+              >
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={country.heroImage}
+                    alt={country.name}
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+                  <div className="absolute bottom-0 p-4 text-white space-y-1">
+                    <h3 className="text-xl font-black leading-tight">
+                      {country.flag} {country.name}
+                    </h3>
+
+                    <p className="text-white/75 text-xs">
+                      {country.tags.slice(0, 2).join(" • ")}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        {/* ================= DEEP DIVES ================= */}
+        <section className="space-y-12">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl font-black text-slate-900">
+              Deep Dive Topics
+            </h2>
+
+            <p className="text-slate-600 text-lg">
+              Explore larger stories connected to Caribbean identity and
+              history.
+            </p>
+          </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {/* GEOGRAPHY */}
-            <div className="rounded-[2rem] overflow-hidden shadow-lg bg-white/70 backdrop-blur">
-              <img
-                src="/images/caribbean/geography.jpg"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">🌍 Geography</h3>
-                <p>
-                  Islands, volcanoes, coral reefs, and powerful weather systems.
-                </p>
-              </div>
-            </div>
+            <Link
+              href="/caribbean/topics/windrush"
+              className="group rounded-[2rem] overflow-hidden shadow-2xl"
+            >
+              <div className="relative h-[420px]">
+                <img
+                  src="/images/continents/caribbean/topics/windrush.jpg"
+                  alt="Windrush"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
 
-            {/* CULTURE */}
-            <div className="rounded-[2rem] overflow-hidden shadow-lg bg-white/70 backdrop-blur">
-              <img
-                src="/images/caribbean/culture.jpg"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">🎶 Culture</h3>
-                <p>
-                  Music, food, language, and traditions shaped by many
-                  influences.
-                </p>
-              </div>
-            </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-            {/* IMPORTANCE */}
-            <div className="rounded-[2rem] overflow-hidden shadow-lg bg-white/70 backdrop-blur">
-              <img
-                src="/images/caribbean/history.jpg"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl font-bold">🌎 Why it matters</h3>
-                <p>
-                  Trade routes, global culture, and a powerful shared history.
-                </p>
+                <div className="absolute bottom-0 p-8 text-white space-y-3">
+                  <h3 className="text-3xl font-black">
+                    🚢 Windrush Generation
+                  </h3>
+
+                  <p className="text-white/80">
+                    Discover how Caribbean migration helped shape modern
+                    Britain.
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
+
+            <Link
+              href="/caribbean/topics/carnival"
+              className="group rounded-[2rem] overflow-hidden shadow-2xl"
+            >
+              <div className="relative h-[420px]">
+                <img
+                  src="/images/continents/caribbean/topics/carnival1.jpg"
+                  alt="Carnival"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+                <div className="absolute bottom-0 p-8 text-white space-y-3">
+                  <h3 className="text-3xl font-black">🎭 Carnival Culture</h3>
+
+                  <p className="text-white/80">
+                    Explore music, costumes, resistance, and celebration.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/caribbean/music"
+              className="group rounded-[2rem] overflow-hidden shadow-2xl"
+            >
+              <div className="relative h-[420px]">
+                <img
+                  src="/images/continents/caribbean/topics/music.jpg"
+                  alt="Music"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+                <div className="absolute bottom-0 p-8 text-white space-y-3">
+                  <h3 className="text-3xl font-black">🎶 Caribbean Music</h3>
+
+                  <p className="text-white/80">
+                    Discover reggae, soca, calypso, dancehall, and steelpan.
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
 
         {/* ================= TIMELINE ================= */}
-        <section className="space-y-6">
-          <h2 className="text-4xl font-bold text-center text-[#0f172a]">
-            Caribbean Timeline
-          </h2>
+        <section className="space-y-10">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl font-black text-slate-900">
+              Caribbean Timeline
+            </h2>
 
-          <p className="text-center max-w-2xl mx-auto text-[#334155]">
-            Explore the key moments that shaped the Caribbean.
-          </p>
-
-          {/* Replace with Timeline component later */}
+            <p className="text-slate-600 text-lg max-w-3xl mx-auto">
+              Explore the events, migrations, revolutions, and cultural changes
+              that shaped the Caribbean over time.
+            </p>
+          </div>
 
           <Timeline
             items={caribbeanTimeline}
@@ -146,113 +513,26 @@ export default function CaribbeanPage() {
 
         {/* ================= DISCOVERIES ================= */}
         <StudentDiscoveries
-          items={caribbeanDiscoveries}
-          themes={caribbeanThemes}
+          items={allResources}
+          region="caribbean"
+          countries={[
+            "Jamaica",
+            "Barbados",
+            "Trinidad and Tobago",
+            "Saint Lucia",
+            "Saint Vincent and the Grenadines",
+            "Saint Kitts and Nevis",
+          ]}
+          topics={[
+            "Music",
+            "Food",
+            "History",
+            "Culture",
+            "Wildlife",
+            "Migration",
+            "Carnival",
+          ]}
         />
-
-        {/* ================= MAP ================= */}
-        <section className="space-y-6 text-center max-w-5xl mx-auto relative z-0">
-          <h2 className="text-4xl font-bold text-[#0f172a]">Explore the Map</h2>
-
-          <p className="text-[#334155]">Click a country to explore more.</p>
-
-          <div className="rounded-2xl">
-            <CaribbeanMap />
-          </div>
-          {/* <div className="text-red-500">Hovered: {hoveredCountry}</div> */}
-        </section>
-
-        {/* ================= COUNTRIES ================= */}
-        <section className="space-y-10 relative z-10">
-          <h2 className="text-4xl font-bold text-center text-[#0f172a]">
-            Caribbean Countries
-          </h2>
-
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {caribbeanCountries.map((country) => (
-              <Link
-                key={country.slug}
-                href={`/caribbean/${country.slug}`}
-                className="rounded-2xl bg-white/70 backdrop-blur p-5 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <h3 className="font-semibold text-lg">
-                  {country.flag} {country.name}
-                </h3>
-
-                <p className="text-sm text-slate-600 mt-1">
-                  Population: {country.population}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-        <section className="space-y-10">
-          <h2 className="text-4xl font-bold text-center text-[#0f172a]">
-            Deep Dive Topics
-          </h2>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            <Link
-              href="/caribbean/windrush"
-              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
-            >
-              <img
-                src="/images/continents/caribbean/topics/windrush.jpg"
-                alt="Windrush"
-                className="h-52 w-full object-cover"
-              />
-
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">🚢 Windrush Generation</h3>
-
-                <p className="text-slate-700">
-                  Learn about Caribbean migration to the UK and how it shaped
-                  modern Britain.
-                </p>
-              </div>
-            </Link>
-
-            <Link
-              href="/caribbean/topics/carnival"
-              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
-            >
-              <img
-                src="/images/continents/caribbean/topics/carnival.jpg"
-                alt="Carnival"
-                className="h-52 w-full object-cover"
-              />
-
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">🎭 Carnival Culture</h3>
-
-                <p className="text-slate-700">
-                  Explore colourful festivals, music, costumes, and Caribbean
-                  celebrations.
-                </p>
-              </div>
-            </Link>
-
-            <Link
-              href="/caribbean/music"
-              className="rounded-3xl overflow-hidden bg-white/70 backdrop-blur shadow-lg hover:shadow-2xl transition-all hover:-translate-y-1"
-            >
-              <img
-                src="/images/continents/caribbean/topics/music.jpg"
-                alt="Music"
-                className="h-52 w-full object-cover"
-              />
-
-              <div className="p-6 space-y-3">
-                <h3 className="text-2xl font-bold">🎶 Caribbean Music</h3>
-
-                <p className="text-slate-700">
-                  Discover reggae, calypso, steel pan, and the sounds of the
-                  Caribbean.
-                </p>
-              </div>
-            </Link>
-          </div>
-        </section>
       </div>
     </div>
   );

@@ -1497,3 +1497,75 @@ Focus areas include:
 - layered educational sections
 - emotional and historical connection
 - stronger visual identity between countries
+
+## 🌍 Student Discoveries System (NEW)
+
+Fable Culture now includes a moderated student resource contribution system designed to allow students to help expand educational content across regions.
+
+---
+
+### Purpose
+
+The system is designed to:
+
+- encourage independent research
+- allow students to contribute educational resources
+- build collaborative learning
+- expand region content organically over time
+- keep all resources teacher-reviewed before publication
+
+The feature is intended to feel like:
+
+- a curated educational discovery platform
+- not a generic comments or forum system
+
+---
+
+## 🧠 Resource Philosophy
+
+Student Discoveries should only contain:
+
+- real educational resources
+- accessible websites
+- museum pages
+- articles
+- videos
+- cultural archives
+- music/history resources
+- safe learning content
+
+The section should NOT contain:
+
+- placeholder cards
+- fake tasks
+- empty “idea” boxes
+- non-clickable content
+- generic prompts pretending to be resources
+
+All visible discovery cards should link to real external resources.
+
+---
+
+## 🔥 Moderation Pipeline
+
+Resource flow:
+
+Student Submission
+↓
+Firestore `resourceSubmissions`
+↓
+Admin moderation
+↓
+Approved resources become publicly visible
+
+Only approved resources appear publicly.
+
+---
+
+## 📁 Firestore Collection
+
+Collection:
+
+```txt
+resourceSubmissions
+```
