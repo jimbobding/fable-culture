@@ -137,11 +137,13 @@ export default function StudentDiscoveries({
       </div>
 
       {/* SUBMISSION FORM */}
-      <ResourceSubmissionForm
-        region={region}
-        countries={countries}
-        topics={topics}
-      />
+      {region && (
+        <ResourceSubmissionForm
+          region={region}
+          countries={countries ?? []}
+          topics={topics ?? []}
+        />
+      )}
     </section>
   );
 }
