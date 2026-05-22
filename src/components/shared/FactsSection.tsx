@@ -121,14 +121,14 @@ export default function FactsSection({
                 className={`
                 rounded-[1.75rem]
                 border border-orange-200/70
-                bg-[#fff7ed]/85
+       bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-yellow-100/70
                 p-5
                 leading-relaxed
                 text-[#6b4226]
                 shadow-md
                 transition-all duration-300
                 hover:-translate-y-1
-                hover:shadow-xl
+               hover:shadow-2xl
               `}
               >
                 <p>{typeof item === "string" ? item : item.fact}</p>
