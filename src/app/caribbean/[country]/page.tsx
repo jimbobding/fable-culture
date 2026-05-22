@@ -70,7 +70,22 @@ export default async function CaribbeanCountryPage({ params }: Props) {
       topBorder: "from-fuchsia-500 via-pink-400 to-rose-500",
       data: country.factFile.culture,
     },
-  ].filter(Boolean);
+  ].filter(
+    (
+      item,
+    ): item is {
+      key: string;
+      label: string;
+      ring: string;
+      bg: string;
+      topBorder: string;
+      data: {
+        image: string;
+        title: string;
+        description: string;
+      };
+    } => Boolean(item),
+  );
 
   const timelineItems = timelines[country.slug] ?? [];
 

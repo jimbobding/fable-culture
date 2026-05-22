@@ -324,10 +324,7 @@ export default function SouthAsiaPage() {
         </section>
 
         {/* ================= STUDENT DISCOVERIES ================= */}
-        <StudentDiscoveries
-          items={southAsiaDiscoveries}
-          themes={southAsiaThemes}
-        />
+        <StudentDiscoveries items={southAsiaDiscoveries} />
 
         {/* ================= MAP PLACEHOLDER ================= */}
         <section className="rounded-[2rem] border border-teal-200/70 bg-gradient-to-br from-[#dff7ef] via-[#e6fbff] to-[#dfefff] p-6 sm:p-8 shadow-lg space-y-6">

@@ -17,11 +17,11 @@ type Discovery = {
 type Props = {
   items: Discovery[];
 
-  region: string;
+  region?: string;
 
-  countries: string[];
+  countries?: string[];
 
-  topics: string[];
+  topics?: string[];
 
   title?: string;
 
