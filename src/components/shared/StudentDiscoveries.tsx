@@ -5,11 +5,11 @@ type Discovery = {
 
   name?: string;
 
-  description: string;
+  description?: string;
 
-  topic: string;
+  topic?: string;
 
-  country: string;
+  country?: string;
 
   href: string;
 };
