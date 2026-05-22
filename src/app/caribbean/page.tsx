@@ -487,6 +487,14 @@ export default async function CaribbeanPage() {
           ]}
         />
       </div>
+      <div className="mb-8 flex justify-center">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/80 px-5 py-3 text-sm font-semibold text-stone-800 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:shadow-xl"
+        >
+          ← Back to Home
+        </Link>
+      </div>
     </div>
   );
 }
