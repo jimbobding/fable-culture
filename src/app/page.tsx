@@ -35,6 +35,13 @@ const continents = [
     description: "Explore countries, cultures, and history across South Asia.",
     color: "from-rose-400 to-orange-400",
   },
+  {
+    name: "Caribbean",
+    href: "/caribbean",
+    description:
+      "Discover vibrant islands, Carnival traditions, influential people, music, history, and cultures from across the Caribbean.",
+    color: "from-cyan-400 via-sky-400 to-emerald-400",
+  },
 ];
 
 const upcomingEvents = [

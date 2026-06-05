@@ -363,8 +363,8 @@ export default async function CaribbeanPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            {/* <Link
+          <div className="grid gap-8 md:grid-cols-2">
+            <Link
               href="/caribbean/topics/windrush"
               className="group rounded-[2rem] overflow-hidden shadow-2xl"
             >
@@ -388,7 +388,7 @@ export default async function CaribbeanPage() {
                   </p>
                 </div>
               </div>
-            </Link> */}
+            </Link>
 
             <Link
               href="/caribbean/topics/carnival"
