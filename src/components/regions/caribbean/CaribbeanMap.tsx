@@ -59,9 +59,6 @@ export default function CaribbeanMap() {
 
   return (
     <div className="space-y-5">
-      {/* DEBUG */}
-      <div className="text-blue-500">Hovered: {hovered}</div>
-
       {/* MAP */}
       <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-[1.75rem] border border-cyan-300 shadow-xl bg-white">
         <img
