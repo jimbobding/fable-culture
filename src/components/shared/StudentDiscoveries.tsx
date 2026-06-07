@@ -2,122 +2,101 @@ import ResourceSubmissionForm from "@/components/shared/ResourceSubmissionForm";
 
 type Discovery = {
   title: string;
-
   name?: string;
-
   description?: string;
-
   topic?: string;
-
   country?: string;
-
   href: string;
 };
 
 type Props = {
   items: Discovery[];
-
   region?: string;
-
   countries?: string[];
-
   topics?: string[];
-
   title?: string;
-
   description?: string;
 };
 
 export default function StudentDiscoveries({
   items,
-
   region,
-
   countries,
-
   topics,
-
   title = "🌍 Student Discoveries",
-
   description = "Help expand Fable Culture by finding useful websites, videos, museums, music, recipes, and educational resources connected to this region.",
 }: Props) {
   return (
-    <section className="max-w-4xl mx-auto py-8 space-y-20 text-center">
-      {/* HEADER */}
+    <section className="mx-auto max-w-4xl space-y-20 py-8 text-center">
       <div className="space-y-6">
-        <p className="uppercase tracking-[0.35em] text-xs font-semibold text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-400">
           Student Contribution
         </p>
 
-        <h2 className="text-4xl sm:text-5xl font-black text-slate-900">
+        <h2 className="text-4xl font-black text-slate-900 sm:text-5xl">
           {title}
         </h2>
 
-        <p className="max-w-2xl mx-auto text-lg text-slate-600 leading-relaxed">
+        <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-600">
           {description}
         </p>
 
-        {/* TRAITS */}
         <div className="flex flex-wrap justify-center gap-5 pt-2 text-sm text-slate-500">
           <span>🌍 Educational</span>
-
           <span>🎶 Cultural</span>
-
           <span>📚 Reliable</span>
-
           <span>👀 Safe for school</span>
         </div>
       </div>
 
-      {/* DISCOVERIES */}
       <div className="space-y-10 text-center">
         {items.map((item) => {
           const isPlaceholder = item.href === "#";
 
-          return (
-            <a
-              key={item.title}
-              href={item.href}
-              target={!isPlaceholder ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="
-                group
-                block
-                max-w-2xl
-                mx-auto
-                rounded-[2rem]
-                bg-white/30
-                backdrop-blur-sm
-                border
-                border-white/40
-                px-8
-                py-8
-                shadow-sm
-                transition-all
-                duration-300
-                hover:bg-white/45
-                hover:shadow-lg
-                hover:-translate-y-1
-              "
-            >
+          const cardClasses = `
+            group
+            block
+            max-w-2xl
+            mx-auto
+            rounded-[2rem]
+            bg-white/30
+            backdrop-blur-sm
+            border
+            border-white/40
+            px-8
+            py-8
+            shadow-sm
+            transition-all
+            duration-300
+            hover:bg-white/45
+            hover:shadow-lg
+            hover:-translate-y-1
+          `;
+
+          const cardContent = (
+            <>
               {isPlaceholder && (
-                <p className="uppercase tracking-[0.25em] text-xs font-semibold text-amber-600">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
                   Research Task
                 </p>
               )}
 
               <div className="space-y-3">
-                <h3 className="text-2xl font-black text-slate-900 group-hover:text-slate-700 transition-colors">
+                <h3 className="text-2xl font-black text-slate-900 transition-colors group-hover:text-slate-700">
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-slate-400 tracking-[0.15em] uppercase">
-                  {item.topic} • {item.country}
-                </p>
+                {(item.topic || item.country) && (
+                  <p className="text-sm uppercase tracking-[0.15em] text-slate-400">
+                    {[item.topic, item.country].filter(Boolean).join(" • ")}
+                  </p>
+                )}
 
-                <p className="text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
+                {item.description && (
+                  <p className="leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
+                )}
 
                 {item.name && (
                   <p className="text-sm italic text-slate-400">
@@ -131,12 +110,31 @@ export default function StudentDiscoveries({
                   </p>
                 )}
               </div>
+            </>
+          );
+
+          if (isPlaceholder) {
+            return (
+              <div key={item.title} className={cardClasses}>
+                {cardContent}
+              </div>
+            );
+          }
+
+          return (
+            <a
+              key={item.title}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cardClasses}
+            >
+              {cardContent}
             </a>
           );
         })}
       </div>
 
-      {/* SUBMISSION FORM */}
       {region && (
         <ResourceSubmissionForm
           region={region}

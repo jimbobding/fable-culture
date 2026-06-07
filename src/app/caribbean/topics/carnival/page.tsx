@@ -263,7 +263,6 @@ export default function CarnivalPage() {
           </div>
         </section>
 
-        {/* UK CONNECTION */}
         {/* UK CARNIVAL */}
         <section className="space-y-10">
           <div className="text-center space-y-5">
