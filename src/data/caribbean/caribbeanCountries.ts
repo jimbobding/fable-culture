@@ -1923,7 +1923,7 @@ export const caribbeanCountries = [
     currency: "East Caribbean Dollar",
 
     heroImage:
-      "/images/continents/caribbean/countries/saint-lucia/hero/st-lucia-hero.jpg",
+      "/images/continents/caribbean/countries/saint-lucia/hero/Flag_of_Saint_Lucia.svg",
 
     intro:
       "Saint Lucia is known for volcanic mountains, Creole culture, rainforests, music, and the famous Pitons rising above the Caribbean Sea.",
