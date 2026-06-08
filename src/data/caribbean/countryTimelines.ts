@@ -1,6 +1,986 @@
 import { TimelineItem } from "@/components/shared/Timeline";
 
 export const timelines: Record<string, TimelineItem[]> = {
+  "antigua-and-barbuda": [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1493",
+      title: "Indigenous Caribbean Communities",
+      text: "Before European colonisation, Antigua and Barbuda were connected to Indigenous Caribbean communities and wider island trade and movement.",
+      emoji: "🛶",
+      questions: [
+        "How were Caribbean islands connected before European arrival?",
+        "Why is Indigenous history important when learning about the Caribbean?",
+      ],
+    },
+    {
+      periodKey: "european-contact",
+      year: "1493",
+      title: "European Contact",
+      text: "Christopher Columbus sighted Antigua during his second voyage to the Caribbean, beginning a period of European interest in the islands.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival change Caribbean history?",
+      ],
+    },
+    {
+      periodKey: "english-colonisation",
+      year: "1632",
+      title: "English Colonisation of Antigua",
+      text: "English settlers colonised Antigua and began developing the island as part of Britain’s Caribbean empire.",
+      emoji: "🏴",
+      questions: [
+        "Why did Britain want control of Caribbean islands?",
+        "How did colonisation change land and power on the island?",
+      ],
+    },
+    {
+      periodKey: "barbuda-colonised",
+      year: "1678–1685",
+      title: "Barbuda and the Codrington Family",
+      text: "Barbuda was colonised in the late 1600s and later granted to the Codrington family, becoming connected to plantation slavery and colonial control.",
+      emoji: "🏝️",
+      questions: [
+        "How was Barbuda’s history different from Antigua’s?",
+        "Why is land ownership important in Caribbean history?",
+      ],
+    },
+    {
+      periodKey: "sugar-plantations",
+      year: "1600s–1800s",
+      title: "Sugar Plantations and Enslavement",
+      text: "Sugar plantations became central to Antigua’s economy, relying on the forced labour of enslaved Africans.",
+      emoji: "🌾",
+      questions: [
+        "Why was sugar so valuable to European empires?",
+        "Who suffered and who benefited from plantation systems?",
+      ],
+    },
+    {
+      periodKey: "naval-dockyard",
+      year: "1700s",
+      title: "English Harbour and the Naval Dockyard",
+      text: "Britain developed a naval dockyard at English Harbour, using Antigua’s natural harbours as a strategic military base in the Caribbean.",
+      emoji: "⚓",
+      questions: [
+        "Why were harbours important to European empires?",
+        "How did geography make Antigua strategically important?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire. Antigua was unusual because it moved directly to full emancipation rather than using the longer apprenticeship system.",
+      emoji: "🕊️",
+      questions: [
+        "Why was emancipation a major turning point?",
+        "What challenges might formerly enslaved people still have faced?",
+      ],
+    },
+    {
+      periodKey: "associated-statehood",
+      year: "1967",
+      title: "Associated Statehood",
+      text: "Antigua became an associated state, managing its internal affairs while Britain kept responsibility for defence and foreign relations.",
+      emoji: "📜",
+      questions: [
+        "What steps can a country take before full independence?",
+        "Why might independence happen gradually?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1981",
+      title: "Independence",
+      text: "Antigua and Barbuda became a fully independent nation on 1 November 1981.",
+      emoji: "🇦🇬",
+      questions: [
+        "Why is independence important for national identity?",
+        "How might a new country choose to tell its own story?",
+      ],
+    },
+    {
+      periodKey: "unesco-dockyard",
+      year: "2016",
+      title: "Nelson’s Dockyard Becomes a World Heritage Site",
+      text: "Antigua Naval Dockyard and its related archaeological sites were recognised by UNESCO for their global historical importance.",
+      emoji: "🏛️",
+      questions: [
+        "Why should historic sites be protected?",
+        "How can places help people understand the past?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "Antigua and Barbuda has many more stories connected to culture, cricket, Carnival, Barbuda, community life, and independence.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Antigua and Barbuda’s history?",
+    },
+  ],
+
+  bahamas: [
+    {
+      periodKey: "lucayan-people",
+      year: "Before 1492",
+      title: "The Lucayan People",
+      text: "Before European arrival, the islands of The Bahamas were home to the Lucayan people, who lived through fishing, farming, and trade.",
+      emoji: "🛶",
+      questions: [
+        "How did island geography shape Lucayan life?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus-arrives",
+      year: "1492",
+      title: "Columbus Arrives",
+      text: "Christopher Columbus arrived in The Bahamas during his first voyage across the Atlantic, making the islands one of the first places in the Americas visited by Europeans.",
+      emoji: "🚢",
+      questions: [
+        "Why was Columbus exploring?",
+        "How did European arrival change the Caribbean?",
+      ],
+    },
+    {
+      periodKey: "decline-of-lucayans",
+      year: "1500s",
+      title: "Decline of the Lucayan Population",
+      text: "Disease, forced labour, and European colonisation led to the rapid decline of the Lucayan population.",
+      emoji: "⚠️",
+      questions: [
+        "How can contact between societies change populations?",
+        "Why is this an important part of history?",
+      ],
+    },
+    {
+      periodKey: "english-settlement",
+      year: "1648",
+      title: "English Settlement",
+      text: "English settlers known as the Eleutheran Adventurers established communities in The Bahamas seeking religious freedom.",
+      emoji: "🏝️",
+      questions: [
+        "Why do people migrate to new places?",
+        "What challenges might settlers face?",
+      ],
+    },
+    {
+      periodKey: "age-of-pirates",
+      year: "1690s–1718",
+      title: "The Age of Pirates",
+      text: "The Bahamas became famous as a centre for pirates, with Nassau serving as a base for figures such as Blackbeard and other pirate captains.",
+      emoji: "🏴‍☠️",
+      questions: [
+        "Why was Nassau attractive to pirates?",
+        "How did piracy affect trade routes?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1718",
+      title: "Britain Restores Control",
+      text: "Britain appointed a royal governor and strengthened control over The Bahamas, helping bring an end to the pirate era.",
+      emoji: "🏴",
+      questions: [
+        "Why did Britain want control of The Bahamas?",
+        "How can governments restore order?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major social and economic change to The Bahamas.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained?",
+      ],
+    },
+    {
+      periodKey: "tourism-growth",
+      year: "1900s",
+      title: "Tourism Expands",
+      text: "Tourism became one of the country's most important industries, attracting visitors from around the world.",
+      emoji: "✈️",
+      questions: [
+        "How can tourism affect a country?",
+        "What are the benefits and challenges of tourism?",
+      ],
+    },
+    {
+      periodKey: "majority-rule",
+      year: "1967",
+      title: "Majority Rule",
+      text: "A major political turning point saw greater democratic representation and political change across The Bahamas.",
+      emoji: "🗳️",
+      questions: [
+        "Why is democratic representation important?",
+        "How can political systems change over time?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1973",
+      title: "Independence",
+      text: "The Bahamas became an independent nation on 10 July 1973.",
+      emoji: "🇧🇸",
+      questions: [
+        "Why is independence important?",
+        "How do nations build identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to Junkanoo, marine life, culture, sport, and modern Bahamian life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Bahamian history?",
+    },
+  ],
+
+  barbados: [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1536",
+      title: "Indigenous Caribbean Communities",
+      text: "Before European colonisation, Barbados was visited and inhabited by Indigenous Caribbean peoples who travelled between islands using established sea routes.",
+      emoji: "🛶",
+      questions: [
+        "How did people travel between Caribbean islands?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "portuguese-arrival",
+      year: "1500s",
+      title: "European Arrival",
+      text: "Portuguese sailors visited the island and named it Barbados, meaning 'the bearded ones'.",
+      emoji: "🚢",
+      questions: [
+        "How did Barbados get its name?",
+        "Why were Europeans exploring the Caribbean?",
+      ],
+    },
+    {
+      periodKey: "english-settlement",
+      year: "1627",
+      title: "English Settlement",
+      text: "England established a permanent settlement in Barbados, making it one of its earliest Caribbean colonies.",
+      emoji: "🏴",
+      questions: [
+        "Why did England want Caribbean colonies?",
+        "How did settlement change the island?",
+      ],
+    },
+    {
+      periodKey: "sugar-economy",
+      year: "1640s",
+      title: "The Sugar Revolution",
+      text: "Sugar plantations transformed Barbados into one of the wealthiest colonies in the British Empire, relying heavily on enslaved African labour.",
+      emoji: "🌾",
+      questions: [
+        "Why was sugar so valuable?",
+        "Who benefited from plantation wealth?",
+      ],
+    },
+    {
+      periodKey: "slavery",
+      year: "1600s–1800s",
+      title: "Enslavement and Resistance",
+      text: "Thousands of Africans were enslaved on plantations. Despite harsh conditions, enslaved people resisted and preserved cultural traditions.",
+      emoji: "⛓️",
+      questions: [
+        "How did enslaved people resist oppression?",
+        "Why is resistance important in history?",
+      ],
+    },
+    {
+      periodKey: "bussa-rebellion",
+      year: "1816",
+      title: "Bussa's Rebellion",
+      text: "One of the largest slave rebellions in Caribbean history took place in Barbados, led by Bussa and others seeking freedom.",
+      emoji: "⚔️",
+      questions: [
+        "Why do people rebel against injustice?",
+        "Why is Bussa remembered today?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major changes to Barbadian society.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained?",
+      ],
+    },
+    {
+      periodKey: "internal-government",
+      year: "1951",
+      title: "Universal Adult Suffrage",
+      text: "Barbadians gained the right to vote regardless of wealth or property ownership, expanding democratic participation.",
+      emoji: "🗳️",
+      questions: [
+        "Why is voting important?",
+        "How can democracy change a country?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1966",
+      title: "Independence",
+      text: "Barbados became an independent nation on 30 November 1966.",
+      emoji: "🇧🇧",
+      questions: [
+        "Why is independence significant?",
+        "How do countries develop national identity?",
+      ],
+    },
+    {
+      periodKey: "republic",
+      year: "2021",
+      title: "Becoming a Republic",
+      text: "Barbados became a republic, replacing the British monarch as head of state while remaining a member of the Commonwealth.",
+      emoji: "🏛️",
+      questions: [
+        "What is a republic?",
+        "Why might countries change their systems of government?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "Barbados has many more stories connected to culture, cricket, music, literature, and modern achievements.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Barbados history?",
+    },
+  ],
+
+  cuba: [
+    {
+      periodKey: "taino-people",
+      year: "Before 1492",
+      title: "The Taíno People",
+      text: "Before European arrival, Cuba was home to Taíno communities who farmed, fished, traded, and lived across the island.",
+      emoji: "🌴",
+      questions: [
+        "How did the Taíno live?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus-arrives",
+      year: "1492",
+      title: "Columbus Arrives",
+      text: "Christopher Columbus arrived in Cuba during his first voyage to the Caribbean, beginning a new period of European involvement.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring?",
+        "How did European arrival affect Indigenous peoples?",
+      ],
+    },
+    {
+      periodKey: "spanish-rule",
+      year: "1500s–1800s",
+      title: "Spanish Colonial Rule",
+      text: "Spain controlled Cuba for centuries, developing settlements, trade networks, and plantation agriculture.",
+      emoji: "⚔️",
+      questions: [
+        "Why was Cuba important to Spain?",
+        "How did colonial rule affect life on the island?",
+      ],
+    },
+    {
+      periodKey: "sugar-economy",
+      year: "1700s–1800s",
+      title: "Sugar and Plantations",
+      text: "Sugar production became a major part of Cuba's economy, relying heavily on enslaved African labour.",
+      emoji: "🌾",
+      questions: [
+        "Why was sugar valuable?",
+        "Who benefited and who suffered from plantation systems?",
+      ],
+    },
+    {
+      periodKey: "independence-struggles",
+      year: "1868",
+      title: "The Ten Years' War",
+      text: "Cuban revolutionaries began a major struggle for independence from Spain, starting a long period of conflict.",
+      emoji: "⚔️",
+      questions: [
+        "Why do people fight for independence?",
+        "What challenges do independence movements face?",
+      ],
+    },
+    {
+      periodKey: "marti",
+      year: "1895",
+      title: "José Martí and Independence",
+      text: "Writer and revolutionary José Martí became one of the most important figures in Cuba's independence movement.",
+      emoji: "📜",
+      questions: [
+        "How can writers influence history?",
+        "Why is José Martí remembered today?",
+      ],
+    },
+    {
+      periodKey: "spanish-american-war",
+      year: "1898",
+      title: "Spanish-American War",
+      text: "The Spanish-American War ended Spanish control of Cuba and marked a major turning point in the island's history.",
+      emoji: "🚢",
+      questions: [
+        "How can wars change countries?",
+        "Why was 1898 significant for Cuba?",
+      ],
+    },
+    {
+      periodKey: "republic",
+      year: "1902",
+      title: "The Republic of Cuba",
+      text: "Cuba became an independent republic, beginning a new chapter in its national history.",
+      emoji: "🇨🇺",
+      questions: [
+        "What does independence mean for a country?",
+        "What challenges might a new nation face?",
+      ],
+    },
+    {
+      periodKey: "revolution",
+      year: "1959",
+      title: "The Cuban Revolution",
+      text: "The Cuban Revolution brought major political and social changes to the country and shaped modern Cuba.",
+      emoji: "✊",
+      questions: [
+        "Why do revolutions happen?",
+        "How can political change affect everyday life?",
+      ],
+    },
+    {
+      periodKey: "modern-cuba",
+      year: "Present Day",
+      title: "Modern Cuba",
+      text: "Today Cuba is known for its music, sport, education, culture, history, and strong national identity.",
+      emoji: "🎶",
+      questions: [
+        "What makes Cuba unique today?",
+        "How does history shape national identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to Cuban music, culture, science, sport, and daily life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Cuban history?",
+    },
+  ],
+  dominica: [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1493",
+      title: "Indigenous Peoples",
+      text: "Before European arrival, Dominica was home to Indigenous Caribbean communities, including Kalinago people who lived through farming, fishing, canoe travel, and trade.",
+      emoji: "🛶",
+      questions: [
+        "Why is Indigenous history important?",
+        "How did island geography shape life in Dominica?",
+      ],
+    },
+    {
+      periodKey: "european-contact",
+      year: "1493",
+      title: "European Contact",
+      text: "Christopher Columbus sighted Dominica during his second voyage to the Caribbean.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European contact affect Indigenous communities?",
+      ],
+    },
+    {
+      periodKey: "kalinago-resistance",
+      year: "1600s–1700s",
+      title: "Kalinago Resistance",
+      text: "Kalinago communities resisted European settlement for many years, helping Dominica remain less heavily colonised than some neighbouring islands for a time.",
+      emoji: "⚔️",
+      questions: [
+        "Why might communities resist colonisation?",
+        "How can geography help people defend their homes?",
+      ],
+    },
+    {
+      periodKey: "french-settlement",
+      year: "1700s",
+      title: "French Settlement",
+      text: "French settlers established communities and plantations on Dominica before Britain later gained control of the island.",
+      emoji: "🇫🇷",
+      questions: [
+        "Why did European powers compete for Caribbean islands?",
+        "How did settlement change the island?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1763",
+      title: "British Control",
+      text: "After the Seven Years' War, Dominica came under British control, although French cultural influence remained important.",
+      emoji: "🏴",
+      questions: [
+        "How can different colonial powers shape a country?",
+        "Why might language and culture survive political change?",
+      ],
+    },
+    {
+      periodKey: "enslavement",
+      year: "1700s–1800s",
+      title: "Plantations and Enslavement",
+      text: "Plantation agriculture developed in Dominica and relied on the forced labour of enslaved Africans.",
+      emoji: "🌾",
+      questions: [
+        "Why were plantations important to colonial economies?",
+        "Who benefited and who suffered from plantation systems?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major social change to Dominica.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained after slavery ended?",
+      ],
+    },
+    {
+      periodKey: "west-indies-federation",
+      year: "1958–1962",
+      title: "West Indies Federation",
+      text: "Dominica joined the West Indies Federation, an attempt to unite several British Caribbean territories.",
+      emoji: "🤝",
+      questions: [
+        "Why might Caribbean territories try to work together?",
+        "What challenges can federations face?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1978",
+      title: "Independence",
+      text: "Dominica became an independent nation on 3 November 1978.",
+      emoji: "🇩🇲",
+      questions: [
+        "Why is independence important?",
+        "How do countries build national identity?",
+      ],
+    },
+    {
+      periodKey: "modern-dominica",
+      year: "Present Day",
+      title: "The Nature Island",
+      text: "Today Dominica is known for rainforests, volcanoes, rivers, Creole culture, and Kalinago heritage.",
+      emoji: "🌿",
+      questions: [
+        "How does nature shape Dominica's identity?",
+        "Why is protecting culture and environment important?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to Kalinago heritage, Creole culture, music, nature, and community life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Dominica's history?",
+    },
+  ],
+  "dominican-republic": [
+    {
+      periodKey: "taino-people",
+      year: "Before 1492",
+      title: "The Taíno People",
+      text: "Before European arrival, the island of Hispaniola was home to Taíno communities who farmed, fished, traded, and built communities across the island.",
+      emoji: "🌴",
+      questions: [
+        "How did the Taíno live on Hispaniola?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus-arrives",
+      year: "1492",
+      title: "Columbus Arrives",
+      text: "Christopher Columbus arrived on Hispaniola during his first voyage, beginning a major period of Spanish colonisation.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival affect Indigenous peoples?",
+      ],
+    },
+    {
+      periodKey: "santo-domingo",
+      year: "1496",
+      title: "Santo Domingo Founded",
+      text: "Santo Domingo became one of the earliest permanent European settlements in the Americas and an important centre of Spanish colonial power.",
+      emoji: "🏛️",
+      questions: [
+        "Why was Santo Domingo important?",
+        "How can cities shape history?",
+      ],
+    },
+    {
+      periodKey: "spanish-colony",
+      year: "1500s–1600s",
+      title: "Spanish Colonial Rule",
+      text: "The eastern part of Hispaniola remained under Spanish rule and became connected to trade, farming, ranching, and colonial administration.",
+      emoji: "⚔️",
+      questions: [
+        "How did Spanish rule shape the island?",
+        "What impact did colonisation have?",
+      ],
+    },
+    {
+      periodKey: "treaty-ryswick",
+      year: "1697",
+      title: "The Island Is Divided",
+      text: "The Treaty of Ryswick recognised French control of the western part of Hispaniola, while Spain kept control of the eastern side.",
+      emoji: "📜",
+      questions: [
+        "How did European treaties affect Caribbean people?",
+        "Why is Hispaniola shared by two countries today?",
+      ],
+    },
+    {
+      periodKey: "haitian-rule",
+      year: "1822–1844",
+      title: "Haitian Rule",
+      text: "The eastern part of Hispaniola came under Haitian control for more than twenty years before Dominican independence.",
+      emoji: "🤝",
+      questions: [
+        "How can neighbouring countries shape each other's history?",
+        "Why might people want self-government?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1844",
+      title: "Dominican Independence",
+      text: "The Dominican Republic declared independence on 27 February 1844, creating a new nation on the eastern side of Hispaniola.",
+      emoji: "🇩🇴",
+      questions: [
+        "Why is independence important?",
+        "How do countries build national identity?",
+      ],
+    },
+    {
+      periodKey: "restoration-war",
+      year: "1863–1865",
+      title: "The Restoration War",
+      text: "After Spain briefly regained control, Dominicans fought to restore independence during the Restoration War.",
+      emoji: "⚔️",
+      questions: [
+        "Why might people fight to restore independence?",
+        "How can national identity grow through struggle?",
+      ],
+    },
+    {
+      periodKey: "trujillo-era",
+      year: "1930–1961",
+      title: "The Trujillo Era",
+      text: "Rafael Trujillo ruled the Dominican Republic as a dictator for decades, shaping politics, society, and memory in the country.",
+      emoji: "⚠️",
+      questions: [
+        "What is a dictatorship?",
+        "Why is it important to study difficult history?",
+      ],
+    },
+    {
+      periodKey: "modern-culture",
+      year: "Present Day",
+      title: "Modern Dominican Culture",
+      text: "Today the Dominican Republic is known for merengue, bachata, baseball, tourism, literature, food, and strong Caribbean identity.",
+      emoji: "🎶",
+      questions: [
+        "What makes Dominican culture globally influential?",
+        "How do music and sport shape identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to music, baseball, migration, literature, community life, and modern Dominican history.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Dominican Republic history?",
+    },
+  ],
+  grenada: [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1498",
+      title: "Indigenous Peoples",
+      text: "Before European colonisation, Grenada was home to Indigenous Caribbean communities who lived through fishing, farming, canoe travel, and trade.",
+      emoji: "🛶",
+      questions: [
+        "How were Caribbean islands connected?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "european-contact",
+      year: "1498",
+      title: "European Contact",
+      text: "European explorers reached Grenada during the early period of Caribbean exploration.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European contact affect island communities?",
+      ],
+    },
+    {
+      periodKey: "french-colonisation",
+      year: "1649",
+      title: "French Colonisation",
+      text: "French settlers colonised Grenada and began developing plantations and colonial settlements.",
+      emoji: "🇫🇷",
+      questions: [
+        "Why did France want Caribbean colonies?",
+        "How did colonisation change the island?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1763",
+      title: "British Control",
+      text: "Britain gained control of Grenada after the Seven Years' War, although French influence remained part of the island's culture.",
+      emoji: "🏴",
+      questions: [
+        "Why did European powers fight over Caribbean islands?",
+        "How can culture survive political change?",
+      ],
+    },
+    {
+      periodKey: "plantations",
+      year: "1700s–1800s",
+      title: "Plantations and Enslavement",
+      text: "Plantation agriculture expanded in Grenada, relying on the forced labour of enslaved Africans.",
+      emoji: "🌾",
+      questions: [
+        "Why were plantations important to colonial economies?",
+        "Who benefited and who suffered?",
+      ],
+    },
+    {
+      periodKey: "fedon-rebellion",
+      year: "1795–1796",
+      title: "Fédon's Rebellion",
+      text: "Julien Fédon led a major rebellion against British rule, influenced by revolutionary ideas in the Caribbean and Atlantic world.",
+      emoji: "⚔️",
+      questions: [
+        "Why do people rebel against injustice?",
+        "How can revolutions inspire others?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major change to Grenadian society.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1974",
+      title: "Independence",
+      text: "Grenada became an independent nation on 7 February 1974.",
+      emoji: "🇬🇩",
+      questions: [
+        "Why is independence important?",
+        "How do countries build national identity?",
+      ],
+    },
+    {
+      periodKey: "revolution-and-invasion",
+      year: "1979–1983",
+      title: "Revolution and Invasion",
+      text: "The New Jewel Movement took power in 1979. Political crisis followed, and in 1983 the United States led an invasion of Grenada.",
+      emoji: "⚠️",
+      questions: [
+        "How can political change affect everyday life?",
+        "Why is modern history sometimes complicated?",
+      ],
+    },
+    {
+      periodKey: "modern-grenada",
+      year: "Present Day",
+      title: "The Spice Isle",
+      text: "Today Grenada is known for nutmeg, cocoa, Carnival, beaches, rainforest landscapes, education, and Caribbean culture.",
+      emoji: "🌰",
+      questions: [
+        "Why is Grenada called the Spice Isle?",
+        "How do natural resources shape identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to spices, Carnival, music, sport, education, and community life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Grenada's history?",
+    },
+  ],
+  haiti: [
+    {
+      periodKey: "taino-people",
+      year: "Before 1492",
+      title: "The Taíno People",
+      text: "Before European arrival, Haiti was part of the island of Hispaniola, home to Taíno communities who farmed, fished, traded, and built societies across the island.",
+      emoji: "🌴",
+      questions: [
+        "How did the Taíno live on Hispaniola?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus-arrives",
+      year: "1492",
+      title: "Columbus Arrives",
+      text: "Christopher Columbus arrived on Hispaniola during his first voyage, beginning European colonisation of the island.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival affect Indigenous peoples?",
+      ],
+    },
+    {
+      periodKey: "french-saint-domingue",
+      year: "1697",
+      title: "French Saint-Domingue",
+      text: "The Treaty of Ryswick recognised French control of the western part of Hispaniola, which became the colony of Saint-Domingue.",
+      emoji: "🇫🇷",
+      questions: [
+        "How did European treaties divide Caribbean land?",
+        "Why did Saint-Domingue become important to France?",
+      ],
+    },
+    {
+      periodKey: "plantation-economy",
+      year: "1700s",
+      title: "Plantation Wealth and Enslavement",
+      text: "Saint-Domingue became one of the world's most profitable colonies through sugar and coffee plantations worked by enslaved Africans.",
+      emoji: "🌾",
+      questions: [
+        "Why was Saint-Domingue so profitable?",
+        "Who suffered and who benefited from plantation wealth?",
+      ],
+    },
+    {
+      periodKey: "haitian-revolution-begins",
+      year: "1791",
+      title: "The Haitian Revolution Begins",
+      text: "Enslaved people rose up against French colonial rule, beginning one of the most important revolutions in world history.",
+      emoji: "⚔️",
+      questions: [
+        "Why do people fight for freedom?",
+        "Why was the Haitian Revolution so important?",
+      ],
+    },
+    {
+      periodKey: "abolition-slavery",
+      year: "1793–1794",
+      title: "Slavery Is Abolished",
+      text: "During the revolution, slavery was abolished in Saint-Domingue and then across French colonies, although conflict continued.",
+      emoji: "🕊️",
+      questions: [
+        "Why was abolition a major turning point?",
+        "Why did the fight for freedom continue?",
+      ],
+    },
+    {
+      periodKey: "louverture",
+      year: "1801",
+      title: "Toussaint Louverture's Constitution",
+      text: "Toussaint Louverture introduced a constitution for Saint-Domingue, showing growing self-rule during the revolution.",
+      emoji: "📜",
+      questions: [
+        "How can leaders shape independence movements?",
+        "Why are constitutions important?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1804",
+      title: "Haitian Independence",
+      text: "Haiti became independent on 1 January 1804, becoming the first independent Black republic in the world.",
+      emoji: "🇭🇹",
+      questions: [
+        "Why was Haiti's independence globally important?",
+        "How did Haiti challenge ideas about slavery and empire?",
+      ],
+    },
+    {
+      periodKey: "independence-debt",
+      year: "1825",
+      title: "The Independence Debt",
+      text: "France recognised Haiti's independence only after forcing Haiti to agree to pay a large indemnity, creating a long-lasting economic burden.",
+      emoji: "⚖️",
+      questions: [
+        "Why was the debt unfair?",
+        "How can historical injustice affect countries for generations?",
+      ],
+    },
+    {
+      periodKey: "modern-haiti",
+      year: "Present Day",
+      title: "Modern Haiti",
+      text: "Today Haiti is known for its revolutionary history, art, music, language, religion, resilience, and powerful cultural identity.",
+      emoji: "🎨",
+      questions: [
+        "How does Haiti's revolution shape its identity?",
+        "Why is culture important during difficult times?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to Haitian art, music, language, religion, politics, migration, and community life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Haitian history?",
+    },
+  ],
+
   jamaica: [
     {
       periodKey: "taino-people",
@@ -24,43 +1004,6 @@ export const timelines: Record<string, TimelineItem[]> = {
         "Why were sea routes important?",
       ],
     },
-
-    {
-      periodKey: "spanish-settlements",
-      year: "1500s",
-      title: "Spanish Settlements",
-      text: "Spain established settlements in Jamaica and used the island for trade and control in the Caribbean.",
-      emoji: "⛵",
-      questions: [
-        "Why did Spain want Caribbean islands?",
-        "How did colonisation affect local people?",
-      ],
-    },
-
-    {
-      periodKey: "plantations",
-      year: "1600s–1700s",
-      title: "Plantation Expansion",
-      text: "Large plantations were built to grow sugar crops, creating wealth for European powers while relying on enslaved labour.",
-      emoji: "🌾",
-      questions: [
-        "Why was sugar so valuable?",
-        "Who benefited from plantation systems?",
-      ],
-    },
-
-    {
-      periodKey: "maroons",
-      year: "1700s",
-      title: "Maroon Resistance",
-      text: "Escaped enslaved Africans formed Maroon communities in Jamaica’s mountains and resisted British control.",
-      emoji: "⚔️",
-      questions: [
-        "Who were the Maroons?",
-        "Why is resistance important in Jamaican history?",
-      ],
-    },
-
     {
       periodKey: "columbus-arrives",
       year: "1494",
@@ -72,7 +1015,6 @@ export const timelines: Record<string, TimelineItem[]> = {
         "How did arrival change life for Indigenous people?",
       ],
     },
-
     {
       periodKey: "spanish-rule",
       year: "1509–1655",
@@ -84,7 +1026,6 @@ export const timelines: Record<string, TimelineItem[]> = {
         "What impact did colonisation have?",
       ],
     },
-
     {
       periodKey: "british-rule",
       year: "1655",
@@ -96,7 +1037,17 @@ export const timelines: Record<string, TimelineItem[]> = {
         "How did plantations shape Caribbean history?",
       ],
     },
-
+    {
+      periodKey: "plantations",
+      year: "1600s–1700s",
+      title: "Plantation Expansion",
+      text: "Large plantations were built to grow sugar crops, creating wealth for European powers while relying on enslaved labour.",
+      emoji: "🌾",
+      questions: [
+        "Why was sugar so valuable?",
+        "Who benefited from plantation systems?",
+      ],
+    },
     {
       periodKey: "slavery",
       year: "1600s–1800s",
@@ -108,7 +1059,17 @@ export const timelines: Record<string, TimelineItem[]> = {
         "Why is resistance important in Jamaican history?",
       ],
     },
-
+    {
+      periodKey: "maroons",
+      year: "1700s",
+      title: "Maroon Resistance",
+      text: "Escaped enslaved Africans formed Maroon communities in Jamaica’s mountains and resisted British control.",
+      emoji: "⚔️",
+      questions: [
+        "Who were the Maroons?",
+        "Why is resistance important in Jamaican history?",
+      ],
+    },
     {
       periodKey: "emancipation",
       year: "1838",
@@ -120,19 +1081,6 @@ export const timelines: Record<string, TimelineItem[]> = {
         "Why did people continue fighting for equality?",
       ],
     },
-
-    {
-      periodKey: "reggae",
-      year: "1960s–1970s",
-      title: "Rise of Reggae",
-      text: "Reggae music became globally influential through artists like Bob Marley, spreading Jamaican culture worldwide.",
-      emoji: "🎵",
-      questions: [
-        "Why did reggae become globally popular?",
-        "How can music spread messages and identity?",
-      ],
-    },
-
     {
       periodKey: "independence",
       year: "1962",
@@ -144,7 +1092,17 @@ export const timelines: Record<string, TimelineItem[]> = {
         "How do countries build national identity?",
       ],
     },
-
+    {
+      periodKey: "reggae",
+      year: "1960s–1970s",
+      title: "Rise of Reggae",
+      text: "Reggae music became globally influential through artists like Bob Marley, spreading Jamaican culture worldwide.",
+      emoji: "🎵",
+      questions: [
+        "Why did reggae become globally popular?",
+        "How can music spread messages and identity?",
+      ],
+    },
     {
       periodKey: "modern-jamaica",
       year: "1962–Present",
@@ -156,7 +1114,6 @@ export const timelines: Record<string, TimelineItem[]> = {
         "How does culture shape a country’s identity?",
       ],
     },
-
     {
       periodKey: "research-gap",
       year: "Research Gap",
@@ -166,6 +1123,506 @@ export const timelines: Record<string, TimelineItem[]> = {
       isGap: true,
       prompt:
         "Can you research and add another important event from Jamaican history?",
+    },
+  ],
+
+  "saint-kitts-and-nevis": [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1493",
+      title: "Indigenous Peoples",
+      text: "Before European arrival, Saint Kitts and Nevis were home to Indigenous Caribbean communities who lived through farming, fishing, and trade.",
+      emoji: "🛶",
+      questions: [
+        "How were Caribbean islands connected?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus",
+      year: "1493",
+      title: "European Contact",
+      text: "Christopher Columbus sighted Saint Kitts during his second voyage to the Caribbean.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did exploration affect island communities?",
+      ],
+    },
+    {
+      periodKey: "first-british-colony",
+      year: "1623",
+      title: "Britain Establishes a Colony",
+      text: "Saint Kitts became one of the earliest British colonies in the Caribbean and played an important role in later British expansion.",
+      emoji: "🏴",
+      questions: [
+        "Why was Saint Kitts important to Britain?",
+        "How can colonies influence wider history?",
+      ],
+    },
+    {
+      periodKey: "french-settlement",
+      year: "1625",
+      title: "French Settlement",
+      text: "French settlers also established communities on Saint Kitts, leading to periods of cooperation and conflict with Britain.",
+      emoji: "🇫🇷",
+      questions: [
+        "Why did different countries compete for Caribbean islands?",
+        "How can rivalry shape history?",
+      ],
+    },
+    {
+      periodKey: "sugar-economy",
+      year: "1600s–1800s",
+      title: "Sugar Plantations",
+      text: "Sugar plantations became the foundation of the economy and relied heavily on enslaved African labour.",
+      emoji: "🌾",
+      questions: ["Why was sugar valuable?", "Who benefited and who suffered?"],
+    },
+    {
+      periodKey: "british-control",
+      year: "1713",
+      title: "British Control Confirmed",
+      text: "Following European conflicts, Britain secured control of Saint Kitts, strengthening its position in the Caribbean.",
+      emoji: "⚔️",
+      questions: [
+        "Why were treaties important?",
+        "How can wars affect distant territories?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, changing life for thousands of people on Saint Kitts and Nevis.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained?",
+      ],
+    },
+    {
+      periodKey: "west-indies-federation",
+      year: "1958",
+      title: "West Indies Federation",
+      text: "Saint Kitts and Nevis joined the West Indies Federation, an attempt to unite several Caribbean territories.",
+      emoji: "🤝",
+      questions: [
+        "Why might countries work together in a federation?",
+        "What are the advantages and disadvantages of cooperation?",
+      ],
+    },
+    {
+      periodKey: "associated-statehood",
+      year: "1967",
+      title: "Associated Statehood",
+      text: "The islands gained greater control over their own affairs while continuing to move toward full independence.",
+      emoji: "📜",
+      questions: [
+        "Why might independence happen gradually?",
+        "What responsibilities come with self-government?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1983",
+      title: "Independence",
+      text: "Saint Kitts and Nevis became an independent nation on 19 September 1983.",
+      emoji: "🇰🇳",
+      questions: [
+        "Why is independence important?",
+        "How do countries build national identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to culture, sport, community life, and the unique relationship between Saint Kitts and Nevis.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Saint Kitts and Nevis history?",
+    },
+  ],
+
+  "saint-lucia": [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1500",
+      title: "Indigenous Peoples",
+      text: "Before European arrival, Saint Lucia was home to Indigenous Caribbean communities who fished, farmed, and travelled between islands.",
+      emoji: "🛶",
+      questions: [
+        "How were Caribbean islands connected?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "european-contact",
+      year: "1500s",
+      title: "European Contact",
+      text: "European explorers began visiting Saint Lucia, bringing major changes to the Caribbean.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival affect Indigenous communities?",
+      ],
+    },
+    {
+      periodKey: "french-british-rivalry",
+      year: "1600s–1700s",
+      title: "The Island of Many Battles",
+      text: "Saint Lucia changed hands between France and Britain many times because of its strategic location and valuable harbours.",
+      emoji: "⚔️",
+      questions: [
+        "Why did countries compete for Caribbean islands?",
+        "Why was Saint Lucia strategically important?",
+      ],
+    },
+    {
+      periodKey: "plantations",
+      year: "1700s–1800s",
+      title: "Sugar Plantations",
+      text: "Plantation agriculture expanded, relying heavily on enslaved African labour.",
+      emoji: "🌾",
+      questions: [
+        "Why was sugar valuable?",
+        "Who benefited from plantation systems?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1814",
+      title: "British Control Confirmed",
+      text: "Following years of conflict, Britain gained permanent control of Saint Lucia.",
+      emoji: "🏴",
+      questions: [
+        "Why did control of Caribbean islands change so often?",
+        "How might people be affected by changes in government?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major social change to Saint Lucia.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges still remained?",
+      ],
+    },
+    {
+      periodKey: "self-government",
+      year: "1967",
+      title: "Associated Statehood",
+      text: "Saint Lucia gained greater control over its internal affairs while moving toward full independence.",
+      emoji: "📜",
+      questions: [
+        "Why do some countries gain independence gradually?",
+        "What responsibilities come with self-government?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1979",
+      title: "Independence",
+      text: "Saint Lucia became an independent nation on 22 February 1979.",
+      emoji: "🇱🇨",
+      questions: [
+        "Why is independence important?",
+        "How do nations build identity?",
+      ],
+    },
+    {
+      periodKey: "nobel-prize",
+      year: "1992",
+      title: "A Nobel Prize for Literature",
+      text: "Poet Derek Walcott became one of Saint Lucia's most celebrated figures when he won the Nobel Prize in Literature.",
+      emoji: "📚",
+      questions: [
+        "How can literature influence the world?",
+        "Why are national role models important?",
+      ],
+    },
+    {
+      periodKey: "modern-saint-lucia",
+      year: "Present Day",
+      title: "Modern Saint Lucia",
+      text: "Saint Lucia is known for its culture, tourism, music, sport, education, and the famous Pitons.",
+      emoji: "🌋",
+      questions: [
+        "What makes Saint Lucia unique today?",
+        "How do geography and culture shape identity?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to music, culture, Nobel Prize winners, and community life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Saint Lucia's history?",
+    },
+  ],
+
+  "saint-vincent-and-the-grenadines": [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1498",
+      title: "Indigenous Peoples",
+      text: "Before European colonisation, Saint Vincent was home to Indigenous Caribbean peoples who travelled, traded, and lived throughout the region.",
+      emoji: "🛶",
+      questions: [
+        "How were Caribbean islands connected?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "european-contact",
+      year: "1498",
+      title: "European Contact",
+      text: "European explorers reached Saint Vincent during the period of Caribbean exploration.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival affect island communities?",
+      ],
+    },
+    {
+      periodKey: "garifuna",
+      year: "1600s",
+      title: "The Garifuna People",
+      text: "The Garifuna people developed from the mixing of African and Indigenous Caribbean communities, creating a unique culture and identity.",
+      emoji: "🌍",
+      questions: [
+        "How can cultures combine and evolve?",
+        "Why are the Garifuna important in Caribbean history?",
+      ],
+    },
+    {
+      periodKey: "resistance",
+      year: "1700s",
+      title: "Resistance to Colonisation",
+      text: "The Garifuna resisted European attempts to control Saint Vincent, leading to conflicts with colonial powers.",
+      emoji: "⚔️",
+      questions: [
+        "Why do people resist foreign control?",
+        "How can communities protect their identity?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1763",
+      title: "British Control",
+      text: "Britain gained control of Saint Vincent, although resistance continued for many years.",
+      emoji: "🏴",
+      questions: [
+        "Why were Caribbean islands important to Britain?",
+        "What challenges followed colonisation?",
+      ],
+    },
+    {
+      periodKey: "garifuna-exile",
+      year: "1797",
+      title: "Exile of the Garifuna",
+      text: "Many Garifuna people were forcibly removed from Saint Vincent and relocated to Central America, where their culture survives today.",
+      emoji: "🚶",
+      questions: [
+        "How might forced migration affect communities?",
+        "Why is cultural preservation important?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major social and economic change.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "What challenges remained?",
+      ],
+    },
+    {
+      periodKey: "self-government",
+      year: "1969",
+      title: "Associated Statehood",
+      text: "Saint Vincent gained greater control over its internal affairs while moving toward independence.",
+      emoji: "📜",
+      questions: [
+        "Why might independence happen gradually?",
+        "What responsibilities come with self-government?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1979",
+      title: "Independence",
+      text: "Saint Vincent and the Grenadines became an independent nation on 27 October 1979.",
+      emoji: "🇻🇨",
+      questions: [
+        "Why is independence important?",
+        "How do countries build identity?",
+      ],
+    },
+    {
+      periodKey: "la-soufriere",
+      year: "2021",
+      title: "La Soufrière Erupts",
+      text: "The La Soufrière volcano erupted, causing evacuations and reminding the world of the power of the island's natural environment.",
+      emoji: "🌋",
+      questions: [
+        "How can volcanoes affect communities?",
+        "Why is disaster planning important?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to the Grenadines, culture, music, sport, and community life.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Saint Vincent and the Grenadines history?",
+    },
+  ],
+
+  "trinidad-and-tobago": [
+    {
+      periodKey: "indigenous-peoples",
+      year: "Before 1498",
+      title: "Indigenous Peoples",
+      text: "Before European arrival, Trinidad and Tobago were home to Indigenous peoples including the Arawak and Carib communities.",
+      emoji: "🛶",
+      questions: [
+        "How did Indigenous peoples live in the Caribbean?",
+        "Why is Indigenous history important?",
+      ],
+    },
+    {
+      periodKey: "columbus-arrives",
+      year: "1498",
+      title: "Columbus Arrives",
+      text: "Christopher Columbus reached Trinidad during his third voyage to the Americas.",
+      emoji: "🚢",
+      questions: [
+        "Why were Europeans exploring the Caribbean?",
+        "How did European arrival affect Indigenous communities?",
+      ],
+    },
+    {
+      periodKey: "spanish-rule",
+      year: "1500s–1797",
+      title: "Spanish Rule",
+      text: "Trinidad remained under Spanish control for centuries, although settlement grew slowly compared with other Caribbean colonies.",
+      emoji: "⚔️",
+      questions: [
+        "Why did European powers compete for Caribbean islands?",
+        "How did colonisation affect local communities?",
+      ],
+    },
+    {
+      periodKey: "british-control",
+      year: "1797",
+      title: "Britain Takes Control",
+      text: "Britain captured Trinidad from Spain and later formally gained control through international agreements.",
+      emoji: "🏴",
+      questions: [
+        "Why was Trinidad valuable to Britain?",
+        "How can control of territories change between countries?",
+      ],
+    },
+    {
+      periodKey: "plantations",
+      year: "1700s–1800s",
+      title: "Plantations and Enslavement",
+      text: "Plantation agriculture expanded and relied heavily on enslaved African labour.",
+      emoji: "🌾",
+      questions: [
+        "Why were plantations important to colonial economies?",
+        "Who benefited and who suffered?",
+      ],
+    },
+    {
+      periodKey: "emancipation",
+      year: "1834",
+      title: "Emancipation",
+      text: "Slavery was abolished across the British Empire, bringing major social changes to Trinidad and Tobago.",
+      emoji: "🕊️",
+      questions: [
+        "What changed after emancipation?",
+        "Why is freedom an important historical theme?",
+      ],
+    },
+    {
+      periodKey: "arrival-indentured-workers",
+      year: "1845",
+      title: "Arrival of Indentured Workers",
+      text: "Workers from India arrived to help meet labour demands after emancipation, shaping Trinidad and Tobago's diverse culture.",
+      emoji: "🌏",
+      questions: [
+        "How can migration influence culture?",
+        "Why is Trinidad and Tobago known for diversity?",
+      ],
+    },
+    {
+      periodKey: "carnival-growth",
+      year: "1800s–1900s",
+      title: "Carnival Develops",
+      text: "Carnival grew into one of the country's most famous cultural celebrations, blending African, European, and Caribbean traditions.",
+      emoji: "🎭",
+      questions: [
+        "Why is Carnival important?",
+        "How can celebrations preserve culture?",
+      ],
+    },
+    {
+      periodKey: "oil-industry",
+      year: "1908",
+      title: "Oil Industry Expands",
+      text: "The discovery and development of oil helped transform Trinidad and Tobago's economy.",
+      emoji: "🛢️",
+      questions: [
+        "How can natural resources affect a country?",
+        "What are the benefits and challenges of oil industries?",
+      ],
+    },
+    {
+      periodKey: "independence",
+      year: "1962",
+      title: "Independence",
+      text: "Trinidad and Tobago became an independent nation on 31 August 1962.",
+      emoji: "🇹🇹",
+      questions: [
+        "Why is independence important?",
+        "How do countries develop national identity?",
+      ],
+    },
+    {
+      periodKey: "republic",
+      year: "1976",
+      title: "Becoming a Republic",
+      text: "Trinidad and Tobago became a republic and established a new constitutional system.",
+      emoji: "🏛️",
+      questions: [
+        "What is a republic?",
+        "Why do countries change their systems of government?",
+      ],
+    },
+    {
+      periodKey: "research-gap",
+      year: "Research Gap",
+      title: "What did we miss?",
+      text: "There are many more stories connected to steelpan music, cricket, Carnival characters, and national heroes.",
+      emoji: "❓",
+      isGap: true,
+      prompt:
+        "Can you research and add another important event from Trinidad and Tobago's history?",
     },
   ],
 };
