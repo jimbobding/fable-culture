@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 import Link from "next/link";
 import { caribbeanCountries } from "@/data/caribbean/caribbeanCountries";
@@ -13,6 +14,7 @@ export default async function CaribbeanPage() {
   const approvedResources = await getApprovedResources("caribbean");
 
   const allResources = [...caribbeanDiscoveries, ...approvedResources];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#e0f7fa] via-[#f8fafc] to-[#fff7ed] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 py-10 space-y-28">
