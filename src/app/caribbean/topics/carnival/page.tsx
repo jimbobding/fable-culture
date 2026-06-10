@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { carnivalCharacters } from "@/data/caribbean/carnivalCharacters";
 import { carnivalImagePath } from "@/data/caribbean/assets";
+import CreateYourLook from "@/components/shared/games/CreateYourLook";
+import { carnivalLookData } from "@/data/caribbean/createYourLook/carnival";
 
 export default function CarnivalPage() {
   return (
@@ -163,6 +165,8 @@ export default function CarnivalPage() {
             />
           </div>
         </section>
+
+        <CreateYourLook {...carnivalLookData} />
 
         {/* CHARACTERS */}
         <section className="space-y-26 pt-10">
