@@ -46,26 +46,33 @@ const continents = [
 
 const upcomingEvents = [
   {
-    start: "2026-05-12",
-    end: "2026-05-12",
-    title: "💙 International Nurses Day",
+    start: "2026-06-18",
+    end: "2026-06-18",
+    title: "🧺 International Picnic Day",
     color: "bg-purple-100 border-purple-300",
-    text: "International Nurses Day is celebrated on 12th May and recognises the important work that nurses do every day. Nurses care for people who are unwell, support families, and help keep communities healthy. Their role requires skill, patience, and compassion, and they are a vital part of the healthcare system. This day is a chance to say thank you and to learn more about how nurses make a difference in people’s lives. 💙",
+    text: "International Picnic Day is celebrated on 18th June and encourages people to enjoy the outdoors with family, friends, and their communities. Picnics have been a popular way to relax and socialise for centuries, bringing people together to share food, games, and conversation in parks, gardens, and green spaces. Spending time outdoors can improve wellbeing, encourage physical activity, and help people appreciate the natural world. International Picnic Day is a great opportunity to enjoy fresh air, connect with others, and make happy memories. 🌳🧺☀️",
+  },
+  {
+    start: "2026-06-23",
+    end: "2026-06-23",
+    title: "💗 National Pink Day",
+    color: "bg-red-100 border-red-300",
+    text: "National Pink Day is celebrated on 23rd June and recognises one of the world's most popular and recognisable colours. Pink is often associated with kindness, compassion, friendship, and positivity. The day encourages people to wear pink, take part in fun activities, and learn about the different meanings colours can have across cultures and communities. It is a light-hearted celebration that brings colour, creativity, and positivity to everyday life. 💗🎨🌸",
   },
 
   {
-    start: "2026-05-20",
-    end: "2026-05-20",
-    title: "🐝 World Bee Day",
+    start: "2026-06-25",
+    end: "2026-06-25",
+    title: "🌟 International Be You Day",
     color: "bg-green-100 border-green-300",
-    text: "World Bee Day is celebrated on 20th May and helps us learn how important bees are to our planet. Bees play a huge role in pollinating plants, which means they help grow much of the food we eat, including fruits and vegetables. Without bees, our food supply would be very different. This day also reminds us that bee populations are under threat from pollution, pesticides, and habitat loss. We can help by planting flowers, protecting green spaces, and being mindful of the environment. 🌸🐝🍯",
+    text: "International Be You Day is celebrated on 25th June and encourages people to embrace what makes them unique. The day promotes self-confidence, individuality, and the importance of being true to yourself. Everyone has different talents, interests, backgrounds, and experiences that make them special. By celebrating our differences and respecting those of others, we can build stronger, more inclusive communities where everyone feels valued and accepted. 🌟💙😊",
   },
   {
-    start: "2026-05-11",
-    end: "2026-05-17",
-    title: " mental health awareness week",
-    color: "bg-red-100 border-red-300",
-    text: "Mental Health Awareness Week is a time to focus on our emotional wellbeing and how we take care of our minds. It encourages people to talk openly about how they feel, support one another, and learn ways to manage stress. Looking after mental health is just as important as looking after physical health, and small actions like talking to a friend, getting outside, or taking time to relax can make a big difference. 💚",
+    start: "2026-06-30",
+    end: "2026-06-30",
+    title: "☄️ International Asteroid Day",
+    color: "bg-gray-100 border-gray-300",
+    text: "International Asteroid Day is celebrated on 30th June and raises awareness about asteroids and their importance in our solar system. The day marks the anniversary of the 1908 Tunguska event, the largest asteroid impact recorded in modern history. Scientists study asteroids to learn more about how our solar system formed and to help identify objects that may one day come close to Earth. International Asteroid Day inspires curiosity about space, science, and the ongoing exploration of our universe. ☄️🌍🚀",
   },
 ];
 
@@ -170,24 +177,19 @@ export default function LandingPage() {
               Special Month
             </p>
             <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
-              🎉 David Attenborough – 100th Birthday
+              🌈 Pride Month
             </h3>
             <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
-              In 2026, Sir David Attenborough celebrates his 100th birthday.
-              Born in London in 1926, he became one of Britain’s most famous
-              broadcasters, biologists, and natural historians. For over 70
-              years, he has created groundbreaking wildlife documentaries that
-              have helped people explore jungles, oceans, deserts, and frozen
-              landscapes from all around the world. Programmes such as Planet
-              Earth and Blue Planet inspired millions of viewers to learn more
-              about animals, habitats, and conservation. David Attenborough is
-              also well known for raising awareness about climate change,
-              pollution, and protecting endangered species. His calm
-              storytelling and passion for nature have encouraged generations of
-              people to care more about the environment and the future of our
-              planet. 🌍🐢🦋
+              Pride Month is celebrated throughout June and recognises the
+              history, achievements, and contributions of LGBTQ+ people around
+              the world. It is a time to promote equality, respect, and
+              inclusion while celebrating the diversity that strengthens our
+              communities. Pride Month encourages people to learn about
+              different experiences and identities, support one another, and
+              create environments where everyone feels safe, valued, and able to
+              be themselves. 🌈🤝💜
             </p>
-            <p className="mt-3 text-sm font-medium text-amber-800">8th May</p>
+            <p className="mt-3 text-sm font-medium text-amber-800">June</p>
           </div>
         </div>
 
