@@ -26,6 +26,7 @@ export default function StudentDiscoveries({
   title = "🌍 Student Discoveries",
   description = "Help expand Fable Culture by finding useful websites, videos, museums, music, recipes, and educational resources connected to this region.",
 }: Props) {
+  const visibleItems = items.filter((item) => item.href !== "#");
   return (
     <section className="mx-auto max-w-4xl space-y-20 py-8 text-center">
       <div className="space-y-6">
@@ -50,7 +51,7 @@ export default function StudentDiscoveries({
       </div>
 
       <div className="space-y-10 text-center">
-        {items.map((item) => {
+        {visibleItems.map((item) => {
           const isPlaceholder = item.href === "#";
 
           const cardClasses = `

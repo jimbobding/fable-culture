@@ -44,12 +44,16 @@ export default function Timeline({ items, theme, region, country }: Props) {
 
   useEffect(() => {
     async function fetchApproved() {
-      const q = query(
-        collection(db, "timelineSubmissions"),
+      const filters = [
         where("status", "==", "approved"),
         where("region", "==", region),
-        where("country", "==", country),
-      );
+      ];
+
+      if (country) {
+        filters.push(where("country", "==", country));
+      }
+
+      const q = query(collection(db, "timelineSubmissions"), ...filters);
 
       const snapshot = await getDocs(q);
 
@@ -84,6 +88,7 @@ export default function Timeline({ items, theme, region, country }: Props) {
       <ul className="space-y-14 md:space-y-20">
         {items.map((item, index) => {
           const isLeft = index % 2 === 0;
+          const currentPeriodKey = item.periodKey ?? `timeline-item-${index}`;
 
           return (
             <li key={index} className="relative mb-6">
@@ -154,7 +159,7 @@ export default function Timeline({ items, theme, region, country }: Props) {
                   {/* STUDENT IDEAS */}
                   {(() => {
                     const ideasForThisItem = approvedIdeas.filter(
-                      (idea) => idea.periodKey === item.periodKey,
+                      (idea) => idea.periodKey === currentPeriodKey,
                     );
 
                     if (ideasForThisItem.length === 0) return null;
@@ -230,8 +235,8 @@ export default function Timeline({ items, theme, region, country }: Props) {
                     {activeFormIndex === index && (
                       <TimelineSubmissionForm
                         region={region}
-                        country={country}
-                        periodKey={item.periodKey}
+                        country={country ?? ""}
+                        periodKey={currentPeriodKey}
                         onSuccess={() => setActiveFormIndex(null)}
                       />
                     )}

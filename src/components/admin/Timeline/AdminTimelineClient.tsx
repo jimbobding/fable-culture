@@ -180,7 +180,7 @@ export default function AdminTimelineClient({ submissions }: Props) {
           </div>
         ) : (
           <div className="grid gap-6">
-            {pending.map((item) => (
+            {approved.map((item) => (
               <AdminTimelineCard key={item.id} {...item} />
             ))}
           </div>

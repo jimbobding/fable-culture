@@ -31,20 +31,22 @@ export default function TimelineSubmissionForm({
     setIsSubmitting(true);
 
     try {
-      await addDoc(collection(db, "timelineSubmissions"), {
+      const submissionData = {
         studentName: studentName.trim(),
         title: title.trim(),
         explanation: explanation.trim(),
         region,
-        country,
-        periodKey,
+        country: country ?? "",
+        periodKey: periodKey ?? "",
         status: "pending",
-
         submittedAt: serverTimestamp(),
-      });
+      };
+
+      await addDoc(collection(db, "timelineSubmissions"), submissionData);
 
       setTitle("");
       setExplanation("");
+      setStudentName("");
       setSuccess(true);
 
       setTimeout(() => {
