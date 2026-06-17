@@ -13,27 +13,31 @@ export const carnivalLookData = {
 
   baseOptions: [
     {
-      id: "mask-base",
-      label: "Carnival Mask",
+      id: "colourful-full-mask",
+      label: "Colourful Mask",
       emoji: "🎭",
-      asset: "/images/games/carnival/mask-base.png",
-      description: "A traditional Carnival mask.",
+      asset: "/images/games/carnival/mask/colourful-full-mask.png",
+      description: "A colourful Carnival mask.",
+      defaultPosition: { x: 0, y: -10 },
+      layer: 5,
     },
-
+    {
+      id: "mask-base1",
+      label: "Classic Mask",
+      emoji: "🎭",
+      asset: "/images/games/carnival/mask/mask-base1.png",
+      description: "A classic Carnival mask.",
+      defaultPosition: { x: 0, y: -10 },
+      layer: 5,
+    },
     {
       id: "mask-gold",
-      label: "Golden Mask",
+      label: "Gold Mask",
       emoji: "🎭",
-      asset: "/images/games/carnival/mask-gold.webp",
-      description: "A bright and colourful celebration mask.",
-    },
-
-    {
-      id: "mask-scary",
-      label: "Traditional Character Mask",
-      emoji: "🎭",
-      asset: "/images/games/carnival/mask-scary.png",
-      description: "Inspired by traditional Carnival characters.",
+      asset: "/images/games/carnival/mask/mask-gold.webp",
+      description: "A bright gold Carnival mask.",
+      defaultPosition: { x: 0, y: -10 },
+      layer: 5,
     },
   ],
 
@@ -42,66 +46,46 @@ export const carnivalLookData = {
       id: "red-feathers",
       label: "Red Feathers",
       emoji: "🪶",
-      asset: "/images/games/carnival/red-feathers.webp",
+      asset: "/images/games/carnival/accessory/red-feathers.webp",
       description: "Bright feathers used in Carnival costumes.",
-      defaultPosition: {
-        x: 40,
-        y: -20,
-      },
+      defaultPosition: { x: 40, y: -20 },
       layer: 3,
     },
-
     {
       id: "colourful-feather",
       label: "Colourful Feather",
       emoji: "🦚",
-      asset: "/images/games/carnival/coourful-feather.webp",
+      asset: "/images/games/carnival/accessory/colourful-feather.webp",
       description: "A colourful Carnival decoration.",
-      defaultPosition: {
-        x: -40,
-        y: -20,
-      },
+      defaultPosition: { x: -40, y: -20 },
       layer: 3,
     },
-
     {
       id: "colourful-crown",
       label: "Colourful Crown",
       emoji: "👑",
-      asset: "/images/games/carnival/colourful-crown.webp",
+      asset: "/images/games/carnival/accessory/colourful-crown.webp",
       description: "A vibrant Carnival crown.",
-      defaultPosition: {
-        x: 0,
-        y: -60,
-      },
+      defaultPosition: { x: 0, y: -60 },
       layer: 4,
     },
   ],
 
-  colourOptions: [
+  backgroundOptions: [
     {
-      id: "gold",
-      label: "Gold",
-      emoji: "🟡",
-      description: "Celebration and energy.",
+      id: "parade",
+      label: "Carnival Parade",
+      background: "linear-gradient(135deg, #f97316, #ec4899, #8b5cf6)",
     },
     {
-      id: "red",
-      label: "Red",
-      emoji: "🔴",
-      description: "Passion and excitement.",
+      id: "beach",
+      label: "Beach",
+      background: "linear-gradient(135deg, #38bdf8, #fef3c7)",
     },
     {
-      id: "green",
-      label: "Green",
-      emoji: "🟢",
-      description: "Nature and growth.",
-    },
-    {
-      id: "purple",
-      label: "Purple",
-      emoji: "🟣",
-      description: "Creativity and imagination.",
+      id: "stage",
+      label: "Festival Stage",
+      background: "linear-gradient(135deg, #111827, #7c3aed)",
     },
   ],
 

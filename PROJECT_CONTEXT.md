@@ -1569,3 +1569,79 @@ Collection:
 ```txt
 resourceSubmissions
 ```
+
+# Create Your Look System
+
+## Purpose
+
+Create Your Look is a reusable interactive game system for Fable Culture.
+
+The aim is for students to explore cultural clothing, costumes, masks, accessories, traditions, and celebrations by creating their own designs using drag-and-drop elements.
+
+Rather than building a separate game for each country or region, the system should be powered by datasets and images so the same game engine can be reused across the website.
+
+Examples:
+
+- Caribbean Carnival Mask Creator
+- Australian Festival Outfit Creator
+- African Traditional Dress Creator
+- South Asian Celebration Creator
+
+The game should be educational while remaining fun and creative.
+
+## Current Structure
+
+create-your-look/
+
+- CreateYourLook.tsx
+- PreviewCanvas.tsx
+- OptionGroup.tsx
+- MultiOptionGroup.tsx
+- types.ts
+
+## Features Working
+
+- Base selection
+- Multiple accessory selection
+- Drag and drop positioning
+- Resize accessories
+- Rotate accessories
+- Layer ordering (Forward / Back)
+- Randomise design
+- Reset design
+
+## Features Removed
+
+- Colour Energy system
+
+This was removed because it added complexity without meaningfully improving the experience.
+
+## Export Status
+
+Save My Look was attempted using html2canvas.
+
+The feature currently experiences colour parsing issues caused by Tailwind CSS gradients using lab/oklab colour functions.
+
+Export functionality is currently paused until a more reliable solution is implemented.
+
+## Long-Term Vision
+
+The final system should support:
+
+- Data-driven content
+- Country-specific assets
+- Reusable architecture
+- Student creativity
+- Cultural learning
+
+Future features include:
+
+- Background selection
+- Uploading a photo of the user
+- Placing masks/costumes over uploaded photos
+- Saving creations
+- Submitting creations to Firebase
+- Admin approval workflow
+- Public gallery of approved designs
+
+The system should become a reusable Fable Culture game engine rather than a one-off Caribbean feature.
