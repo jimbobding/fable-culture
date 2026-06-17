@@ -63,12 +63,11 @@ export default function PreviewCanvas({
         )}
 
         {userPhoto && (
-          <Image
+          <img
             src={userPhoto}
             alt="Uploaded user"
-            fill
-            className="absolute z-[5] object-cover"
-            unoptimized
+            className="absolute inset-0 z-[5] h-full w-full object-cover"
+            draggable={false}
           />
         )}
 
