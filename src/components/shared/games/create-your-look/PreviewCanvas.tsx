@@ -46,14 +46,15 @@ export default function PreviewCanvas({
         moveDrag(touch.clientX, touch.clientY);
       }}
       onTouchEnd={endDrag}
-      className="relative mt-4 flex min-h-[280px] touch-none items-center justify-center overflow-hidden rounded-2xl border border-white bg-gradient-to-br from-white via-orange-50 to-yellow-100 p-2 shadow-inner sm:min-h-[420px] sm:p-8 lg:min-h-[560px]"
+      className="relative mt-4 flex min-h-[370px] touch-none items-center justify-center overflow-hidden rounded-2xl border border-white bg-gradient-to-br from-white via-orange-50 to-yellow-100 p-2 shadow-inner sm:min-h-[420px] sm:p-8 lg:min-h-[560px]"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,146,60,0.25),transparent_45%)]" />
 
       <div
         ref={previewRef}
-        className="relative flex h-60 w-60 items-center justify-center overflow-hidden rounded-full shadow-inner sm:h-96 sm:w-96 lg:h-[34rem] lg:w-[34rem]"
+        className="relative flex h-[22rem] w-full max-w-[22rem] items-center justify-center overflow-hidden rounded-[1.5rem] shadow-inner sm:h-96 sm:w-96 sm:rounded-full lg:h-[34rem] lg:w-[34rem]"
       >
+        {" "}
         {background && (
           <div
             className="absolute inset-0 z-0"
@@ -61,7 +62,6 @@ export default function PreviewCanvas({
             aria-label={background.label}
           />
         )}
-
         {userPhoto && (
           <img
             src={userPhoto}
@@ -70,7 +70,6 @@ export default function PreviewCanvas({
             draggable={false}
           />
         )}
-
         {base.asset ? (
           <Image
             src={base.asset}
@@ -83,7 +82,6 @@ export default function PreviewCanvas({
         ) : (
           <span className="absolute z-10 text-9xl">{base.emoji}</span>
         )}
-
         {sortedAccessories.map((item, index) => (
           <span
             key={item.id}
