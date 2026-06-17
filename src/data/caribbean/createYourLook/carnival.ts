@@ -69,6 +69,44 @@ export const carnivalLookData = {
       defaultPosition: { x: 0, y: -60 },
       layer: 4,
     },
+    {
+      id: "face-mask",
+      label: "Face Mask",
+      emoji: "🎭",
+      asset: "/images/games/carnival/accessory/face-mask.png",
+      description: "A face mask that adds mystery and performance to the look.",
+      defaultPosition: { x: 0, y: -5 },
+      layer: 6,
+    },
+    {
+      id: "hat-bandana",
+      label: "Hat Bandana",
+      emoji: "🧢",
+      asset: "/images/games/carnival/accessory/hat-bandana.png",
+      description:
+        "A bold headpiece inspired by festival style and celebration.",
+      defaultPosition: { x: 0, y: -95 },
+      layer: 7,
+    },
+    {
+      id: "green-glasses",
+      label: "Green Glasses",
+      emoji: "🕶️",
+      asset: "/images/games/carnival/accessory/green-glasses.png",
+      description: "Bright glasses that bring colour, fun and personality.",
+      defaultPosition: { x: 0, y: -10 },
+      layer: 8,
+    },
+    {
+      id: "peacock-feathers",
+      label: "Peacock Feathers",
+      emoji: "🦚",
+      asset: "/images/games/carnival/accessory/peacock-feathers.png",
+      description:
+        "Large peacock-style feathers inspired by colour and movement.",
+      defaultPosition: { x: 0, y: -90 },
+      layer: 2,
+    },
   ],
 
   backgroundOptions: [
