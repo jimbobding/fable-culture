@@ -281,6 +281,42 @@ export default async function CaribbeanPage() {
           </div>
         </section>
 
+        {/* ================= CARNIVAL MASK ACTIVITY ================= */}
+        <section className="relative py-12">
+          <div className="absolute left-[10%] top-0 text-[8rem] opacity-10">
+            🎭
+          </div>
+
+          <div className="absolute right-[10%] bottom-0 text-[8rem] opacity-10">
+            🎨
+          </div>
+
+          <div className="mx-auto max-w-5xl space-y-8 text-center">
+            <p className="text-sm font-black uppercase tracking-[0.5em] text-pink-600">
+              New Activity
+            </p>
+
+            <h2 className="text-5xl font-black leading-none md:text-7xl">
+              <span className="text-orange-500">DESIGN</span>{" "}
+              <span className="text-pink-500">YOUR</span>{" "}
+              <span className="text-purple-600">MASK</span>
+            </h2>
+
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600 md:text-xl">
+              Create a colourful Carnival mask to wear at the Fable House Garden
+              Party. Explore Caribbean Carnival traditions, express your
+              creativity and bring your design to life.
+            </p>
+
+            <Link
+              href="/caribbean/topics/carnival/mask-workshop"
+              className="inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 px-8 py-4 text-lg font-black text-white shadow-2xl transition-all duration-300 hover:scale-105"
+            >
+              🎭 Start Designing
+            </Link>
+          </div>
+        </section>
+
         {/* ================= MAP ================= */}
         <section className="space-y-10 relative">
           <div className="text-center space-y-4">

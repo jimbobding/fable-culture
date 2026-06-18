@@ -66,8 +66,30 @@ export default function AdminPage() {
               Review and approve student timeline ideas.
             </p>
           </Link>
-          <Link href="/admin/resources" className="...">
-            🌍 Resource Moderation
+          <Link
+            href="/admin/resources"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <h2 className="text-xl font-semibold text-slate-900">
+              Resource Moderation
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Review and approve student resources.
+            </p>
+          </Link>
+
+          <Link
+            href="/admin/create-your-look"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <h2 className="text-xl font-semibold text-slate-900">
+              Create Your Look
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Review and approve submitted Carnival looks.
+            </p>
           </Link>
         </div>
       </div>

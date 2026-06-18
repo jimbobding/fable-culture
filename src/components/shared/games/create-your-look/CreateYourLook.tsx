@@ -7,6 +7,7 @@ import MultiOptionGroup from "./MultiOptionGroup";
 import PreviewCanvas from "./PreviewCanvas";
 import AccessoryControls from "./AccessoryControls";
 import { toPng } from "html-to-image";
+import { submitCreateYourLook } from "@/app/lib/createYourLookSubmissions";
 
 type Props = {
   title: string;
@@ -39,6 +40,7 @@ export default function CreateYourLook({
   backgroundOptions = [],
 }: Props) {
   const previewRef = useRef<HTMLDivElement>(null);
+  const [creatorName, setCreatorName] = useState("");
 
   const [base, setBase] = useState(baseOptions[0]);
   const [background, setBackground] = useState<LookBackground | null>(
@@ -328,6 +330,31 @@ export default function CreateYourLook({
     link.href = dataUrl;
     link.click();
   };
+  const submitLook = async () => {
+    if (!previewRef.current) return;
+
+    try {
+      const dataUrl = await toPng(previewRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
+      });
+
+      await submitCreateYourLook({
+        imageDataUrl: dataUrl,
+        activity: "carnival",
+        creatorName,
+      });
+      setCreatorName("");
+
+      alert(
+        "Your Carnival look has been submitted and is waiting for approval.",
+      );
+    } catch (error) {
+      console.error(error);
+
+      alert("There was a problem submitting your creation. Please try again.");
+    }
+  };
 
   return (
     <section
@@ -418,6 +445,26 @@ export default function CreateYourLook({
                   className="mt-4 w-full rounded-xl bg-purple-700 px-5 py-3 font-black text-white transition hover:bg-purple-800"
                 >
                   Save My Look
+                </button>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-700">
+                    Your Name
+                  </label>
+
+                  <input
+                    type="text"
+                    value={creatorName}
+                    onChange={(e) => setCreatorName(e.target.value)}
+                    placeholder="Enter your name"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={submitLook}
+                  className="mt-3 w-full rounded-xl bg-orange-600 px-5 py-3 font-black text-white transition hover:bg-orange-700"
+                >
+                  Submit To Gallery
                 </button>
 
                 <p className="mt-1 text-sm text-stone-600">
