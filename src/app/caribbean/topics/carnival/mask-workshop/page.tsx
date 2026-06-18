@@ -149,12 +149,29 @@ export default function CarnivalMaskWorkshopPage() {
           </Link>
         </section>
       </div>
-      <section className="flex justify-center py-6">
+      <section className="flex justify-center py-8">
         <Link
           href="/caribbean"
-          className="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-bold text-purple-700 shadow-lg transition hover:bg-purple-50 hover:shadow-xl"
+          className="
+      inline-flex
+      items-center
+      rounded-full
+      bg-gradient-to-r
+      from-orange-500
+      via-pink-500
+      to-purple-600
+      px-8
+      py-4
+      text-lg
+      font-black
+      text-white
+      shadow-2xl
+      transition-all
+      duration-300
+      hover:scale-105
+    "
         >
-          ← Back to Caribbean
+          🌴 Back to Caribbean
         </Link>
       </section>
     </main>
