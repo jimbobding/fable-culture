@@ -1,6 +1,6 @@
 import type { TimetableEntry } from "../staffTimetable";
 
-export const WednesdayEntries: Record<string, TimetableEntry[]> = {
+export const wednesdayEntries: Record<string, TimetableEntry[]> = {
   ben: [
     {
       day: "Wednesday",

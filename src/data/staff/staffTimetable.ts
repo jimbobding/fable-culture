@@ -1,6 +1,6 @@
 import { mondayEntries } from "./timetableDays/monday";
 import { tuesdayEntries } from "./timetableDays/tuesday";
-import { WednesdayEntries } from "./timetableDays/wednesday";
+import { wednesdayEntries } from "./timetableDays/wednesday";
 import { thursdayEntries } from "./timetableDays/thursday";
 import { fridayEntries } from "./timetableDays/friday";
 
@@ -65,7 +65,7 @@ const allEntriesByStaff: Record<string, TimetableEntry[]> = {};
 for (const dayEntries of [
   mondayEntries,
   tuesdayEntries,
-  WednesdayEntries,
+  wednesdayEntries,
   thursdayEntries,
   fridayEntries,
 ]) {
