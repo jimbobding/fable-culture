@@ -88,6 +88,15 @@ export const tuesdayEntries: Record<string, TimetableEntry[]> = {
       activity: "Jay",
       type: "student",
     },
+    {
+      day: "Tuesday",
+      start: "11:40",
+      end: "12:20",
+      activity: "PD Cover",
+      type: "cover",
+      coveringFor: "PD",
+      coveringForActivity: "Jay",
+    },
   ],
 
   "claire-t": [
@@ -337,6 +346,23 @@ export const tuesdayEntries: Record<string, TimetableEntry[]> = {
       end: "15:00",
       activity: "Clay Club",
       type: "other",
+    },
+    {
+      day: "Tuesday",
+      start: "12:00",
+      end: "12:20",
+      activity: "LBK Cover",
+      type: "cover",
+      coveringFor: "LBK",
+      coveringForActivity: "Jay",
+    },
+    {
+      day: "Tuesday",
+      start: "12:20",
+      end: "12:40",
+      activity: "NM Cover",
+      type: "cover",
+      coveringFor: "NM",
     },
   ],
 
@@ -608,6 +634,25 @@ export const tuesdayEntries: Record<string, TimetableEntry[]> = {
       end: "16:30",
       activity: "RS",
       type: "role-specific",
+    },
+
+    {
+      day: "Tuesday",
+      start: "12:20",
+      end: "12:40",
+      activity: "LH Cover",
+      type: "cover",
+      coveringFor: "LH",
+      coveringForActivity: "Unknown",
+    },
+    {
+      day: "Tuesday",
+      start: "12:40",
+      end: "13:00",
+      activity: "NG Cover",
+      type: "cover",
+      coveringFor: "NG",
+      coveringForActivity: "Unknown",
     },
   ],
 };

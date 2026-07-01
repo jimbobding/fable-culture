@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-// import { staffTimetables } from "@/data/staff/staffTimetableVerified";
-import { staffTimetables } from "@/data/staff/staffTimetable";
+import { staffTimetables } from "@/data/staff/timetable/staffTimetable";
+import Link from "next/link";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] as const;
 
@@ -42,6 +42,8 @@ export default function StaffTimetablePage() {
     staffTimetables[0]?.id ?? "",
   );
 
+  const [showCoversForDay, setShowCoversForDay] = useState<string | null>(null);
+
   const selectedStaff = staffTimetables.find(
     (staff) => staff.id === selectedStaffId,
   );
@@ -55,6 +57,14 @@ export default function StaffTimetablePage() {
           <p className="mt-2 text-slate-600">
             View staff sessions, breaks and cover duties.
           </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/staff/timetabling/covers"
+              className="rounded-xl bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700"
+            >
+              View Weekly Covers
+            </Link>
+          </div>
 
           <select
             value={selectedStaffId}
@@ -81,9 +91,60 @@ export default function StaffTimetablePage() {
                   (entry) => entry.day === day,
                 );
 
+                const coverEntries = entries.filter(
+                  (entry) => entry.type === "cover",
+                );
+
                 return (
                   <div key={day} className="rounded-3xl bg-white p-6 shadow-sm">
-                    <h3 className="mb-4 text-xl font-bold">{day}</h3>
+                    <div className="mb-4 flex items-center justify-between">
+                      <h3 className="text-xl font-bold">{day}</h3>
+
+                      <button
+                        onClick={() =>
+                          setShowCoversForDay(
+                            showCoversForDay === day ? null : day,
+                          )
+                        }
+                        className="rounded-lg border border-slate-300 px-3 py-1 text-sm hover:bg-slate-50"
+                      >
+                        {showCoversForDay === day
+                          ? "Hide Covers"
+                          : "View Covers"}
+                      </button>
+                    </div>
+
+                    {showCoversForDay === day && (
+                      <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+                        <h4 className="mb-2 font-semibold">Cover Duties</h4>
+
+                        {coverEntries.length === 0 ? (
+                          <p className="text-sm text-slate-500">
+                            No cover duties recorded.
+                          </p>
+                        ) : (
+                          <div className="space-y-2">
+                            {coverEntries.map((entry, index) => (
+                              <div
+                                key={`cover-${index}`}
+                                className="rounded-lg border bg-white p-3"
+                              >
+                                <div className="font-medium">
+                                  {entry.start} - {entry.end}
+                                </div>
+
+                                <div className="text-sm">
+                                  Covering:{" "}
+                                  {"coveringFor" in entry
+                                    ? entry.coveringFor
+                                    : entry.activity}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                     {entries.length === 0 ? (
                       <p className="text-slate-500">No timetable entries.</p>

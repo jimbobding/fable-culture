@@ -29,6 +29,8 @@ export type TimetableEntry = {
   activity: string;
   type: TimetableEntryType;
   notes?: string;
+  coveringFor?: string;
+  coveringForActivity?: string;
 };
 
 export type StaffTimetable = {
