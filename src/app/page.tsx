@@ -192,7 +192,7 @@ export default function LandingPage() {
               changes that reduce plastic waste—not just during July, but as
               long-term sustainable habits.
             </p>
-            <p className="mt-3 text-sm font-medium text-amber-800">June</p>
+            <p className="mt-3 text-sm font-medium text-amber-800">July</p>
           </div>
         </div>
 
