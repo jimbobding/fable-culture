@@ -347,23 +347,6 @@ export const tuesdayEntries: Record<string, TimetableEntry[]> = {
       activity: "Clay Club",
       type: "other",
     },
-    {
-      day: "Tuesday",
-      start: "12:00",
-      end: "12:20",
-      activity: "LBK Cover",
-      type: "cover",
-      coveringFor: "LBK",
-      coveringForActivity: "Jay",
-    },
-    {
-      day: "Tuesday",
-      start: "12:20",
-      end: "12:40",
-      activity: "NM Cover",
-      type: "cover",
-      coveringFor: "NM",
-    },
   ],
 
   laura: [

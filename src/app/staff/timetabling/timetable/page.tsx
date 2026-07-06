@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { staffTimetables } from "@/data/staff/timetable/staffTimetable";
 import Link from "next/link";
+import { staffTimetables } from "@/data/staff/timetable/staffTimetable";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] as const;
 
@@ -10,28 +10,20 @@ function getTypeColour(type: string) {
   switch (type) {
     case "student":
       return "bg-blue-50 border-blue-200";
-
     case "role-specific":
       return "bg-indigo-50 border-indigo-200";
-
     case "break":
       return "bg-yellow-50 border-yellow-200";
-
     case "cover":
       return "bg-green-50 border-green-200";
-
     case "available":
       return "bg-red-50 border-red-200";
-
     case "jobs":
       return "bg-purple-50 border-purple-200";
-
     case "wfh":
       return "bg-slate-100 border-slate-300";
-
     case "other":
       return "bg-pink-50 border-pink-200";
-
     default:
       return "bg-white border-slate-200";
   }
@@ -55,20 +47,31 @@ export default function StaffTimetablePage() {
           <h1 className="text-3xl font-bold">Staff Timetable</h1>
 
           <p className="mt-2 text-slate-600">
-            View staff sessions, breaks and cover duties.
+            View staff sessions, breaks and break cover duties.
           </p>
+
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/staff/timetabling/covers"
-              className="rounded-xl bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700"
+              href="/staff/timetabling"
+              className="rounded-xl bg-slate-900 px-4 py-2 font-semibold text-white"
             >
-              View Weekly Covers
+              Back to Timetabling
+            </Link>
+
+            <Link
+              href="/staff/timetabling/covers"
+              className="rounded-xl bg-green-600 px-4 py-2 font-semibold text-white"
+            >
+              View All Break Covers
             </Link>
           </div>
 
           <select
             value={selectedStaffId}
-            onChange={(e) => setSelectedStaffId(e.target.value)}
+            onChange={(e) => {
+              setSelectedStaffId(e.target.value);
+              setShowCoversForDay(null);
+            }}
             className="mt-6 w-full rounded-xl border border-slate-300 px-4 py-3"
           >
             {staffTimetables.map((staff) => (
@@ -97,7 +100,7 @@ export default function StaffTimetablePage() {
 
                 return (
                   <div key={day} className="rounded-3xl bg-white p-6 shadow-sm">
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <h3 className="text-xl font-bold">{day}</h3>
 
                       <button
@@ -106,39 +109,41 @@ export default function StaffTimetablePage() {
                             showCoversForDay === day ? null : day,
                           )
                         }
-                        className="rounded-lg border border-slate-300 px-3 py-1 text-sm hover:bg-slate-50"
+                        className="rounded-lg border border-slate-300 px-3 py-1 text-sm font-semibold hover:bg-slate-50"
                       >
                         {showCoversForDay === day
-                          ? "Hide Covers"
-                          : "View Covers"}
+                          ? "Hide My Break Covers"
+                          : "View My Break Covers"}
                       </button>
                     </div>
 
                     {showCoversForDay === day && (
-                      <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
-                        <h4 className="mb-2 font-semibold">Cover Duties</h4>
+                      <div className="mb-4 rounded-xl border border-green-200 bg-green-50 p-4">
+                        <h4 className="mb-2 font-semibold">
+                          {selectedStaff.name}’s Break Covers
+                        </h4>
 
                         {coverEntries.length === 0 ? (
-                          <p className="text-sm text-slate-500">
-                            No cover duties recorded.
+                          <p className="text-sm text-slate-600">
+                            No break covers for this staff member on {day}.
                           </p>
                         ) : (
                           <div className="space-y-2">
                             {coverEntries.map((entry, index) => (
                               <div
-                                key={`cover-${index}`}
-                                className="rounded-lg border bg-white p-3"
+                                key={`${entry.start}-${entry.end}-${index}`}
+                                className="rounded-lg border border-green-200 bg-white p-3"
                               >
-                                <div className="font-medium">
+                                <p className="font-semibold">
                                   {entry.start} - {entry.end}
-                                </div>
+                                </p>
 
-                                <div className="text-sm">
+                                <p className="text-sm text-slate-700">
                                   Covering:{" "}
-                                  {"coveringFor" in entry
-                                    ? entry.coveringFor
-                                    : entry.activity}
-                                </div>
+                                  <span className="font-semibold">
+                                    {entry.coveringFor ?? entry.activity}
+                                  </span>
+                                </p>
                               </div>
                             ))}
                           </div>
@@ -152,7 +157,7 @@ export default function StaffTimetablePage() {
                       <div className="space-y-3">
                         {entries.map((entry, index) => (
                           <div
-                            key={index}
+                            key={`${entry.day}-${entry.start}-${entry.end}-${index}`}
                             className={`rounded-2xl border p-4 ${getTypeColour(
                               entry.type,
                             )}`}
