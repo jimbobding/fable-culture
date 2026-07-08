@@ -79,7 +79,7 @@ const upcomingEvents = [
 
 export default function LandingPage() {
   const now = new Date();
-  const monthName = now.toLocaleString("default", { month: "long" });
+  const monthName = now.toLocaleString("en-GB", { month: "long" });
 
   const formatDateRange = (start: string, end: string) => {
     const startDate = new Date(start);
