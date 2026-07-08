@@ -13,11 +13,7 @@ export default function EuropeRegionPage() {
   const region = europeRegions[regionKey];
 
   // Always call useState at top level
-  const [heroImage] = useState(
-    region
-      ? region.images[Math.floor(Math.random() * region.images.length)]
-      : null
-  );
+  const [heroImage] = useState(region?.images?.[0] ?? null);
 
   if (!region) return <p>Region not found</p>;
 
