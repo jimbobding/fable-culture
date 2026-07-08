@@ -46,39 +46,40 @@ const continents = [
 
 const upcomingEvents = [
   {
-    start: "2026-06-18",
-    end: "2026-06-18",
-    title: "🧺 International Picnic Day",
+    start: "2026-07-01",
+    end: "2026-07-01",
+    title: "😂 International Joke Day",
     color: "bg-purple-100 border-purple-300",
-    text: "International Picnic Day is celebrated on 18th June and encourages people to enjoy the outdoors with family, friends, and their communities. Picnics have been a popular way to relax and socialise for centuries, bringing people together to share food, games, and conversation in parks, gardens, and green spaces. Spending time outdoors can improve wellbeing, encourage physical activity, and help people appreciate the natural world. International Picnic Day is a great opportunity to enjoy fresh air, connect with others, and make happy memories. 🌳🧺☀️",
+    text: "International Joke Day brightens the calendar every July 1, inviting everyone to share a laugh and appreciate the power of humour. Take time to tell your favourite joke, discover new comedic talent, and bring a smile to someone's face. 😄🎭",
   },
   {
-    start: "2026-06-23",
-    end: "2026-06-23",
-    title: "💗 National Pink Day",
+    start: "2026-07-02",
+    end: "2026-07-02",
+    title: "👽 World UFO Day",
     color: "bg-red-100 border-red-300",
-    text: "National Pink Day is celebrated on 23rd June and recognises one of the world's most popular and recognisable colours. Pink is often associated with kindness, compassion, friendship, and positivity. The day encourages people to wear pink, take part in fun activities, and learn about the different meanings colours can have across cultures and communities. It is a light-hearted celebration that brings colour, creativity, and positivity to everyday life. 💗🎨🌸",
+    text: `
+    <p><strong>July 2:</strong> Officially declared by the World UFO Day Organization, this date commemorates the anniversary of the infamous 1947 Roswell Incident in New Mexico. 🛸</p>
+
+    <p><strong>🔭 Sky Watching:</strong> Many groups and local astronomy clubs organize nighttime viewing parties to track the skies for unexplained phenomena.</p>
+
+    <p><strong>🎬 Host a Watch Party:</strong> Celebrate with extraterrestrial and sci-fi movies, or stream UFO and space-related documentaries.</p>
+
+    <p><strong>📚 Learn and Research:</strong> Explore the history of the Roswell Incident and discuss why people have different opinions about what happened. Learn how scientists investigate unusual events and the importance of using evidence when evaluating extraordinary claims.</p>
+  `,
   },
 
   {
-    start: "2026-06-25",
-    end: "2026-06-25",
+    start: "2026-07-14",
+    end: "2026-07-14",
     title: "🌟 International Be You Day",
     color: "bg-green-100 border-green-300",
-    text: "International Be You Day is celebrated on 25th June and encourages people to embrace what makes them unique. The day promotes self-confidence, individuality, and the importance of being true to yourself. Everyone has different talents, interests, backgrounds, and experiences that make them special. By celebrating our differences and respecting those of others, we can build stronger, more inclusive communities where everyone feels valued and accepted. 🌟💙😊",
-  },
-  {
-    start: "2026-06-30",
-    end: "2026-06-30",
-    title: "☄️ International Asteroid Day",
-    color: "bg-gray-100 border-gray-300",
-    text: "International Asteroid Day is celebrated on 30th June and raises awareness about asteroids and their importance in our solar system. The day marks the anniversary of the 1908 Tunguska event, the largest asteroid impact recorded in modern history. Scientists study asteroids to learn more about how our solar system formed and to help identify objects that may one day come close to Earth. International Asteroid Day inspires curiosity about space, science, and the ongoing exploration of our universe. ☄️🌍🚀",
+    text: "Shark & Ray Awareness Day is observed each year on 14 July to raise awareness of the important role sharks and rays play in maintaining healthy marine ecosystems. These species help keep ocean food chains balanced and contribute to the overall health of our seas.Many shark and ray species are threatened by overfishing, habitat loss, pollution, and climate change. The day highlights the need for conservation, sustainable fishing practices, and protecting marine habitats to help ensure these remarkable animals survive for future generations.",
   },
 ];
 
 export default function LandingPage() {
   const now = new Date();
-  const monthName = now.toLocaleString("default", { month: "long" });
+  const monthName = now.toLocaleString("en-GB", { month: "long" });
 
   const formatDateRange = (start: string, end: string) => {
     const startDate = new Date(start);
@@ -177,19 +178,21 @@ export default function LandingPage() {
               Special Month
             </p>
             <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
-              🌈 Pride Month
+              🌍♻️ Plastic Free July™
             </h3>
             <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
-              Pride Month is celebrated throughout June and recognises the
-              history, achievements, and contributions of LGBTQ+ people around
-              the world. It is a time to promote equality, respect, and
-              inclusion while celebrating the diversity that strengthens our
-              communities. Pride Month encourages people to learn about
-              different experiences and identities, support one another, and
-              create environments where everyone feels safe, valued, and able to
-              be themselves. 🌈🤝💜
+              Plastic Free July™ is a global environmental initiative that
+              encourages people to reduce their use of single-use plastics
+              throughout the month of July. The campaign raises awareness of the
+              impact plastic pollution has on our environment, wildlife, and
+              oceans while promoting practical, reusable alternatives. Since it
+              began, Plastic Free July™ has inspired over 170 million
+              participants in more than 190 countries. The aim is to help
+              individuals, schools, workplaces, and communities make simple
+              changes that reduce plastic waste—not just during July, but as
+              long-term sustainable habits.
             </p>
-            <p className="mt-3 text-sm font-medium text-amber-800">June</p>
+            <p className="mt-3 text-sm font-medium text-amber-800">July</p>
           </div>
         </div>
 
@@ -203,7 +206,12 @@ export default function LandingPage() {
                 {formatDateRange(event.start, event.end)}
               </p>
               <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
-              {event.text && <p className="mt-1 text-gray-600">{event.text}</p>}
+              {event.text && (
+                <div
+                  className="mt-2 text-gray-600 space-y-2"
+                  dangerouslySetInnerHTML={{ __html: event.text }}
+                />
+              )}
             </div>
           ))}
         </div>

@@ -25,9 +25,10 @@ export default function EuropeOverview() {
   const [regionImages] = useState(() => {
     return regionKeys.map((key) => {
       const region = europeRegions[key];
-      const randomImage =
-        region.images[Math.floor(Math.random() * region.images.length)];
-      return { key, image: randomImage };
+      return {
+        key,
+        image: region.images?.[0] ?? "/images/placeholder.jpg",
+      };
     });
   });
 
