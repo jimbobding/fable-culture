@@ -1,5 +1,4 @@
 import { staffTimetables } from "@/data/staff/timetable/staffTimetable";
-import { staffInitials } from "@/data/staff/timetable/staffInitials";
 
 export function getCoverTargetActivity(
   coveringFor: string,

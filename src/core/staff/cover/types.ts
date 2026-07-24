@@ -31,3 +31,10 @@ export type BuildCoverBoardInput = {
   absentStaffIds: string[];
   absentStudentInitials: string[];
 };
+
+export type CoverRequirement = {
+  id: string;
+  absentStaffId: string;
+  absentStaffName: string;
+  entry: TimetableEntry;
+};

@@ -3,6 +3,7 @@ import { tuesdayEntries } from "./timetableDays/tuesday";
 import { wednesdayEntries } from "./timetableDays/wednesday";
 import { thursdayEntries } from "./timetableDays/thursday";
 import { fridayEntries } from "./timetableDays/friday";
+import { staffProfiles } from "@/data/staff/staffProfiles";
 
 export type StaffTimetableDay =
   | "Monday"
@@ -30,36 +31,12 @@ export type TimetableEntry = {
   type: TimetableEntryType;
   notes?: string;
   coveringFor?: string;
-  coveringForActivity?: string;
 };
 
 export type StaffTimetable = {
   id: string;
   name: string;
   entries: TimetableEntry[];
-};
-
-const staffNames: Record<string, string> = {
-  ben: "Ben",
-  chris: "Chris",
-  "claire-t": "Claire T",
-  craig: "Craig",
-  david: "David",
-  "debbie-r": "Debbie R",
-  elizabeth: "Elizabeth",
-  hope: "Hope",
-  jimmy: "Jimmy",
-  jo: "Jo",
-  jodie: "Jodie",
-  katie: "Katie",
-  laura: "Laura",
-  "lizzy-l": "Lizzy L",
-  nicky: "Nicky",
-  ruth: "Ruth",
-  safa: "Safa",
-  samantha: "Samantha",
-  sonia: "Sonia",
-  vicky: "Vicky",
 };
 
 const allEntriesByStaff: Record<string, TimetableEntry[]> = {};
@@ -79,10 +56,10 @@ for (const dayEntries of [
   }
 }
 
-export const staffTimetables: StaffTimetable[] = Object.entries(staffNames).map(
-  ([id, name]) => ({
-    id,
-    name,
-    entries: allEntriesByStaff[id] ?? [],
-  }),
-);
+export const staffTimetables: StaffTimetable[] = staffProfiles
+  .filter((staff) => staff.active)
+  .map((staff) => ({
+    id: staff.id,
+    name: staff.name,
+    entries: allEntriesByStaff[staff.id] ?? [],
+  }));
