@@ -134,8 +134,11 @@ export default function ResourceSubmissionForm({
             py-3
             outline-none
             focus:border-slate-400
+              text-slate-900
+  placeholder:text-slate-400
+            
           "
-          placeholder="Caribbean Music History"
+          placeholder={`A resource about ${region.replace("-", " ")}`}
         />
       </div>
 
@@ -159,6 +162,8 @@ export default function ResourceSubmissionForm({
             px-4
             py-3
             outline-none
+              text-slate-900
+  placeholder:text-slate-400
             focus:border-slate-400
           "
           placeholder="https://..."
@@ -185,6 +190,8 @@ export default function ResourceSubmissionForm({
             px-4
             py-3
             outline-none
+              text-slate-900
+  placeholder:text-slate-400
             focus:border-slate-400
             resize-none
           "
@@ -212,6 +219,8 @@ export default function ResourceSubmissionForm({
             px-4
             py-3
             outline-none
+              text-slate-900
+  placeholder:text-slate-400
             focus:border-slate-400
           "
           placeholder="Your name"
