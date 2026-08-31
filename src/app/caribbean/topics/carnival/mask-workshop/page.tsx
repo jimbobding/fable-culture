@@ -130,7 +130,7 @@ export default function CarnivalMaskWorkshopPage() {
         </section>
 
         <section id="create-your-look">
-          <CreateYourLook {...carnivalLookData} />
+          <CreateYourLook config={carnivalLookData} />
         </section>
 
         <section className="rounded-[2rem] bg-slate-900 p-8 text-white shadow-xl">

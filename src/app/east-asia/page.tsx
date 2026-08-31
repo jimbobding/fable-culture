@@ -7,6 +7,8 @@ import {
 import { getApprovedResources } from "@/app/lib/getApprovedResources";
 export const dynamic = "force-dynamic";
 import EastAsiaMap from "@/components/regions/east-asia/EastAsiaMap";
+import { eastAsiaCountries } from "@/data/eastAsia/eastAsiaCountries";
+import CultureFeatureCards from "@/components/shared/culture-features/CultureFeatureCards";
 
 export default async function EastAsiaPage() {
   const approvedResources = await getApprovedResources("east-asia");
@@ -228,6 +230,35 @@ export default async function EastAsiaPage() {
       </section>
 
       {/* =========================================================
+    CULTURE EXPERIENCES
+========================================================== */}
+      <CultureFeatureCards
+        eyebrow="Learn by doing"
+        title="Explore culture your way"
+        intro="Step into the Culture Kitchen or explore art and creativity from across East Asia."
+        features={[
+          {
+            id: "culture-kitchen",
+            title: "Culture Kitchen",
+            label: "Taste & Create",
+            emoji: "🍜",
+            href: "/east-asia/culture-kitchen",
+            description:
+              "Discover dishes from across East Asia, learn about their cultural stories, try cooking challenges and share your own inspired creations.",
+          },
+          {
+            id: "culture-gallery",
+            title: "Culture Art Gallery",
+            label: "Look & Create",
+            emoji: "🎨",
+            href: "/east-asia/culture-gallery",
+            description:
+              "Explore artistic traditions from across East Asia, discover the stories behind them and create work for our own Culture Art Gallery.",
+          },
+        ]}
+      />
+
+      {/* =========================================================
           VISUAL MAP AREA
       ========================================================== */}
       <section className="relative px-5 py-28 sm:px-8 lg:px-12">
@@ -253,9 +284,41 @@ export default async function EastAsiaPage() {
             <div className="absolute -left-16 -top-16 h-48 w-48 rounded-full bg-[#c2b07d]/20 blur-3xl" />
 
             <div className="absolute -bottom-14 -right-10 h-52 w-52 rounded-full bg-[#5f8573]/20 blur-3xl" />
-
             <div className="relative">
               <EastAsiaMap />
+            </div>
+
+            {/* COUNTRY BUTTONS */}
+            <div className="mt-10">
+              <p className="mb-5 text-center text-sm font-bold uppercase tracking-[0.25em] text-[#7b817b]">
+                Or choose a country
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-3">
+                {eastAsiaCountries.map((country) => (
+                  <Link
+                    key={country.slug}
+                    href={`/east-asia/${country.slug}`}
+                    className="
+          inline-flex items-center gap-2
+          rounded-full
+          border border-[#c9b98b]
+          bg-[#fffdf7]
+          px-5 py-3
+          font-bold text-[#263129]
+          shadow-sm
+          transition-all duration-300
+          hover:-translate-y-1
+          hover:bg-[#b44036]
+          hover:text-white
+          hover:shadow-lg
+        "
+                  >
+                    <span className="text-xl">{country.flag}</span>
+                    <span>{country.name}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>

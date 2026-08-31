@@ -167,24 +167,27 @@ export default function CarnivalPage() {
         </section>
 
         <CreateYourLook
-          {...carnivalLookData}
-          backgroundOptions={[
-            {
-              id: "parade",
-              label: "Carnival Parade",
-              background: "linear-gradient(135deg, #f97316, #ec4899, #8b5cf6)",
-            },
-            {
-              id: "beach",
-              label: "Beach",
-              background: "linear-gradient(135deg, #38bdf8, #fef3c7)",
-            },
-            {
-              id: "stage",
-              label: "Festival Stage",
-              background: "linear-gradient(135deg, #111827, #7c3aed)",
-            },
-          ]}
+          config={{
+            ...carnivalLookData,
+            backgroundOptions: [
+              {
+                id: "parade",
+                label: "Carnival Parade",
+                background:
+                  "linear-gradient(135deg, #f97316, #ec4899, #8b5cf6)",
+              },
+              {
+                id: "beach",
+                label: "Beach",
+                background: "linear-gradient(135deg, #38bdf8, #fef3c7)",
+              },
+              {
+                id: "stage",
+                label: "Festival Stage",
+                background: "linear-gradient(135deg, #111827, #7c3aed)",
+              },
+            ],
+          }}
         />
 
         {/* CHARACTERS */}
@@ -340,18 +343,8 @@ export default function CarnivalPage() {
                 Explore Notting Hill Carnival →
               </a>
             </div>
-
-            {/* <div className="rounded-[2rem] overflow-hidden shadow-2xl">
-              <iframe
-                className="w-full aspect-video"
-                src="https://www.youtube.com/embed/X6mcYQtu6xA"
-                title="Notting Hill Carnival"
-                allowFullScreen
-              />
-            </div> */}
           </div>
 
-          {/* LOCAL CONNECTIONS */}
           {/* LOCAL UK CARNIVALS */}
           <section className="space-y-10">
             <div className="text-center space-y-5">

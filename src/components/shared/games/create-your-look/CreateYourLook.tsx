@@ -1,26 +1,58 @@
 "use client";
 
 import { useRef, useState } from "react";
-import type { LookOption, LookBackground } from "./types";
-import OptionGroup from "./OptionGroup";
-import MultiOptionGroup from "./MultiOptionGroup";
-import PreviewCanvas from "./PreviewCanvas";
-import AccessoryControls from "./AccessoryControls";
-import { toPng } from "html-to-image";
-import { submitCreateYourLook } from "@/app/lib/createYourLookSubmissions";
 
-type Props = {
+import type { LookOption, LookBackground } from "./types";
+import OptionGroup from "./controls/OptionGroup";
+import MultiOptionGroup from "./controls/MultiOptionGroup";
+import PreviewCanvas from "./canvas/PreviewCanvas";
+import AccessoryControls from "./controls/AccessoryControls";
+import PhotoControls from "./controls/PhotoControls";
+import SubmissionControls from "./controls/SubmissionControls";
+import BackgroundOptions from "./controls/BackgroundOptions";
+import CreationInfo from "./display/CreationInfo";
+import ActionControls from "./controls/ActionControls";
+
+import useDragControls from "./hooks/useDragControls";
+import useCanvasItems from "./hooks/useCanvasItems";
+import useCreationExport from "./hooks/useCreationExport";
+import useLookActions from "./hooks/useLookActions";
+
+type CreateYourLookConfig = {
   title: string;
   intro: string;
+
   theme: {
     primary: string;
     secondary: string;
     background: string;
   };
+
   baseOptions: LookOption[];
   accessoryOptions: LookOption[];
   finalMessage: string;
   backgroundOptions?: LookBackground[];
+  canvasShape?: "round" | "postcard";
+  photoMode?: "background" | "object";
+
+  labels?: {
+    base?: string;
+    accessories?: string;
+    randomise?: string;
+    reset?: string;
+    save?: string;
+    selfieTitle?: string;
+    uploadHelp?: string;
+    emptyMessage?: string;
+  };
+
+  activity?: string;
+  downloadFilename?: string;
+  submissionMessage?: string;
+};
+
+type Props = {
+  config: CreateYourLookConfig;
 };
 
 const blankCanvasBase: LookOption = {
@@ -30,202 +62,103 @@ const blankCanvasBase: LookOption = {
   description: "",
 };
 
-export default function CreateYourLook({
-  title,
-  intro,
-  theme,
-  baseOptions,
-  accessoryOptions,
-  finalMessage,
-  backgroundOptions = [],
-}: Props) {
+export default function CreateYourLook({ config }: Props) {
+  const {
+    title,
+    intro,
+    theme,
+    baseOptions,
+    accessoryOptions,
+    finalMessage,
+    backgroundOptions = [],
+    canvasShape = "round",
+    photoMode = "background",
+    labels = {},
+    activity = "create-your-look",
+    downloadFilename = "create-your-look.png",
+    submissionMessage = "Your creation has been submitted and is waiting for approval.",
+  } = config;
+
+  const {
+    base: baseLabel = "Base",
+    accessories: accessoriesLabel = "Options",
+    randomise: randomiseLabel = "Randomise",
+    reset: resetLabel = "Reset",
+    save: saveLabel = "Save",
+    selfieTitle = "📷 Add a Photo",
+    uploadHelp = "Upload or take a photo to include in your creation.",
+    emptyMessage = "Choose some options to begin your creation.",
+  } = labels;
+
+  const hasBaseOptions = baseOptions.length > 0;
+
   const previewRef = useRef<HTMLDivElement>(null);
+
   const [creatorName, setCreatorName] = useState("");
 
-  const [base, setBase] = useState(baseOptions[0]);
+  const [userPhoto, setUserPhoto] = useState<string | null>(null);
+
   const [background, setBackground] = useState<LookBackground | null>(
     backgroundOptions[0] ?? null,
   );
-  const [userPhoto, setUserPhoto] = useState<string | null>(null);
 
-  const [selectedAccessories, setSelectedAccessories] = useState<LookOption[]>([
-    accessoryOptions[0],
-  ]);
-
-  const canvasItems = [...(base ? [base] : []), ...selectedAccessories].filter(
-    Boolean,
-  ) as LookOption[];
-
-  const [activeAccessoryId, setActiveAccessoryId] = useState(
-    baseOptions[0]?.id ?? accessoryOptions[0]?.id ?? "",
-  );
-
-  const [accessoryPositions, setAccessoryPositions] = useState<
-    Record<string, { x: number; y: number }>
-  >(() => {
-    const positions: Record<string, { x: number; y: number }> = {};
-
-    [...baseOptions, ...accessoryOptions].forEach((item) => {
-      positions[item.id] = {
-        x: item.defaultPosition?.x ?? 8,
-        y: item.defaultPosition?.y ?? -16,
-      };
-    });
-
-    return positions;
+  const {
+    base,
+    setBase,
+    selectedAccessories,
+    setSelectedAccessories,
+    canvasItems,
+    activeAccessory,
+    sortedAccessories,
+    activeAccessoryId,
+    setActiveAccessoryId,
+    accessoryPositions,
+    setAccessoryPositions,
+    accessoryLayers,
+    setAccessoryLayers,
+    accessoryScales,
+    setAccessoryScales,
+    accessoryRotations,
+    setAccessoryRotations,
+    selectBase,
+    toggleAccessory,
+  } = useCanvasItems({
+    baseOptions,
+    accessoryOptions,
+    hasBaseOptions,
   });
 
-  const [accessoryLayers, setAccessoryLayers] = useState<
-    Record<string, number>
-  >(() => {
-    const layers: Record<string, number> = {};
-
-    [...baseOptions, ...accessoryOptions].forEach((item) => {
-      layers[item.id] = item.layer ?? 1;
-    });
-
-    return layers;
+  const { startDrag, moveDrag, endDrag } = useDragControls({
+    accessoryPositions,
+    setAccessoryPositions,
+    setActiveAccessoryId,
   });
 
-  const [accessoryScales, setAccessoryScales] = useState<
-    Record<string, number>
-  >(() => {
-    const scales: Record<string, number> = {};
-
-    [...baseOptions, ...accessoryOptions].forEach((item) => {
-      scales[item.id] = 1;
-    });
-
-    return scales;
+  const { saveLook, submitLook, isSubmitting } = useCreationExport({
+    previewRef,
+    downloadFilename,
+    activity,
+    creatorName,
+    setCreatorName,
+    submissionMessage,
   });
 
-  const [accessoryRotations, setAccessoryRotations] = useState<
-    Record<string, number>
-  >(() => {
-    const rotations: Record<string, number> = {};
-
-    [...baseOptions, ...accessoryOptions].forEach((item) => {
-      rotations[item.id] = 0;
-    });
-
-    return rotations;
+  const { resetLook, randomiseLook } = useLookActions({
+    baseOptions,
+    accessoryOptions,
+    backgroundOptions,
+    hasBaseOptions,
+    setBase,
+    setSelectedAccessories,
+    setActiveAccessoryId,
+    setAccessoryPositions,
+    setAccessoryLayers,
+    setAccessoryScales,
+    setAccessoryRotations,
+    setBackground,
+    setUserPhoto,
+    endDrag,
   });
-
-  const [draggingId, setDraggingId] = useState<string | null>(null);
-
-  const [dragStart, setDragStart] = useState({
-    mouseX: 0,
-    mouseY: 0,
-    itemX: 0,
-    itemY: 0,
-  });
-
-  const activeAccessory = canvasItems.find(
-    (item) => item.id === activeAccessoryId,
-  );
-
-  const sortedAccessories = [...canvasItems].sort(
-    (a, b) => (accessoryLayers[a.id] ?? 1) - (accessoryLayers[b.id] ?? 1),
-  );
-
-  const selectBase = (option: LookOption) => {
-    setBase(option);
-    setActiveAccessoryId(option.id);
-
-    setAccessoryPositions((positions) => ({
-      ...positions,
-      [option.id]: {
-        x: option.defaultPosition?.x ?? 8,
-        y: option.defaultPosition?.y ?? -16,
-      },
-    }));
-
-    setAccessoryLayers((layers) => ({
-      ...layers,
-      [option.id]: option.layer ?? 1,
-    }));
-
-    setAccessoryScales((scales) => ({
-      ...scales,
-      [option.id]: scales[option.id] ?? 1,
-    }));
-
-    setAccessoryRotations((rotations) => ({
-      ...rotations,
-      [option.id]: rotations[option.id] ?? 0,
-    }));
-  };
-
-  const toggleAccessory = (option: LookOption) => {
-    setSelectedAccessories((prev) => {
-      const alreadySelected = prev.some((item) => item.id === option.id);
-
-      if (alreadySelected) {
-        const remaining = prev.filter((item) => item.id !== option.id);
-
-        if (activeAccessoryId === option.id) {
-          setActiveAccessoryId(base?.id ?? remaining[0]?.id ?? "");
-        }
-
-        return remaining;
-      }
-
-      setActiveAccessoryId(option.id);
-
-      setAccessoryPositions((positions) => ({
-        ...positions,
-        [option.id]: {
-          x: option.defaultPosition?.x ?? 8,
-          y: option.defaultPosition?.y ?? -16,
-        },
-      }));
-
-      setAccessoryLayers((layers) => ({
-        ...layers,
-        [option.id]: option.layer ?? 1,
-      }));
-
-      setAccessoryScales((scales) => ({
-        ...scales,
-        [option.id]: 1,
-      }));
-
-      setAccessoryRotations((rotations) => ({
-        ...rotations,
-        [option.id]: 0,
-      }));
-
-      return [...prev, option];
-    });
-  };
-
-  const startDrag = (itemId: string, clientX: number, clientY: number) => {
-    setActiveAccessoryId(itemId);
-    setDraggingId(itemId);
-
-    setDragStart({
-      mouseX: clientX,
-      mouseY: clientY,
-      itemX: accessoryPositions[itemId]?.x ?? 0,
-      itemY: accessoryPositions[itemId]?.y ?? 0,
-    });
-  };
-
-  const moveDrag = (clientX: number, clientY: number) => {
-    if (!draggingId) return;
-
-    setAccessoryPositions((prev) => ({
-      ...prev,
-      [draggingId]: {
-        x: dragStart.itemX + clientX - dragStart.mouseX,
-        y: dragStart.itemY + clientY - dragStart.mouseY,
-      },
-    }));
-  };
-
-  const endDrag = () => {
-    setDraggingId(null);
-  };
 
   const handleUserPhotoUpload = (file: File | null) => {
     if (!file) return;
@@ -241,120 +174,8 @@ export default function CreateYourLook({
     reader.readAsDataURL(file);
   };
 
-  const resetLook = () => {
-    const firstBase = baseOptions[0];
-    const firstAccessory = accessoryOptions[0];
-
-    setBase(firstBase);
-    setSelectedAccessories(firstAccessory ? [firstAccessory] : []);
-    setActiveAccessoryId(firstBase?.id ?? firstAccessory?.id ?? "");
-    setBackground(backgroundOptions[0] ?? null);
-    setDraggingId(null);
-
-    const resetItems = [firstBase, firstAccessory].filter(
-      Boolean,
-    ) as LookOption[];
-
-    const newPositions: Record<string, { x: number; y: number }> = {};
-    const newLayers: Record<string, number> = {};
-    const newScales: Record<string, number> = {};
-    const newRotations: Record<string, number> = {};
-
-    resetItems.forEach((item) => {
-      newPositions[item.id] = {
-        x: item.defaultPosition?.x ?? 8,
-        y: item.defaultPosition?.y ?? -16,
-      };
-      newLayers[item.id] = item.layer ?? 1;
-      newScales[item.id] = 1;
-      newRotations[item.id] = 0;
-    });
-
-    setAccessoryPositions(newPositions);
-    setAccessoryLayers(newLayers);
-    setAccessoryScales(newScales);
-    setAccessoryRotations(newRotations);
-  };
-
-  const randomiseLook = () => {
-    const randomBase =
-      baseOptions[Math.floor(Math.random() * baseOptions.length)];
-
-    const accessoryCount =
-      Math.floor(Math.random() * accessoryOptions.length) + 1;
-
-    const shuffledAccessories = [...accessoryOptions]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, accessoryCount);
-
-    const randomItems = [randomBase, ...shuffledAccessories].filter(
-      Boolean,
-    ) as LookOption[];
-
-    setBase(randomBase);
-    setSelectedAccessories(shuffledAccessories);
-    setActiveAccessoryId(randomBase?.id ?? shuffledAccessories[0]?.id ?? "");
-
-    const newPositions: Record<string, { x: number; y: number }> = {};
-    const newLayers: Record<string, number> = {};
-    const newScales: Record<string, number> = {};
-    const newRotations: Record<string, number> = {};
-
-    randomItems.forEach((item, index) => {
-      newPositions[item.id] = {
-        x: Math.random() * 120 - 60,
-        y: Math.random() * 120 - 60,
-      };
-
-      newLayers[item.id] = item.layer ?? index + 1;
-      newScales[item.id] = Number((0.7 + Math.random() * 1.1).toFixed(1));
-      newRotations[item.id] = Math.floor(Math.random() * 60) - 30;
-    });
-
-    setAccessoryPositions(newPositions);
-    setAccessoryLayers(newLayers);
-    setAccessoryScales(newScales);
-    setAccessoryRotations(newRotations);
-  };
-
-  const saveLook = async () => {
-    if (!previewRef.current) return;
-
-    const dataUrl = await toPng(previewRef.current, {
-      cacheBust: true,
-      pixelRatio: 2,
-    });
-
-    const link = document.createElement("a");
-    link.download = "create-your-carnival-look.png";
-    link.href = dataUrl;
-    link.click();
-  };
-  const submitLook = async () => {
-    if (!previewRef.current) return;
-
-    try {
-      const dataUrl = await toPng(previewRef.current, {
-        cacheBust: true,
-        pixelRatio: 2,
-      });
-
-      await submitCreateYourLook({
-        imageDataUrl: dataUrl,
-        activity: "carnival",
-        creatorName,
-      });
-      setCreatorName("");
-
-      alert(
-        "Your Carnival look has been submitted and is waiting for approval.",
-      );
-    } catch (error) {
-      console.error(error);
-
-      alert("There was a problem submitting your creation. Please try again.");
-    }
-  };
+  const accessoryStepNumber = hasBaseOptions ? 2 : 1;
+  const backgroundStepNumber = hasBaseOptions ? 3 : 2;
 
   return (
     <section
@@ -362,6 +183,7 @@ export default function CreateYourLook({
       style={{ background: theme.background }}
     >
       <div className="mx-auto max-w-[1600px] space-y-5">
+        {/* HEADER */}
         <div className="text-center">
           <p
             className="text-xs font-black uppercase tracking-[0.35em]"
@@ -381,6 +203,7 @@ export default function CreateYourLook({
 
         <div className="overflow-hidden rounded-2xl bg-white/80 p-3 shadow-xl backdrop-blur sm:p-6">
           <div className="grid gap-5 xl:grid-cols-[1.15fr_0.85fr]">
+            {/* CANVAS */}
             <div>
               <p className="text-center text-sm font-bold uppercase tracking-[0.25em] text-stone-500">
                 Your creation
@@ -401,9 +224,24 @@ export default function CreateYourLook({
                 endDrag={endDrag}
                 background={background}
                 userPhoto={userPhoto}
+                canvasShape={canvasShape}
+                photoMode={photoMode}
               />
+
+              {/* MOBILE / TABLET PHOTO BUTTON */}
+              <div className="mt-4 xl:hidden">
+                <PhotoControls
+                  title={selfieTitle}
+                  helpText={uploadHelp}
+                  userPhoto={userPhoto}
+                  onPhotoSelected={handleUserPhotoUpload}
+                  onRemovePhoto={() => setUserPhoto(null)}
+                  compact
+                />
+              </div>
             </div>
 
+            {/* CONTROLS */}
             <div className="space-y-4">
               <AccessoryControls
                 activeAccessory={activeAccessory}
@@ -417,117 +255,75 @@ export default function CreateYourLook({
                 setAccessoryRotations={setAccessoryRotations}
               />
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                <button
-                  type="button"
-                  onClick={randomiseLook}
-                  className="rounded-xl bg-purple-700 px-4 py-3 text-sm font-black text-white transition hover:bg-purple-800"
-                >
-                  Randomise Look
-                </button>
+              <ActionControls
+                randomiseLabel={randomiseLabel}
+                resetLabel={resetLabel}
+                onRandomise={randomiseLook}
+                onReset={resetLook}
+              />
 
-                <button
-                  type="button"
-                  onClick={resetLook}
-                  className="rounded-xl bg-stone-800 px-4 py-3 text-sm font-black text-white transition hover:bg-stone-700"
-                >
-                  Reset Look
-                </button>
-              </div>
-
-              <div className="rounded-[1.5rem] border-2 border-orange-100 bg-orange-50 p-5 text-left shadow-lg">
-                <h3 className="text-lg font-black text-stone-900">
-                  📷 Selfie & Photos
-                </h3>
-                <button
-                  type="button"
-                  onClick={saveLook}
-                  className="mt-4 w-full rounded-xl bg-purple-700 px-5 py-3 font-black text-white transition hover:bg-purple-800"
-                >
-                  Save My Look
-                </button>
-                <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700">
-                    Your Name
-                  </label>
-
-                  <input
-                    type="text"
-                    value={creatorName}
-                    onChange={(e) => setCreatorName(e.target.value)}
-                    placeholder="Enter your name"
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none"
-                  />
-                </div>
-                <button
-                  type="button"
-                  onClick={submitLook}
-                  className="mt-3 w-full rounded-xl bg-orange-600 px-5 py-3 font-black text-white transition hover:bg-orange-700"
-                >
-                  Submit To Gallery
-                </button>
-
-                <p className="mt-1 text-sm text-stone-600">
-                  Upload a photo or take a selfie to become part of your
-                  Carnival creation.
-                </p>
-
-                <input
-                  type="file"
-                  accept="image/*"
-                  capture="user"
-                  className="mt-3 block w-full rounded-xl border border-stone-200 bg-white p-3"
-                  onChange={(e) =>
-                    handleUserPhotoUpload(e.target.files?.[0] ?? null)
-                  }
+              {/* DESKTOP PHOTO CONTROL */}
+              <div className="hidden xl:block">
+                <PhotoControls
+                  title={selfieTitle}
+                  helpText={uploadHelp}
+                  userPhoto={userPhoto}
+                  onPhotoSelected={handleUserPhotoUpload}
+                  onRemovePhoto={() => setUserPhoto(null)}
                 />
-
-                {userPhoto && (
-                  <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-                    <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-                      ✓ Photo uploaded
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={() => setUserPhoto(null)}
-                      className="rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-stone-700"
-                    >
-                      Remove photo
-                    </button>
-                  </div>
-                )}
               </div>
+
+              {/* SAVE / SUBMIT */}
+              <SubmissionControls
+                creatorName={creatorName}
+                onCreatorNameChange={setCreatorName}
+                onSave={saveLook}
+                onSubmit={submitLook}
+                isSubmitting={isSubmitting}
+                saveLabel={saveLabel}
+              />
             </div>
           </div>
 
-          <div className="mt-5 grid gap-4 xl:grid-cols-3">
+          {/* OPTION PANELS */}
+          <div
+            className={`mt-5 grid gap-4 ${
+              hasBaseOptions ? "xl:grid-cols-3" : "xl:grid-cols-2"
+            }`}
+          >
+            {/* BASE — ONLY SHOW FOR GAMES THAT USE ONE */}
+            {hasBaseOptions && (
+              <details
+                open
+                className="rounded-[1.5rem] bg-white p-4 text-left shadow-lg"
+              >
+                <summary className="cursor-pointer text-lg font-black text-stone-900">
+                  1. Choose your {baseLabel.toLowerCase()}
+                </summary>
+
+                <div className="mt-4">
+                  <OptionGroup
+                    title={baseLabel}
+                    options={baseOptions}
+                    selectedId={base?.id ?? ""}
+                    onSelect={selectBase}
+                  />
+                </div>
+              </details>
+            )}
+
+            {/* MAIN OPTIONS */}
             <details
-              open
+              open={!hasBaseOptions}
               className="rounded-[1.5rem] bg-white p-4 text-left shadow-lg"
             >
               <summary className="cursor-pointer text-lg font-black text-stone-900">
-                1. Choose your mask
-              </summary>
-
-              <div className="mt-4">
-                <OptionGroup
-                  title="Mask"
-                  options={baseOptions}
-                  selectedId={base?.id ?? ""}
-                  onSelect={selectBase}
-                />
-              </div>
-            </details>
-
-            <details className="rounded-[1.5rem] bg-white p-4 text-left shadow-lg">
-              <summary className="cursor-pointer text-lg font-black text-stone-900">
-                2. Add accessories
+                {accessoryStepNumber}. Add {accessoriesLabel.toLowerCase()}
               </summary>
 
               <div className="mt-4">
                 <MultiOptionGroup
-                  title="Accessories"
+                  title={accessoriesLabel}
                   options={accessoryOptions}
                   selectedIds={selectedAccessories.map((item) => item.id)}
                   onToggle={toggleAccessory}
@@ -535,65 +331,30 @@ export default function CreateYourLook({
               </div>
             </details>
 
-            {backgroundOptions.length > 0 && (
-              <details className="rounded-[1.5rem] bg-white p-4 text-left shadow-lg">
-                <summary className="cursor-pointer text-lg font-black text-stone-900">
-                  3. Background
-                </summary>
-
-                <div className="mt-4 grid gap-3">
-                  {backgroundOptions.map((option) => (
-                    <button
-                      key={option.id}
-                      type="button"
-                      onClick={() => setBackground(option)}
-                      className={`rounded-2xl border-4 p-3 text-left transition ${
-                        background?.id === option.id
-                          ? "border-orange-400 bg-orange-50"
-                          : "border-transparent bg-white hover:border-orange-200"
-                      }`}
-                    >
-                      <div
-                        className="h-14 rounded-xl"
-                        style={{ background: option.background }}
-                      />
-
-                      <p className="mt-2 font-bold text-stone-800">
-                        {option.label}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              </details>
-            )}
+            {/* BACKGROUNDS */}
+            <BackgroundOptions
+              backgroundOptions={backgroundOptions}
+              background={background}
+              stepNumber={backgroundStepNumber}
+              openByDefault={!hasBaseOptions}
+              onSelect={setBackground}
+            />
           </div>
 
-          <div className="mt-5 grid gap-4 xl:grid-cols-[1fr_1fr]">
-            <div className="rounded-[1.5rem] bg-stone-50 p-5 text-left">
-              <h3 className="text-2xl font-black text-stone-900">
-                {base?.label}
-              </h3>
-
-              <p className="mt-2 leading-relaxed text-stone-700">
-                {canvasItems.length > 0
-                  ? canvasItems.map((item) => item.description).join(" ")
-                  : "Choose a mask and accessories to complete your look."}
-              </p>
-            </div>
-
-            <div
-              className="rounded-[1.5rem] p-5 text-left shadow-inner"
-              style={{ backgroundColor: `${theme.primary}22` }}
-            >
-              <p className="text-sm font-black uppercase tracking-[0.25em] text-stone-700">
-                Cultural meaning
-              </p>
-
-              <p className="mt-2 leading-relaxed text-stone-800">
-                {finalMessage}
-              </p>
-            </div>
-          </div>
+          {/* INFORMATION */}
+          <CreationInfo
+            title={base?.label || activeAccessory?.label || "Your Creation"}
+            description={
+              canvasItems.length > 0
+                ? canvasItems
+                    .map((item) => item.description)
+                    .filter(Boolean)
+                    .join(" ")
+                : emptyMessage
+            }
+            finalMessage={finalMessage}
+            primaryColour={theme.primary}
+          />
         </div>
       </div>
     </section>

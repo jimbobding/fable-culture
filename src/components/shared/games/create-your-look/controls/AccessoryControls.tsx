@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
-import type { LookOption } from "./types";
+import type { LookOption } from "../types";
 
 type Props = {
   activeAccessory?: LookOption;
