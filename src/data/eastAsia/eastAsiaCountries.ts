@@ -556,7 +556,6 @@ export const eastAsiaCountries: EastAsiaCountry[] = [
 
         title: "Tokyo",
 
-        population: "About 14 million",
 
         description:
           "Tokyo is the capital of Japan and one of the world's largest urban areas. It is known for its busy neighbourhoods, transport networks, technology, food, shopping and cultural attractions.",
@@ -1013,7 +1012,6 @@ export const eastAsiaCountries: EastAsiaCountry[] = [
 
         title: "Seoul",
 
-        population: "About 9.6 million",
 
         description:
           "Seoul is the capital and largest city of South Korea. Historic palaces and traditional neighbourhoods sit alongside skyscrapers, major technology companies, shopping districts and entertainment centres.",
@@ -1408,7 +1406,6 @@ export const eastAsiaCountries: EastAsiaCountry[] = [
 
         title: "Pyongyang",
 
-        population: "About 3 million",
 
         description:
           "Pyongyang is North Korea's capital and largest city. It is the country's political centre and contains government buildings, monuments, large public squares and distinctive monumental architecture.",
@@ -1798,7 +1795,6 @@ export const eastAsiaCountries: EastAsiaCountry[] = [
 
         title: "Ulaanbaatar",
 
-        population: "About 1.7 million",
 
         description:
           "Ulaanbaatar is Mongolia's capital and largest city. A large proportion of the country's population lives there, making it the centre of Mongolian government, business, education and modern culture.",
@@ -2249,7 +2245,6 @@ export const eastAsiaCountries: EastAsiaCountry[] = [
 
         title: "Taipei",
 
-        population: "About 2.5 million",
 
         description:
           "Taipei is Taiwan's capital and an important centre for government, business, technology and culture. Its skyline includes Taipei 101, which was the world's tallest building when it opened.",

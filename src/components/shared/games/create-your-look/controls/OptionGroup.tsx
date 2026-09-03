@@ -1,4 +1,4 @@
-import type { LookOption } from "./types";
+import type { LookOption } from "../types";
 
 type Props = {
   title: string;
