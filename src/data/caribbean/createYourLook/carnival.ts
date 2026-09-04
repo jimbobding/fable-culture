@@ -129,4 +129,23 @@ export const carnivalLookData = {
 
   finalMessage:
     "Carnival celebrations across the Caribbean combine music, dance, costume and community. Every costume is unique and helps tell a story.",
+
+  labels: {
+    base: "Mask",
+    accessories: "Accessories",
+    randomise: "Randomise Look",
+    reset: "Reset Look",
+    save: "Save My Look",
+    selfieTitle: "📷 Selfie & Photos",
+    uploadHelp:
+      "Upload a photo or take a selfie to become part of your Carnival creation.",
+    emptyMessage: "Choose a mask and accessories to complete your look.",
+  },
+
+  activity: "carnival",
+
+  downloadFilename: "create-your-carnival-look.png",
+
+  submissionMessage:
+    "Your Carnival look has been submitted and is waiting for approval.",
 };

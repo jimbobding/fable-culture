@@ -91,6 +91,18 @@ export default function AdminPage() {
               Review and approve submitted Carnival looks.
             </p>
           </Link>
+          <Link
+            href="/admin/culture-kitchen"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <h2 className="text-xl font-semibold text-slate-900">
+              Culture Kitchen
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Review and approve student Culture Kitchen creations.
+            </p>
+          </Link>
         </div>
       </div>
     </main>

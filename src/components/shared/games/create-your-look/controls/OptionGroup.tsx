@@ -1,17 +1,17 @@
-import type { LookOption } from "./types";
+import type { LookOption } from "../types";
 
 type Props = {
   title: string;
   options: LookOption[];
-  selectedIds: string[];
-  onToggle: (option: LookOption) => void;
+  selectedId: string;
+  onSelect: (option: LookOption) => void;
 };
 
-export default function MultiOptionGroup({
+export default function OptionGroup({
   title,
   options,
-  selectedIds,
-  onToggle,
+  selectedId,
+  onSelect,
 }: Props) {
   return (
     <div className="rounded-[2.5rem] bg-white/75 p-6 shadow-xl backdrop-blur">
@@ -19,13 +19,13 @@ export default function MultiOptionGroup({
 
       <div className="mt-5 grid gap-4">
         {options.map((option) => {
-          const isSelected = selectedIds.includes(option.id);
+          const isSelected = selectedId === option.id;
 
           return (
             <button
               key={option.id}
               type="button"
-              onClick={() => onToggle(option)}
+              onClick={() => onSelect(option)}
               className={`rounded-[1.5rem] border-2 p-5 text-left transition ${
                 isSelected
                   ? "border-stone-900 bg-stone-900 text-white shadow-lg"
@@ -45,7 +45,7 @@ export default function MultiOptionGroup({
                       isSelected ? "text-white/75" : "text-stone-500"
                     }`}
                   >
-                    {isSelected ? "Selected" : "Tap to add this accessory"}
+                    Tap to choose this base
                   </p>
                 </div>
               </div>

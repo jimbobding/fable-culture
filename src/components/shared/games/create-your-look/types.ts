@@ -4,12 +4,18 @@ export type LookOption = {
   emoji: string;
   description: string;
   asset?: string;
+  group?: string;
+
+  exclusiveGroup?: string;
+
   defaultPosition?: {
     x: number;
     y: number;
   };
+
   layer?: number;
 };
+
 export type LookBackground = {
   id: string;
   label: string;
