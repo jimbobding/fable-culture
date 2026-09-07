@@ -2,7 +2,7 @@ import CultureKitchenPage from "@/components/shared/culture-kitchen/CultureKitch
 import {
   eastAsiaCultureKitchen,
   eastAsiaCultureKitchenTheme,
-} from "@/data/eastAsia/cultureKitchen";
+} from "@/data/eastAsia/cultureKitchen/cultureKitchen";
 
 export default function EastAsiaCultureKitchenPage() {
   return (
