@@ -103,6 +103,19 @@ export default function AdminPage() {
               Review and approve student Culture Kitchen creations.
             </p>
           </Link>
+          {/* Culture Gallery */}
+          <Link
+            href="/admin/culture-gallery"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <h2 className="text-xl font-semibold text-slate-900">
+              Culture Gallery
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Review and approve Culture Gallery artwork and discoveries.
+            </p>
+          </Link>
         </div>
       </div>
     </main>
