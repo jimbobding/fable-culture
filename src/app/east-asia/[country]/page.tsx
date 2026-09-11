@@ -108,6 +108,17 @@ export default async function EastAsiaCountryPage({ params }: Props) {
       }}
     >
       <div className="mx-auto max-w-7xl px-4 pb-20">
+        {/* BACK TO MAP */}
+        <div className="mb-5">
+          <Link
+            href="/east-asia#explore"
+            className="inline-flex items-center gap-2 rounded-full border border-[#c6a75e]/60 bg-white/80 px-5 py-3 text-sm font-bold text-[#263129] shadow-md backdrop-blur transition hover:-translate-y-0.5 hover:bg-white hover:shadow-lg"
+          >
+            <span aria-hidden="true">←</span>
+            Back to East Asia Map
+          </Link>
+        </div>
+
         {/* HERO */}
         <section
           className="relative overflow-hidden rounded-[2.5rem] shadow-2xl"
@@ -148,14 +159,18 @@ export default async function EastAsiaCountryPage({ params }: Props) {
             </div>
 
             <div className="relative flex items-center justify-center">
-              <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-[2rem] border border-white/20 shadow-2xl">
+              <div className="relative aspect-[4/3] w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/20 bg-black/10 shadow-2xl">
                 <img
                   src={country.heroImage}
                   alt={country.name}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className={`absolute inset-0 h-full w-full object-cover ${
+                    country.slug === "mongolia"
+                      ? "object-left"
+                      : "object-center"
+                  }`}
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
               </div>
             </div>
           </div>

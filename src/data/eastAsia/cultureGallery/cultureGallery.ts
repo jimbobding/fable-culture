@@ -18,7 +18,14 @@ export const eastAsiaCultureGallery: CultureGalleryConfig = {
     "Explore art, craft, design and creative traditions from across East Asia, and discover what our own artists have been creating.",
 
   /*
+    =========================================================
+    CREATIVE CULTURE
+    =========================================================
+
     Permanent regional creative-culture features.
+
+    These can stay on the Culture Gallery throughout
+    the East Asia term.
 
     Example:
 
@@ -39,33 +46,40 @@ export const eastAsiaCultureGallery: CultureGalleryConfig = {
   creativeCulture: [],
 
   /*
-    Current Art Room projects.
+    =========================================================
+    ART ROOM
+    =========================================================
 
-    This section is temporary and changes as activities
-    in the Art Room change.
+    Current projects happening in the Art Room.
+
+    Add, remove or change these projects as the term
+    progresses.
+
+    You can have one project, two projects, three projects
+    or more.
 
     If this array is empty, the Art Room section
-    will not appear on the page at all.
-
-    Example:
-
-    artRoom: [
-      {
-        id: "example-project",
-        title: "Ink Painting Experiment",
-        country: "China",
-        description:
-          "We are experimenting with brush pressure, line and tone.",
-        task:
-          "Create a landscape using only black ink.",
-        materials: [
-          "Paper",
-          "Black ink",
-          "Brushes",
-        ],
-      },
-    ],
+    will not appear on the Culture Gallery page.
   */
 
-  artRoom: [],
+  artRoom: [
+    {
+      id: "design-chinese-vase",
+      title: "Design Your Own Chinese Vase",
+      country: "China",
+
+      description:
+        "Create your own vase design inspired by Chinese blue-and-white porcelain.",
+
+      task: "Choose patterns, animals and flowers for your vase. Then personalise your design by adding your name using the character guide.",
+
+      materials: [
+        "Vase template",
+        "Pattern and picture ideas",
+        "Character guide",
+        "Pencil",
+        "Blue pens or pencils",
+      ],
+    },
+  ],
 };

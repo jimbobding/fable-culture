@@ -71,9 +71,8 @@ export default function CultureKitchenPage({
 
       {/* TOP BAR */}
       <div
-        className="relative border-b px-5 py-5 backdrop-blur sm:px-8 lg:px-12"
+        className="relative px-5 py-5 backdrop-blur sm:px-8 lg:px-12"
         style={{
-          borderColor: `${theme.border}80`,
           backgroundColor: `${theme.surfaceAlt}CC`,
         }}
       >
@@ -102,31 +101,37 @@ export default function CultureKitchenPage({
       <section className="relative px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* MAIN KITCHEN */}
-          <CultureKitchen
-            title={title ?? `${regionName} Culture Kitchen`}
-            intro={
-              intro ??
-              `Explore dishes from across ${regionName}, discover the stories behind them and try something inspired by the region.`
-            }
-            dishes={dishes}
-            theme={theme}
-          />
+          <div
+            className="rounded-[3rem_2rem_3.5rem_2.2rem] px-2 py-2 sm:px-3 sm:py-3"
+            style={{
+              backgroundColor: `${theme.surface}55`,
+            }}
+          >
+            <CultureKitchen
+              title={title ?? `${regionName} Culture Kitchen`}
+              intro={
+                intro ??
+                `Explore dishes from across ${regionName}, discover the stories behind them and try something inspired by the region.`
+              }
+              dishes={dishes}
+              theme={theme}
+            />
+          </div>
 
           {/* SHARE YOUR CREATION */}
           <section className="mx-auto max-w-5xl">
             <button
               type="button"
               onClick={() => setShowSubmissionForm((current) => !current)}
-              className="group relative w-full overflow-hidden border px-6 py-7 text-left transition-all duration-300 hover:-translate-y-1 sm:px-8"
+              className="group relative w-full overflow-hidden rounded-[2.7rem_1.8rem_3rem_2rem] px-6 py-7 text-left transition-all duration-300 hover:-translate-y-1 sm:px-8"
               style={{
-                borderColor: theme.border,
                 backgroundColor: theme.surface,
                 boxShadow: theme.featureShadow,
               }}
             >
-              {/* TOP ACCENT */}
+              {/* SOFT ACCENT */}
               <div
-                className="absolute left-0 top-0 h-1 w-full"
+                className="absolute left-8 right-8 top-0 h-1.5 rounded-full"
                 style={{
                   background: `linear-gradient(to right, ${theme.primary}, ${theme.accent}, ${theme.tertiary})`,
                 }}
@@ -135,9 +140,8 @@ export default function CultureKitchenPage({
               <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-start gap-5">
                   <div
-                    className="flex h-14 w-14 shrink-0 items-center justify-center border text-3xl"
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-3xl"
                     style={{
-                      borderColor: theme.border,
                       backgroundColor: theme.surfaceAlt,
                     }}
                   >
@@ -207,7 +211,14 @@ export default function CultureKitchenPage({
           </section>
 
           {/* APPROVED CREATIONS */}
-          <CultureKitchenGallery region={region} theme={theme} />
+          <div
+            className="rounded-[3.2rem_2.1rem_2.8rem_2.4rem] px-2 py-2 sm:px-3 sm:py-3"
+            style={{
+              backgroundColor: `${theme.surface}45`,
+            }}
+          >
+            <CultureKitchenGallery region={region} theme={theme} />
+          </div>
         </div>
       </section>
     </main>

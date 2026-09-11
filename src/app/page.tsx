@@ -42,6 +42,13 @@ const continents = [
       "Discover vibrant islands, Carnival traditions, influential people, music, history, and cultures from across the Caribbean.",
     color: "from-cyan-400 via-sky-400 to-emerald-400",
   },
+  {
+    name: "East Asia",
+    href: "/east-asia",
+    description:
+      "Explore China, Japan, Korea, Mongolia and Taiwan through culture, history, food, art, activities and deep dives.",
+    color: "from-red-500 via-amber-400 to-emerald-500",
+  },
 ];
 
 const upcomingEvents = [
@@ -58,16 +65,15 @@ const upcomingEvents = [
     title: "👽 World UFO Day",
     color: "bg-red-100 border-red-300",
     text: `
-    <p><strong>July 2:</strong> Officially declared by the World UFO Day Organization, this date commemorates the anniversary of the infamous 1947 Roswell Incident in New Mexico. 🛸</p>
+      <p><strong>July 2:</strong> Officially declared by the World UFO Day Organization, this date commemorates the anniversary of the infamous 1947 Roswell Incident in New Mexico. 🛸</p>
 
-    <p><strong>🔭 Sky Watching:</strong> Many groups and local astronomy clubs organize nighttime viewing parties to track the skies for unexplained phenomena.</p>
+      <p><strong>🔭 Sky Watching:</strong> Many groups and local astronomy clubs organize nighttime viewing parties to track the skies for unexplained phenomena.</p>
 
-    <p><strong>🎬 Host a Watch Party:</strong> Celebrate with extraterrestrial and sci-fi movies, or stream UFO and space-related documentaries.</p>
+      <p><strong>🎬 Host a Watch Party:</strong> Celebrate with extraterrestrial and sci-fi movies, or stream UFO and space-related documentaries.</p>
 
-    <p><strong>📚 Learn and Research:</strong> Explore the history of the Roswell Incident and discuss why people have different opinions about what happened. Learn how scientists investigate unusual events and the importance of using evidence when evaluating extraordinary claims.</p>
-  `,
+      <p><strong>📚 Learn and Research:</strong> Explore the history of the Roswell Incident and discuss why people have different opinions about what happened. Learn how scientists investigate unusual events and the importance of using evidence when evaluating extraordinary claims.</p>
+    `,
   },
-
   {
     start: "2026-07-14",
     end: "2026-07-14",
@@ -84,17 +90,29 @@ export default function LandingPage() {
   const formatDateRange = (start: string, end: string) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
+
     const sameDay = startDate.toDateString() === endDate.toDateString();
+
     const options: Intl.DateTimeFormatOptions = {
       day: "numeric",
       month: "short",
     };
 
-    if (sameDay) return startDate.toLocaleDateString(undefined, options);
-    if (startDate.getMonth() !== endDate.getMonth()) {
-      return `${startDate.toLocaleDateString(undefined, options)}–${endDate.toLocaleDateString(undefined, options)}`;
+    if (sameDay) {
+      return startDate.toLocaleDateString(undefined, options);
     }
-    return `${startDate.getDate()}–${endDate.toLocaleDateString(undefined, options)}`;
+
+    if (startDate.getMonth() !== endDate.getMonth()) {
+      return `${startDate.toLocaleDateString(
+        undefined,
+        options,
+      )}–${endDate.toLocaleDateString(undefined, options)}`;
+    }
+
+    return `${startDate.getDate()}–${endDate.toLocaleDateString(
+      undefined,
+      options,
+    )}`;
   };
 
   return (
@@ -114,16 +132,17 @@ export default function LandingPage() {
             className="mx-auto drop-shadow-[0_5px_10px_rgba(0,0,0,.5)]"
           />
         </div>
+
         <p className="mx-auto mb-10 max-w-3xl text-lg text-gray-700 md:text-xl">
           Explore the cultures, traditions, and shared values of Africa, Europe,
-          South Asia, the Middle East, and the UK. Learn about different
-          regions, important ideas, and the stories that shape
-          communities—helping us better understand the world we live in.
+          South Asia, East Asia, the Middle East, the Caribbean, and the UK.
+          Learn about different regions, important ideas, and the stories that
+          shape communities—helping us better understand the world we live in.
         </p>
       </header>
 
       {/* Continent Hover Cards */}
-      <section className="mb-16 flex flex-col items-center justify-center gap-8 px-6 md:flex-row">
+      <section className="mx-auto mb-16 grid max-w-6xl grid-cols-1 place-items-center gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">
         {continents.map((continent, i) => (
           <Link
             key={i}
@@ -133,6 +152,7 @@ export default function LandingPage() {
             <h2 className="mb-2 text-3xl font-bold text-gray-800 transition group-hover:text-white">
               {continent.name}
             </h2>
+
             <p className="px-4 text-sm text-gray-700 opacity-0 transition-opacity duration-300 group-hover:text-gray-100 group-hover:opacity-100">
               {continent.description}
             </p>
@@ -148,6 +168,7 @@ export default function LandingPage() {
             className="flex h-48 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-500 to-pink-500 text-center text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             <span className="text-2xl font-bold">🎨 Gallery</span>
+
             <p className="mt-2 text-sm font-medium">
               See all cultures and traditions
             </p>
@@ -158,6 +179,7 @@ export default function LandingPage() {
             className="flex h-48 flex-col items-center justify-center rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-400 to-orange-500 text-center text-white shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl"
           >
             <span className="text-2xl font-bold">📤 Upload Your Work</span>
+
             <p className="mt-2 max-w-xs text-sm font-medium">
               Share student work to be reviewed and added to the gallery
             </p>
@@ -177,9 +199,11 @@ export default function LandingPage() {
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
               Special Month
             </p>
+
             <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
               🌍♻️ Plastic Free July™
             </h3>
+
             <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
               Plastic Free July™ is a global environmental initiative that
               encourages people to reduce their use of single-use plastics
@@ -192,6 +216,7 @@ export default function LandingPage() {
               changes that reduce plastic waste—not just during July, but as
               long-term sustainable habits.
             </p>
+
             <p className="mt-3 text-sm font-medium text-amber-800">July</p>
           </div>
         </div>
@@ -205,10 +230,12 @@ export default function LandingPage() {
               <p className="font-semibold text-pink-600">
                 {formatDateRange(event.start, event.end)}
               </p>
+
               <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
+
               {event.text && (
                 <div
-                  className="mt-2 text-gray-600 space-y-2"
+                  className="mt-2 space-y-2 text-gray-600"
                   dangerouslySetInnerHTML={{ __html: event.text }}
                 />
               )}

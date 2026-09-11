@@ -107,7 +107,7 @@ export default function CultureKitchenSubmissionForm({
 
   return (
     <section
-      className="relative overflow-hidden border p-6 sm:p-8"
+      className="relative overflow-hidden rounded-[2.8rem_1.8rem_3rem_2rem] border p-6 sm:p-8"
       style={{
         backgroundColor: theme.surfaceAlt,
         borderColor: theme.border,
@@ -156,7 +156,7 @@ export default function CultureKitchenSubmissionForm({
             value={creatorName}
             onChange={(e) => setCreatorName(e.target.value)}
             placeholder="Your name"
-            className="w-full border px-4 py-3 outline-none transition focus:ring-2"
+            className="w-full rounded-2xl border px-4 py-3 outline-none transition focus:ring-2"
             style={{
               ...fieldStyle,
               outlineColor: theme.primary,
@@ -174,7 +174,7 @@ export default function CultureKitchenSubmissionForm({
             value={dishName}
             onChange={(e) => setDishName(e.target.value)}
             placeholder="Name your creation"
-            className="w-full border px-4 py-3 outline-none transition focus:ring-2"
+            className="w-full rounded-2xl border px-4 py-3 outline-none transition focus:ring-2"
             style={fieldStyle}
           />
         </label>
@@ -187,7 +187,7 @@ export default function CultureKitchenSubmissionForm({
           <select
             value={inspiration}
             onChange={(e) => setInspiration(e.target.value)}
-            className="w-full border px-4 py-3 outline-none"
+            className="w-full rounded-2xl border px-4 py-3 outline-none"
             style={fieldStyle}
           >
             <option value="">Choose a country</option>
@@ -200,17 +200,21 @@ export default function CultureKitchenSubmissionForm({
           </select>
         </label>
 
-        <label className="space-y-2">
+        <label className="space-y-2 md:col-span-2">
           <span className="text-sm font-black" style={{ color: theme.text }}>
-            Key ingredients or flavours
+            🥕 Ingredients
           </span>
 
-          <input
-            type="text"
+          <p className="text-sm" style={{ color: theme.mutedText }}>
+            Add the ingredients you used. One ingredient per line works best.
+          </p>
+
+          <textarea
             value={keyIngredients}
             onChange={(e) => setKeyIngredients(e.target.value)}
-            placeholder="Ginger, noodles, chilli..."
-            className="w-full border px-4 py-3 outline-none"
+            placeholder={"Chicken\nRice\nSoy sauce\nPeppers"}
+            rows={6}
+            className="w-full rounded-[1.7rem_2.2rem_1.5rem_2rem] border px-4 py-4 outline-none"
             style={fieldStyle}
           />
         </label>
@@ -227,7 +231,7 @@ export default function CultureKitchenSubmissionForm({
           onChange={(e) => setDescription(e.target.value)}
           placeholder="What did you make and what was it like?"
           rows={4}
-          className="w-full border px-4 py-3 outline-none"
+          className="w-full rounded-2xl border px-4 py-3 outline-none"
           style={fieldStyle}
         />
       </label>
@@ -243,7 +247,7 @@ export default function CultureKitchenSubmissionForm({
           onChange={(e) => setAdaptation(e.target.value)}
           placeholder="Tell us what you changed..."
           rows={3}
-          className="w-full border px-4 py-3 outline-none"
+          className="w-full rounded-2xl border px-4 py-3 outline-none"
           style={fieldStyle}
         />
       </label>
@@ -267,7 +271,7 @@ export default function CultureKitchenSubmissionForm({
                 key={value}
                 type="button"
                 onClick={() => setMakeAgain(value as "yes" | "maybe" | "no")}
-                className="border px-4 py-2 font-bold transition"
+                className="rounded-full border px-4 py-2 font-bold transition hover:-translate-y-0.5"
                 style={{
                   backgroundColor: selected ? theme.secondary : theme.surface,
                   borderColor: selected ? theme.secondary : theme.border,
@@ -283,7 +287,7 @@ export default function CultureKitchenSubmissionForm({
 
       {/* PHOTO */}
       <div
-        className="mt-7 border-l-4 p-5"
+        className="mt-7 rounded-[2rem_1.3rem_2.4rem_1.6rem] border-l-4 p-5"
         style={{
           backgroundColor: `${theme.tertiary}10`,
           borderColor: theme.tertiary,
@@ -302,7 +306,7 @@ export default function CultureKitchenSubmissionForm({
             type="file"
             accept="image/*"
             onChange={(e) => setSelectedFile(e.target.files?.[0] ?? null)}
-            className="block w-full border p-3 text-sm"
+            className="block w-full rounded-2xl border p-3 text-sm"
             style={{
               backgroundColor: theme.surface,
               borderColor: theme.border,
@@ -326,7 +330,7 @@ export default function CultureKitchenSubmissionForm({
         type="button"
         onClick={submitCreation}
         disabled={isSubmitting}
-        className="mt-8 border px-6 py-3 font-black uppercase tracking-[0.12em] transition disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-8 rounded-full border px-7 py-3 font-black uppercase tracking-[0.12em] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
         style={{
           backgroundColor: theme.primary,
           borderColor: theme.primary,
