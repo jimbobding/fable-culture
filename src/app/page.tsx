@@ -53,33 +53,43 @@ const continents = [
 
 const upcomingEvents = [
   {
-    start: "2026-07-01",
-    end: "2026-07-01",
-    title: "😂 International Joke Day",
-    color: "bg-purple-100 border-purple-300",
-    text: "International Joke Day brightens the calendar every July 1, inviting everyone to share a laugh and appreciate the power of humour. Take time to tell your favourite joke, discover new comedic talent, and bring a smile to someone's face. 😄🎭",
-  },
-  {
-    start: "2026-07-02",
-    end: "2026-07-02",
-    title: "👽 World UFO Day",
-    color: "bg-red-100 border-red-300",
+    start: "2026-09-15",
+    end: "2026-09-15",
+    title: "🗳️ International Day of Democracy",
+    color: "bg-blue-100 border-blue-300",
     text: `
-      <p><strong>July 2:</strong> Officially declared by the World UFO Day Organization, this date commemorates the anniversary of the infamous 1947 Roswell Incident in New Mexico. 🛸</p>
+      <p>International Day of Democracy is marked each year on <strong>15 September</strong>.</p>
 
-      <p><strong>🔭 Sky Watching:</strong> Many groups and local astronomy clubs organize nighttime viewing parties to track the skies for unexplained phenomena.</p>
+      <p>It is a chance to think about what democracy means and why it matters. Democracy gives people the opportunity to have a say in decisions that affect their lives.</p>
 
-      <p><strong>🎬 Host a Watch Party:</strong> Celebrate with extraterrestrial and sci-fi movies, or stream UFO and space-related documentaries.</p>
-
-      <p><strong>📚 Learn and Research:</strong> Explore the history of the Roswell Incident and discuss why people have different opinions about what happened. Learn how scientists investigate unusual events and the importance of using evidence when evaluating extraordinary claims.</p>
+      <p><strong>💬 Have a discussion:</strong> What makes a decision fair? How can people make their voices heard? What responsibilities come with having a say?</p>
     `,
   },
   {
-    start: "2026-07-14",
-    end: "2026-07-14",
-    title: "🌟 International Be You Day",
-    color: "bg-green-100 border-green-300",
-    text: "Shark & Ray Awareness Day is observed each year on 14 July to raise awareness of the important role sharks and rays play in maintaining healthy marine ecosystems. These species help keep ocean food chains balanced and contribute to the overall health of our seas.Many shark and ray species are threatened by overfishing, habitat loss, pollution, and climate change. The day highlights the need for conservation, sustainable fishing practices, and protecting marine habitats to help ensure these remarkable animals survive for future generations.",
+    start: "2026-09-19",
+    end: "2026-09-19",
+    title: "🏴‍☠️ International Talk Like a Pirate Day",
+    color: "bg-amber-100 border-amber-300",
+    text: `
+      <p>International Talk Like a Pirate Day takes place every year on <strong>19 September</strong> and is a chance to have some fun with pirate language, stories and characters.</p>
+
+      <p><strong>☠️ Give it a go:</strong> Try talking like a pirate, invent your own pirate name, draw a treasure map or write a short pirate adventure.</p>
+
+      <p>Arrr you ready?</p>
+    `,
+  },
+  {
+    start: "2026-09-25",
+    end: "2026-09-25",
+    title: "✏️ National Doodle Day",
+    color: "bg-purple-100 border-purple-300",
+    text: `
+      <p>National Doodle Day takes place on <strong>25 September 2026</strong> and celebrates creativity while helping to raise money and awareness for epilepsy.</p>
+
+      <p>Artists, celebrities and members of the public create doodles which can be used to support fundraising for epilepsy charities.</p>
+
+      <p><strong>🎨 Have a go:</strong> Grab a pen or pencil and create your own doodle. It could be funny, strange, detailed, simple or completely random — there is no right or wrong way to doodle!</p>
+    `,
   },
 ];
 
@@ -195,29 +205,30 @@ export default function LandingPage() {
 
         {/* Special Month Highlight */}
         <div className="mb-8 flex justify-center">
-          <div className="w-full max-w-2xl rounded-[2rem] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-yellow-100 p-6 text-center shadow-md">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
+          <div className="w-full max-w-2xl rounded-[2rem] border border-red-200 bg-gradient-to-r from-red-100 via-amber-50 to-rose-100 p-6 text-center shadow-md">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-red-700">
               Special Month
             </p>
 
             <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
-              🌍♻️ Plastic Free July™
+              🌏 East & South East Asian Heritage Month
             </h3>
 
             <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
-              Plastic Free July™ is a global environmental initiative that
-              encourages people to reduce their use of single-use plastics
-              throughout the month of July. The campaign raises awareness of the
-              impact plastic pollution has on our environment, wildlife, and
-              oceans while promoting practical, reusable alternatives. Since it
-              began, Plastic Free July™ has inspired over 170 million
-              participants in more than 190 countries. The aim is to help
-              individuals, schools, workplaces, and communities make simple
-              changes that reduce plastic waste—not just during July, but as
-              long-term sustainable habits.
+              East & South East Asian Heritage Month takes place throughout
+              September and is an opportunity to celebrate, learn about and
+              recognise the cultures, histories, traditions and achievements of
+              East and South East Asian communities.
             </p>
 
-            <p className="mt-3 text-sm font-medium text-amber-800">July</p>
+            <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
+              It is a chance to explore everything from food, music, art and
+              festivals to important people, historical events and the
+              experiences of East and South East Asian communities in the UK and
+              around the world.
+            </p>
+
+            <p className="mt-3 text-sm font-medium text-red-800">September</p>
           </div>
         </div>
 
