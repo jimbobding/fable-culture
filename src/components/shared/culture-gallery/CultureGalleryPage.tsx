@@ -1,13 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import CultureGallery from "./CultureGallery";
 import CultureGalleryCreations from "./CultureGalleryCreations";
 import CultureGallerySubmissionForm from "./CultureGallerySubmissionForm";
 
-import type { CultureGalleryConfig, CultureGalleryTheme } from "./types";
+import {
+  convertFirebaseArtRoomProject,
+  getPublishedCultureGalleryArtRoomProjects,
+} from "@/app/lib/cultureGalleryArtRoom";
+
+import type {
+  ArtRoomProject,
+  CultureGalleryConfig,
+  CultureGalleryTheme,
+} from "./types";
 
 type Props = {
   region: string;
@@ -30,7 +39,74 @@ export default function CultureGalleryPage({
 }: Props) {
   const [showSubmission, setShowSubmission] = useState(false);
 
+  /*
+    Start with the existing static Art Room data.
+
+    This means the current Culture Gallery still works
+    immediately while Firebase is loading, and it also gives
+    us a fallback if Firebase has no published projects.
+  */
+  const [artRoomProjects, setArtRoomProjects] = useState<ArtRoomProject[]>(
+    config.artRoom ?? [],
+  );
+
   const colour = (index: number) => theme.palette[index % theme.palette.length];
+
+  /* =========================================================
+     LOAD ADMIN-MANAGED ART ROOM PROJECTS
+  ========================================================= */
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadArtRoomProjects() {
+      try {
+        const firebaseProjects =
+          await getPublishedCultureGalleryArtRoomProjects(region);
+
+        /*
+          IMPORTANT:
+
+          If Firebase contains published Art Room projects,
+          they become the source for the Art Room.
+
+          If Firebase contains none, we leave the existing
+          static config alone as the fallback.
+        */
+
+        if (active && firebaseProjects.length > 0) {
+          const convertedProjects = firebaseProjects.map(
+            convertFirebaseArtRoomProject,
+          );
+
+          setArtRoomProjects(convertedProjects);
+        } else if (active) {
+          setArtRoomProjects(config.artRoom ?? []);
+        }
+      } catch (error) {
+        console.error(
+          "Could not load Culture Gallery Art Room projects:",
+          error,
+        );
+
+        /*
+          Firebase failed?
+
+          No drama — keep using the existing static data.
+        */
+
+        if (active) {
+          setArtRoomProjects(config.artRoom ?? []);
+        }
+      }
+    }
+
+    void loadArtRoomProjects();
+
+    return () => {
+      active = false;
+    };
+  }, [region, config.artRoom]);
 
   return (
     <main
@@ -41,6 +117,7 @@ export default function CultureGalleryPage({
       }}
     >
       {/* TOP NAV */}
+
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 pt-6 sm:px-8">
         <Link
           href={backHref}
@@ -55,18 +132,24 @@ export default function CultureGalleryPage({
             <span
               key={paletteColour}
               className="h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: paletteColour }}
+              style={{
+                backgroundColor: paletteColour,
+              }}
             />
           ))}
         </div>
       </div>
+
+      {/* =====================================================
+          MAIN CULTURE GALLERY
+      ===================================================== */}
 
       <div className="px-5 sm:px-8">
         <CultureGallery
           regionName={regionName}
           intro={config.intro}
           creativeCulture={config.creativeCulture}
-          artRoom={config.artRoom}
+          artRoom={artRoomProjects}
           theme={theme}
         />
       </div>
@@ -78,12 +161,16 @@ export default function CultureGalleryPage({
       <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div
           className="pointer-events-none absolute left-[5%] top-10 h-28 w-52 -rotate-6 rounded-[55%_45%_60%_40%] opacity-20"
-          style={{ backgroundColor: colour(1) }}
+          style={{
+            backgroundColor: colour(1),
+          }}
         />
 
         <div
           className="pointer-events-none absolute right-[8%] top-[42%] h-32 w-32 rounded-full opacity-15"
-          style={{ backgroundColor: colour(2) }}
+          style={{
+            backgroundColor: colour(2),
+          }}
         />
 
         <div className="relative">
@@ -107,7 +194,9 @@ export default function CultureGalleryPage({
 
           <p
             className="mt-8 max-w-3xl text-lg leading-8 sm:text-xl"
-            style={{ color: theme.mutedText }}
+            style={{
+              color: theme.mutedText,
+            }}
           >
             Found a piece of art, craft or creative work from any {regionName}{" "}
             country that you think is interesting? Share it with our gallery.
@@ -115,7 +204,9 @@ export default function CultureGalleryPage({
 
           <p
             className="mt-4 max-w-3xl text-lg leading-8 sm:text-xl"
-            style={{ color: theme.mutedText }}
+            style={{
+              color: theme.mutedText,
+            }}
           >
             Or if the art and culture of {regionName} has inspired you to make
             something yourself, we would love to see that too.
@@ -125,7 +216,9 @@ export default function CultureGalleryPage({
             <div className="relative sm:pl-8">
               <div
                 className="absolute -left-3 -top-4 h-20 w-20 rounded-full opacity-20"
-                style={{ backgroundColor: colour(4) }}
+                style={{
+                  backgroundColor: colour(4),
+                }}
               />
 
               <p className="relative text-4xl">🎨</p>
@@ -139,7 +232,9 @@ export default function CultureGalleryPage({
 
               <p
                 className="relative mt-2 leading-7"
-                style={{ color: theme.mutedText }}
+                style={{
+                  color: theme.mutedText,
+                }}
               >
                 Take a photo and show us what you created.
               </p>
@@ -148,7 +243,9 @@ export default function CultureGalleryPage({
             <div className="relative sm:translate-y-10">
               <div
                 className="absolute -left-6 top-8 h-10 w-40 -rotate-3 rounded-full opacity-20"
-                style={{ backgroundColor: colour(1) }}
+                style={{
+                  backgroundColor: colour(1),
+                }}
               />
 
               <p className="relative text-4xl">✨</p>
@@ -162,10 +259,12 @@ export default function CultureGalleryPage({
 
               <p
                 className="relative mt-2 leading-7"
-                style={{ color: theme.mutedText }}
+                style={{
+                  color: theme.mutedText,
+                }}
               >
-                Share art, an artist, craft or creative idea you've discovered
-                from {regionName}.
+                Share art, an artist, craft or creative idea you&apos;ve
+                discovered from {regionName}.
               </p>
             </div>
           </div>
@@ -185,7 +284,9 @@ export default function CultureGalleryPage({
         </div>
       </section>
 
-      {/* STUDENT / COMMUNITY GALLERY */}
+      {/* =====================================================
+          STUDENT / COMMUNITY GALLERY
+      ===================================================== */}
 
       <CultureGalleryCreations
         region={region}
@@ -211,16 +312,21 @@ export default function CultureGalleryPage({
             }}
           >
             {/* COLOUR SPLASH */}
+
             <div
               className="pointer-events-none absolute -right-16 -top-20 h-52 w-52 rounded-full opacity-20"
-              style={{ backgroundColor: colour(1) }}
+              style={{
+                backgroundColor: colour(1),
+              }}
             />
 
             <button
               type="button"
               onClick={() => setShowSubmission(false)}
               className="absolute right-5 top-4 z-10 text-3xl font-light"
-              style={{ color: theme.text }}
+              style={{
+                color: theme.text,
+              }}
               aria-label="Close"
             >
               ×

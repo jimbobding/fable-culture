@@ -15,22 +15,22 @@ export default function AdminPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-slate-900">Admin</h1>
+
             <p className="mt-2 text-slate-600">
-              Manage uploads, facts, and timeline submissions.
+              Manage uploads, activities, facts, resources and submissions.
             </p>
           </div>
 
           <button
             onClick={handleLogout}
-            className="rounded-xl bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 shadow hover:bg-gray-200 transition"
+            className="rounded-xl bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-800 shadow transition hover:bg-gray-200"
           >
             Log out
           </button>
         </div>
 
-        {/* 🔥 GRID UPDATED */}
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Uploads */}
+          {/* STUDENT UPLOADS */}
           <Link
             href="/admin/submissions"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -38,23 +38,25 @@ export default function AdminPage() {
             <h2 className="text-xl font-semibold text-slate-900">
               Student Uploads
             </h2>
+
             <p className="mt-2 text-sm text-slate-600">
               Review pending uploads, manage approved uploads, and delete items.
             </p>
           </Link>
 
-          {/* Facts */}
+          {/* FACTS */}
           <Link
             href="/admin/facts"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
           >
             <h2 className="text-xl font-semibold text-slate-900">Facts</h2>
+
             <p className="mt-2 text-sm text-slate-600">
               Review and approve fact submissions.
             </p>
           </Link>
 
-          {/* 🔥 NEW TIMELINE CARD */}
+          {/* TIMELINE */}
           <Link
             href="/admin/timeline-submissions"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -62,10 +64,13 @@ export default function AdminPage() {
             <h2 className="text-xl font-semibold text-slate-900">
               Timeline Submissions
             </h2>
+
             <p className="mt-2 text-sm text-slate-600">
               Review and approve student timeline ideas.
             </p>
           </Link>
+
+          {/* RESOURCES */}
           <Link
             href="/admin/resources"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -79,6 +84,7 @@ export default function AdminPage() {
             </p>
           </Link>
 
+          {/* CREATE YOUR LOOK */}
           <Link
             href="/admin/create-your-look"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -88,9 +94,11 @@ export default function AdminPage() {
             </h2>
 
             <p className="mt-2 text-sm text-slate-600">
-              Review and approve submitted Carnival looks.
+              Review and approve submitted interactive creations.
             </p>
           </Link>
+
+          {/* CULTURE KITCHEN */}
           <Link
             href="/admin/culture-kitchen"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -103,7 +111,8 @@ export default function AdminPage() {
               Review and approve student Culture Kitchen creations.
             </p>
           </Link>
-          {/* Culture Gallery */}
+
+          {/* CULTURE GALLERY SUBMISSIONS */}
           <Link
             href="/admin/culture-gallery"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -116,6 +125,25 @@ export default function AdminPage() {
               Review and approve Culture Gallery artwork and discoveries.
             </p>
           </Link>
+
+          {/* ART ROOM MANAGER */}
+          <Link
+            href="/admin/culture-gallery/art-room"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <div className="text-3xl">🎨</div>
+
+            <h2 className="mt-3 text-xl font-semibold text-slate-900">
+              Art Room Manager
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Create, edit, publish and delete Art Room activities and example
+              images.
+            </p>
+          </Link>
+
+          {/* DEEP DIVES */}
           <Link
             href="/admin/deep-dives"
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
@@ -126,6 +154,23 @@ export default function AdminPage() {
 
             <p className="mt-2 text-sm text-slate-600">
               Review and approve contributions from Deep Dive activities.
+            </p>
+          </Link>
+
+          {/* REGION AT FABLE */}
+          <Link
+            href="/admin/region-at-fable"
+            className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md"
+          >
+            <div className="text-3xl">📸</div>
+
+            <h2 className="mt-3 text-xl font-semibold text-slate-900">
+              Region at Fable
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600">
+              Manage activities, photographs and submissions from cultural
+              learning at Fable.
             </p>
           </Link>
         </div>

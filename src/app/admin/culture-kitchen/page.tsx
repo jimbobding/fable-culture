@@ -11,6 +11,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import BackToAdminButton from "@/components/admin/BackToAdminButton";
 
 type KitchenSubmission = {
   id: string;
@@ -174,6 +175,7 @@ export default function CultureKitchenAdminPage() {
           <p className="text-sm font-black uppercase tracking-[0.25em] text-orange-700">
             Admin
           </p>
+          <BackToAdminButton />
 
           <h1 className="mt-2 text-4xl font-black text-stone-900">
             Culture Kitchen
