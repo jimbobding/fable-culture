@@ -27,7 +27,6 @@ export default function CultureGallery({
           HERO — FREE-FLOWING STUDIO STYLE
       ===================================================== */}
       <section className="relative mx-auto max-w-7xl pb-20 pt-12 sm:pb-28 sm:pt-20">
-        {/* DECORATIVE COLOUR SHAPES */}
         <div
           className="pointer-events-none absolute -left-20 top-2 h-52 w-52 rounded-full opacity-20 blur-[1px] sm:h-72 sm:w-72"
           style={{
@@ -92,18 +91,22 @@ export default function CultureGallery({
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: colour(0) }}
               />
+
               <span
                 className="h-3 w-8 rounded-full"
                 style={{ backgroundColor: colour(1) }}
               />
+
               <span
                 className="h-3 w-5 rounded-full"
                 style={{ backgroundColor: colour(2) }}
               />
+
               <span
                 className="h-3 w-12 rounded-full"
                 style={{ backgroundColor: colour(3) }}
               />
+
               <span
                 className="h-3 w-4 rounded-full"
                 style={{ backgroundColor: colour(4) }}
@@ -148,7 +151,6 @@ export default function CultureGallery({
             </p>
           </div>
 
-          {/* FREE-FLOWING FEATURES */}
           <div className="space-y-24 sm:space-y-32">
             {creativeCulture.map((feature, index) => {
               const featureColour = colour(index);
@@ -161,7 +163,6 @@ export default function CultureGallery({
                     reverse ? "lg:flex-row-reverse" : "lg:flex-row"
                   }`}
                 >
-                  {/* ART */}
                   {feature.image && (
                     <div
                       className={`relative lg:w-[55%] ${
@@ -172,7 +173,6 @@ export default function CultureGallery({
                             : "lg:-rotate-1"
                       }`}
                     >
-                      {/* COLOUR BEHIND IMAGE */}
                       <div
                         className="absolute -inset-4 -z-10 translate-x-4 translate-y-4 rounded-[8%_3%_7%_4%] opacity-30 sm:-inset-6"
                         style={{
@@ -188,7 +188,6 @@ export default function CultureGallery({
                     </div>
                   )}
 
-                  {/* WORDS */}
                   <div
                     className={`relative ${
                       feature.image ? "lg:w-[40%]" : "max-w-3xl"
@@ -253,7 +252,6 @@ export default function CultureGallery({
       ===================================================== */}
       {artRoom.length > 0 && (
         <section className="relative mx-auto max-w-7xl py-24 sm:py-32">
-          {/* BIG BACKGROUND SPLASH */}
           <div
             className="pointer-events-none absolute -left-[20%] top-20 h-[70%] w-[85%] -rotate-3 rounded-[45%_55%_48%_52%] opacity-[0.08]"
             style={{ backgroundColor: colour(2) }}
@@ -271,7 +269,7 @@ export default function CultureGallery({
               className="mt-3 max-w-4xl text-5xl font-black leading-[0.95] sm:text-7xl"
               style={{ color: theme.text }}
             >
-              What's happening
+              What&apos;s happening
               <br />
               <span className="font-serif italic" style={{ color: colour(2) }}>
                 in the Art Room?
@@ -287,8 +285,14 @@ export default function CultureGallery({
                   index % 2 === 1 ? "ml-auto" : ""
                 }`}
               >
-                <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-                  {/* OPTIONAL PROJECT IMAGE */}
+                <div
+                  className={`grid gap-8 ${
+                    project.image
+                      ? "lg:grid-cols-[1fr_1.2fr] lg:items-center"
+                      : ""
+                  }`}
+                >
+                  {/* OPTIONAL MAIN PROJECT IMAGE */}
                   {project.image && (
                     <div
                       className={`relative ${
@@ -354,6 +358,93 @@ export default function CultureGallery({
                       </div>
                     )}
 
+                    {/* =========================================
+                        OPTIONAL TASK EXAMPLE / INSPIRATION IMAGES
+                    ========================================= */}
+                    {project.exampleImages &&
+                      project.exampleImages.length > 0 && (
+                        <div className="mt-9">
+                          <div className="flex items-center gap-3">
+                            <p
+                              className="text-xs font-black uppercase tracking-[0.25em]"
+                              style={{ color: colour(index + 2) }}
+                            >
+                              Ideas & inspiration
+                            </p>
+
+                            <span
+                              className="h-2 w-10 rounded-full opacity-70"
+                              style={{
+                                backgroundColor: colour(index + 3),
+                              }}
+                            />
+                          </div>
+
+                          <div
+                            className={`mt-5 grid gap-6 ${
+                              project.exampleImages.length === 1
+                                ? "max-w-xl"
+                                : project.exampleImages.length === 2
+                                  ? "sm:grid-cols-2"
+                                  : "sm:grid-cols-2 lg:grid-cols-3"
+                            }`}
+                          >
+                            {project.exampleImages.map(
+                              (exampleImage, exampleIndex) => (
+                                <figure
+                                  key={`${project.id}-example-${exampleIndex}`}
+                                  className={`relative ${
+                                    exampleIndex % 3 === 0
+                                      ? "-rotate-1"
+                                      : exampleIndex % 3 === 1
+                                        ? "rotate-1"
+                                        : "-rotate-[0.5deg]"
+                                  }`}
+                                >
+                                  <div
+                                    className="absolute -inset-2 -z-10 translate-x-2 translate-y-2 opacity-20"
+                                    style={{
+                                      backgroundColor: colour(
+                                        index + exampleIndex + 1,
+                                      ),
+                                    }}
+                                  />
+
+                                  <div
+                                    className="overflow-hidden p-2 shadow-md"
+                                    style={{
+                                      backgroundColor: theme.surface,
+                                    }}
+                                  >
+                                    <img
+                                      src={exampleImage.src}
+                                      alt={
+                                        exampleImage.alt ??
+                                        `${project.title} example ${
+                                          exampleIndex + 1
+                                        }`
+                                      }
+                                      className="aspect-[4/3] w-full object-cover"
+                                    />
+
+                                    {exampleImage.caption && (
+                                      <figcaption
+                                        className="px-2 pb-2 pt-3 text-sm font-bold leading-6"
+                                        style={{
+                                          color: theme.mutedText,
+                                        }}
+                                      >
+                                        {exampleImage.caption}
+                                      </figcaption>
+                                    )}
+                                  </div>
+                                </figure>
+                              ),
+                            )}
+                          </div>
+                        </div>
+                      )}
+
                     {project.materials && project.materials.length > 0 && (
                       <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
                         {project.materials.map((material, materialIndex) => (
@@ -370,6 +461,7 @@ export default function CultureGallery({
                                 backgroundColor: colour(materialIndex + index),
                               }}
                             />
+
                             {material}
                           </span>
                         ))}

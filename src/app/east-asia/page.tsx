@@ -82,15 +82,28 @@ export default async function EastAsiaPage() {
                   powerful traditions and modern cities.
                 </p>
 
-                <a
-                  href="#explore"
-                  className="group inline-flex w-fit items-center gap-3 border-b border-[#d7b66f] pb-2 text-sm font-bold uppercase tracking-[0.25em] text-[#ecd89e]"
-                >
-                  Begin the journey
-                  <span className="transition-transform group-hover:translate-x-2">
-                    →
-                  </span>
-                </a>
+                <div className="flex flex-wrap items-center gap-6">
+                  <a
+                    href="#explore"
+                    className="group inline-flex w-fit items-center gap-3 border-b border-[#d7b66f] pb-2 text-sm font-bold uppercase tracking-[0.25em] text-[#ecd89e]"
+                  >
+                    Begin the journey
+                    <span className="transition-transform group-hover:translate-x-2">
+                      →
+                    </span>
+                  </a>
+
+                  <Link
+                    href="/east-asia/at-fable"
+                    className="group inline-flex w-fit items-center gap-3 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-bold uppercase tracking-[0.18em] text-white transition hover:border-[#d7b66f] hover:bg-[#d7b66f] hover:text-[#18251f]"
+                  >
+                    <span>📸</span>
+                    East Asia at Fable
+                    <span className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

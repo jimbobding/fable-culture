@@ -8,6 +8,12 @@ export type CreativeCultureFeature = {
   culturalNote?: string;
 };
 
+export type ArtRoomExampleImage = {
+  src: string;
+  alt?: string;
+  caption?: string;
+};
+
 export type ArtRoomProject = {
   id: string;
   title: string;
@@ -16,6 +22,20 @@ export type ArtRoomProject = {
   image?: string;
   description?: string;
   task?: string;
+
+  /*
+    Optional inspiration / example pictures for the task.
+
+    These appear underneath the "Try it" task description.
+
+    You can use:
+    - no pictures
+    - one picture
+    - several pictures
+
+    Each picture can also have an optional caption.
+  */
+  exampleImages?: ArtRoomExampleImage[];
 
   materials?: string[];
   instructions?: string[];
