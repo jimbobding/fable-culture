@@ -861,7 +861,6 @@ export default function AdminCultureGalleryArtRoomPage() {
           <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">
             Culture Gallery Admin
           </p>
-          <BackToAdminButton />
 
           <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
             <div>
