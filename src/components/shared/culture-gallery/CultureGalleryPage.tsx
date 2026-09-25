@@ -22,7 +22,6 @@ type Props = {
   region: string;
   regionName: string;
   backHref: string;
-
   countries: string[];
 
   config: CultureGalleryConfig;
@@ -40,11 +39,10 @@ export default function CultureGalleryPage({
   const [showSubmission, setShowSubmission] = useState(false);
 
   /*
-    Start with the existing static Art Room data.
+    Start with the permanent / hard-coded regional projects.
 
-    This means the current Culture Gallery still works
-    immediately while Firebase is loading, and it also gives
-    us a fallback if Firebase has no published projects.
+    Firebase projects added through the admin are loaded below
+    and COMBINED with these rather than replacing them.
   */
   const [artRoomProjects, setArtRoomProjects] = useState<ArtRoomProject[]>(
     config.artRoom ?? [],
@@ -64,37 +62,44 @@ export default function CultureGalleryPage({
         const firebaseProjects =
           await getPublishedCultureGalleryArtRoomProjects(region);
 
-        /*
-          IMPORTANT:
-
-          If Firebase contains published Art Room projects,
-          they become the source for the Art Room.
-
-          If Firebase contains none, we leave the existing
-          static config alone as the fallback.
-        */
-
-        if (active && firebaseProjects.length > 0) {
-          const convertedProjects = firebaseProjects.map(
-            convertFirebaseArtRoomProject,
-          );
-
-          setArtRoomProjects(convertedProjects);
-        } else if (active) {
-          setArtRoomProjects(config.artRoom ?? []);
+        if (!active) {
+          return;
         }
+
+        // Permanent projects stored in the regional config.
+        // Example: East Asia's Chinese Vase.
+        const staticProjects = config.artRoom ?? [];
+
+        // Extra projects created through the Art Room admin.
+        // Example: Cut-Out Dragon Hand Puppet.
+        const firebaseArtRoomProjects = firebaseProjects.map(
+          convertFirebaseArtRoomProject,
+        );
+
+        /*
+          If a Firebase project has the same ID as a static
+          project, use the Firebase version.
+
+          This prevents duplicates and gives us a clean way
+          to migrate a hard-coded task into Firebase later.
+        */
+        const firebaseIds = new Set(
+          firebaseArtRoomProjects.map((project) => project.id),
+        );
+
+        const permanentProjects = staticProjects.filter(
+          (project) => !firebaseIds.has(project.id),
+        );
+
+        // COMBINE — do not replace.
+        setArtRoomProjects([...permanentProjects, ...firebaseArtRoomProjects]);
       } catch (error) {
         console.error(
           "Could not load Culture Gallery Art Room projects:",
           error,
         );
 
-        /*
-          Firebase failed?
-
-          No drama — keep using the existing static data.
-        */
-
+        // Firebase failure should never remove permanent tasks.
         if (active) {
           setArtRoomProjects(config.artRoom ?? []);
         }
@@ -116,7 +121,9 @@ export default function CultureGalleryPage({
         color: theme.text,
       }}
     >
-      {/* TOP NAV */}
+      {/* =====================================================
+          TOP NAV
+      ===================================================== */}
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 pt-6 sm:px-8">
         <Link
@@ -132,9 +139,7 @@ export default function CultureGalleryPage({
             <span
               key={paletteColour}
               className="h-2.5 w-2.5 rounded-full"
-              style={{
-                backgroundColor: paletteColour,
-              }}
+              style={{ backgroundColor: paletteColour }}
             />
           ))}
         </div>
@@ -161,16 +166,12 @@ export default function CultureGalleryPage({
       <section className="relative mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28">
         <div
           className="pointer-events-none absolute left-[5%] top-10 h-28 w-52 -rotate-6 rounded-[55%_45%_60%_40%] opacity-20"
-          style={{
-            backgroundColor: colour(1),
-          }}
+          style={{ backgroundColor: colour(1) }}
         />
 
         <div
           className="pointer-events-none absolute right-[8%] top-[42%] h-32 w-32 rounded-full opacity-15"
-          style={{
-            backgroundColor: colour(2),
-          }}
+          style={{ backgroundColor: colour(2) }}
         />
 
         <div className="relative">
@@ -194,9 +195,7 @@ export default function CultureGalleryPage({
 
           <p
             className="mt-8 max-w-3xl text-lg leading-8 sm:text-xl"
-            style={{
-              color: theme.mutedText,
-            }}
+            style={{ color: theme.mutedText }}
           >
             Found a piece of art, craft or creative work from any {regionName}{" "}
             country that you think is interesting? Share it with our gallery.
@@ -204,9 +203,7 @@ export default function CultureGalleryPage({
 
           <p
             className="mt-4 max-w-3xl text-lg leading-8 sm:text-xl"
-            style={{
-              color: theme.mutedText,
-            }}
+            style={{ color: theme.mutedText }}
           >
             Or if the art and culture of {regionName} has inspired you to make
             something yourself, we would love to see that too.
@@ -216,9 +213,7 @@ export default function CultureGalleryPage({
             <div className="relative sm:pl-8">
               <div
                 className="absolute -left-3 -top-4 h-20 w-20 rounded-full opacity-20"
-                style={{
-                  backgroundColor: colour(4),
-                }}
+                style={{ backgroundColor: colour(4) }}
               />
 
               <p className="relative text-4xl">🎨</p>
@@ -232,9 +227,7 @@ export default function CultureGalleryPage({
 
               <p
                 className="relative mt-2 leading-7"
-                style={{
-                  color: theme.mutedText,
-                }}
+                style={{ color: theme.mutedText }}
               >
                 Take a photo and show us what you created.
               </p>
@@ -243,9 +236,7 @@ export default function CultureGalleryPage({
             <div className="relative sm:translate-y-10">
               <div
                 className="absolute -left-6 top-8 h-10 w-40 -rotate-3 rounded-full opacity-20"
-                style={{
-                  backgroundColor: colour(1),
-                }}
+                style={{ backgroundColor: colour(1) }}
               />
 
               <p className="relative text-4xl">✨</p>
@@ -259,9 +250,7 @@ export default function CultureGalleryPage({
 
               <p
                 className="relative mt-2 leading-7"
-                style={{
-                  color: theme.mutedText,
-                }}
+                style={{ color: theme.mutedText }}
               >
                 Share art, an artist, craft or creative idea you&apos;ve
                 discovered from {regionName}.
@@ -311,22 +300,16 @@ export default function CultureGalleryPage({
               backgroundColor: theme.surface,
             }}
           >
-            {/* COLOUR SPLASH */}
-
             <div
               className="pointer-events-none absolute -right-16 -top-20 h-52 w-52 rounded-full opacity-20"
-              style={{
-                backgroundColor: colour(1),
-              }}
+              style={{ backgroundColor: colour(1) }}
             />
 
             <button
               type="button"
               onClick={() => setShowSubmission(false)}
               className="absolute right-5 top-4 z-10 text-3xl font-light"
-              style={{
-                color: theme.text,
-              }}
+              style={{ color: theme.text }}
               aria-label="Close"
             >
               ×

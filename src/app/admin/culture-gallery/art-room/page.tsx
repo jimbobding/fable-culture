@@ -1484,7 +1484,7 @@ export default function AdminCultureGalleryArtRoomPage() {
 
                   <input
                     type="file"
-                    accept="image/*"
+                    accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif"
                     multiple
                     onChange={chooseExampleImages}
                     className="hidden"

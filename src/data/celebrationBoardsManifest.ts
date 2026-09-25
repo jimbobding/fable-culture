@@ -4,14 +4,6 @@
 
 export const celebrationBoards = [
   {
-    "slug": "2026-02-27-celebrations-board",
-    "date": "2026-02-27",
-    "title": "Celebrations Board",
-    "header": "Celebration Board",
-    "description": "",
-    "images": []
-  },
-  {
     "slug": "2025-11-12-czech-biscuits",
     "date": "2025-11-12",
     "title": "Czech Biscuits",
