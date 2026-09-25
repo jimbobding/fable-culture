@@ -118,7 +118,6 @@ export default function CultureGallery({
 
       {/* =====================================================
           CREATIVE CULTURE
-          Only exists when regional data exists
       ===================================================== */}
       {creativeCulture.length > 0 && (
         <section className="relative mx-auto max-w-7xl py-20 sm:py-28">
@@ -248,7 +247,15 @@ export default function CultureGallery({
 
       {/* =====================================================
           ART ROOM
-          Completely disappears when there is no current project
+
+          Shared activity format for:
+          - hard-coded tasks
+          - Firebase/admin tasks
+
+          Desktop = two-column workshop board
+          Mobile = single column
+
+          Images/GIFs are optional instructional media.
       ===================================================== */}
       {artRoom.length > 0 && (
         <section className="relative mx-auto max-w-7xl py-24 sm:py-32">
@@ -257,6 +264,7 @@ export default function CultureGallery({
             style={{ backgroundColor: colour(2) }}
           />
 
+          {/* SECTION HEADING */}
           <div className="relative">
             <p
               className="text-xs font-black uppercase tracking-[0.35em]"
@@ -275,161 +283,274 @@ export default function CultureGallery({
                 in the Art Room?
               </span>
             </h2>
+
+            <p
+              className="mt-6 max-w-2xl text-lg leading-8"
+              style={{ color: theme.mutedText }}
+            >
+              Choose an activity, gather your materials and have a go.
+            </p>
           </div>
 
-          <div className="relative mt-20 space-y-24">
-            {artRoom.map((project, index) => (
-              <article
-                key={project.id}
-                className={`relative max-w-5xl ${
-                  index % 2 === 1 ? "ml-auto" : ""
-                }`}
-              >
-                <div
-                  className={`grid gap-8 ${
-                    project.image
-                      ? "lg:grid-cols-[1fr_1.2fr] lg:items-center"
-                      : ""
-                  }`}
+          {/* =================================================
+              WORKSHOP ACTIVITY GRID
+          ================================================= */}
+          <div className="relative mt-16 grid gap-10 lg:grid-cols-2 lg:items-start">
+            {artRoom.map((project, index) => {
+              const activityNumber = String(index + 1).padStart(2, "0");
+
+              return (
+                <article
+                  key={project.id}
+                  className="relative overflow-hidden border border-black/10 bg-white/70 shadow-sm"
                 >
-                  {/* OPTIONAL MAIN PROJECT IMAGE */}
-                  {project.image && (
-                    <div
-                      className={`relative ${
-                        index % 2 === 0 ? "-rotate-2" : "rotate-2"
-                      }`}
-                    >
-                      <div
-                        className="absolute -inset-4 -z-10 translate-x-3 translate-y-3 opacity-25"
+                  {/* COLOURED TOP STRIP */}
+                  <div
+                    className="h-2 w-full"
+                    style={{
+                      backgroundColor: colour(index),
+                    }}
+                  />
+
+                  <div className="p-7 sm:p-9">
+                    {/* ACTIVITY HEADER */}
+                    <div className="flex items-start justify-between gap-5">
+                      <div>
+                        <p
+                          className="text-[11px] font-black uppercase tracking-[0.28em]"
+                          style={{
+                            color: colour(index),
+                          }}
+                        >
+                          Art Room Activity
+                        </p>
+
+                        {project.country && (
+                          <p
+                            className="mt-2 text-xs font-black uppercase tracking-[0.22em]"
+                            style={{
+                              color: theme.mutedText,
+                            }}
+                          >
+                            {project.country}
+                          </p>
+                        )}
+                      </div>
+
+                      <span
+                        className="text-4xl font-black leading-none opacity-20 sm:text-5xl"
                         style={{
-                          backgroundColor: colour(index + 3),
+                          color: colour(index),
                         }}
-                      />
-
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full object-cover"
-                      />
-                    </div>
-                  )}
-
-                  <div>
-                    {project.country && (
-                      <p
-                        className="text-xs font-black uppercase tracking-[0.25em]"
-                        style={{ color: colour(index) }}
                       >
-                        {project.country}
-                      </p>
-                    )}
+                        {activityNumber}
+                      </span>
+                    </div>
 
+                    {/* TITLE */}
                     <h3
-                      className="mt-2 text-3xl font-black sm:text-5xl"
-                      style={{ color: theme.text }}
+                      className="mt-6 text-3xl font-black leading-tight sm:text-4xl"
+                      style={{
+                        color: theme.text,
+                      }}
                     >
                       {project.title}
                     </h3>
 
+                    {/* DESCRIPTION */}
                     {project.description && (
                       <p
-                        className="mt-5 text-lg leading-8"
-                        style={{ color: theme.mutedText }}
+                        className="mt-4 text-base leading-7 sm:text-lg"
+                        style={{
+                          color: theme.mutedText,
+                        }}
                       >
                         {project.description}
                       </p>
                     )}
 
+                    {/* TRY IT */}
                     {project.task && (
-                      <div className="mt-7">
+                      <div className="relative mt-7 pl-5">
+                        <span
+                          className="absolute bottom-0 left-0 top-0 w-1 rounded-full"
+                          style={{
+                            backgroundColor: colour(index + 1),
+                          }}
+                        />
+
                         <p
-                          className="text-xs font-black uppercase tracking-[0.25em]"
-                          style={{ color: colour(index + 1) }}
+                          className="text-[11px] font-black uppercase tracking-[0.25em]"
+                          style={{
+                            color: colour(index + 1),
+                          }}
                         >
                           Try it
                         </p>
 
                         <p
-                          className="mt-2 text-xl font-bold leading-8"
-                          style={{ color: theme.text }}
+                          className="mt-2 text-lg font-bold leading-7"
+                          style={{
+                            color: theme.text,
+                          }}
                         >
                           {project.task}
                         </p>
                       </div>
                     )}
 
-                    {/* =========================================
-                        OPTIONAL TASK EXAMPLE / INSPIRATION IMAGES
-                    ========================================= */}
-                    {project.exampleImages &&
-                      project.exampleImages.length > 0 && (
-                        <div className="mt-9">
-                          <div className="flex items-center gap-3">
-                            <p
-                              className="text-xs font-black uppercase tracking-[0.25em]"
-                              style={{ color: colour(index + 2) }}
-                            >
-                              Ideas & inspiration
-                            </p>
+                    {/* MATERIALS */}
+                    {project.materials && project.materials.length > 0 && (
+                      <div className="mt-8">
+                        <p
+                          className="text-[11px] font-black uppercase tracking-[0.25em]"
+                          style={{
+                            color: colour(index + 2),
+                          }}
+                        >
+                          You&apos;ll need
+                        </p>
 
+                        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
+                          {project.materials.map((material, materialIndex) => (
                             <span
-                              className="h-2 w-10 rounded-full opacity-70"
+                              key={`${project.id}-material-${materialIndex}`}
+                              className="text-sm font-black"
                               style={{
-                                backgroundColor: colour(index + 3),
+                                color: theme.text,
                               }}
-                            />
-                          </div>
+                            >
+                              <span
+                                className="mr-2 inline-block h-2 w-2 rounded-full"
+                                style={{
+                                  backgroundColor: colour(
+                                    index + materialIndex,
+                                  ),
+                                }}
+                              />
 
-                          <div
-                            className={`mt-5 grid gap-6 ${
-                              project.exampleImages.length === 1
-                                ? "max-w-xl"
-                                : project.exampleImages.length === 2
-                                  ? "sm:grid-cols-2"
-                                  : "sm:grid-cols-2 lg:grid-cols-3"
-                            }`}
+                              {material}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* INSTRUCTIONS */}
+                    {project.instructions &&
+                      project.instructions.length > 0 && (
+                        <div className="mt-9 border-t border-black/10 pt-7">
+                          <p
+                            className="text-[11px] font-black uppercase tracking-[0.25em]"
+                            style={{
+                              color: colour(index + 3),
+                            }}
                           >
-                            {project.exampleImages.map(
-                              (exampleImage, exampleIndex) => (
-                                <figure
-                                  key={`${project.id}-example-${exampleIndex}`}
-                                  className={`relative ${
-                                    exampleIndex % 3 === 0
-                                      ? "-rotate-1"
-                                      : exampleIndex % 3 === 1
-                                        ? "rotate-1"
-                                        : "-rotate-[0.5deg]"
-                                  }`}
+                            How to make it
+                          </p>
+
+                          <ol className="mt-5 space-y-4">
+                            {project.instructions.map(
+                              (instruction, instructionIndex) => (
+                                <li
+                                  key={`${project.id}-instruction-${instructionIndex}`}
+                                  className="flex gap-4"
                                 >
-                                  <div
-                                    className="absolute -inset-2 -z-10 translate-x-2 translate-y-2 opacity-20"
+                                  <span
+                                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black"
                                     style={{
                                       backgroundColor: colour(
-                                        index + exampleIndex + 1,
+                                        index + instructionIndex,
                                       ),
+                                      color: "#ffffff",
                                     }}
-                                  />
+                                  >
+                                    {instructionIndex + 1}
+                                  </span>
 
-                                  <div
-                                    className="overflow-hidden p-2 shadow-md"
+                                  <span
+                                    className="pt-0.5 text-sm leading-6 sm:text-base"
                                     style={{
-                                      backgroundColor: theme.surface,
+                                      color: theme.mutedText,
                                     }}
+                                  >
+                                    {instruction}
+                                  </span>
+                                </li>
+                              ),
+                            )}
+                          </ol>
+                        </div>
+                      )}
+
+                    {/* =========================================
+                        OPTIONAL ACTIVITY MEDIA
+
+                        This is intentionally instructional media,
+                        NOT student-submission/gallery styling.
+                    ========================================= */}
+                    {(project.image ||
+                      (project.exampleImages &&
+                        project.exampleImages.length > 0)) && (
+                      <div className="mt-9 border-t border-black/10 pt-7">
+                        <div className="flex items-center gap-3">
+                          <p
+                            className="text-[11px] font-black uppercase tracking-[0.25em]"
+                            style={{
+                              color: colour(index + 4),
+                            }}
+                          >
+                            Activity guide
+                          </p>
+
+                          <span
+                            className="h-1 w-10 rounded-full opacity-50"
+                            style={{
+                              backgroundColor: colour(index + 4),
+                            }}
+                          />
+                        </div>
+
+                        {/* OPTIONAL MAIN IMAGE */}
+                        {project.image && (
+                          <figure className="mt-5">
+                            <img
+                              src={project.image}
+                              alt={project.title}
+                              className="max-h-[440px] w-full object-contain"
+                            />
+                          </figure>
+                        )}
+
+                        {/* OPTIONAL EXAMPLES / GIFS */}
+                        {project.exampleImages &&
+                          project.exampleImages.length > 0 && (
+                            <div
+                              className={`mt-5 grid gap-6 ${
+                                project.exampleImages.length > 1
+                                  ? "sm:grid-cols-2"
+                                  : ""
+                              }`}
+                            >
+                              {project.exampleImages.map(
+                                (exampleImage, exampleIndex) => (
+                                  <figure
+                                    key={`${project.id}-example-${exampleIndex}`}
                                   >
                                     <img
                                       src={exampleImage.src}
                                       alt={
                                         exampleImage.alt ??
-                                        `${project.title} example ${
+                                        `${project.title} activity guide ${
                                           exampleIndex + 1
                                         }`
                                       }
-                                      className="aspect-[4/3] w-full object-cover"
+                                      className="max-h-[440px] w-full object-contain"
                                     />
 
                                     {exampleImage.caption && (
                                       <figcaption
-                                        className="px-2 pb-2 pt-3 text-sm font-bold leading-6"
+                                        className="mt-3 text-sm font-bold leading-6"
                                         style={{
                                           color: theme.mutedText,
                                         }}
@@ -437,72 +558,17 @@ export default function CultureGallery({
                                         {exampleImage.caption}
                                       </figcaption>
                                     )}
-                                  </div>
-                                </figure>
-                              ),
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                    {project.materials && project.materials.length > 0 && (
-                      <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-                        {project.materials.map((material, materialIndex) => (
-                          <span
-                            key={material}
-                            className="relative text-sm font-black"
-                            style={{
-                              color: theme.text,
-                            }}
-                          >
-                            <span
-                              className="mr-2 inline-block h-2 w-2 rounded-full"
-                              style={{
-                                backgroundColor: colour(materialIndex + index),
-                              }}
-                            />
-
-                            {material}
-                          </span>
-                        ))}
+                                  </figure>
+                                ),
+                              )}
+                            </div>
+                          )}
                       </div>
                     )}
-
-                    {project.instructions &&
-                      project.instructions.length > 0 && (
-                        <ol className="mt-8 space-y-4">
-                          {project.instructions.map(
-                            (instruction, instructionIndex) => (
-                              <li
-                                key={`${project.id}-${instructionIndex}`}
-                                className="flex max-w-2xl gap-4"
-                              >
-                                <span
-                                  className="text-xl font-black"
-                                  style={{
-                                    color: colour(instructionIndex + index),
-                                  }}
-                                >
-                                  {instructionIndex + 1}
-                                </span>
-
-                                <span
-                                  className="leading-7"
-                                  style={{
-                                    color: theme.mutedText,
-                                  }}
-                                >
-                                  {instruction}
-                                </span>
-                              </li>
-                            ),
-                          )}
-                        </ol>
-                      )}
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </section>
       )}

@@ -3,6 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+/* =========================================================
+   REGIONS
+========================================================= */
+
 const continents = [
   {
     name: "Africa",
@@ -51,73 +55,75 @@ const continents = [
   },
 ];
 
-const upcomingEvents = [
+/* =========================================================
+   SEPTEMBER EVENTS
+========================================================= */
+
+const monthlyFeature = {
+  title: "East & South East Asian Heritage Month",
+  subtitle: "September 2026",
+  theme: "Evolving Threads",
+  emoji: "🌏",
+  text: "East & South East Asian Heritage Month is celebrated throughout September in the UK. It is an opportunity to celebrate and learn about the cultures, histories, traditions and achievements of East and South East Asian communities. This year’s theme, Evolving Threads, explores how stories, identities and communities connect, adapt and grow across generations, places and cultures.",
+};
+
+const septemberEvents = [
   {
-    start: "2026-07-01",
-    end: "2026-07-01",
-    title: "😂 International Joke Day",
+    start: "2026-09-15",
+    end: "2026-09-15",
+    title: "🗳️ International Day of Democracy",
+    color: "bg-sky-100 border-sky-300",
+    text: "International Day of Democracy is observed every year on 15 September. It is a chance to think about democracy, having a voice and how people can take part in decisions that affect their lives. Democracy includes ideas such as participation, dialogue, human rights and listening to different points of view.",
+  },
+  {
+    start: "2026-09-19",
+    end: "2026-09-19",
+    title: "🏴‍☠️ International Talk Like a Pirate Day",
+    color: "bg-amber-100 border-amber-300",
+    text: "International Talk Like a Pirate Day is a fun celebration held every year on 19 September. Have a go at pirate words and phrases, create your own pirate name or discover stories about pirates and life at sea. Arrr!",
+  },
+  {
+    start: "2026-09-25",
+    end: "2026-09-25",
+    title: "✏️ National Doodle Day",
     color: "bg-purple-100 border-purple-300",
-    text: "International Joke Day brightens the calendar every July 1, inviting everyone to share a laugh and appreciate the power of humour. Take time to tell your favourite joke, discover new comedic talent, and bring a smile to someone's face. 😄🎭",
-  },
-  {
-    start: "2026-07-02",
-    end: "2026-07-02",
-    title: "👽 World UFO Day",
-    color: "bg-red-100 border-red-300",
-    text: `
-      <p><strong>July 2:</strong> Officially declared by the World UFO Day Organization, this date commemorates the anniversary of the infamous 1947 Roswell Incident in New Mexico. 🛸</p>
-
-      <p><strong>🔭 Sky Watching:</strong> Many groups and local astronomy clubs organize nighttime viewing parties to track the skies for unexplained phenomena.</p>
-
-      <p><strong>🎬 Host a Watch Party:</strong> Celebrate with extraterrestrial and sci-fi movies, or stream UFO and space-related documentaries.</p>
-
-      <p><strong>📚 Learn and Research:</strong> Explore the history of the Roswell Incident and discuss why people have different opinions about what happened. Learn how scientists investigate unusual events and the importance of using evidence when evaluating extraordinary claims.</p>
-    `,
-  },
-  {
-    start: "2026-07-14",
-    end: "2026-07-14",
-    title: "🌟 International Be You Day",
-    color: "bg-green-100 border-green-300",
-    text: "Shark & Ray Awareness Day is observed each year on 14 July to raise awareness of the important role sharks and rays play in maintaining healthy marine ecosystems. These species help keep ocean food chains balanced and contribute to the overall health of our seas.Many shark and ray species are threatened by overfishing, habitat loss, pollution, and climate change. The day highlights the need for conservation, sustainable fishing practices, and protecting marine habitats to help ensure these remarkable animals survive for future generations.",
+    text: "National Doodle Day is an annual Epilepsy Action fundraising campaign that uses creativity to raise awareness of epilepsy. Anyone can take part — pick up a pen, create a doodle and use art to help start conversations about epilepsy and support people affected by the condition.",
   },
 ];
 
-export default function LandingPage() {
-  const now = new Date();
-  const monthName = now.toLocaleString("en-GB", { month: "long" });
+/* =========================================================
+   PAGE
+========================================================= */
 
+export default function LandingPage() {
   const formatDateRange = (start: string, end: string) => {
-    const startDate = new Date(start);
-    const endDate = new Date(end);
+    const startDate = new Date(`${start}T12:00:00`);
+    const endDate = new Date(`${end}T12:00:00`);
 
     const sameDay = startDate.toDateString() === endDate.toDateString();
 
     const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
       day: "numeric",
-      month: "short",
+      month: "long",
     };
 
     if (sameDay) {
-      return startDate.toLocaleDateString(undefined, options);
+      return startDate.toLocaleDateString("en-GB", options);
     }
 
-    if (startDate.getMonth() !== endDate.getMonth()) {
-      return `${startDate.toLocaleDateString(
-        undefined,
-        options,
-      )}–${endDate.toLocaleDateString(undefined, options)}`;
-    }
-
-    return `${startDate.getDate()}–${endDate.toLocaleDateString(
-      undefined,
+    return `${startDate.toLocaleDateString(
+      "en-GB",
       options,
-    )}`;
+    )} – ${endDate.toLocaleDateString("en-GB", options)}`;
   };
 
   return (
     <main className="min-h-[90vh] bg-gradient-to-br from-pink-50 to-yellow-50 pb-8">
-      {/* Header */}
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <header className="px-6 py-16 text-center">
         <h1 className="mb-4 text-5xl font-extrabold text-pink-600 md:text-6xl">
           Fable-Culture
@@ -141,11 +147,14 @@ export default function LandingPage() {
         </p>
       </header>
 
-      {/* Continent Hover Cards */}
+      {/* =====================================================
+          REGION CARDS
+      ===================================================== */}
+
       <section className="mx-auto mb-16 grid max-w-6xl grid-cols-1 place-items-center gap-8 px-6 sm:grid-cols-2 lg:grid-cols-3">
-        {continents.map((continent, i) => (
+        {continents.map((continent) => (
           <Link
-            key={i}
+            key={continent.href}
             href={continent.href}
             className={`group relative flex h-48 w-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-gradient-to-br hover:shadow-xl ${continent.color}`}
           >
@@ -160,8 +169,11 @@ export default function LandingPage() {
         ))}
       </section>
 
-      {/* Gallery + Upload */}
-      <section className="mb-16 px-6">
+      {/* =====================================================
+          GALLERY + UPLOAD
+      ===================================================== */}
+
+      <section className="mb-20 px-6">
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
           <Link
             href="/gallery"
@@ -187,59 +199,106 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Upcoming Events / Calendar */}
-      <section className="mx-auto mb-16 max-w-4xl px-6">
-        <h2 className="mb-6 text-center text-3xl font-bold text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.25)]">
-          Important Events: {monthName}
-        </h2>
+      {/* =====================================================
+          THIS MONTH AT FABLE
+      ===================================================== */}
 
-        {/* Special Month Highlight */}
-        <div className="mb-8 flex justify-center">
-          <div className="w-full max-w-2xl rounded-[2rem] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-yellow-100 p-6 text-center shadow-md">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">
-              Special Month
-            </p>
+      <section className="mx-auto mb-20 max-w-6xl px-6">
+        <div className="mb-10 text-center">
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-pink-500">
+            September 2026
+          </p>
 
-            <h3 className="text-2xl font-bold text-stone-800 md:text-3xl">
-              🌍♻️ Plastic Free July™
-            </h3>
+          <h2 className="mt-2 text-3xl font-black text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.18)] md:text-4xl">
+            This Month at Fable
+          </h2>
 
-            <p className="mt-3 text-sm leading-7 text-stone-700 md:text-base">
-              Plastic Free July™ is a global environmental initiative that
-              encourages people to reduce their use of single-use plastics
-              throughout the month of July. The campaign raises awareness of the
-              impact plastic pollution has on our environment, wildlife, and
-              oceans while promoting practical, reusable alternatives. Since it
-              began, Plastic Free July™ has inspired over 170 million
-              participants in more than 190 countries. The aim is to help
-              individuals, schools, workplaces, and communities make simple
-              changes that reduce plastic waste—not just during July, but as
-              long-term sustainable habits.
-            </p>
+          <p className="mx-auto mt-3 max-w-2xl text-gray-600">
+            Cultural celebrations, awareness days and events we&apos;re
+            exploring together.
+          </p>
+        </div>
 
-            <p className="mt-3 text-sm font-medium text-amber-800">July</p>
+        {/* ===================================================
+            MONTH-LONG FEATURE
+        =================================================== */}
+
+        <div className="mb-10 overflow-hidden rounded-[2rem] border border-orange-200 bg-gradient-to-br from-orange-100 via-amber-50 to-yellow-100 shadow-md">
+          <div className="grid md:grid-cols-[0.75fr_1.25fr]">
+            {/* FEATURE TITLE SIDE */}
+
+            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-orange-500 to-amber-400 p-8 text-center text-white md:p-10">
+              <span className="text-6xl">{monthlyFeature.emoji}</span>
+
+              <p className="mt-5 text-xs font-black uppercase tracking-[0.25em] text-orange-100">
+                Special Month
+              </p>
+
+              <h3 className="mt-3 text-3xl font-black leading-tight">
+                {monthlyFeature.title}
+              </h3>
+
+              <p className="mt-4 font-bold">{monthlyFeature.subtitle}</p>
+            </div>
+
+            {/* FEATURE INFORMATION */}
+
+            <div className="p-7 sm:p-9 md:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-600">
+                2026 Theme
+              </p>
+
+              <h4 className="mt-2 text-3xl font-black text-stone-800">
+                {monthlyFeature.theme}
+              </h4>
+
+              <p className="mt-5 text-base leading-8 text-stone-700">
+                {monthlyFeature.text}
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {[
+                  "Culture",
+                  "History",
+                  "Food",
+                  "Art",
+                  "Music",
+                  "Community",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full bg-white/80 px-4 py-2 text-xs font-bold text-orange-700 shadow-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {upcomingEvents.map((event, i) => (
-            <div
-              key={i}
-              className={`rounded-2xl border p-6 shadow transition hover:shadow-lg ${event.color}`}
+        {/* ===================================================
+            SEPTEMBER EVENTS
+        =================================================== */}
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {septemberEvents.map((event) => (
+            <article
+              key={event.title}
+              className={`flex h-full flex-col rounded-2xl border p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg ${event.color}`}
             >
-              <p className="font-semibold text-pink-600">
+              <p className="text-sm font-black text-pink-600">
                 {formatDateRange(event.start, event.end)}
               </p>
 
-              <h3 className="mt-2 font-bold text-gray-800">{event.title}</h3>
+              <h3 className="mt-3 text-xl font-black leading-tight text-gray-800">
+                {event.title}
+              </h3>
 
-              {event.text && (
-                <div
-                  className="mt-2 space-y-2 text-gray-600"
-                  dangerouslySetInnerHTML={{ __html: event.text }}
-                />
-              )}
-            </div>
+              <p className="mt-4 flex-1 text-sm leading-7 text-gray-700">
+                {event.text}
+              </p>
+            </article>
           ))}
         </div>
       </section>
