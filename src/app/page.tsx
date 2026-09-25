@@ -291,17 +291,4 @@ export default function LandingPage() {
                 {formatDateRange(event.start, event.end)}
               </p>
 
-              <h3 className="mt-3 text-xl font-black leading-tight text-gray-800">
-                {event.title}
-              </h3>
-
-              <p className="mt-4 flex-1 text-sm leading-7 text-gray-700">
-                {event.text}
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-}
+              <h3 className="mt-3 text-xl font-black le
