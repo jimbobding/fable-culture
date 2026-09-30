@@ -16,6 +16,7 @@ import type {
   ArtRoomProject,
   CultureGalleryConfig,
   CultureGalleryTheme,
+  CultureGalleryPresentation,
 } from "./types";
 
 type Props = {
@@ -27,6 +28,7 @@ type Props = {
 
   config: CultureGalleryConfig;
   theme: CultureGalleryTheme;
+  presentation?: CultureGalleryPresentation;
 };
 
 export default function CultureGalleryPage({
@@ -36,6 +38,7 @@ export default function CultureGalleryPage({
   countries,
   config,
   theme,
+  presentation,
 }: Props) {
   const [showSubmission, setShowSubmission] = useState(false);
 
@@ -151,6 +154,7 @@ export default function CultureGalleryPage({
           creativeCulture={config.creativeCulture}
           artRoom={artRoomProjects}
           theme={theme}
+          presentation={presentation}
         />
       </div>
 

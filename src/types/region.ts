@@ -12,3 +12,12 @@ export type RegionData = {
   region: string;
   countries: Country[];
 };
+
+export type CultureGalleryPresentation = {
+  heroStyle?: "studio" | "poster";
+  headingStyle?: "classic" | "stacked";
+  imageStyle?: "clean" | "print";
+  layoutStyle?: "classic" | "freeform";
+  patternStyle?: "none" | "textile";
+  sectionStyle?: "classic" | "mural";
+};

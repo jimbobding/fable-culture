@@ -1,3 +1,8 @@
+import CultureKitchen from "@/components/shared/culture-kitchen/CultureKitchen";
+import {
+  southAmericaCultureKitchen,
+  southAmericaCultureKitchenTheme,
+} from "@/data/southAmerica/cultureKitchen";
 import Link from "next/link";
 
 /*
@@ -387,20 +392,16 @@ export default async function SouthAmericaPage() {
             </div>
 
             <div className="flex min-h-[340px] items-center justify-center border-[3px] border-[#211F1B]/15 bg-[#F4E5C4]/25 p-8">
-              {/*
-              ==================================================
-              SHARED CULTURE KITCHEN — NOT CONNECTED YET
-
               <CultureKitchen
-                region="south-america"
+                title="South America Culture Kitchen"
+                intro="Cook your way across South America through six dishes chosen to explore different flavours, ingredients and kitchen skills."
+                dishes={southAmericaCultureKitchen}
+                theme={southAmericaCultureKitchenTheme}
               />
 
-              ==================================================
-              */}
-
-              <p className="max-w-sm text-center text-sm font-black uppercase tracking-[0.2em] text-[#211F1B]/45">
-                Shared Culture Kitchen plugs in here
-              </p>
+              <Link href="/south-america/culture-kitchen" className="...">
+                Explore the Culture Kitchen →
+              </Link>
             </div>
           </div>
         </div>

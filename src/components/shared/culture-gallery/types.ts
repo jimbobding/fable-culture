@@ -59,3 +59,12 @@ export type CultureGalleryConfig = {
 };
 
 export type CultureGallerySubmissionType = "created" | "discovered";
+
+export type CultureGalleryPresentation = {
+  heroStyle?: "studio" | "poster";
+  headingStyle?: "classic" | "stacked";
+  imageStyle?: "clean" | "print";
+  layoutStyle?: "classic" | "freeform";
+  patternStyle?: "none" | "textile";
+  sectionStyle?: "classic" | "mural";
+};
