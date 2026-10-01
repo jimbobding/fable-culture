@@ -1,8 +1,9 @@
 import CultureKitchen from "@/components/shared/culture-kitchen/CultureKitchen";
+
 import {
   southAmericaCultureKitchen,
   southAmericaCultureKitchenTheme,
-} from "@/data/southAmerica/cultureKitchen";
+} from "@/data/southAmerica/cultureKitchen/cultureKitchen";
 import Link from "next/link";
 
 /*
