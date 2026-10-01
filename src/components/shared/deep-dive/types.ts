@@ -132,6 +132,56 @@ export type DeepDiveChoiceSection = {
   completionText?: string;
 };
 
+/*
+  ============================================================
+  AUDIO
+
+  Reusable audio interaction for Deep Dives.
+
+  Examples:
+  - Amazon wildlife / rainforest sounds
+  - South American instruments
+  - Music styles
+  - Future language / environmental sound activities
+
+  Nothing here is region-specific.
+  ============================================================
+*/
+
+export type DeepDiveAudioOption = {
+  id: string;
+  label: string;
+  correct?: boolean;
+};
+
+export type DeepDiveAudioClip = {
+  id: string;
+
+  title?: string;
+
+  audioSrc: string;
+
+  question?: string;
+
+  options?: DeepDiveAudioOption[];
+
+  revealTitle?: string;
+  revealText?: string;
+};
+
+export type DeepDiveAudioSection = {
+  type: "audio";
+  id: string;
+
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+
+  clips: DeepDiveAudioClip[];
+
+  sourceRefs?: DeepDiveSourceRef[];
+};
+
 export type DeepDiveSection =
   | DeepDiveArticleSection
   | DeepDiveBigDateSection
@@ -140,7 +190,8 @@ export type DeepDiveSection =
   | DeepDiveTimelineSection
   | DeepDiveStatementSection
   | DeepDiveJourneySection
-  | DeepDiveChoiceSection;
+  | DeepDiveChoiceSection
+  | DeepDiveAudioSection;
 
 export type DeepDiveConfig = {
   slug: string;

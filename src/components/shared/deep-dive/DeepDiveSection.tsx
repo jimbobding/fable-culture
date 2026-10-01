@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AudioChallenge from "./interactions/AudioChallenge";
 import type {
   DeepDiveConfig,
   DeepDiveSection as DeepDiveSectionType,
@@ -62,6 +63,53 @@ export default function DeepDiveSection({
 
     case "choice":
       return <ChoiceSection section={section} theme={theme} />;
+
+    case "audio":
+      return (
+        <section className="px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl">
+              {section.eyebrow && (
+                <p
+                  className="text-xs font-black uppercase tracking-[0.3em]"
+                  style={{ color: theme.primary }}
+                >
+                  {section.eyebrow}
+                </p>
+              )}
+
+              <h2
+                className="mt-3 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl"
+                style={{ color: theme.text }}
+              >
+                {section.title}
+              </h2>
+
+              {section.intro && (
+                <p
+                  className="mt-5 text-lg leading-8"
+                  style={{ color: theme.mutedText }}
+                >
+                  {section.intro}
+                </p>
+              )}
+            </div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              {section.clips.map((clip, clipIndex) => (
+                <AudioChallenge
+                  key={clip.id}
+                  clip={clip}
+                  theme={theme}
+                  number={clipIndex + 1}
+                />
+              ))}
+            </div>
+
+            <SourceCredit refs={section.sourceRefs} sources={sources} />
+          </div>
+        </section>
+      );
 
     default:
       return null;
