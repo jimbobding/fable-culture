@@ -835,7 +835,7 @@ export default async function SouthAmericaCountryPage({
             sectionHeading={`Things We’ve Learned About ${country.name}`}
             inputHeading="Add a new fact"
             placeholder="Share a fact you discovered about this country"
-            staticItems={country.facts}
+            staticItems={country.facts.slice(0, 3)}
             theme={{
               cardBg:
                 "bg-gradient-to-br from-[#f4e5c4]/95 via-white/95 to-[#f4e5c4]/85",

@@ -17,6 +17,10 @@ export type RegionalTimelineEvent = {
   sortYear: number;
 
   title: string;
+
+  /**
+   * Short teaser shown while the timeline event is collapsed.
+   */
   summary: string;
 
   /**
@@ -30,15 +34,34 @@ export type RegionalTimelineEvent = {
    */
   era: string;
 
+  /**
+   * Optional image revealed with the event.
+   */
   image?: string;
 
   imageAlt?: string;
 
   /**
-   * Optional explanation of why this event matters
+   * Explanation of why this event matters
    * to the wider regional story.
    */
   significance?: string;
+
+  /**
+   * Extra information revealed when the learner
+   * opens the timeline event.
+   */
+  details?: string[];
+
+  /**
+   * Optional route to a related Fable Culture Deep Dive.
+   */
+  deepDiveHref?: string;
+
+  /**
+   * Optional custom wording for the Deep Dive button.
+   */
+  deepDiveLabel?: string;
 };
 
 export type RegionalTimelineEra = {

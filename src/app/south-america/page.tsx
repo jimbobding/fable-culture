@@ -1,85 +1,134 @@
-import CultureKitchen from "@/components/shared/culture-kitchen/CultureKitchen";
-
-import {
-  southAmericaCultureKitchen,
-  southAmericaCultureKitchenTheme,
-} from "@/data/southAmerica/cultureKitchen/cultureKitchen";
-import Link from "next/link";
-
 /*
+
 ============================================================
+
 NOT READY YET — UNCOMMENT AS EACH SYSTEM IS CONNECTED
+
 ============================================================
+
+
 
 // Regional map
+
 import SouthAmericaMap from "@/components/regions/south-america/SouthAmericaMap";
 
+
+
 // Shared systems
+
 import CultureKitchen from "@/components/shared/culture-kitchen/CultureKitchen";
+
 import CultureGallery from "@/components/shared/culture-gallery/CultureGallery";
+
 import Timeline from "@/components/shared/Timeline";
+
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 
+
+
 // South America data
+
 import { southAmericaCountries } from "@/data/southAmerica/southAmericaCountries";
+
 import { southAmericaTimeline } from "@/data/southAmerica/timelines";
 
+
+
 import {
+
   southAmericaDiscoveries,
+
   southAmericaDiscoveryThemes,
+
 } from "@/data/southAmerica/discoveries";
 
+
+
 // Firebase / approved learner resources
+
 import { getApprovedResources } from "@/lib/getApprovedResources";
 
+
+
 ============================================================
+
 */
+
+import SouthAmericaMap from "@/components/regions/south-america/SouthAmericaMap";
+
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 const teachingRegions = [
   {
     id: "brazil",
+
     name: "Brazil",
+
     countries: ["Brazil"],
+
     colour: "#F4C542",
+
     text: "One country. Huge landscapes, Portuguese language, enormous cultural influence and a story all of its own.",
   },
+
   {
     id: "andean",
+
     name: "Andean",
+
     countries: ["Bolivia", "Chile", "Ecuador", "Peru"],
+
     colour: "#B84432",
+
     text: "Travel along the Andes through ancient civilisations, high-altitude landscapes, living traditions and modern cities.",
   },
+
   {
     id: "northern",
+
     name: "Northern",
+
     countries: ["Colombia", "Guyana", "Suriname", "Venezuela"],
+
     colour: "#168C9E",
+
     text: "Follow the continent's northern edge through Caribbean connections, rainforest, rivers and remarkable cultural diversity.",
   },
+
   {
     id: "southern-cone",
+
     name: "Southern Cone",
+
     countries: ["Argentina", "Paraguay", "Uruguay"],
+
     colour: "#2456A6",
+
     text: "Head south through grasslands, great cities, music, migration and distinctive national identities.",
   },
 ];
 
 export default async function SouthAmericaPage() {
   /*
+
   NOT READY YET
 
+
+
   const approvedResources =
+
     await getApprovedResources("south-america");
+
   */
 
   return (
     <main className="overflow-x-hidden bg-[#F4E5C4] text-[#211F1B]">
       {/* ======================================================
+
           HERO
+
       ====================================================== */}
 
       <section className="relative min-h-[88vh] overflow-hidden bg-[#F4E5C4]">
@@ -136,7 +185,9 @@ export default async function SouthAmericaPage() {
 
         <div className="absolute right-[5%] top-[45%] hidden rotate-12 gap-2 md:grid">
           <div className="h-7 w-7 rotate-45 bg-[#F4C542]" />
+
           <div className="h-7 w-7 rotate-45 bg-[#2456A6]" />
+
           <div className="h-7 w-7 rotate-45 bg-[#B84432]" />
         </div>
 
@@ -185,14 +236,18 @@ export default async function SouthAmericaPage() {
 
           <div className="flex justify-between text-[10px] font-black uppercase tracking-[0.35em] text-[#211F1B]/40">
             <span>Pacific</span>
+
             <span>Amazon</span>
+
             <span>Atlantic</span>
           </div>
         </div>
       </section>
 
       {/* ======================================================
+
           INTRO
+
       ====================================================== */}
 
       <section className="bg-[#211F1B] px-5 py-28 text-[#F4E5C4] sm:px-8 lg:px-10">
@@ -266,7 +321,9 @@ export default async function SouthAmericaPage() {
       </section>
 
       {/* ======================================================
+
           EXPLORE / MAP
+
       ====================================================== */}
 
       <section
@@ -299,28 +356,8 @@ export default async function SouthAmericaPage() {
               </p>
             </div>
 
-            <div className="flex min-h-[520px] items-center justify-center lg:col-span-8">
-              {/*
-              ==================================================
-              SOUTH AMERICA MAP — NOT CONNECTED YET
-
+            <div className="flex items-center justify-center lg:col-span-8">
               <SouthAmericaMap />
-              ==================================================
-              */}
-
-              <div className="relative flex h-[480px] w-full max-w-[520px] items-center justify-center">
-                <div
-                  className="h-[420px] w-[290px] rotate-[8deg] bg-[#F4E5C4]/90"
-                  style={{
-                    clipPath:
-                      "polygon(35% 0%, 70% 5%, 91% 20%, 85% 39%, 69% 53%, 61% 70%, 47% 100%, 33% 78%, 20% 61%, 8% 44%, 15% 23%)",
-                  }}
-                />
-
-                <div className="absolute bg-[#211F1B] px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#F4E5C4]">
-                  Interactive map coming here
-                </div>
-              </div>
             </div>
           </div>
 
@@ -333,6 +370,7 @@ export default async function SouthAmericaPage() {
                 className="relative min-h-[320px] overflow-hidden p-6"
                 style={{
                   backgroundColor: region.colour,
+
                   color: region.id === "brazil" ? "#211F1B" : "#ffffff",
                 }}
               >
@@ -350,12 +388,13 @@ export default async function SouthAmericaPage() {
 
                 <div className="mt-7 flex flex-wrap gap-x-3 gap-y-2">
                   {region.countries.map((country) => (
-                    <span
+                    <Link
                       key={country}
-                      className="border-b border-current/30 pb-1 text-xs font-black uppercase tracking-[0.12em]"
+                      href={`/south-america/${country.toLowerCase().replaceAll(" ", "-")}`}
+                      className="border-b border-current/30 pb-1 text-xs font-black uppercase tracking-[0.12em] transition hover:border-current hover:opacity-60"
                     >
                       {country}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -365,7 +404,105 @@ export default async function SouthAmericaPage() {
       </section>
 
       {/* ======================================================
+          FEATURED EXPERIENCE — AMAZON JOURNEY
+      ====================================================== */}
+
+      <section className="relative overflow-hidden bg-[#0B2E24] px-5 py-24 text-white sm:px-8 lg:px-10">
+        {/* BACKGROUND WORD */}
+        <div className="pointer-events-none absolute -right-6 -top-8 text-[9rem] font-black uppercase leading-none tracking-[-0.08em] text-white/[0.035] sm:text-[16rem]">
+          Amazon
+        </div>
+
+        <div className="relative mx-auto max-w-7xl">
+          {/* SECTION LABEL */}
+          <div className="mb-8 flex items-center gap-4">
+            <span className="h-[3px] w-12 bg-[#F4C542]" />
+
+            <p className="text-xs font-black uppercase tracking-[0.4em] text-[#F4C542]">
+              Featured interactive experience
+            </p>
+          </div>
+
+          {/* WHOLE FEATURE IS CLICKABLE */}
+          <Link
+            href="/south-america/deep-dives/amazon"
+            className="group relative block min-h-[620px] overflow-hidden border border-white/15"
+          >
+            {/* AMAZON IMAGE */}
+            <img
+              src="/images/continents/south-america/countries/peru/places/manu-amazon-rainforest.jpg"
+              alt="Amazon rainforest in Manu, Peru"
+              className="absolute inset-0 h-full w-full object-cover transition duration-[1200ms] group-hover:scale-[1.035]"
+            />
+
+            {/* IMAGE TREATMENT */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#071F18]/95 via-[#071F18]/65 to-[#071F18]/15" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071F18]/90 via-transparent to-[#071F18]/20" />
+
+            {/* CONTENT */}
+            <div className="relative flex min-h-[620px] flex-col justify-between p-7 sm:p-10 lg:p-14">
+              {/* TOP */}
+              <div className="flex items-start justify-between gap-6">
+                <div className="border border-white/25 bg-[#071F18]/55 px-4 py-2 backdrop-blur-sm">
+                  <p className="text-xs font-black uppercase tracking-[0.22em] text-[#F4C542]">
+                    South America · Deep Dive
+                  </p>
+                </div>
+
+                <div className="hidden h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/20 text-2xl backdrop-blur-sm transition group-hover:scale-110 group-hover:bg-[#F4C542] group-hover:text-[#153D2D] sm:flex">
+                  →
+                </div>
+              </div>
+
+              {/* BOTTOM */}
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#F4C542]">
+                  Follow the river
+                </p>
+
+                <h2 className="mt-5 max-w-4xl text-6xl font-black uppercase leading-[0.78] tracking-[-0.065em] sm:text-8xl lg:text-[7.5rem]">
+                  Enter the
+                  <br />
+                  Amazon.
+                </h2>
+
+                <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/75 sm:text-xl">
+                  Journey through the rainforest, listen to its wildlife and
+                  discover the people, environments and questions connected to
+                  one of the world's great ecosystems.
+                </p>
+
+                {/* EXPERIENCE TAGS */}
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {["🎧 Listen", "🌿 Explore", "🐒 Discover", "💭 Think"].map(
+                    (item) => (
+                      <span
+                        key={item}
+                        className="border border-white/25 bg-black/20 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] backdrop-blur-sm"
+                      >
+                        {item}
+                      </span>
+                    ),
+                  )}
+                </div>
+
+                {/* CTA */}
+                <div className="mt-10 inline-flex items-center gap-5 bg-[#F4C542] px-6 py-4 text-sm font-black uppercase tracking-[0.18em] text-[#153D2D] transition group-hover:-translate-y-1">
+                  Begin the journey
+                  <span className="text-xl transition-transform group-hover:translate-x-2">
+                    →
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* ======================================================
+
           CULTURE KITCHEN
+
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#F28C3C] py-24">
@@ -392,16 +529,63 @@ export default async function SouthAmericaPage() {
               </p>
             </div>
 
-            <div className="flex min-h-[340px] items-center justify-center border-[3px] border-[#211F1B]/15 bg-[#F4E5C4]/25 p-8">
-              <CultureKitchen
-                title="South America Culture Kitchen"
-                intro="Cook your way across South America through six dishes chosen to explore different flavours, ingredients and kitchen skills."
-                dishes={southAmericaCultureKitchen}
-                theme={southAmericaCultureKitchenTheme}
-              />
+            <div className="min-h-[420px]">
+              <Link
+                href="/south-america/culture-kitchen"
+                className="group relative block min-h-[420px] w-full overflow-hidden border-[3px] border-[#211F1B]/20"
+              >
+                {/* HERO FOOD IMAGE */}
 
-              <Link href="/south-america/culture-kitchen" className="...">
-                Explore the Culture Kitchen →
+                <img
+                  src="/images/culture-kitchen/south-america/peru/lomo-saltado.webp"
+                  alt="Lomo Saltado from Peru"
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+                />
+
+                {/* DARK GRADIENT */}
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#211F1B]/95 via-[#211F1B]/35 to-transparent" />
+
+                {/* SMALL TOP LABEL */}
+
+                <div className="absolute left-6 top-6 border border-white/40 bg-[#F4E5C4]/95 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#211F1B]">
+                  🍽️ Enter the kitchen
+                </div>
+
+                {/* BOTTOM CONTENT */}
+
+                <div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-9">
+                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#F4C542]">
+                    Cook • Taste • Discover
+                  </p>
+
+                  <h3 className="mt-3 max-w-xl text-3xl font-black leading-tight sm:text-4xl">
+                    Explore South America through food.
+                  </h3>
+
+                  <p className="mt-3 max-w-xl leading-relaxed text-white/80">
+                    Discover six dishes, their cultural stories and the kitchen
+                    skills needed to make them.
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap items-center gap-2">
+                    <span className="border border-white/30 bg-black/15 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] backdrop-blur-sm">
+                      6 dishes
+                    </span>
+
+                    <span className="border border-white/30 bg-black/15 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] backdrop-blur-sm">
+                      Food stories
+                    </span>
+
+                    <span className="border border-white/30 bg-black/15 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] backdrop-blur-sm">
+                      Kitchen skills
+                    </span>
+
+                    <span className="ml-auto text-4xl transition-transform duration-300 group-hover:translate-x-2">
+                      →
+                    </span>
+                  </div>
+                </div>
               </Link>
             </div>
           </div>
@@ -409,7 +593,9 @@ export default async function SouthAmericaPage() {
       </section>
 
       {/* ======================================================
+
           CULTURE GALLERY
+
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#2456A6] py-24 text-white">
@@ -434,14 +620,23 @@ export default async function SouthAmericaPage() {
 
             <div className="flex min-h-[420px] items-center justify-center border-[3px] border-white/20 bg-white/[0.06] p-8 lg:col-span-7">
               {/*
+
               ==================================================
+
               SHARED CULTURE GALLERY — NOT CONNECTED YET
 
+
+
               <CultureGallery
+
                 region="south-america"
+
               />
 
+
+
               ==================================================
+
               */}
 
               <p className="max-w-sm text-center text-sm font-black uppercase tracking-[0.2em] text-white/40">
@@ -457,67 +652,129 @@ export default async function SouthAmericaPage() {
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#F4E5C4] px-5 py-28 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-black uppercase tracking-[0.4em] text-[#B84432]">
-            Before · during · after
-          </p>
+        {/* BACKGROUND WORD */}
+        <div className="pointer-events-none absolute -right-8 top-4 text-[9rem] font-black uppercase leading-none tracking-[-0.07em] text-[#211F1B]/[0.035] sm:text-[15rem]">
+          Time
+        </div>
 
-          <h2 className="mt-5 text-6xl font-black uppercase leading-[0.8] tracking-[-0.06em] sm:text-8xl">
-            Follow
-            <br />
-            the story.
-          </h2>
+        <div className="relative mx-auto max-w-7xl">
+          {/* INTRO */}
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <p className="text-xs font-black uppercase tracking-[0.4em] text-[#B84432]">
+                Before · during · after
+              </p>
 
-          <p className="mt-7 max-w-2xl text-xl leading-relaxed text-[#211F1B]/60">
-            South America's story stretches far beyond a single period. Follow
-            change, continuity, movement and resistance across time.
-          </p>
-
-          <div className="mt-16">
-            {/*
-            ====================================================
-            SHARED TIMELINE — NOT CONNECTED YET
-
-            <Timeline
-              events={southAmericaTimeline}
-              theme={{
-                primary: "#153D2D",
-                secondary: "#B84432",
-                accent: "#F28C3C",
-                background: "#F4E5C4",
-                text: "#211F1B",
-              }}
-              region="south-america"
-            />
-
-            ====================================================
-            */}
-
-            <div className="relative py-14">
-              <div className="absolute left-0 right-0 top-1/2 h-[3px] bg-[#211F1B]/15" />
-
-              <div className="relative grid grid-cols-5">
-                {["#153D2D", "#B84432", "#F28C3C", "#168C9E", "#2456A6"].map(
-                  (colour, index) => (
-                    <div key={colour} className="flex justify-center">
-                      <div
-                        className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-[#F4E5C4] text-xs font-black text-white"
-                        style={{ backgroundColor: colour }}
-                      >
-                        {index + 1}
-                      </div>
-                    </div>
-                  ),
-                )}
-              </div>
+              <h2 className="mt-5 text-6xl font-black uppercase leading-[0.8] tracking-[-0.06em] sm:text-8xl">
+                Follow
+                <br />
+                the story.
+              </h2>
             </div>
 
-            <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-[#211F1B]/35">
-              Shared regional timeline plugs in here
+            <div className="lg:col-span-5">
+              <p className="max-w-xl text-lg leading-relaxed text-[#211F1B]/60">
+                Thousands of years. Ancient societies, empires, colonisation,
+                independence and modern change. Pick a moment here, then explore
+                the full story.
+              </p>
+            </div>
+          </div>
+
+          {/* TIMELINE PREVIEW */}
+          <div className="relative mt-20">
+            {/* DESKTOP LINE */}
+            <div className="absolute left-0 right-0 top-[29px] hidden h-[3px] bg-[#211F1B]/15 md:block" />
+
+            <div className="grid gap-4 md:grid-cols-5">
+              {[
+                {
+                  date: "c. 3000 BCE",
+                  title: "Caral",
+                  text: "Early monumental cities rise on Peru's Pacific coast.",
+                  colour: "#153D2D",
+                },
+                {
+                  date: "1438",
+                  title: "Inca expansion",
+                  text: "Tawantinsuyu grows across much of the Andes.",
+                  colour: "#F28C3C",
+                },
+                {
+                  date: "1500s",
+                  title: "Conquest",
+                  text: "European colonisation transforms the continent.",
+                  colour: "#B84432",
+                },
+                {
+                  date: "1810–1826",
+                  title: "Independence",
+                  text: "Movements challenge colonial rule across South America.",
+                  colour: "#168C9E",
+                },
+                {
+                  date: "Today",
+                  title: "Living history",
+                  text: "Past and present continue to shape identity and culture.",
+                  colour: "#2456A6",
+                },
+              ].map((moment, index) => (
+                <div key={moment.title} className="relative">
+                  {/* DOT / NUMBER */}
+                  <div
+                    className="relative z-10 flex h-[60px] w-[60px] items-center justify-center rounded-full border-[5px] border-[#F4E5C4] text-xs font-black text-white"
+                    style={{ backgroundColor: moment.colour }}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="mt-6 border-t-2 border-[#211F1B]/10 pt-5 md:border-0 md:pt-0">
+                    <p
+                      className="text-xs font-black uppercase tracking-[0.18em]"
+                      style={{ color: moment.colour }}
+                    >
+                      {moment.date}
+                    </p>
+
+                    <h3 className="mt-2 text-xl font-black uppercase leading-tight text-[#211F1B]">
+                      {moment.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm leading-relaxed text-[#211F1B]/55">
+                      {moment.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-16 flex flex-col gap-5 border-t border-[#211F1B]/15 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p className="max-w-xl text-sm font-bold leading-relaxed text-[#211F1B]/55">
+              These are only five stops. Filter the full timeline by country and
+              open each moment to discover the bigger story.
             </p>
+
+            <Link
+              href="/south-america/timeline"
+              className="group inline-flex items-center justify-between gap-8 bg-[#153D2D] px-6 py-5 text-sm font-black uppercase tracking-[0.16em] text-[#F4E5C4] transition hover:-translate-y-1"
+            >
+              Explore the full timeline
+              <span className="text-xl transition-transform group-hover:translate-x-2">
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* ======================================================
+
+          DEEP DIVES
+
+      ====================================================== */}
 
       {/* ======================================================
           DEEP DIVES
@@ -555,16 +812,7 @@ export default async function SouthAmericaPage() {
           </p>
 
           <div className="mt-20 border-t border-white/20">
-            {/*
-            ====================================================
-            DEEP DIVE ROUTES / DATA NOT CONNECTED YET
-
-            Eventually these should come from the shared
-            Deep Dive system rather than being hard-coded.
-
-            ====================================================
-            */}
-
+            {/* INCA DEEP DIVE — NOT CONNECTED YET */}
             <div className="grid gap-5 border-b border-white/20 py-10 md:grid-cols-[100px_1fr_auto] md:items-center">
               <span className="text-5xl font-black text-[#F28C3C]">01</span>
 
@@ -582,7 +830,11 @@ export default async function SouthAmericaPage() {
               <span className="text-4xl text-white/25">→</span>
             </div>
 
-            <div className="grid gap-5 border-b border-white/20 py-10 md:grid-cols-[100px_1fr_auto] md:items-center">
+            {/* AMAZON DEEP DIVE */}
+            <Link
+              href="/south-america/deep-dives/amazon"
+              className="group grid gap-5 border-b border-white/20 py-10 transition hover:bg-white/[0.04] md:grid-cols-[100px_1fr_auto] md:items-center"
+            >
               <span className="text-5xl font-black text-[#168C9E]">02</span>
 
               <div>
@@ -596,14 +848,18 @@ export default async function SouthAmericaPage() {
                 </p>
               </div>
 
-              <span className="text-4xl text-white/25">→</span>
-            </div>
+              <span className="text-4xl text-white/25 transition group-hover:translate-x-2 group-hover:text-[#F4C542]">
+                →
+              </span>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ======================================================
+
           STUDENT DISCOVERIES
+
       ====================================================== */}
 
       <section className="relative overflow-hidden bg-[#F4C542] px-5 py-28 sm:px-8 lg:px-10">
@@ -629,18 +885,31 @@ export default async function SouthAmericaPage() {
 
           <div className="mt-14 flex min-h-[300px] items-center justify-center border-[3px] border-[#211F1B]/15 bg-[#F4E5C4]/30 p-8">
             {/*
+
             ====================================================
+
             SHARED STUDENT DISCOVERIES — NOT CONNECTED YET
 
+
+
             <StudentDiscoveries
+
               region="south-america"
+
               countries={southAmericaCountries}
+
               discoveries={southAmericaDiscoveries}
+
               themes={southAmericaDiscoveryThemes}
+
               approvedResources={approvedResources}
+
             />
 
+
+
             ====================================================
+
             */}
 
             <p className="max-w-sm text-center text-sm font-black uppercase tracking-[0.2em] text-[#211F1B]/40">
@@ -651,7 +920,9 @@ export default async function SouthAmericaPage() {
       </section>
 
       {/* ======================================================
+
           FINISH
+
       ====================================================== */}
 
       <footer className="relative overflow-hidden bg-[#B84432] px-5 py-20 text-white sm:px-8 lg:px-10">

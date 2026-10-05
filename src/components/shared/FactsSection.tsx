@@ -114,58 +114,73 @@ export default function FactsSection({
             {sectionHeading}
           </h3>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {allItems.map((item, i) => (
+          {allItems.map((item, i) => {
+            const isStudentFact = typeof item !== "string";
+
+            return (
               <div
                 key={i}
                 className={`
-                rounded-[1.75rem]
-                border border-orange-200/70
-       bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-yellow-100/70
-                p-5
-                leading-relaxed
-                text-[#6b4226]
-                shadow-md
-                transition-all duration-300
-                hover:-translate-y-1
-               hover:shadow-2xl
-              `}
+        rounded-[1.75rem]
+        border
+        p-5
+        leading-relaxed
+        shadow-md
+        transition-all
+        duration-300
+        hover:-translate-y-1
+        hover:shadow-2xl
+        ${
+          isStudentFact
+            ? "border-[#168C9E]/40 bg-gradient-to-br from-[#DDF4F2] via-[#EAF8F6] to-[#CDEDEA] text-[#153D2D]"
+            : "border-orange-200/70 bg-gradient-to-br from-orange-50/90 via-amber-50/80 to-yellow-100/70 text-[#6b4226]"
+        }
+      `}
               >
-                <p>{typeof item === "string" ? item : item.fact}</p>
-                {typeof item !== "string" && item.name && (
-                  <p className="text-xs text-stone-500 mt-1">By: {item.name}</p>
+                {isStudentFact && (
+                  <p className="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#168C9E]">
+                    ✦ Student Discovery
+                  </p>
                 )}
-                {typeof item !== "string" &&
-                  (item.submittedAt || item.createdAt) && (
-                    <p className="text-xs text-stone-400">
-                      {(() => {
-                        const timestamp = item.submittedAt || item.createdAt;
 
-                        if (timestamp?.seconds) {
-                          return new Date(
-                            timestamp.seconds * 1000,
-                          ).toLocaleString("en-GB", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          });
-                        }
+                <p>{isStudentFact ? item.fact : item}</p>
 
-                        return new Date(timestamp).toLocaleString("en-GB", {
+                {isStudentFact && item.name && (
+                  <p className="mt-3 text-xs font-bold text-[#153D2D]/65">
+                    Discovered by: {item.name}
+                  </p>
+                )}
+
+                {isStudentFact && (item.submittedAt || item.createdAt) && (
+                  <p className="mt-1 text-xs text-[#153D2D]/45">
+                    {(() => {
+                      const timestamp = item.submittedAt || item.createdAt;
+
+                      if (timestamp?.seconds) {
+                        return new Date(
+                          timestamp.seconds * 1000,
+                        ).toLocaleString("en-GB", {
                           day: "numeric",
                           month: "short",
                           year: "numeric",
                           hour: "2-digit",
                           minute: "2-digit",
                         });
-                      })()}
-                    </p>
-                  )}
+                      }
+
+                      return new Date(timestamp).toLocaleString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      });
+                    })()}
+                  </p>
+                )}
               </div>
-            ))}
-          </div>
+            );
+          })}
         </>
       )}
 
