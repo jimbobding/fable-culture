@@ -56,38 +56,47 @@ const continents = [
 ];
 
 /* =========================================================
-   SEPTEMBER EVENTS
+   OCTOBER 2026
 ========================================================= */
 
-const monthlyFeature = {
-  title: "East & South East Asian Heritage Month",
-  subtitle: "September 2026",
-  theme: "Evolving Threads",
-  emoji: "🌏",
-  text: "East & South East Asian Heritage Month is celebrated throughout September in the UK. It is an opportunity to celebrate and learn about the cultures, histories, traditions and achievements of East and South East Asian communities. This year’s theme, Evolving Threads, explores how stories, identities and communities connect, adapt and grow across generations, places and cultures.",
-};
+const octoberAwarenessMonths = [
+  {
+    title: "🏳️‍🌈 LGBTQ+ History Month",
+    color:
+      "bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 border-pink-200",
+    labelColor: "text-pink-600",
+    text: "LGBTQ+ History Month is a time to recognise and celebrate the lives, achievements and contributions of LGBTQ+ people throughout history. It’s an opportunity to learn about the struggles for equality, remember the people and communities who helped create change, and celebrate the diversity and resilience of LGBTQ+ communities today. Most importantly, it encourages us to keep learning, listening and building a more inclusive society for everyone.",
+  },
+  {
+    title: "✊🏿 Black History Month",
+    color:
+      "bg-gradient-to-br from-amber-100 via-orange-50 to-yellow-100 border-amber-300",
+    labelColor: "text-amber-700",
+    text: "Black History Month is a time to recognise and celebrate the history, achievements and contributions of Black people and communities. It’s an opportunity to learn about the individuals and movements that have shaped society, acknowledge the challenges and inequalities faced throughout history, and celebrate the rich diversity of Black cultures and experiences today. It encourages us all to learn, reflect and recognise the important role Black communities continue to play in shaping our world.",
+  },
+  {
+    title: "🧠 ADHD Awareness Month",
+    color:
+      "bg-gradient-to-br from-cyan-100 via-sky-50 to-indigo-100 border-cyan-200",
+    labelColor: "text-cyan-700",
+    text: "ADHD Awareness Month is a time to increase understanding of Attention Deficit Hyperactivity Disorder (ADHD), challenge misconceptions and reduce the stigma surrounding the condition. ADHD is a neurodevelopmental condition that can affect areas such as attention, impulsivity, activity levels, organisation and emotional regulation, with every person experiencing it differently. The month encourages greater awareness, understanding and acceptance, while recognising the strengths, experiences and contributions of people with ADHD and promoting more inclusive and supportive environments.",
+  },
+];
 
-const septemberEvents = [
+const octoberEvents = [
   {
-    start: "2026-09-15",
-    end: "2026-09-15",
-    title: "🗳️ International Day of Democracy",
-    color: "bg-sky-100 border-sky-300",
-    text: "International Day of Democracy is observed every year on 15 September. It is a chance to think about democracy, having a voice and how people can take part in decisions that affect their lives. Democracy includes ideas such as participation, dialogue, human rights and listening to different points of view.",
+    start: "2026-10-29",
+    end: "2026-10-29",
+    title: "🐈 National Cat Day",
+    color: "bg-orange-100 border-orange-300",
+    text: "National Cat Day is a chance to celebrate our feline friends and recognise the joy and companionship they bring to our lives. The day encourages people to appreciate cats, raise awareness of responsible pet ownership and highlight the importance of providing animals with safe, loving homes. It’s also an opportunity to learn more about cat welfare, support animal charities and, of course, give our cats some extra attention, treats and cuddles!",
   },
   {
-    start: "2026-09-19",
-    end: "2026-09-19",
-    title: "🏴‍☠️ International Talk Like a Pirate Day",
-    color: "bg-amber-100 border-amber-300",
-    text: "International Talk Like a Pirate Day is a fun celebration held every year on 19 September. Have a go at pirate words and phrases, create your own pirate name or discover stories about pirates and life at sea. Arrr!",
-  },
-  {
-    start: "2026-09-25",
-    end: "2026-09-25",
-    title: "✏️ National Doodle Day",
+    start: "2026-10-31",
+    end: "2026-10-31",
+    title: "🎃 Halloween",
     color: "bg-purple-100 border-purple-300",
-    text: "National Doodle Day is an annual Epilepsy Action fundraising campaign that uses creativity to raise awareness of epilepsy. Anyone can take part — pick up a pen, create a doodle and use art to help start conversations about epilepsy and support people affected by the condition.",
+    text: "Halloween is celebrated each year on 31 October and has roots stretching back more than 2,000 years. Its origins can be traced to Samhain, an ancient Celtic festival marking the end of the harvest and the beginning of winter. It was traditionally believed that, on this night, the boundary between the living and the spirit world became thinner. Over time, Samhain traditions blended with Christian observances such as All Hallows’ Eve, the evening before All Saints’ Day, helping shape the Halloween we know today. Modern celebrations include costumes, pumpkins, trick-or-treating and parties, while continuing to reflect the festival’s long history of marking the transition from autumn to winter.",
   },
 ];
 
@@ -200,13 +209,13 @@ export default function LandingPage() {
       </section>
 
       {/* =====================================================
-          THIS MONTH AT FABLE
+          THIS MONTH AT FABLE — OCTOBER 2026
       ===================================================== */}
 
       <section className="mx-auto mb-20 max-w-6xl px-6">
         <div className="mb-10 text-center">
-          <p className="text-sm font-black uppercase tracking-[0.25em] text-pink-500">
-            September 2026
+          <p className="text-sm font-black uppercase tracking-[0.25em] text-orange-500">
+            October 2026
           </p>
 
           <h2 className="mt-2 text-3xl font-black text-green-700 drop-shadow-[0_5px_10px_rgba(0,0,0,0.18)] md:text-4xl">
@@ -214,92 +223,81 @@ export default function LandingPage() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-2xl text-gray-600">
-            Cultural celebrations, awareness days and events we&apos;re
+            Cultural celebrations, awareness months and special days we&apos;re
             exploring together.
           </p>
         </div>
 
         {/* ===================================================
-            MONTH-LONG FEATURE
+            AWARENESS MONTHS
         =================================================== */}
 
-        <div className="mb-10 overflow-hidden rounded-[2rem] border border-orange-200 bg-gradient-to-br from-orange-100 via-amber-50 to-yellow-100 shadow-md">
-          <div className="grid md:grid-cols-[0.75fr_1.25fr]">
-            {/* FEATURE TITLE SIDE */}
+        <div className="mb-12">
+          <div className="mb-6 flex items-center gap-4">
+            <div className="h-[3px] w-10 bg-pink-500" />
 
-            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-orange-500 to-amber-400 p-8 text-center text-white md:p-10">
-              <span className="text-6xl">{monthlyFeature.emoji}</span>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-pink-600">
+              Throughout October
+            </p>
+          </div>
 
-              <p className="mt-5 text-xs font-black uppercase tracking-[0.25em] text-orange-100">
-                Special Month
-              </p>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {octoberAwarenessMonths.map((item) => (
+              <article
+                key={item.title}
+                className={`flex h-full flex-col rounded-[2rem] border p-7 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl ${item.color}`}
+              >
+                <p
+                  className={`text-xs font-black uppercase tracking-[0.2em] ${item.labelColor}`}
+                >
+                  Awareness Month
+                </p>
 
-              <h3 className="mt-3 text-3xl font-black leading-tight">
-                {monthlyFeature.title}
-              </h3>
+                <h3 className="mt-4 text-2xl font-black leading-tight text-stone-800">
+                  {item.title}
+                </h3>
 
-              <p className="mt-4 font-bold">{monthlyFeature.subtitle}</p>
-            </div>
-
-            {/* FEATURE INFORMATION */}
-
-            <div className="p-7 sm:p-9 md:p-10">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-orange-600">
-                2026 Theme
-              </p>
-
-              <h4 className="mt-2 text-3xl font-black text-stone-800">
-                {monthlyFeature.theme}
-              </h4>
-
-              <p className="mt-5 text-base leading-8 text-stone-700">
-                {monthlyFeature.text}
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-2">
-                {[
-                  "Culture",
-                  "History",
-                  "Food",
-                  "Art",
-                  "Music",
-                  "Community",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full bg-white/80 px-4 py-2 text-xs font-bold text-orange-700 shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
+                <p className="mt-5 flex-1 text-sm leading-7 text-stone-700">
+                  {item.text}
+                </p>
+              </article>
+            ))}
           </div>
         </div>
 
         {/* ===================================================
-            SEPTEMBER EVENTS
+            SPECIAL DAYS
         =================================================== */}
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {septemberEvents.map((event) => (
-            <article
-              key={event.title}
-              className={`flex h-full flex-col rounded-2xl border p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg ${event.color}`}
-            >
-              <p className="text-sm font-black text-pink-600">
-                {formatDateRange(event.start, event.end)}
-              </p>
+        <div>
+          <div className="mb-6 flex items-center gap-4">
+            <div className="h-[3px] w-10 bg-orange-500" />
 
-              <h3 className="mt-3 text-xl font-black leading-tight text-gray-800">
-                {event.title}
-              </h3>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-orange-600">
+              Dates for the diary
+            </p>
+          </div>
 
-              <p className="mt-4 flex-1 text-sm leading-7 text-gray-700">
-                {event.text}
-              </p>
-            </article>
-          ))}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {octoberEvents.map((event) => (
+              <article
+                key={event.title}
+                className={`flex h-full flex-col rounded-2xl border p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg ${event.color}`}
+              >
+                <p className="text-sm font-black text-pink-600">
+                  {formatDateRange(event.start, event.end)}
+                </p>
+
+                <h3 className="mt-3 text-2xl font-black leading-tight text-gray-800">
+                  {event.title}
+                </h3>
+
+                <p className="mt-4 flex-1 text-sm leading-7 text-gray-700">
+                  {event.text}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>
