@@ -110,7 +110,7 @@ export default function AdminCreateYourLookPage() {
         <div className="relative aspect-square overflow-hidden rounded-[1.5rem] bg-slate-100">
           <img
             src={submission.imageUrl}
-            alt="Submitted Carnival look"
+            alt={`${submission.activity === "south-america-postcard" ? "South America Map" : "Carnival Look"} submitted by ${submission.creatorName || "Anonymous"}`}
             className="h-full w-full object-cover"
           />
         </div>
@@ -121,7 +121,11 @@ export default function AdminCreateYourLookPage() {
           </p>
 
           <h2 className="mt-2 text-2xl font-black text-slate-900">
-            Carnival Look Submission
+            {submission.activity === "south-america-postcard"
+              ? "South America Map Submission"
+              : submission.activity === "caribbean-carnival"
+                ? "Carnival Look Submission"
+                : `${submission.activity} Submission`}
           </h2>
           <p className="mt-1 text-slate-600 font-medium">
             {submission.creatorName || "Anonymous"}
@@ -180,12 +184,12 @@ export default function AdminCreateYourLookPage() {
         </p>
 
         <h1 className="text-5xl font-black text-slate-900">
-          🎭 Create Your Look
+          🌎 Student Creations
         </h1>
 
         <p className="text-lg text-slate-600">
-          Review submitted Carnival looks before they appear in the public
-          gallery.
+          Review student creations, including South America maps and Carnival
+          looks, before they appear in their public galleries.
         </p>
       </div>
 
