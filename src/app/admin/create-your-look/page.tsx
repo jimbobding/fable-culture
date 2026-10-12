@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "@/firebaseConfig";
+import BackToAdminButton from "@/components/admin/BackToAdminButton";
 
 type CreateYourLookSubmission = {
   id?: string;
@@ -179,9 +180,12 @@ export default function AdminCreateYourLookPage() {
   return (
     <main className="mx-auto max-w-6xl space-y-12 px-6 py-12">
       <div className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
-          Admin
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
+            Fable Culture Admin
+          </p>
+          <BackToAdminButton />
+        </div>
 
         <h1 className="text-5xl font-black text-slate-900">
           🌎 Student Creations
@@ -200,7 +204,7 @@ export default function AdminCreateYourLookPage() {
           </p>
 
           <h2 className="text-3xl font-black text-slate-900">
-            ⏳ Waiting for approval
+            ⏳ Waiting for approval ({pendingSubmissions.length})
           </h2>
         </div>
 
@@ -223,7 +227,9 @@ export default function AdminCreateYourLookPage() {
             Approved
           </p>
 
-          <h2 className="text-3xl font-black text-slate-900">✅ Approved</h2>
+          <h2 className="text-3xl font-black text-slate-900">
+            ✅ Approved ({approvedSubmissions.length})
+          </h2>
         </div>
 
         {approvedSubmissions.length === 0 ? (

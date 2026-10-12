@@ -144,12 +144,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       history: {
         image:
-          "/images/continents/south-america/countries/brazil/fact-file/serra-da-capivara-rock-art.jpg",
+          "/images/continents/south-america/countries/brazil/fact-file/quilombo-dos-palmares.jpg",
 
-        title: "Serra da Capivara",
+        title: "Quilombo dos Palmares",
 
         description:
-          "Serra da Capivara National Park in northeastern Brazil contains hundreds of archaeological sites, including rock shelters covered with prehistoric paintings. The images show animals, hunting, dancing and scenes of human life and provide extraordinary evidence that people were living in this region thousands of years before European colonisation.",
+          "Quilombo dos Palmares was a large community formed by people escaping slavery in colonial Brazil. Located in what is now Alagoas, it became a powerful symbol of resistance during the seventeenth century. Its inhabitants defended their freedom against repeated attacks, and Zumbi dos Palmares became one of its best-known leaders.",
       },
 
       food: {
@@ -164,12 +164,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       wildlife: {
         image:
-          "/images/continents/south-america/countries/brazil/fact-file/pantanal-jaguar-wetlands.jpg",
+          "/images/continents/south-america/countries/brazil/fact-file/golden-lion-tamarin.jpg",
 
-        title: "The Pantanal",
+        title: "Golden Lion Tamarin",
 
         description:
-          "The Pantanal is one of the world's largest tropical wetlands. Seasonal flooding creates habitats for an extraordinary variety of wildlife including jaguars, giant otters, capybaras, caimans, giant anteaters and hundreds of bird species. Parts of the Pantanal are protected as a UNESCO World Heritage Site.",
+          "The golden lion tamarin is a small, bright orange monkey found in Brazil's Atlantic Forest. Habitat destruction pushed the species close to extinction, but conservation programmes have helped its population recover. It remains endangered and depends on protecting and reconnecting forest habitats.",
       },
 
       culture: {
@@ -524,16 +524,6 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
           "The Pantanal is an enormous tropical wetland extending across western Brazil and into neighbouring Bolivia and Paraguay. Seasonal floods create habitats for spectacular wildlife including jaguars, caimans, capybaras, giant otters and hundreds of bird species.",
       },
 
-      {
-        title: "Brasília",
-        tag: "Modern Architecture",
-
-        image:
-          "/images/continents/south-america/countries/brazil/places/brasilia.jpg",
-
-        description:
-          "Brasília was purpose-built in the late 1950s to become Brazil's new capital. Urban planner Lúcio Costa designed its famous layout while Oscar Niemeyer created many of its futuristic government buildings. The city became one of the world's most ambitious examples of twentieth-century modernist planning.",
-      },
 
       {
         title: "Ouro Preto",
@@ -715,12 +705,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       history: {
         image:
-          "/images/continents/south-america/countries/argentina/fact-file/cueva-de-las-manos.jpg",
+          "/images/continents/south-america/countries/argentina/fact-file/may-revolution-1810.jpg",
 
-        title: "Cueva de las Manos",
+        title: "The May Revolution of 1810",
 
         description:
-          "Cueva de las Manos, or Cave of the Hands, lies in Patagonia and preserves an extraordinary collection of prehistoric rock art. The best-known images are hundreds of stencilled human hands, alongside animals and hunting scenes. Some of the artwork is thousands of years old and provides remarkable evidence of the people who lived in Patagonia long before European colonisation.",
+          "In May 1810, political leaders in Buenos Aires challenged Spanish colonial authority and established a new governing council, known as the Primera Junta. The events marked an important step towards Argentine independence, which was formally declared in 1816. The revolution was part of a wider struggle over who should govern the former Spanish colonies in South America.",
       },
 
       food: {
@@ -1095,6 +1085,15 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
     influentialFigures: [
       {
+        name: "Che Guevara",
+        role: "Revolutionary Figure",
+        image:
+          "/images/continents/south-america/countries/argentina/figures/che-guevara.jpg",
+        description:
+          "Ernesto 'Che' Guevara was born in Rosario, Argentina, in 1928 and trained as a doctor. He became a revolutionary and played a leading role alongside Fidel Castro in the Cuban Revolution. He later supported revolutionary movements in other countries and was killed in Bolivia in 1967. Some people admire his opposition to inequality and imperialism, while others criticise his involvement in political executions and authoritarian revolutionary rule. His image remains famous around the world.",
+      },
+
+      {
         name: "Diego Maradona",
         role: "Football",
 
@@ -1160,15 +1159,6 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
           "Chamamé is a music and dance tradition particularly associated with Corrientes and northeastern Argentina. Its development reflects Guaraní, European and African influences. Accordions and guitars are commonly heard, while dancers traditionally move together in a close embrace. Chamamé was added to UNESCO's Representative List of Intangible Cultural Heritage in 2020.",
       },
 
-      {
-        title: "Filete Porteño",
-
-        image:
-          "/images/continents/south-america/countries/argentina/cultural-spotlight/filete-porteno.jpg",
-
-        description:
-          "Filete porteño is a distinctive decorative art form from Buenos Aires combining flowing lines, brilliant colours, elaborate lettering and ornamental images. It became particularly associated with carts, trucks, buses and shop signs before spreading into many other forms of design. UNESCO recognises the tradition as intangible cultural heritage.",
-      },
 
       {
         title: "The Social Ritual of Mate",
@@ -1601,16 +1591,6 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
     ],
 
     places: [
-      {
-        title: "Tiwanaku",
-        tag: "Ancient Civilisation",
-
-        image:
-          "/images/continents/south-america/countries/bolivia/places/tiwanaku.jpg",
-
-        description:
-          "Tiwanaku stands on the Altiplano near Lake Titicaca at about 3,850 metres above sea level. Once the centre of a powerful pre-Hispanic civilisation, the site contains monumental ceremonial structures including Kalasasaya, the Akapana platform and intricately carved stone monuments. UNESCO describes Tiwanaku as the spiritual and political centre of a civilisation whose influence spread widely across the southern Andes.",
-      },
 
       {
         title: "Potosí & Cerro Rico",
@@ -2385,12 +2365,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       wildlife: {
         image:
-          "/images/continents/south-america/countries/ecuador/fact-file/galapagos-islands.jpg",
+          "/images/continents/south-america/countries/ecuador/fact-file/amazon-pink-river-dolphin.jpg",
 
-        title: "Galápagos Islands",
+        title: "Amazon Pink River Dolphin",
 
         description:
-          "The Galápagos are a volcanic archipelago around 1,000 kilometres from mainland Ecuador. Their isolation allowed unusual animals and plants to evolve, including giant tortoises, marine iguanas, flightless cormorants and many distinctive finches. Observations made by Charles Darwin after visiting the islands in 1835 later contributed to the development of his ideas about evolution by natural selection.",
+          "The Amazon river dolphin, sometimes called the pink river dolphin or boto, lives in freshwater rivers and flooded forests across the Amazon Basin, including parts of eastern Ecuador. Unlike ocean dolphins, it has a flexible neck that helps it navigate through submerged trees. Some adults develop a pink colour as they grow older. River dolphins face threats from pollution, fishing activities and damage to their habitats.",
       },
 
       culture: {
@@ -2752,14 +2732,14 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
       },
 
       {
-        title: "Ingapirca",
-        tag: "Inca & Cañari History",
+        title: "Cochasquí Archaeological Park",
+        tag: "Pre-Inca Archaeology",
 
         image:
-          "/images/continents/south-america/countries/ecuador/places/ingapirca.jpg",
+          "/images/continents/south-america/countries/ecuador/places/cochasqui-pyramids.jpg",
 
         description:
-          "Ingapirca is Ecuador's best-known Inca archaeological complex and lies in a region historically associated with the Cañari people. Its buildings include carefully constructed stone walls and the distinctive elliptical structure known as the Temple of the Sun. The site provides an excellent example of how Inca expansion interacted with cultures that already existed in Ecuador.",
+          "Cochasquí is an archaeological site north of Quito associated with the pre-Inca societies of the northern Ecuadorian Andes. It contains earthen pyramids and burial mounds, offering evidence of the region's history before and during Inca expansion.",
       },
 
       {
@@ -2887,577 +2867,150 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
     ],
   },
   {
-    slug: "ecuador",
-    name: "Ecuador",
-    flag: "🇪🇨",
-
-    capital: "Quito",
-    population: "About 18 million",
-    languages: ["Spanish", "Kichwa", "Shuar", "Other Indigenous languages"],
-    currency: "United States Dollar (USD)",
-
-    heroImage:
-      "/images/continents/south-america/countries/ecuador/cotopaxi-and-andean-highlands.jpg",
-
-    intro:
-      "Ecuador may be one of South America's smaller countries, but it contains an extraordinary variety of landscapes and cultures. The Andes run through its centre, the Amazon stretches across the east, the Pacific coast lies to the west and the Galápagos Islands sit far offshore. Indigenous nations, Afro-Ecuadorian communities, Spanish colonial history and distinctive regional traditions all form important parts of modern Ecuador.",
-
-    overview:
-      "People have lived in the territory of modern Ecuador for thousands of years, developing societies along the Pacific coast, in the Andes and throughout the Amazon. Long-distance trade connected different environments, while cultures produced sophisticated ceramics, metalwork, textiles and agricultural systems. During the fifteenth century, the Inca expanded north into Ecuador, but their rule was relatively brief before Spanish conquest began in the 1530s. Colonial rule brought disease, forced labour, Christianity and major changes to Indigenous society, while enslaved Africans and their descendants created important communities, particularly around Esmeraldas. Ecuador became part of the independence struggles led by figures including Antonio José de Sucre and Simón Bolívar before becoming a separate republic in 1830. Since then, struggles over land, political power, Indigenous rights, labour and natural resources have repeatedly shaped the country. Modern Ecuador officially recognises itself as an intercultural and plurinational state and contains some of the most biologically diverse environments on Earth.",
-
-    tags: [
-      "Indigenous History",
-      "Andes",
-      "Amazon",
-      "Galápagos",
-      "Afro-Ecuadorian Heritage",
-      "Inca",
-      "Cacao",
-      "Living Traditions",
-    ],
-
+    slug: "colombia",
+    name: "Colombia",
+    flag: "🇨🇴",
+    capital: "Bogotá",
+    population: "About 53 million",
+    languages: ["Spanish", "Indigenous languages", "Creole languages"],
+    currency: "Colombian Peso (COP)",
+    heroImage: "/images/continents/south-america/countries/colombia/cartagena-caribbean-coast.jpg",
+    intro: "Colombia lies in northwestern South America, with coastlines on both the Caribbean Sea and the Pacific Ocean. Its landscapes include the Andes, Amazon rainforest, grasslands and historic cities. Indigenous and Afro-Colombian communities contribute to the country's rich cultural heritage.",
+    overview: "For thousands of years, Indigenous societies lived across the region now called Colombia, including the Muisca, Tairona and communities associated with San Agustín. Spanish colonisation began in the sixteenth century, bringing conquest, forced labour and the enslavement of Africans. Indigenous and African communities resisted colonial rule and sustained their traditions. Independence movements grew in the early nineteenth century, and the Battle of Boyacá in 1819 helped secure independence in New Granada. Colombia was part of the republic known as Gran Colombia before that union dissolved. Later centuries brought political conflict, social change and cultural achievement. Colombia's recent history includes decades of armed conflict and continuing efforts to build peace. Today its remarkable biodiversity and diverse music, literature, food and traditions are recognised internationally.",
+    tags: ["Indigenous Heritage", "Afro-Colombian Culture", "Biodiversity", "Music & Literature", "Independence & Peace"],
     theme: {
-      primary: "#4f7b67",
-      secondary: "#35584e",
-      accent: "#d4a343",
-      background: "linear-gradient(180deg, #e9f0e5 0%, #dce7df 100%)",
-      card: "rgba(255,255,255,0.90)",
-      text: "#293c35",
-      timeline: "#4f7b67",
+      primary: "#F4C542",
+      secondary: "#2458A6",
+      accent: "#C93B47",
+      background: "#FFF9E9",
+      card: "#FFFFFF",
+      text: "#24324A",
+      timeline: "#2458A6",
     },
-
     factFile: {
       capital: {
-        image:
-          "/images/continents/south-america/countries/ecuador/fact-file/quito.jpg",
-
-        title: "Quito",
-
-        description:
-          "Quito is Ecuador's capital and stands high in the Andes near the slopes of the Pichincha volcano. Indigenous settlements existed in the region before Inca and Spanish rule, while the Spanish established their colonial city in 1534. Quito's historic centre contains churches, monasteries, plazas and architecture where European and Indigenous artistic traditions interacted. In 1978, Quito became one of the first places inscribed on UNESCO's World Heritage List.",
+        image: "/images/continents/south-america/countries/colombia/fact-file/bogota.jpg",
+        title: "Bogotá",
+        description: "Bogotá is Colombia's capital and largest city. Located high in the Andes, it is a major centre for government, education, museums and cultural life.",
       },
-
       history: {
-        image:
-          "/images/continents/south-america/countries/ecuador/fact-file/ingapirca.jpg",
-
-        title: "Ingapirca",
-
-        description:
-          "Ingapirca is the best-known Inca archaeological complex in Ecuador. The site was constructed in a region associated with the Cañari people after Inca expansion into the northern Andes. Its buildings demonstrate both Inca influence and interaction with existing local traditions. The distinctive elliptical structure usually called the Temple of the Sun was built from carefully shaped stone fitted together without mortar.",
+        image: "/images/continents/south-america/countries/colombia/fact-file/ciudad-perdida.jpg",
+        title: "Ciudad Perdida",
+        description: "Ciudad Perdida is an ancient settlement in Colombia's Sierra Nevada de Santa Marta mountains, associated with the Tairona civilisation. Its stone terraces, stairways and paths reveal the achievements of Indigenous communities long before Spanish colonisation.",
       },
-
       food: {
-        image:
-          "/images/continents/south-america/countries/ecuador/fact-file/cacao.jpg",
-
-        title: "Cacao",
-
-        description:
-          "Cacao has an exceptionally long history in Ecuador. Archaeological evidence from the upper Amazon region shows that people were using and cultivating cacao thousands of years ago. Ecuador later became an important exporter of cacao, particularly during the nineteenth and early twentieth centuries. Fine-aroma cacao remains one of the country's internationally recognised agricultural products.",
+        image: "/images/continents/south-america/countries/colombia/fact-file/arepas-maize.jpg",
+        title: "Arepas",
+        description: "Arepas are maize-based foods enjoyed in many Colombian regions. Their preparation and fillings vary widely, reflecting local ingredients and customs.",
       },
-
       wildlife: {
-        image:
-          "/images/continents/south-america/countries/ecuador/fact-file/galapagos-islands.jpg",
-
-        title: "Galápagos Islands",
-
-        description:
-          "The Galápagos are a volcanic archipelago around 1,000 kilometres from mainland Ecuador. Their isolation allowed unusual animals and plants to evolve, including giant tortoises, marine iguanas, flightless cormorants and many distinctive finches. Observations made by Charles Darwin after visiting the islands in 1835 later contributed to the development of his ideas about evolution by natural selection.",
+        image: "/images/continents/south-america/countries/colombia/fact-file/golden-poison-frog.jpg",
+        title: "Golden Poison Frog",
+        description: "The golden poison frog lives in a small area of Colombia's Pacific rainforest. Its bright colouring warns predators of powerful toxins in its skin.",
       },
-
       culture: {
-        image:
-          "/images/continents/south-america/countries/ecuador/fact-file/toquilla-straw-hat.jpg",
-
-        title: "Toquilla Straw Hat",
-
-        description:
-          "The famous finely woven hat often called a 'Panama hat' actually has deep roots in Ecuador. Artisans weave the hats from fibres of the toquilla palm, particularly in coastal and Andean communities. The finest hats can take months to complete. UNESCO recognises the traditional knowledge and skills involved in Ecuadorian toquilla straw hat weaving as intangible cultural heritage.",
+        image: "/images/continents/south-america/countries/colombia/fact-file/palenque-de-san-basilio.jpg",
+        title: "Palenque de San Basilio",
+        description: "Founded by people who escaped slavery, San Basilio de Palenque is celebrated for its Afro-Colombian heritage, Palenquero language, music and community traditions.",
       },
     },
-
     timeline: [
-      {
-        year: "Thousands of years ago",
-        title: "The First Ecuadorians",
-        text: "People lived in what is now Ecuador thousands of years before European arrival. Communities developed along the Pacific coast, throughout the Andes and within the Amazon rainforest.",
-      },
-
-      {
-        year: "c. 3500–1500 BCE",
-        title: "Valdivia Culture",
-        text: "Communities associated with the Valdivia culture lived along Ecuador's Pacific coast. They produced some of the earliest widely known pottery traditions in the Americas and depended on farming, fishing and gathering.",
-      },
-
-      {
-        year: "More than 5,000 years ago",
-        title: "Ancient Cacao",
-        text: "Archaeological evidence from southeastern Ecuador indicates that people of the upper Amazon were using cacao thousands of years ago. This has helped reshape understanding of the early history of the plant that eventually became the basis of chocolate.",
-      },
-
-      {
-        year: "c. 500 BCE–500 CE",
-        title: "Regional Cultures Flourish",
-        text: "Different societies developed across Ecuador's coast and highlands. Skilled craftspeople produced ceramics, textiles and metalwork, while trade networks connected communities living in very different environments.",
-      },
-
-      {
-        year: "c. 500–1500 CE",
-        title: "Complex Regional Societies",
-        text: "Before Inca expansion, Ecuador contained numerous politically independent societies including the Cañari, Caranqui, Quitu, Manteño and others. Coastal communities participated in long-distance maritime trade while Andean societies developed intensive agriculture.",
-      },
-
-      {
-        year: "1400s",
-        title: "Inca Expansion North",
-        text: "Inca armies expanded north from Peru into the territory of modern Ecuador. Conquest was not immediate, and some Indigenous societies resisted Inca control for years.",
-      },
-
-      {
-        periodKey: "ecuador-inca-canari",
-        year: "Late 1400s",
-        title: "🔍 Your Investigation: Inca & Cañari",
-        text: "The Inca incorporated Cañari territories into Tawantinsuyu, but existing communities and traditions did not simply disappear.",
-        isGap: true,
-        prompt:
-          "Investigate the relationship between the Inca and Cañari and use Ingapirca to explore how cultures can influence one another.",
-        questions: [
-          "Who were the Cañari?",
-          "How did the Inca expand into Ecuador?",
-          "What can Ingapirca tell us about both cultures?",
-        ],
-      },
-
-      {
-        year: "Early 1500s",
-        title: "An Inca Civil War",
-        text: "Following the death of the Inca ruler Huayna Capac, a struggle developed between his sons Huáscar and Atahualpa. Atahualpa's power base was closely connected with the northern Andes, including the region around Quito.",
-      },
-
-      {
-        year: "1532",
-        title: "Atahualpa Captured",
-        text: "Atahualpa defeated Huáscar but was captured shortly afterwards by Spanish forces led by Francisco Pizarro at Cajamarca in present-day Peru. His capture severely disrupted Inca political authority.",
-      },
-
-      {
-        year: "1533",
-        title: "Atahualpa is Executed",
-        text: "Despite providing a huge ransom of precious metals, Atahualpa was executed by the Spanish. Spanish forces and their Indigenous allies subsequently expanded their control through the Andes.",
-      },
-
-      {
-        year: "1534",
-        title: "Spanish Quito",
-        text: "Spanish forces established the colonial city of San Francisco de Quito. It became an important centre of Spanish government and Christianity in the northern Andes.",
-      },
-
-      {
-        year: "1500s",
-        title: "Disease and Colonial Rule",
-        text: "Epidemics of diseases introduced from Europe caused catastrophic population losses among Indigenous peoples. Spanish authorities imposed new systems of government, taxation, religion and labour.",
-      },
-
-      {
-        year: "1500s–1700s",
-        title: "Indigenous Labour",
-        text: "Colonial systems required many Indigenous people to provide labour and tribute. Textile workshops known as obrajes became particularly important in the highlands, where workers often experienced harsh conditions.",
-      },
-
-      {
-        year: "1500s",
-        title: "Africans Reach Ecuador",
-        text: "Enslaved Africans were brought into Spanish-controlled territories. In the Esmeraldas region, Africans who escaped slavery and their descendants established communities that developed a distinctive Afro-Ecuadorian culture.",
-      },
-
-      {
-        year: "1550s onwards",
-        title: "Afro-Ecuadorian Esmeraldas",
-        text: "African-descended communities gained significant autonomy in parts of the northwestern coastal region. Over generations, African, Indigenous and European influences contributed to distinctive cultures including musical traditions centred on the marimba.",
-      },
-
-      {
-        year: "1563",
-        title: "Royal Audience of Quito",
-        text: "The Spanish Crown created the Real Audiencia de Quito. Its territory was governed within the wider structures of Spain's American empire and Quito became an important administrative and cultural centre.",
-      },
-
-      {
-        year: "1600s–1700s",
-        title: "The Quito School of Art",
-        text: "Artists in colonial Quito developed a distinctive tradition of painting, sculpture and religious art. Indigenous and mestizo artists combined European artistic forms with local techniques, materials and imagery.",
-      },
-
-      {
-        year: "1736",
-        title: "Measuring the Equator",
-        text: "A French-led scientific expedition arrived in the region to measure part of the Earth's meridian near the equator. The work contributed to scientific understanding of the Earth's shape.",
-      },
-
-      {
-        year: "1809",
-        title: "Quito Challenges Spanish Rule",
-        text: "Political leaders in Quito formed a governing junta during the crisis of the Spanish monarchy. Spanish royalist forces later restored control, but the events became an important part of Ecuador's independence story.",
-      },
-
-      {
-        year: "1810",
-        title: "Repression in Quito",
-        text: "A number of independence supporters imprisoned after the 1809 uprising were killed during violence in Quito. Independence movements nevertheless continued to develop.",
-      },
-
-      {
-        year: "1820",
-        title: "Guayaquil Declares Independence",
-        text: "Guayaquil declared independence from Spanish rule on 9 October 1820. The city became an important base for military campaigns aimed at liberating the rest of the territory.",
-      },
-
-      {
-        periodKey: "ecuador-pichincha",
-        year: "1822",
-        title: "🔍 Your Investigation: Battle of Pichincha",
-        text: "Independence forces led by Antonio José de Sucre defeated Spanish royalist troops on the slopes of Pichincha volcano above Quito on 24 May 1822.",
-        isGap: true,
-        prompt:
-          "Investigate the Battle of Pichincha and why a battle fought on a volcano helped secure Ecuador's independence.",
-        questions: [
-          "Who was Antonio José de Sucre?",
-          "Why was Quito strategically important?",
-          "What happened to Ecuador after the victory?",
-        ],
-      },
-
-      {
-        year: "1822",
-        title: "Ecuador Joins Gran Colombia",
-        text: "Following independence from Spain, the territory became part of Gran Colombia, the republic that also included modern Colombia, Venezuela and Panama.",
-      },
-
-      {
-        year: "1822",
-        title: "Manuela Sáenz",
-        text: "Quito-born Manuela Sáenz became deeply involved in the South American independence movement. She worked as a political activist and intelligence operative and became closely associated with Simón Bolívar.",
-      },
-
-      {
-        year: "1830",
-        title: "The Republic of Ecuador",
-        text: "Gran Colombia broke apart and Ecuador became a separate republic. Quito became its capital.",
-      },
-
-      {
-        year: "1832",
-        title: "Galápagos Becomes Part of Ecuador",
-        text: "Ecuador formally took possession of the Galápagos Islands. The remote archipelago had previously been visited by sailors, whalers and pirates.",
-      },
-
-      {
-        year: "1835",
-        title: "Charles Darwin Visits Galápagos",
-        text: "Charles Darwin visited the Galápagos during the voyage of HMS Beagle. His observations of differences between animals on different islands later contributed to his thinking about evolution.",
-      },
-
-      {
-        year: "1840s–1920s",
-        title: "The Cacao Economy",
-        text: "Ecuador became an important producer and exporter of cacao. Wealth from cacao helped transform Guayaquil and the coastal economy, although plantation labourers often received little of the wealth generated by exports.",
-      },
-
-      {
-        year: "1851",
-        title: "Slavery is Abolished",
-        text: "Ecuador abolished slavery under President José María Urbina. Afro-Ecuadorians nevertheless continued to experience discrimination, poverty and unequal access to land and political power.",
-      },
-
-      {
-        year: "1895",
-        title: "The Liberal Revolution",
-        text: "A political movement led by Eloy Alfaro took power and introduced major reforms intended to reduce the influence of the Catholic Church over the state and expand secular public institutions.",
-      },
-
-      {
-        year: "1908",
-        title: "Railway Across the Andes",
-        text: "The railway connecting Guayaquil with Quito was completed. Crossing steep Andean terrain was an enormous engineering challenge and helped strengthen connections between Ecuador's coast and highlands.",
-      },
-
-      {
-        year: "1920s",
-        title: "Indigenous and Workers' Movements",
-        text: "Workers and Indigenous communities increasingly organised around wages, land and working conditions. These movements became important forces in Ecuadorian politics during the twentieth century.",
-      },
-
-      {
-        year: "1924",
-        title: "Matilde Hidalgo Votes",
-        text: "Physician and campaigner Matilde Hidalgo became the first woman known to vote in a national election in Ecuador and one of the first women to vote in Latin America. Her challenge helped establish women's voting rights in the country.",
-      },
-
-      {
-        year: "1930s–1960s",
-        title: "Dolores Cacuango",
-        text: "Kichwa leader Dolores Cacuango became a major campaigner for Indigenous land rights, workers and education. She helped organise Indigenous communities and supported the creation of schools teaching in both Kichwa and Spanish.",
-      },
-
-      {
-        year: "1941",
-        title: "War with Peru",
-        text: "Long-running territorial disagreements between Ecuador and Peru contributed to armed conflict in 1941. Border disputes continued for decades afterwards.",
-      },
-
-      {
-        year: "1942",
-        title: "Rio Protocol",
-        text: "Ecuador, Peru and international guarantor countries signed the Rio Protocol in an attempt to settle the territorial dispute. Disagreement over parts of the border nevertheless continued.",
-      },
-
-      {
-        year: "1964",
-        title: "Agrarian Reform",
-        text: "Land reform attempted to change systems of large estates and dependent agricultural labour. Indigenous organisations continued campaigning for stronger land rights and political representation.",
-      },
-
-      {
-        year: "1972–1979",
-        title: "Military Government and Oil",
-        text: "Military governments ruled Ecuador during much of the 1970s as large-scale petroleum exports transformed the national economy. Oil brought major state revenue but also increased environmental and social pressures in the Amazon.",
-      },
-
-      {
-        year: "1978",
-        title: "Quito & Galápagos Recognised",
-        text: "Quito and the Galápagos Islands were included among the first twelve properties placed on UNESCO's new World Heritage List.",
-      },
-
-      {
-        year: "1979",
-        title: "Democracy Returns",
-        text: "A new constitution came into force and civilian government returned after years of military rule.",
-      },
-
-      {
-        year: "1986",
-        title: "CONAIE is Founded",
-        text: "Indigenous organisations came together to establish the Confederation of Indigenous Nationalities of Ecuador, known as CONAIE. It became one of the country's most influential Indigenous political and social organisations.",
-      },
-
-      {
-        periodKey: "ecuador-indigenous-uprising",
-        year: "1990",
-        title: "🔍 Your Investigation: Indigenous Uprising",
-        text: "Indigenous communities organised a major national mobilisation demanding land rights, recognition of Indigenous nations, bilingual education and political change.",
-        isGap: true,
-        prompt:
-          "Investigate Ecuador's 1990 Indigenous uprising and how Indigenous organisations changed national politics.",
-        questions: [
-          "What is CONAIE?",
-          "What were Indigenous communities demanding?",
-          "Why was the uprising important for Ecuador's national identity?",
-        ],
-      },
-
-      {
-        year: "1995",
-        title: "Cenepa War",
-        text: "Ecuador and Peru fought a short conflict in the disputed Cenepa Valley. The fighting demonstrated that their long-running border disagreement had still not been fully resolved.",
-      },
-
-      {
-        year: "1998",
-        title: "Peace with Peru",
-        text: "Ecuador and Peru signed agreements that formally settled their remaining border dispute, ending a territorial disagreement that had affected relations for generations.",
-      },
-
-      {
-        year: "2000",
-        title: "Ecuador Adopts the US Dollar",
-        text: "Following a severe economic and banking crisis, Ecuador replaced the sucre with the United States dollar as its official currency.",
-      },
-
-      {
-        year: "2008",
-        title: "A New Constitution",
-        text: "Ecuador adopted a new constitution describing the country as intercultural and plurinational. It expanded recognition of Indigenous peoples and became internationally notable for recognising constitutional rights of nature.",
-      },
-
-      {
-        year: "2008",
-        title: "Zápara Heritage Recognised",
-        text: "UNESCO inscribed the oral heritage and cultural manifestations of the Zápara people of Ecuador and Peru on the Representative List of the Intangible Cultural Heritage of Humanity.",
-      },
-
-      {
-        year: "2012",
-        title: "Toquilla Weaving Recognised",
-        text: "UNESCO recognised the traditional weaving of the Ecuadorian toquilla straw hat as intangible cultural heritage, highlighting knowledge transmitted through generations of artisan families.",
-      },
-
-      {
-        year: "2015",
-        title: "Marimba Heritage Recognised",
-        text: "Marimba music, traditional chants and dances of Esmeraldas in Ecuador and Colombia's South Pacific region were jointly recognised by UNESCO as intangible cultural heritage.",
-      },
-
-      {
-        year: "2021",
-        title: "Pasillo Recognised",
-        text: "UNESCO added Ecuadorian pasillo song and poetry to the Representative List of the Intangible Cultural Heritage of Humanity.",
-      },
-
-      {
-        year: "Today",
-        title: "Modern Ecuador",
-        text: "Modern Ecuador brings together Andean, Amazonian, Pacific and Galápagos environments and many different cultural identities. Indigenous nations and Afro-Ecuadorian communities remain central to national life, while questions involving natural resources, biodiversity, inequality, political representation and environmental protection continue to shape the country.",
-      },
+      { year: "Before 1500", title: "Indigenous Societies", text: "Diverse Indigenous communities develop societies across the Andes, Caribbean coast, forests and valleys, including the Muisca and Tairona." },
+      { year: "1500s", title: "Spanish Colonisation", text: "Spanish expeditions and settlements expand across the region. Indigenous peoples experience conquest and forced labour, while enslaved Africans are brought to the colonies." },
+      { year: "1600s", title: "Palenque Communities", text: "Communities established by people escaping enslavement resist colonial control and preserve distinctive cultural traditions." },
+      { year: "1781", title: "Comunero Revolt", text: "Protests against colonial taxation and government policies spread through parts of New Granada." },
+      { year: "1810", title: "Independence Movement", text: "Events in Bogotá help launch a long struggle to end Spanish colonial rule." },
+      { year: "1819", title: "Battle of Boyacá", text: "Independence forces defeat a royalist army, helping secure independence in New Granada and paving the way for Gran Colombia." },
+      { year: "1830–1831", title: "Gran Colombia Breaks Apart", text: "The union associated with modern Colombia, Venezuela, Ecuador and Panama dissolves." },
+      { year: "1903", title: "Panama Separates", text: "Panama separates from Colombia and becomes an independent republic." },
+      { year: "1991", title: "New Constitution", text: "Colombia adopts a constitution recognising cultural and ethnic diversity and strengthening constitutional rights." },
+      { year: "2016", title: "Peace Agreement", text: "The Colombian government and FARC-EP sign a peace agreement, although challenges to lasting peace continue." },
     ],
-
     places: [
       {
-        title: "Historic Centre of Quito",
+        title: "Historic Centre of Cartagena",
         tag: "History & Architecture",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/places/quito-historic-centre.jpg",
-
-        description:
-          "Quito's historic centre sits high in the Andes beneath the Pichincha volcano. Churches, monasteries, plazas and colonial buildings preserve the work of European, Indigenous and mestizo architects and artists. The famous Quito School developed a distinctive artistic tradition combining influences from different cultures. Quito was one of the first twelve properties inscribed on UNESCO's World Heritage List in 1978.",
+        image: "/images/continents/south-america/countries/colombia/places/cartagena.jpg",
+        description: "Cartagena's historic fortified centre contains colourful colonial-era buildings, plazas and defensive walls overlooking the Caribbean coast. Its history is also connected to the Atlantic slave trade.",
       },
-
       {
-        title: "Ingapirca",
-        tag: "Inca & Cañari History",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/places/ingapirca.jpg",
-
-        description:
-          "Ingapirca is Ecuador's best-known Inca archaeological complex and lies in a region historically associated with the Cañari people. Its buildings include carefully constructed stone walls and the distinctive elliptical structure known as the Temple of the Sun. The site provides an excellent example of how Inca expansion interacted with cultures that already existed in Ecuador.",
+        title: "Chiribiquete National Park",
+        tag: "Nature & Indigenous Heritage",
+        image: "/images/continents/south-america/countries/colombia/places/chiribiquete.jpg",
+        description: "Chiribiquete protects a vast Amazonian landscape of rainforest and dramatic tabletop mountains. Ancient rock paintings reflect a long Indigenous cultural history.",
       },
-
       {
-        title: "Galápagos Islands",
-        tag: "Evolution & Wildlife",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/places/galapagos-islands.jpg",
-
-        description:
-          "The Galápagos are a chain of volcanic islands isolated in the Pacific Ocean. Giant tortoises, marine iguanas, sea lions, penguins and distinctive birds evolved in environments separated from mainland South America. The islands became internationally important to the history of evolutionary science and today remain one of the world's most famous conservation areas.",
+        title: "San Agustín Archaeological Park",
+        tag: "Archaeology",
+        image: "/images/continents/south-america/countries/colombia/places/san-agustin.jpg",
+        description: "This archaeological landscape is famous for large stone statues, burial monuments and ceremonial sites created by ancient communities.",
       },
-
       {
-        title: "Yasuní",
-        tag: "Amazon Rainforest",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/places/yasuni.jpg",
-
-        description:
-          "Yasuní National Park lies in Ecuador's Amazon region and protects an extraordinary concentration of plants and animals. The wider region is also home to Indigenous peoples including Waorani communities and Indigenous groups living in voluntary isolation. Oil reserves beneath parts of the forest have made Yasuní a major focus of debate about Indigenous rights, conservation and natural-resource extraction.",
+        title: "San Basilio de Palenque",
+        tag: "Living Heritage",
+        image: "/images/continents/south-america/countries/colombia/places/san-basilio-de-palenque.jpg",
+        description: "San Basilio de Palenque is known for its history of resistance to slavery and its living Afro-Colombian language, music and cultural traditions.",
       },
     ],
-
     influentialFigures: [
       {
-        name: "Manuela Sáenz",
-        role: "Independence & Politics",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/figures/manuela-saenz.jpg",
-
-        description:
-          "Manuela Sáenz was born in Quito and became an active participant in the South American independence movement. She gathered political intelligence, supported military campaigns and became closely associated with Simón Bolívar. In 1828 she helped Bolívar escape an assassination attempt, leading him to call her the 'Liberator of the Liberator'. Her political contribution was often overshadowed by discussion of their personal relationship, but she is now widely studied as an independence activist in her own right.",
+        name: "Gabriel García Márquez",
+        role: "Writer",
+        image: "/images/continents/south-america/countries/colombia/figures/gabriel-garcia-marquez.jpg",
+        description: "Gabriel García Márquez was a Colombian novelist and journalist whose books, including One Hundred Years of Solitude, became internationally influential. He received the Nobel Prize in Literature in 1982.",
       },
-
       {
-        name: "Matilde Hidalgo",
-        role: "Medicine & Women's Rights",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/figures/matilde-hidalgo.jpg",
-
-        description:
-          "Matilde Hidalgo was a physician, poet and campaigner who challenged restrictions placed on women's education and political participation. She became the first woman in Ecuador to complete secondary school and one of the country's first female doctors. In 1924 she successfully registered to vote, helping establish Ecuador as an early Latin American country to recognise women's suffrage.",
+        name: "Policarpa Salavarrieta",
+        role: "Independence Figure",
+        image: "/images/continents/south-america/countries/colombia/figures/policarpa-salavarrieta.jpg",
+        description: "Policarpa Salavarrieta, known as La Pola, supported the struggle for independence from Spain through intelligence gathering and resistance activities. She was executed in 1817.",
       },
-
       {
-        name: "Dolores Cacuango",
-        role: "Indigenous Rights & Education",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/figures/dolores-cacuango.jpg",
-
-        description:
-          "Dolores Cacuango was a Kichwa leader who campaigned for Indigenous land rights, workers and access to education. Born into a community living under the hacienda system, she became an influential organiser and helped establish the Ecuadorian Federation of Indians. She also supported pioneering bilingual schools where children could learn in both Kichwa and Spanish.",
+        name: "Manuel Quintín Lame",
+        role: "Indigenous Rights Leader",
+        image: "/images/continents/south-america/countries/colombia/figures/manuel-quintin-lame.jpg",
+        description: "Manuel Quintín Lame was an Indigenous leader who campaigned for land rights, dignity and political rights during the twentieth century.",
       },
-
       {
-        name: "Oswaldo Guayasamín",
-        role: "Art",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/figures/oswaldo-guayasamin.jpg",
-
-        description:
-          "Oswaldo Guayasamín was one of Ecuador's most internationally recognised artists. Born in Quito in 1919, he used painting and sculpture to explore poverty, racism, violence, Indigenous experience and human suffering. His distinctive portraits and expressive hands became central features of his work, and his Capilla del Hombre in Quito was conceived as a monument to the peoples of Latin America.",
+        name: "Totó la Momposina",
+        role: "Musician",
+        image: "/images/continents/south-america/countries/colombia/figures/toto-la-momposina.jpg",
+        description: "Totó la Momposina is a Colombian singer known for celebrating and sharing traditional music of the Caribbean coast, drawing on African, Indigenous and Spanish influences.",
       },
     ],
-
     culturalSpotlights: [
       {
-        title: "Esmeraldas Marimba",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/cultural-spotlight/esmeraldas-marimba.jpg",
-
-        description:
-          "In Ecuador's Esmeraldas province, Afro-Ecuadorian communities maintain musical traditions centred on wooden marimbas, drums, singing and dance. These traditions have deep African roots while developing in the distinctive cultural environment of the Pacific coast. Music accompanies celebrations and community events and is passed between generations through participation and performance.",
+        title: "Barranquilla Carnival",
+        image: "/images/continents/south-america/countries/colombia/cultural-spotlight/barranquilla-carnival.jpg",
+        description: "Barranquilla Carnival brings together music, dance, costumes and performances reflecting Indigenous, African and European cultural influences.",
       },
-
       {
-        title: "Toquilla Straw Hat Weaving",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/cultural-spotlight/toquilla-straw-hat-weaving.jpg",
-
-        description:
-          "Toquilla hats are woven from fibres taken from a palm native to Ecuador's coast. Farmers prepare the plant fibres before skilled artisans weave the crown and brim by hand. Depending on its fineness, a single hat can take from a day to many months to produce. Although internationally nicknamed the 'Panama hat', the weaving tradition is Ecuadorian and is passed through generations of artisan families.",
+        title: "South Pacific Marimba Music",
+        image: "/images/continents/south-america/countries/colombia/cultural-spotlight/south-pacific-marimba.jpg",
+        description: "Afro-Colombian communities along the southern Pacific coast maintain musical traditions featuring marimbas, drums, singing and dance.",
       },
-
       {
-        title: "Pasillo Music",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/cultural-spotlight/pasillo-music.jpg",
-
-        description:
-          "Pasillo is an important Ecuadorian musical and poetic tradition. Songs are commonly performed with guitars and other stringed instruments and often explore love, memory, landscape, family and national identity. Different regional styles developed over time, and pasillo became deeply connected with Ecuadorian ideas of identity and belonging.",
+        title: "Vallenato",
+        image: "/images/continents/south-america/countries/colombia/cultural-spotlight/vallenato.jpg",
+        description: "Vallenato is a storytelling music tradition from Colombia's Caribbean region, commonly associated with accordion, caja drum and guacharaca.",
       },
-
       {
-        title: "Zápara Oral Heritage",
-
-        image:
-          "/images/continents/south-america/countries/ecuador/cultural-spotlight/zapara-oral-heritage.jpg",
-
-        description:
-          "The Zápara people live in the Amazon region spanning Ecuador and Peru. Their oral heritage contains detailed knowledge of rainforest plants, animals and medicinal practices alongside stories, rituals and spiritual traditions. The Zápara language is itself an important store of this knowledge. UNESCO recognition has highlighted both the richness of this heritage and the serious threats facing its continued transmission.",
+        title: "Wayuu Palabrero Tradition",
+        image: "/images/continents/south-america/countries/colombia/cultural-spotlight/wayuu-palabrero.jpg",
+        description: "Among the Wayuu people of the Guajira Peninsula, palabreros are respected mediators who help resolve disputes through dialogue and customary law.",
       },
     ],
-
     facts: [
-      "Ecuador takes its name from the equator, which passes through the country.",
-      "Quito stands roughly 2,850 metres above sea level, making it one of the world's highest national capitals.",
-      "Quito and the Galápagos Islands were among the first twelve properties inscribed on UNESCO's World Heritage List in 1978.",
-      "The Galápagos Islands lie around 1,000 kilometres west of mainland Ecuador.",
-      "The famous 'Panama hat' is traditionally made in Ecuador from toquilla palm fibres.",
-      "Ecuador uses the United States dollar as its official currency.",
-      "Archaeological evidence from Ecuador's upper Amazon has helped show that people were using cacao thousands of years ago.",
-      "Ecuador contains Pacific coast, Andes, Amazon rainforest and the Galápagos Islands within one country.",
-      "Ecuador's Constitution describes the country as intercultural and plurinational and recognises rights of nature.",
-      "Esmeraldas is an important centre of Afro-Ecuadorian history and culture, including distinctive marimba music and dance traditions.",
+      "Colombia is the only South American country with coastlines on both the Caribbean Sea and the Pacific Ocean.",
+      "Its capital, Bogotá, lies approximately 2,600 metres above sea level.",
+      "Colombia is one of the world's most biodiverse countries.",
+      "The country takes its name from Christopher Columbus, although Columbus did not visit the territory of modern Colombia.",
+      "Spanish is the main language, alongside numerous Indigenous and Creole languages.",
+      "Colombia is internationally known for its coffee-growing regions.",
+      "The golden poison frog is native to Colombia's Pacific rainforest.",
+      "Barranquilla Carnival is recognised by UNESCO for its cultural significance.",
+      "Gabriel García Márquez won the Nobel Prize in Literature in 1982.",
+      "Colombia's landscapes include three branches of the Andes, Amazon rainforest, Caribbean coast and Pacific rainforest.",
     ],
   },
   {
@@ -3523,7 +3076,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       food: {
         image:
-          "/images/continents/south-america/countries/guyana/fact-file/pepperpot-cassareep.jpg",
+          "/images/continents/south-america/countries/guyana/fact-file/guyanese-pepperpot.jpg",
 
         title: "Pepperpot & Cassareep",
 
@@ -3533,22 +3086,21 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       wildlife: {
         image:
-          "/images/continents/south-america/countries/guyana/fact-file/rupununi.jpg",
+          "/images/continents/south-america/countries/guyana/fact-file/rupununi-ranching.jpg",
 
-        title: "The Rupununi",
+        title: "Ranching in the Rupununi",
 
-        description:
-          "The Rupununi region of southern Guyana contains enormous savannahs, wetlands, forests and rivers. Wildlife includes giant anteaters, giant river otters, black caimans, jaguars and hundreds of bird species. Indigenous communities including Makushi and Wapichan peoples have longstanding relationships with these landscapes and continue to play important roles in conservation.",
+        description: "The Rupununi savannahs of southern Guyana have a long history of cattle ranching. Ranching communities live alongside Indigenous Makushi and Wapichan communities, whose connections to the landscape reach back much further. The region is also important for wildlife and conservation.",
       },
 
       culture: {
         image:
-          "/images/continents/south-america/countries/guyana/fact-file/guyanese-masquerade.jpg",
+          "/images/continents/south-america/countries/guyana/fact-file/guyanese-creole-language.jpg",
 
-        title: "Guyanese Masquerade",
+        title: "Guyanese Creole Language",
 
         description:
-          "Guyanese masquerade is a performance tradition with strong Afro-Guyanese roots. Groups combine drumming, dancing, costumes, characters and street performance, particularly around the Christmas season. Characters and performance styles developed through the experiences of Africans and their descendants during and after slavery, making masquerade an important expression of cultural memory as well as celebration.",
+          "English is Guyana's official language, but many people also speak Guyanese Creole, often called Creolese. It developed through contact between different languages during the country's colonial history, especially in communities affected by slavery. Creolese has its own vocabulary, grammar and expressions and is an important part of everyday conversation, storytelling, humour and Guyanese identity.",
       },
     },
 
@@ -3848,7 +3400,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         tag: "Waterfall & Rainforest",
 
         image:
-          "/images/continents/south-america/countries/guyana/places/kaieteur-falls.jpg",
+          "/images/continents/south-america/countries/guyana/kaieteur-falls-rainforest.jpg",
 
         description:
           "Kaieteur Falls lies on the Potaro River deep within Guyana's interior. Water plunges more than 200 metres in a single main drop from the edge of the Guiana Shield into a forested gorge. The surrounding landscape supports distinctive wildlife and plants, while the falls are also connected with Indigenous Patamona traditions. Its combination of enormous water volume, height and remote rainforest setting makes Kaieteur one of Guyana's most spectacular landscapes.",
@@ -3870,22 +3422,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         tag: "Savannah & Indigenous Culture",
 
         image:
-          "/images/continents/south-america/countries/guyana/places/rupununi.jpg",
+          "/images/continents/south-america/countries/guyana/places/rupununi-savannah.jpg",
 
         description:
           "The Rupununi stretches across a vast region of savannah, wetlands, rivers and forest in southern Guyana. Makushi, Wapichan and other Indigenous communities live throughout the region. Seasonal flooding transforms parts of the landscape and supports extraordinary wildlife including giant anteaters, giant river otters, caimans and jaguars.",
       },
 
-      {
-        title: "Georgetown",
-        tag: "Capital & Colonial History",
-
-        image:
-          "/images/continents/south-america/countries/guyana/places/georgetown.jpg",
-
-        description:
-          "Georgetown grew from settlements developed on former Dutch plantation land beside the Demerara River. Its canals and drainage layout reflect Dutch water-management traditions, while many surviving nineteenth-century wooden buildings reflect later British colonial architecture. St George's Cathedral, markets, government buildings and traditional wooden houses create a distinctive urban landscape.",
-      },
     ],
 
     influentialFigures: [
@@ -3959,7 +3501,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         title: "Phagwah",
 
         image:
-          "/images/continents/south-america/countries/guyana/cultural-spotlight/phagwah.jpg",
+          "/images/continents/south-america/countries/guyana/cultural-spotlight/phagwah-guyana.jpg",
 
         description:
           "Phagwah is the Guyanese name commonly used for the Hindu festival of Holi. Indo-Guyanese communities celebrate with coloured powders and liquids, music, food and gatherings. The festival demonstrates how traditions brought by Indian indentured migrants became deeply rooted parts of Guyana's modern cultural landscape.",
@@ -4052,12 +3594,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       food: {
         image:
-          "/images/continents/south-america/countries/paraguay/fact-file/terere-herbs-guampa.jpg",
+          "/images/continents/south-america/countries/paraguay/fact-file/sopa-paraguaya.jpg",
 
-        title: "Tereré & Pohã Ñana",
+        title: "Sopa Paraguaya",
 
         description:
-          "Tereré is a cold drink made by pouring chilled water through yerba mate leaves in a cup traditionally called a guampa and drinking it through a metal straw called a bombilla. Fresh medicinal and aromatic plants known as pohã ñana may be crushed and added to the water. Preparing and sharing tereré is a deeply social tradition, and UNESCO recognises the practices and knowledge surrounding it as intangible cultural heritage.",
+          "Despite its name meaning Paraguayan soup, sopa paraguaya is a solid, savoury cornbread made with ingredients such as cornmeal, cheese, milk, eggs and onion. It is a popular traditional dish in Paraguay and is often served alongside grilled meat or eaten as a snack.",
       },
 
       wildlife: {
@@ -4072,7 +3614,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       culture: {
         image:
-          "/images/continents/south-america/countries/paraguay/fact-file/guarani-spanish-bilingual-culture.jpg",
+          "/images/continents/south-america/countries/paraguay/fact-file/guarani-culture.jpg",
 
         title: "Guaraní & Spanish",
 
@@ -4637,12 +4179,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       culture: {
         image:
-          "/images/continents/south-america/countries/peru/fact-file/taquile-textile-weaving.jpg",
+          "/images/continents/south-america/countries/peru/fact-file/peruvian-retablos.jpg",
 
-        title: "Taquile Textile Art",
+        title: "Peruvian Retablos",
 
         description:
-          "The people of Taquile Island in Lake Titicaca maintain a celebrated textile tradition in which weaving and knitting form important parts of community identity. Men traditionally knit while women weave using looms. Clothing can communicate information about age, marital status and community identity. UNESCO recognises Taquile and its textile art as intangible cultural heritage.",
+          "Peruvian retablos are colourful miniature scenes arranged inside decorated wooden boxes. Artists, especially in the Ayacucho region, use small handmade figures to depict festivals, religious traditions, everyday life and historical events. Retablos developed from earlier devotional art and have become an important form of Peruvian folk art.",
       },
     },
 
@@ -5619,7 +5161,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         tag: "Maroon Communities",
 
         image:
-          "/images/continents/south-america/countries/suriname/places/upper-suriname-river-maroon-village.jpg",
+          "/images/continents/south-america/countries/suriname/places/upper-suriname-maroon-village.jpg",
 
         description:
           "Villages along the Upper Suriname River are home particularly to Saramaka Maroon communities descended from Africans who escaped slavery centuries ago. Rivers remain crucial transport routes between settlements. Languages, social organisation, woodcarving, textiles, music, food and spiritual traditions preserve distinctive cultural knowledge developed through generations of life in the rainforest.",
@@ -5688,7 +5230,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         title: "Maroon Woodcarving & Textiles",
 
         image:
-          "/images/continents/south-america/countries/suriname/cultural-spotlight/maroon-woodcarving-textiles.jpg",
+          "/images/continents/south-america/countries/suriname/cultural-spotlight/surinamese-woodcarving.jpg",
 
         description:
           "Suriname's Maroon peoples developed distinctive artistic traditions in communities established by Africans who escaped plantation slavery. Men have traditionally produced elaborately carved wooden objects while women created colourful textile designs, including decorated clothing and wraps. Styles differ between Maroon peoples and continue to develop rather than remaining fixed in the past.",
@@ -6350,7 +5892,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         title: "Mate & the Thermos",
 
         image:
-          "/images/continents/south-america/countries/uruguay/cultural-spotlight/uruguayan-mate-thermos.jpg",
+          "/images/continents/south-america/countries/uruguay/cultural-spotlight/uruguayan-mate-culture.jpg",
 
         description:
           "Mate is shared across several South American countries, but it has a particularly visible place in everyday Uruguayan life. People commonly carry a mate in one hand and a thermos of hot water under an arm while walking, talking or sitting with friends. The custom has Indigenous Guaraní roots and demonstrates how an ancient regional plant tradition became part of modern urban culture.",
@@ -6387,7 +5929,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
     currency: "Venezuelan Bolívar (VES)",
 
     heroImage:
-      "/images/continents/south-america/countries/venezuela/canaima-tepuis-waterfalls.jpg",
+      "/images/continents/south-america/countries/venezuela/angel-falls-tepui-landscape.jpg",
 
     intro:
       "Venezuela stretches from the Caribbean coast through the Andes and vast Llanos grasslands to the forests, rivers and ancient table mountains of the Guiana Highlands. Indigenous peoples including the Wayuu, Warao, Pemón and many others remain important parts of the country's cultural landscape, alongside African, European and mixed heritage. Venezuela has also produced distinctive traditions in music, dance, food, art and literature.",
@@ -6439,12 +5981,11 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       food: {
         image:
-          "/images/continents/south-america/countries/venezuela/fact-file/casabe-cassava-bread.jpg",
+          "/images/continents/south-america/countries/venezuela/fact-file/venezuelan-cachapas.jpg",
 
-        title: "Casabe",
+        title: "Cachapas",
 
-        description:
-          "Casabe is a thin, crisp bread made from cassava and has Indigenous roots stretching back long before European colonisation. Preparing bitter cassava requires specialist knowledge because naturally occurring toxins must be removed through grating, pressing and cooking. Indigenous communities across the Caribbean and northern South America developed these techniques over generations, and cassava bread remains part of Venezuelan food culture.",
+        description: "Cachapas are traditional Venezuelan pancakes made from ground fresh sweetcorn. They are cooked on a hot griddle and commonly served folded around soft white cheese. Their sweet corn flavour and savoury filling make them a popular Venezuelan dish.",
       },
 
       wildlife: {
@@ -6459,12 +6000,12 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
 
       culture: {
         image:
-          "/images/continents/south-america/countries/venezuela/fact-file/joropo-harp-cuatro-maracas.jpg",
+          "/images/continents/south-america/countries/venezuela/fact-file/venezuelan-cuatro.jpg",
 
-        title: "Joropo",
+        title: "Venezuelan Cuatro",
 
         description:
-          "Joropo is one of Venezuela's most recognisable musical and dance traditions. Different regional forms use combinations of instruments including the harp, cuatro, maracas and bandola. Dancing involves rapid, rhythmic footwork performed by couples. The tradition is especially associated with the Llanos but has developed regional forms across Venezuela. UNESCO inscribed joropo on the Representative List of the Intangible Cultural Heritage of Humanity in 2025.",
+          "The cuatro is a small four-string instrument widely used in Venezuelan music. It is played by strumming or plucking and is especially associated with traditional styles such as joropo. Musicians use different rhythms and techniques to accompany singing, dancing and other instruments.",
       },
     },
 
@@ -6908,7 +6449,7 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
         tag: "Warao Culture & Wetlands",
 
         image:
-          "/images/continents/south-america/countries/venezuela/places/orinoco-delta-warao-community.jpg",
+          "/images/continents/south-america/countries/venezuela/places/orinoco-delta.jpg",
 
         description:
           "The Orinoco breaks into a huge network of channels, wetlands and islands before reaching the Atlantic. Warao communities have lived throughout this watery environment for generations, traditionally using rivers as major transport routes and developing detailed knowledge of fishing, plants and wetland ecosystems. Houses in some communities are constructed on stilts beside the waterways.",
@@ -6916,16 +6457,6 @@ export const southAmericaCountries: SouthAmericaCountry[] = [
     ],
 
     influentialFigures: [
-      {
-        name: "Guaicaipuro",
-        role: "Indigenous Resistance",
-
-        image:
-          "/images/continents/south-america/countries/venezuela/figures/guaicaipuro.jpg",
-
-        description:
-          "Guaicaipuro was an Indigenous leader who became one of the best-known figures in resistance to Spanish colonisation around the Caracas region during the sixteenth century. He helped organise alliances among Indigenous communities attempting to stop the expansion of Spanish settlements and mining. Although Spanish forces eventually defeated the resistance, Guaicaipuro became an enduring national symbol of Indigenous opposition to colonial conquest.",
-      },
 
       {
         name: "Teresa Carreño",

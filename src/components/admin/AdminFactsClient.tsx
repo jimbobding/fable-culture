@@ -108,7 +108,7 @@ export default function AdminFactsClient({ facts }: Props) {
 
       <section className="mb-16 rounded-3xl border border-amber-200 bg-amber-50/50 p-8 shadow-sm">
         <h2 className="mb-4 text-2xl font-bold text-stone-900">
-          Pending Facts
+          Pending Facts ({pendingFacts.length})
         </h2>
 
         {pendingFacts.length === 0 ? (
@@ -130,7 +130,7 @@ export default function AdminFactsClient({ facts }: Props) {
 
       <section className="rounded-3xl border border-green-200 bg-green-50/40 p-8 shadow-sm">
         <h2 className="mb-4 text-2xl font-bold text-stone-900">
-          Approved Facts
+          Approved Facts ({approvedFacts.length})
         </h2>
 
         {approvedFacts.length === 0 ? (

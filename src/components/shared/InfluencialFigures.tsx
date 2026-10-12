@@ -407,7 +407,11 @@ function PrintFigures({
                             ? figure.name
                             : `Mystery influential person from ${countryName}`
                         }
-                        className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
+                        className={`absolute inset-0 h-full w-full ${
+                          figure.name === "Matilde Hidalgo"
+                            ? "object-contain"
+                            : "object-cover"
+                        } transition-all duration-700 ${
                           imagePosition === "top"
                             ? "object-top"
                             : "object-center"

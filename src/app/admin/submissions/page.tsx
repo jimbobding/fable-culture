@@ -73,7 +73,7 @@ export default async function AdminSubmissionsPage() {
         <section className="mb-16 rounded-3xl border border-amber-200 bg-amber-50/50 p-8 shadow-sm">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-stone-900">
-              Pending Uploads
+              Pending Uploads ({pendingSubmissions.length})
             </h2>
             <p className="text-stone-600">
               These need approving before they appear publicly.
@@ -105,7 +105,7 @@ export default async function AdminSubmissionsPage() {
         <section className="rounded-3xl border border-green-200 bg-green-50/40 p-8 shadow-sm">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-stone-900">
-              Approved Uploads
+              Approved Uploads ({approvedSubmissions.length})
             </h2>
             <p className="text-stone-600">
               These are already visible in the public gallery.

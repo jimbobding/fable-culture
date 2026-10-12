@@ -217,7 +217,11 @@ export default async function SouthAmericaCountryPage({
                       alt={country.factFile.capital.title}
                       fill
                       sizes="(max-width: 1024px) 100vw, 48vw"
-                      className="object-cover"
+                      className={
+                        country.slug === "paraguay"
+                          ? "object-cover object-bottom"
+                          : "object-cover"
+                      }
                     />
                   </div>
                 </div>

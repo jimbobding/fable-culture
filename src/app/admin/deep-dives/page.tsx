@@ -1,5 +1,7 @@
 "use client";
 
+import BackToAdminButton from "@/components/admin/BackToAdminButton";
+
 import { useEffect, useMemo, useState } from "react";
 import {
   collection,
@@ -329,9 +331,12 @@ export default function AdminDeepDivesPage() {
     <main className="min-h-screen bg-slate-50">
       <div className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
         <header>
-          <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">
-            Admin
-          </p>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-400">
+              Fable Culture Admin
+            </p>
+            <BackToAdminButton />
+          </div>
 
           <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
             <div>

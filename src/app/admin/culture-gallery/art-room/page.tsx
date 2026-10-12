@@ -854,6 +854,9 @@ export default function AdminCultureGalleryArtRoomPage() {
 
   return (
     <main className="min-h-screen bg-slate-50">
+      <div className="mt-6 ml-6 mb-5">
+        <BackToAdminButton />
+      </div>
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
         {/* HEADER */}
 

@@ -1,5 +1,7 @@
 "use client";
 
+import BackToAdminButton from "@/components/admin/BackToAdminButton";
+
 import { useEffect, useState } from "react";
 
 import {
@@ -323,9 +325,12 @@ export default function AdminResourcesPage() {
     <main className="max-w-6xl mx-auto px-6 py-12 space-y-12">
       {/* HEADER */}
       <div className="space-y-4">
-        <p className="uppercase tracking-[0.3em] text-xs font-semibold text-slate-500">
-          Admin
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-slate-500">
+            Fable Culture Admin
+          </p>
+          <BackToAdminButton />
+        </div>
 
         <h1 className="text-5xl font-black text-slate-900">
           🌍 Resource Moderation
@@ -345,7 +350,7 @@ export default function AdminResourcesPage() {
           </p>
 
           <h2 className="text-3xl font-black text-slate-900">
-            ⏳ Pending Review
+            ⏳ Pending Review ({pendingResources.length})
           </h2>
         </div>
 
@@ -367,7 +372,9 @@ export default function AdminResourcesPage() {
             Approved Resources
           </p>
 
-          <h2 className="text-3xl font-black text-slate-900">✅ Approved</h2>
+          <h2 className="text-3xl font-black text-slate-900">
+            ✅ Approved ({approvedResources.length})
+          </h2>
         </div>
 
         {approvedResources.length === 0 ? (

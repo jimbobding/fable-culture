@@ -1,5 +1,7 @@
 "use client";
 
+import BackToAdminButton from "@/components/admin/BackToAdminButton";
+
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import {
   addDoc,
@@ -582,9 +584,12 @@ export default function RegionAtFableAdminPage() {
   return (
     <main className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
       <header className="mb-10">
-        <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">
-          Admin
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="text-xs font-black uppercase tracking-[0.3em] text-slate-500">
+            Fable Culture Admin
+          </p>
+          <BackToAdminButton />
+        </div>
 
         <h1 className="mt-3 text-4xl font-black text-slate-900 sm:text-5xl">
           At Fable
@@ -1100,7 +1105,7 @@ export default function RegionAtFableAdminPage() {
           </p>
 
           <h2 className="mt-2 text-3xl font-black text-slate-900">
-            At Fable activities
+            At Fable activities ({publishedActivities.length})
           </h2>
 
           <p className="mt-2 text-slate-500">

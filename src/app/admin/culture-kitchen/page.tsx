@@ -185,6 +185,15 @@ export default function CultureKitchenAdminPage() {
             Review, edit and approve inspired dishes before they appear
             publicly.
           </p>
+
+          <div className="mt-5 flex flex-wrap gap-3">
+            <span className="rounded-full bg-amber-100 px-4 py-2 font-bold text-amber-900">
+              {submissions.filter((item) => item.status === "pending").length} waiting
+            </span>
+            <span className="rounded-full bg-emerald-100 px-4 py-2 font-bold text-emerald-800">
+              {submissions.filter((item) => item.status === "approved").length} approved
+            </span>
+          </div>
         </div>
 
         {submissions.length === 0 ? (
