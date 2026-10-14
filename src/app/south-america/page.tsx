@@ -23,6 +23,8 @@ import CultureGallery from "@/components/shared/culture-gallery/CultureGallery";
 import Timeline from "@/components/shared/Timeline";
 
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
+import { getApprovedResources } from "@/app/lib/getApprovedResources";
+import { getApprovedResources } from "@/app/lib/getApprovedResources";
 
 
 
@@ -46,7 +48,7 @@ import {
 
 // Firebase / approved learner resources
 
-import { getApprovedResources } from "@/lib/getApprovedResources";
+import { getApprovedResources } from "@/app/lib/getApprovedResources";
 
 
 
@@ -59,6 +61,7 @@ import SouthAmericaMap from "@/components/regions/south-america/SouthAmericaMap"
 import Link from "next/link";
 import RegionAtFable from "@/components/shared/region-at-fable/RegionAtFable";
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
+import { getApprovedResources } from "@/app/lib/getApprovedResources";
 
 export const dynamic = "force-dynamic";
 
@@ -113,17 +116,7 @@ const teachingRegions = [
 ];
 
 export default async function SouthAmericaPage() {
-  /*
-
-  NOT READY YET
-
-
-
-  const approvedResources =
-
-    await getApprovedResources("south-america");
-
-  */
+  const approvedResources = await getApprovedResources("south-america");
 
   return (
     <main className="overflow-x-hidden bg-[#F4E5C4] text-[#211F1B]">
@@ -905,7 +898,7 @@ export default async function SouthAmericaPage() {
 
           <div className="mt-14">
             <StudentDiscoveries
-              items={[]}
+              items={approvedResources}
               region="south-america"
               title="🌎 South America Discoveries"
               description="Found a useful website, video or resource? Share it for teacher review."
