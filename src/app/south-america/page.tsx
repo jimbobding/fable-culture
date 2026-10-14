@@ -315,6 +315,48 @@ export default async function SouthAmericaPage() {
         </div>
       </section>
 
+      {/* RELIGIOUS EDUCATION — FEATURE */}
+      <section className="relative isolate min-h-[620px] overflow-hidden bg-[#153D2D] text-white">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('/images/continents/south-america/countries/peru/andes-sacred-valley-landscape.jpg')",
+          }}
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#102C22]/95 via-[#102C22]/80 to-[#102C22]/10" />
+
+        <div className="relative mx-auto flex min-h-[620px] max-w-7xl items-center px-6 py-20 sm:px-10 lg:px-16">
+          <div className="max-w-3xl">
+            <p className="mb-7 text-xs font-black uppercase tracking-[0.35em] text-[#F4C542]">
+              Religious Education / Belief & Worldviews
+            </p>
+
+            <h2 className="text-5xl font-black uppercase leading-[0.9] tracking-[-0.04em] sm:text-7xl lg:text-8xl">
+              Belief
+              <span className="block text-[#F4C542]">Across South</span>
+              <span className="block">America.</span>
+            </h2>
+
+            <p className="mt-9 max-w-xl text-lg leading-8 text-white/85">
+              From sacred Andean landscapes to Afro-Brazilian traditions,
+              discover how belief, identity and community shape life
+              across South America.
+            </p>
+
+            <Link
+              href="/south-america/religion-worldviews"
+              className="mt-10 inline-flex items-center gap-5 border-2 border-[#F4C542] bg-[#F4C542] px-8 py-5 text-sm font-black uppercase tracking-[0.15em] text-[#153D2D] transition hover:bg-transparent hover:text-[#F4C542]"
+            >
+              Explore Beliefs
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+
       {/* ======================================================
           CULTURE AT FABLE
       ====================================================== */}
@@ -912,6 +954,9 @@ export default async function SouthAmericaPage() {
           FINISH
 
       ====================================================== */}
+
+
+
 
       <footer className="relative overflow-hidden bg-[#B84432] px-5 py-20 text-white sm:px-8 lg:px-10">
         <svg
