@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { southAmericaCountries } from "@/data/southAmerica/southAmericaCountries";
 import InfluentialFigures from "@/components/shared/InfluencialFigures";
 import FactsSection from "@/components/shared/FactsSection";
+import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 
 export const dynamic = "force-dynamic";
 
@@ -848,6 +849,24 @@ export default async function SouthAmericaCountryPage({
               text: "text-[#211f1b]",
               inputBg: "bg-white/90",
             }}
+          />
+        </div>
+      </section>
+
+      {/* ======================================================
+          STUDENT DISCOVERIES
+      ====================================================== */}
+      <section
+        className="px-5 py-24 sm:px-8 lg:px-10"
+        style={{ background: theme.background }}
+      >
+        <div className="mx-auto max-w-5xl">
+          <StudentDiscoveries
+            items={[]}
+            region="south-america"
+            countries={[country.name]}
+            title={`🌎 ${country.name} Student Discoveries`}
+            description={`Found a useful website, video, recipe or cultural resource about ${country.name}? Share it with Fable Culture for staff review.`}
           />
         </div>
       </section>

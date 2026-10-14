@@ -38,6 +38,8 @@ type RegionAtFableProps = {
   region: string;
   regionName: string;
   countries: string[];
+  theme?: { background: string; hero: string; accent: string; text: string };
+  decorations?: string[];
 };
 
 type SelectedImage = {
@@ -55,6 +57,8 @@ export default function RegionAtFable({
   region,
   regionName,
   countries,
+  theme,
+  decorations = ["📸", "🎨", "🌍", "✦"],
 }: RegionAtFableProps) {
   const [activities, setActivities] = useState<AtFableActivity[]>([]);
   const [loading, setLoading] = useState(true);
@@ -115,10 +119,12 @@ export default function RegionAtFable({
   }, [activities, selectedCountry]);
 
   const filters = ["All", "General", ...countries];
+  const colours = { background: theme?.background ?? "#f7ecd4", hero: theme?.hero ?? "#b44036", accent: theme?.accent ?? "#fcd34d", text: theme?.text ?? "#211F1B" };
+
 
   return (
     <>
-      <section className="relative min-h-screen overflow-hidden bg-[#f7ecd4]">
+      <section className="relative min-h-screen overflow-hidden" style={{ backgroundColor: colours.background }}>
         {/* Decorative background */}
         <div
           aria-hidden="true"
@@ -136,19 +142,19 @@ export default function RegionAtFable({
         />
 
         {/* Hero */}
-        <div className="relative overflow-hidden bg-[#b44036] px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12">
+        <div className="relative overflow-hidden px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12" style={{ backgroundColor: colours.hero }}>
           <div
             aria-hidden="true"
             className="absolute -right-12 -top-12 text-[13rem] leading-none opacity-[0.08]"
           >
-            ✿
+            ✦
           </div>
 
           <div
             aria-hidden="true"
             className="absolute -bottom-16 left-10 text-[12rem] leading-none opacity-[0.07]"
           >
-            東
+            ✦
           </div>
 
           <div className="relative mx-auto max-w-7xl">
@@ -172,11 +178,11 @@ export default function RegionAtFable({
               </span>
 
               <span className="rotate-2 rounded-2xl bg-amber-300 px-4 py-3">
-                🀄
+                {decorations[1] ?? "🎨"}
               </span>
 
               <span className="-rotate-2 rounded-2xl bg-emerald-600 px-4 py-3">
-                🥢
+                {decorations[2] ?? "🌍"}
               </span>
 
               <span className="rotate-3 rounded-2xl bg-sky-500 px-4 py-3">
@@ -187,7 +193,7 @@ export default function RegionAtFable({
         </div>
 
         {/* Filters */}
-        <div className="relative z-10 border-b-4 border-[#e5d2aa] bg-[#fffaf0] px-5 py-7 shadow-sm sm:px-8">
+        <div className={`relative z-10 border-b-4 px-5 py-7 shadow-sm sm:px-8 border-[#e5d2aa]`}>
           <div className="mx-auto max-w-7xl">
             <p className="mb-4 text-xs font-black uppercase tracking-[0.25em] text-slate-500">
               Explore by country
@@ -209,7 +215,7 @@ export default function RegionAtFable({
                     }`}
                   >
                     {filter === "All"
-                      ? "🌏 All"
+                      ? "All countries"
                       : filter === "General"
                         ? "✨ General"
                         : filter}
@@ -393,7 +399,7 @@ export default function RegionAtFable({
 
         {/* Submission invitation */}
         <div className="relative mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:px-12">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#263a31] px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12">
+          <div className={`relative overflow-hidden rounded-[2.5rem] px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12 bg-[#263a31]`}>
             <div
               aria-hidden="true"
               className="absolute -right-10 -top-16 text-[10rem] leading-none opacity-[0.06]"

@@ -223,7 +223,7 @@ export default function RegionAtFableSubmissionForm({
                 type="text"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
-                placeholder="e.g. We played Mahjong"
+                placeholder="e.g. We explored music, food and culture"
                 className="mt-3 w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-4 text-base font-bold outline-none transition placeholder:font-normal placeholder:text-slate-400 focus:border-[#b44036]"
               />
             </label>

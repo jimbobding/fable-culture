@@ -57,6 +57,8 @@ import { getApprovedResources } from "@/lib/getApprovedResources";
 import SouthAmericaMap from "@/components/regions/south-america/SouthAmericaMap";
 
 import Link from "next/link";
+import RegionAtFable from "@/components/shared/region-at-fable/RegionAtFable";
+import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 
 export const dynamic = "force-dynamic";
 
@@ -317,6 +319,30 @@ export default async function SouthAmericaPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          CULTURE AT FABLE
+      ====================================================== */}
+      <section className="relative overflow-hidden bg-[#F4E5C4] px-5 py-24 sm:px-8 lg:px-10">
+        <div className="pointer-events-none absolute -right-6 -top-12 text-[12rem] font-black uppercase leading-none text-[#B84432]/[0.06]">
+          Fable
+        </div>
+
+        <div className="relative mx-auto max-w-7xl">
+          <RegionAtFable
+            region="south-america"
+            regionName="South America"
+            countries={["Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"]}
+            theme={{
+              background: "#F4E5C4",
+              hero: "#B84432",
+              accent: "#F4C542",
+              text: "#211F1B",
+            }}
+            decorations={["☀️", "🪇", "🦙", "🎨"]}
+          />
         </div>
       </section>
 
@@ -771,12 +797,6 @@ export default async function SouthAmericaPage() {
       </section>
 
       {/* ======================================================
-
-          DEEP DIVES
-
-      ====================================================== */}
-
-      {/* ======================================================
           DEEP DIVES
       ====================================================== */}
 
@@ -883,38 +903,13 @@ export default async function SouthAmericaPage() {
             resource that helps other learners explore South America.
           </p>
 
-          <div className="mt-14 flex min-h-[300px] items-center justify-center border-[3px] border-[#211F1B]/15 bg-[#F4E5C4]/30 p-8">
-            {/*
-
-            ====================================================
-
-            SHARED STUDENT DISCOVERIES — NOT CONNECTED YET
-
-
-
+          <div className="mt-14">
             <StudentDiscoveries
-
+              items={[]}
               region="south-america"
-
-              countries={southAmericaCountries}
-
-              discoveries={southAmericaDiscoveries}
-
-              themes={southAmericaDiscoveryThemes}
-
-              approvedResources={approvedResources}
-
+              title="🌎 South America Discoveries"
+              description="Found a useful website, video or resource? Share it for teacher review."
             />
-
-
-
-            ====================================================
-
-            */}
-
-            <p className="max-w-sm text-center text-sm font-black uppercase tracking-[0.2em] text-[#211F1B]/40">
-              Shared Student Discoveries plugs in here
-            </p>
           </div>
         </div>
       </section>
