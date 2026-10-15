@@ -65,7 +65,7 @@ export default function CultureKitchenSubmissionForm({
   };
 
   async function upload(file: File, folder: string) {
-    const path = `culture-kitchen/${folder}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+    const path = `culture-kitchen/${folder}/${Date.now()}-${Math.random().toString(36).slice(2)}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
     const fileRef = ref(storage, path);
     await uploadBytes(fileRef, file, { contentType: file.type });
     return { url: await getDownloadURL(fileRef), path };
