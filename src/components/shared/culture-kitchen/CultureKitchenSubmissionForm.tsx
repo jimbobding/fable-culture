@@ -1,45 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/firebaseConfig";
 import type { CultureKitchenTheme } from "./types";
-
-
-async function compressImage(file: File): Promise<File> {
-  if (!file.type.startsWith("image/")) return file;
-
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
-
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(bitmap.width * scale);
-  canvas.height = Math.round(bitmap.height * scale);
-
-  const context = canvas.getContext("2d");
-  if (!context) {
-    bitmap.close();
-    throw new Error("Could not process image");
-  }
-
-  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-  bitmap.close();
-
-  const blob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (result) => result ? resolve(result) : reject(new Error("Image compression failed")),
-      "image/jpeg",
-      0.8
-    );
-  });
-
-  return new File(
-    [blob],
-    file.name.replace(/\\.[^.]+$/, "") + ".jpg",
-    { type: "image/jpeg" }
-  );
-}
 
 type Props = {
   region: string;
@@ -47,368 +12,337 @@ type Props = {
   theme: CultureKitchenTheme;
 };
 
+async function compressImage(file: File): Promise<File> {
+  const bitmap = await createImageBitmap(file);
+  try {
+    const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Could not process photograph");
+
+    ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+
+    const blob = await new Promise<Blob>((resolve, reject) =>
+      canvas.toBlob(
+        result => result ? resolve(result) : reject(new Error("Compression failed")),
+        "image/jpeg",
+        0.8
+      )
+    );
+
+    if (blob.size >= 5 * 1024 * 1024)
+      throw new Error("Photograph is still too large after compression");
+
+    return new File([blob], "photo.jpg", { type: "image/jpeg" });
+  } finally {
+    bitmap.close();
+  }
+}
+
 export default function CultureKitchenSubmissionForm({
-  region,
-  countries,
-  theme,
+  region, countries, theme
 }: Props) {
   const [creatorName, setCreatorName] = useState("");
   const [dishName, setDishName] = useState("");
   const [inspiration, setInspiration] = useState("");
-  const [description, setDescription] = useState("");
-  const [keyIngredients, setKeyIngredients] = useState("");
-  const [adaptation, setAdaptation] = useState("");
-  const [makeAgain, setMakeAgain] = useState<"yes" | "maybe" | "no">("yes");
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [method, setMethod] = useState<"write" | "attach" | "link">("write");
+  const [ingredients, setIngredients] = useState("");
+  const [steps, setSteps] = useState("");
+  const [recipeFile, setRecipeFile] = useState<File | null>(null);
+  const [recipeUrl, setRecipeUrl] = useState("");
+  const [photo, setPhoto] = useState<File | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const fieldStyle = {
+    backgroundColor: theme.surface,
+    borderColor: theme.border,
+    color: theme.text
+  };
 
-  const submitCreation = async () => {
+  async function upload(file: File, folder: string) {
+    const path = `culture-kitchen/${folder}/${crypto.randomUUID()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+    const fileRef = ref(storage, path);
+    await uploadBytes(fileRef, file, { contentType: file.type });
+    return { url: await getDownloadURL(fileRef), path };
+  }
+
+  async function submit() {
+    setError("");
+    setSuccess(false);
+
     if (!creatorName.trim() || !dishName.trim() || !inspiration) {
-      setError("Please add your name, your dish name and what inspired it.");
+      setError("Please enter your name, recipe name and country.");
       return;
     }
 
-    try {
-      setIsSubmitting(true);
-      setSubmitted(false);
-      setError("");
+    if (method === "write" && (!ingredients.trim() || !steps.trim())) {
+      setError("Please add your ingredients and cooking instructions.");
+      return;
+    }
 
+    if (method === "attach" && !recipeFile) {
+      setError("Please attach your recipe.");
+      return;
+    }
+
+    if (method === "link") {
+      try {
+        const url = new URL(recipeUrl.trim());
+        if (!["https:", "http:"].includes(url.protocol))
+          throw new Error("Invalid protocol");
+      } catch {
+        setError("Please enter a valid recipe website URL.");
+        return;
+      }
+    }
+
+    if (recipeFile && recipeFile.size >= 5 * 1024 * 1024) {
+      setError("Please use a recipe attachment smaller than 5 MB.");
+      return;
+    }
+
+    if (recipeFile && ![
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    ].includes(recipeFile.type)) {
+      setError("Recipe attachments must be PDF, DOC or DOCX files.");
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
       let imageUrl = "";
       let storagePath = "";
+      let recipeFileUrl = "";
+      let recipeStoragePath = "";
 
-      if (selectedFile) {
-        const compressedFile = await compressImage(selectedFile);
+      if (photo) {
+        const compressed = await compressImage(photo);
+        const uploaded = await upload(compressed, "photos");
+        imageUrl = uploaded.url;
+        storagePath = uploaded.path;
+      }
 
-        if (compressedFile.size >= 5 * 1024 * 1024) {
-          throw new Error("Compressed image is still too large");
-        }
-
-        storagePath = `culture-kitchen/${Date.now()}-${compressedFile.name}`;
-
-        const storageRef = ref(storage, storagePath);
-
-        await uploadBytes(storageRef, compressedFile);
-
-        imageUrl = await getDownloadURL(storageRef);
+      if (method === "attach" && recipeFile) {
+        const uploaded = await upload(recipeFile, "recipes");
+        recipeFileUrl = uploaded.url;
+        recipeStoragePath = uploaded.path;
       }
 
       await addDoc(collection(db, "cultureKitchenSubmissions"), {
         creatorName: creatorName.trim(),
         dishName: dishName.trim(),
         inspiration,
-        description: description.trim(),
-        keyIngredients: keyIngredients.trim(),
-        adaptation: adaptation.trim(),
-        makeAgain,
-
+        region,
+        description: method === "write" ? steps.trim() : "",
+        keyIngredients: method === "write" ? ingredients.trim() : "",
+        adaptation: "",
+        makeAgain: "yes",
+        recipeMethod: method,
+        recipeUrl: method === "link" ? recipeUrl.trim() : "",
+        recipeSteps: method === "write" ? steps.trim() : "",
+        recipeFileUrl,
+        recipeStoragePath,
         imageUrl,
         storagePath,
-
-        region,
-
         status: "pending",
-        submittedAt: serverTimestamp(),
+        submittedAt: serverTimestamp()
       });
 
-      setSubmitted(true);
-
+      setSuccess(true);
       setCreatorName("");
       setDishName("");
       setInspiration("");
-      setDescription("");
-      setKeyIngredients("");
-      setAdaptation("");
-      setMakeAgain("yes");
-      setSelectedFile(null);
+      setIngredients("");
+      setSteps("");
+      setRecipeFile(null);
+      setRecipeUrl("");
+      setPhoto(null);
+      setMethod("write");
 
-      if (fileInputRef.current) {
-        fileInputRef.current.value = "";
-      }
+      document.querySelectorAll<HTMLInputElement>(
+        'input[data-kitchen-file="true"]'
+      ).forEach(input => { input.value = ""; });
+
     } catch (err) {
       console.error(err);
-
-      setError(
-        "There was a problem submitting your creation. Please try again.",
-      );
+      setError("Submission failed. Check Firebase upload permissions and try again.");
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
-  };
-
-  const fieldStyle = {
-    backgroundColor: theme.surface,
-    borderColor: theme.border,
-    color: theme.text,
-  };
+  }
 
   return (
     <section
-      className="relative overflow-hidden rounded-[2.8rem_1.8rem_3rem_2rem] border p-6 sm:p-8"
+      className="rounded-[2rem] border p-6 sm:p-9"
       style={{
         backgroundColor: theme.surfaceAlt,
         borderColor: theme.border,
-        boxShadow: theme.featureShadow,
+        boxShadow: theme.featureShadow
       }}
     >
-      {/* TOP ACCENT */}
-      <div
-        className="absolute left-0 top-0 h-1 w-full"
-        style={{
-          background: `linear-gradient(to right, ${theme.primary}, ${theme.accent}, ${theme.tertiary})`,
-        }}
-      />
+      <p className="text-sm font-black uppercase tracking-widest"
+        style={{ color: theme.primary }}>
+        🍽️ Fable Culture Kitchen
+      </p>
 
-      {/* INTRO */}
-      <div className="max-w-3xl">
-        <p
-          className="text-xs font-black uppercase tracking-[0.3em]"
-          style={{ color: theme.primary }}
-        >
-          🍽️ Culture Kitchen Submission
-        </p>
+      <h2 className="mt-3 text-3xl font-black sm:text-4xl"
+        style={{ color: theme.text }}>
+        Share Your Recipe
+      </h2>
 
-        <h3
-          className="mt-3 text-3xl font-black sm:text-4xl"
-          style={{ color: theme.text }}
-        >
-          Add Your Inspired Creation
-        </h3>
+      <p className="mt-3" style={{ color: theme.mutedText }}>
+        Share something you have cooked or a recipe inspired by this region.
+      </p>
 
-        <p className="mt-3 leading-relaxed" style={{ color: theme.mutedText }}>
-          Cooked something inspired by the food of this region? Tell us what you
-          made, what inspired it and how you made it your own.
-        </p>
-      </div>
-
-      {/* MAIN FIELDS */}
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
-        <label className="space-y-2">
-          <span className="text-sm font-black" style={{ color: theme.text }}>
-            Your name
+      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <label className="block space-y-2">
+          <span className="font-bold" style={{ color: theme.text }}>
+            Your name or initials *
           </span>
-
-          <input
-            type="text"
-            value={creatorName}
-            onChange={(e) => setCreatorName(e.target.value)}
-            placeholder="Your name"
-            className="w-full rounded-2xl border px-4 py-3 outline-none transition focus:ring-2"
-            style={{
-              ...fieldStyle,
-              outlineColor: theme.primary,
-            }}
-          />
+          <input className="w-full rounded-xl border p-3"
+            style={fieldStyle} value={creatorName}
+            onChange={e => setCreatorName(e.target.value)}
+            placeholder="Name or initials" />
         </label>
 
-        <label className="space-y-2">
-          <span className="text-sm font-black" style={{ color: theme.text }}>
-            What did you make?
+        <label className="block space-y-2">
+          <span className="font-bold" style={{ color: theme.text }}>
+            Recipe name *
           </span>
-
-          <input
-            type="text"
-            value={dishName}
-            onChange={(e) => setDishName(e.target.value)}
-            placeholder="Name your creation"
-            className="w-full rounded-2xl border px-4 py-3 outline-none transition focus:ring-2"
-            style={fieldStyle}
-          />
+          <input className="w-full rounded-xl border p-3"
+            style={fieldStyle} value={dishName}
+            onChange={e => setDishName(e.target.value)}
+            placeholder="What are you making?" />
         </label>
 
-        <label className="space-y-2">
-          <span className="text-sm font-black" style={{ color: theme.text }}>
-            What inspired your dish?
+        <label className="block space-y-2 sm:col-span-2">
+          <span className="font-bold" style={{ color: theme.text }}>
+            Country inspired by *
           </span>
-
-          <select
-            value={inspiration}
-            onChange={(e) => setInspiration(e.target.value)}
-            className="w-full rounded-2xl border px-4 py-3 outline-none"
-            style={fieldStyle}
-          >
+          <select className="w-full rounded-xl border p-3"
+            style={fieldStyle} value={inspiration}
+            onChange={e => setInspiration(e.target.value)}>
             <option value="">Choose a country</option>
-
-            {countries.map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
+            {countries.map(country =>
+              <option key={country} value={country}>{country}</option>
+            )}
           </select>
         </label>
+      </div>
 
-        <label className="space-y-2 md:col-span-2">
-          <span className="text-sm font-black" style={{ color: theme.text }}>
-            🥕 Ingredients
+      <h3 className="mt-8 text-xl font-black" style={{ color: theme.text }}>
+        How would you like to share your recipe?
+      </h3>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {(["write", "attach", "link"] as const).map(option => (
+          <button key={option} type="button"
+            onClick={() => setMethod(option)}
+            className="rounded-2xl border-2 p-5 text-left font-bold"
+            style={{
+              backgroundColor: method === option ? theme.primary : theme.surface,
+              borderColor: theme.primary,
+              color: method === option ? theme.surface : theme.text
+            }}>
+            {option === "write" ? "✏️ Write my recipe" : option === "attach" ? "📎 Attach my recipe" : "🔗 Share a recipe link"}
+          </button>
+        ))}
+      </div>
+
+      {method === "write" ? (
+        <div className="mt-6 space-y-5">
+          <label className="block space-y-2">
+            <span className="font-bold" style={{ color: theme.text }}>
+              🥕 Ingredients *
+            </span>
+            <textarea className="w-full rounded-xl border p-4"
+              style={fieldStyle} rows={5} value={ingredients}
+              onChange={e => setIngredients(e.target.value)}
+              placeholder={"List your ingredients here..."} />
+          </label>
+
+          <label className="block space-y-2">
+            <span className="font-bold" style={{ color: theme.text }}>
+              👩‍🍳 How to make it *
+            </span>
+            <textarea className="w-full rounded-xl border p-4"
+              style={fieldStyle} rows={6} value={steps}
+              onChange={e => setSteps(e.target.value)}
+              placeholder="Step 1... Step 2... Step 3..." />
+          </label>
+        </div>
+      ) : method === "link" ? (
+        <label className="mt-6 block space-y-3">
+          <span className="font-bold" style={{ color: theme.text }}>
+            🔗 Recipe website URL *
           </span>
-
-          <p className="text-sm" style={{ color: theme.mutedText }}>
-            Add the ingredients you used. One ingredient per line works best.
-          </p>
-
-          <textarea
-            value={keyIngredients}
-            onChange={(e) => setKeyIngredients(e.target.value)}
-            placeholder={"Chicken\nRice\nSoy sauce\nPeppers"}
-            rows={6}
-            className="w-full rounded-[1.7rem_2.2rem_1.5rem_2rem] border px-4 py-4 outline-none"
+          <input
+            type="url"
+            value={recipeUrl}
+            onChange={e => setRecipeUrl(e.target.value)}
+            placeholder="https://www.bbcgoodfood.com/recipes/..."
+            className="w-full rounded-xl border p-4"
             style={fieldStyle}
           />
-        </label>
-      </div>
-
-      {/* DESCRIPTION */}
-      <label className="mt-5 block space-y-2">
-        <span className="text-sm font-black" style={{ color: theme.text }}>
-          Tell us about your creation
-        </span>
-
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          placeholder="What did you make and what was it like?"
-          rows={4}
-          className="w-full rounded-2xl border px-4 py-3 outline-none"
-          style={fieldStyle}
-        />
-      </label>
-
-      {/* ADAPTATION */}
-      <label className="mt-5 block space-y-2">
-        <span className="text-sm font-black" style={{ color: theme.text }}>
-          Did you change or adapt anything?
-        </span>
-
-        <textarea
-          value={adaptation}
-          onChange={(e) => setAdaptation(e.target.value)}
-          placeholder="Tell us what you changed..."
-          rows={3}
-          className="w-full rounded-2xl border px-4 py-3 outline-none"
-          style={fieldStyle}
-        />
-      </label>
-
-      {/* MAKE AGAIN */}
-      <div className="mt-7">
-        <p className="text-sm font-black" style={{ color: theme.text }}>
-          Would you make it again?
-        </p>
-
-        <div className="mt-3 flex flex-wrap gap-3">
-          {[
-            ["yes", "😍 Definitely"],
-            ["maybe", "🤔 Maybe"],
-            ["no", "😬 Probably not"],
-          ].map(([value, label]) => {
-            const selected = makeAgain === value;
-
-            return (
-              <button
-                key={value}
-                type="button"
-                onClick={() => setMakeAgain(value as "yes" | "maybe" | "no")}
-                className="rounded-full border px-4 py-2 font-bold transition hover:-translate-y-0.5"
-                style={{
-                  backgroundColor: selected ? theme.secondary : theme.surface,
-                  borderColor: selected ? theme.secondary : theme.border,
-                  color: selected ? theme.surface : theme.text,
-                }}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* PHOTO */}
-      <div
-        className="mt-7 rounded-[2rem_1.3rem_2.4rem_1.6rem] border-l-4 p-5"
-        style={{
-          backgroundColor: `${theme.tertiary}10`,
-          borderColor: theme.tertiary,
-        }}
-      >
-        <label className="block space-y-3">
-          <span
-            className="text-sm font-black uppercase tracking-[0.15em]"
-            style={{ color: theme.tertiary }}
-          >
-            📷 Add a photo of your food
+          <span className="block text-sm" style={{ color: theme.mutedText }}>
+            Paste a link to the recipe you would like to share.
           </span>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={(e) => setSelectedFile(e.target.files?.[0] ?? null)}
-            className="block w-full rounded-2xl border p-3 text-sm"
-            style={{
-              backgroundColor: theme.surface,
-              borderColor: theme.border,
-              color: theme.text,
-            }}
-          />
         </label>
-
-        {selectedFile && (
-          <p
-            className="mt-3 text-sm font-bold"
-            style={{ color: theme.tertiary }}
-          >
-            ✓ {selectedFile.name}
+      ) : (
+        <div className="mt-6 rounded-2xl border p-5"
+          style={{ borderColor: theme.border, backgroundColor: theme.surface }}>
+          <label className="block space-y-3">
+            <span className="font-bold" style={{ color: theme.text }}>
+              📄 Attach a recipe (PDF or Word) *
+            </span>
+            <input data-kitchen-file="true" type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={e => setRecipeFile(e.target.files?.[0] ?? null)}
+              className="block w-full text-sm" style={{ color: theme.text }} />
+          </label>
+          <p className="mt-2 text-xs" style={{ color: theme.mutedText }}>
+            Maximum 5 MB. Document uploads require Firebase permissions.
           </p>
-        )}
+        </div>
+      )}
+
+      <div className="mt-6 rounded-2xl border p-5"
+        style={{ borderColor: theme.border, backgroundColor: theme.surface }}>
+        <label className="block space-y-3">
+          <span className="font-bold" style={{ color: theme.text }}>
+            📷 Add a food photograph (optional)
+          </span>
+          <input data-kitchen-file="true" type="file" accept="image/*"
+            onChange={e => setPhoto(e.target.files?.[0] ?? null)}
+            className="block w-full text-sm" style={{ color: theme.text }} />
+        </label>
+        <p className="mt-2 text-xs" style={{ color: theme.mutedText }}>
+          Large photographs are automatically compressed.
+        </p>
       </div>
 
-      {/* SUBMIT */}
-      <button
-        type="button"
-        onClick={submitCreation}
-        disabled={isSubmitting}
-        className="mt-8 rounded-full border px-7 py-3 font-black uppercase tracking-[0.12em] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-50"
-        style={{
-          backgroundColor: theme.primary,
-          borderColor: theme.primary,
-          color: theme.surface,
-        }}
-      >
-        {isSubmitting ? "Submitting..." : "Submit My Creation"}
+      <button type="button" onClick={submit} disabled={submitting}
+        className="mt-7 rounded-full px-8 py-4 font-black disabled:opacity-50"
+        style={{ backgroundColor: theme.primary, color: theme.surface }}>
+        {submitting ? "Submitting..." : "🚀 Submit for Approval"}
       </button>
 
-      {error && (
-        <div
-          className="mt-5 border-l-4 p-4 font-semibold"
-          style={{
-            borderColor: theme.primary,
-            backgroundColor: `${theme.primary}10`,
-            color: theme.primary,
-          }}
-        >
-          {error}
-        </div>
-      )}
+      {error && <p role="alert" className="mt-4 font-bold text-red-600">{error}</p>}
+      {success && <p className="mt-4 font-bold text-green-700">
+        ✓ Recipe submitted for staff approval!
+      </p>}
 
-      {submitted && (
-        <div
-          className="mt-5 border-l-4 p-4 font-semibold"
-          style={{
-            borderColor: theme.tertiary,
-            backgroundColor: `${theme.tertiary}12`,
-            color: theme.tertiary,
-          }}
-        >
-          ✓ Your creation has been submitted for approval!
-        </div>
-      )}
-
-      <p className="mt-5 text-xs" style={{ color: theme.mutedText }}>
-        Submissions will be checked before appearing in the Culture Kitchen.
+      <p className="mt-5 text-sm" style={{ color: theme.mutedText }}>
+        Your recipe will be checked before appearing in Culture Kitchen.
+        Use initials rather than full names for student privacy.
       </p>
     </section>
   );

@@ -53,6 +53,13 @@ const continents = [
       "Explore China, Japan, Korea, Mongolia and Taiwan through culture, history, food, art, activities and deep dives.",
     color: "from-red-500 via-amber-400 to-emerald-500",
   },
+  {
+    name: "South America",
+    href: "/south-america",
+    description:
+      "Explore 12 countries through incredible landscapes, cultures, history, food, music and traditions.",
+    color: "from-emerald-500 via-yellow-400 to-orange-500",
+  },
 ];
 
 /* =========================================================
