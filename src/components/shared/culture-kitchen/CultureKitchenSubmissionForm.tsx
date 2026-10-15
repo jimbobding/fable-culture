@@ -6,6 +6,41 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from "@/firebaseConfig";
 import type { CultureKitchenTheme } from "./types";
 
+
+async function compressImage(file: File): Promise<File> {
+  if (!file.type.startsWith("image/")) return file;
+
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    bitmap.close();
+    throw new Error("Could not process image");
+  }
+
+  context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+
+  const blob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob(
+      (result) => result ? resolve(result) : reject(new Error("Image compression failed")),
+      "image/jpeg",
+      0.8
+    );
+  });
+
+  return new File(
+    [blob],
+    file.name.replace(/\\.[^.]+$/, "") + ".jpg",
+    { type: "image/jpeg" }
+  );
+}
+
 type Props = {
   region: string;
   countries: string[];
@@ -47,11 +82,17 @@ export default function CultureKitchenSubmissionForm({
       let storagePath = "";
 
       if (selectedFile) {
-        storagePath = `culture-kitchen/${Date.now()}-${selectedFile.name}`;
+        const compressedFile = await compressImage(selectedFile);
+
+        if (compressedFile.size >= 5 * 1024 * 1024) {
+          throw new Error("Compressed image is still too large");
+        }
+
+        storagePath = `culture-kitchen/${Date.now()}-${compressedFile.name}`;
 
         const storageRef = ref(storage, storagePath);
 
-        await uploadBytes(storageRef, selectedFile);
+        await uploadBytes(storageRef, compressedFile);
 
         imageUrl = await getDownloadURL(storageRef);
       }
