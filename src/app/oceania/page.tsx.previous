@@ -1,0 +1,409 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+
+const images = {"australia": "/images/continents/oceania/countries/australia/uluru-red-centre-landscape.jpg", "fiji": "/images/continents/oceania/countries/fiji/places/yasawa-islands.jpg", "png": "/images/continents/oceania/countries/papua-new-guinea/papua-new-guinea-highlands-landscape.jpg", "nz": "/images/continents/oceania/countries/new-zealand/milford-sound-landscape.jpg", "tonga": "/images/continents/oceania/countries/tonga/tonga-vavau-islands-landscape.jpg", "solomons": "/images/continents/oceania/countries/solomon-islands/solomon-islands-marovo-lagoon.jpg"};
+
+const destinations = [
+  {
+    name: "AUSTRALIA",
+    caption: "Red earth, ancient Country and enormous landscapes",
+    image: images.australia,
+    colour: "#dc7442",
+    rotate: "-rotate-2",
+  },
+  {
+    name: "PAPUA NEW GUINEA",
+    caption: "Rainforest, highlands and living traditions",
+    image: images.png,
+    colour: "#76aa79",
+    rotate: "rotate-2",
+  },
+  {
+    name: "NEW ZEALAND",
+    caption: "Mountain peaks, wild coasts and Māori heritage",
+    image: images.nz,
+    colour: "#84c8e1",
+    rotate: "rotate-1",
+  },
+  {
+    name: "PACIFIC ISLANDS",
+    caption: "Ocean voyaging, island communities and lagoons",
+    image: images.tonga || images.fiji,
+    colour: "#5ec6c4",
+    rotate: "-rotate-2",
+  },
+];
+
+const countries = [
+  ["🇦🇺", "Australia"], ["🇫🇯", "Fiji"],
+  ["🇰🇮", "Kiribati"], ["🇲🇭", "Marshall Islands"],
+  ["🇫🇲", "Micronesia"], ["🇳🇷", "Nauru"],
+  ["🇳🇿", "New Zealand"], ["🇵🇼", "Palau"],
+  ["🇵🇬", "Papua New Guinea"], ["🇼🇸", "Samoa"],
+  ["🇸🇧", "Solomon Islands"], ["🇹🇴", "Tonga"],
+  ["🇹🇻", "Tuvalu"], ["🇻🇺", "Vanuatu"],
+];
+
+const adventures = [
+  {
+    icon: "🦘",
+    title: "Across the Outback",
+    type: "THE DEEP DIVE",
+    description: "Follow an interactive trail through Australia's Red Centre.",
+    colour: "#ffd59d",
+  },
+  {
+    icon: "🐊",
+    title: "Danger Zone",
+    type: "WILDLIFE EXPEDITION",
+    description: "Discover dangerous animals and how to stay safe.",
+    colour: "#b7dc9d",
+  },
+  {
+    icon: "🌿",
+    title: "First Peoples",
+    type: "THEN & NOW",
+    description: "Explore First Nations histories, colonisation and living cultures.",
+    colour: "#f7d3aa",
+  },
+  {
+    icon: "🧩",
+    title: "Oceania Challenge",
+    type: "DRAG & DROP",
+    description: "Match wildlife, places and traditions to their countries.",
+    colour: "#b7e2ee",
+  },
+];
+
+const features = [
+  ["🍳", "Culture Kitchen", "Recipes and food"],
+  ["🎨", "Culture Gallery", "Art and creativity"],
+  ["📸", "Region at Fable", "Our scrapbook"],
+  ["🔎", "Student Discoveries", "Learner projects"],
+  ["🌏", "Religion & Worldviews", "Beliefs and communities"],
+  ["🧭", "History & Voyages", "Journeys through time"],
+];
+
+function Wave({
+  top,
+  bottom,
+  flip = false,
+}: {
+  top: string;
+  bottom: string;
+  flip?: boolean;
+}) {
+  return (
+    <div style={{ background: bottom }} className="-mt-px w-full overflow-hidden">
+      <svg
+        viewBox="0 0 1440 125"
+        preserveAspectRatio="none"
+        className={`block h-16 w-full sm:h-24 ${flip ? "scale-x-[-1]" : ""}`}
+        aria-hidden="true"
+      >
+        <path
+          d="M0 0H1440V38C1180 120 1010 10 780 70S330 110 0 42Z"
+          fill={top}
+        />
+        <path
+          d="M-10 48C300 120 470 10 780 80S1180 120 1450 48"
+          fill="none"
+          stroke="#172c2b"
+          strokeWidth="9"
+          strokeLinecap="round"
+        />
+        <path
+          d="M-10 65C300 137 470 27 780 97S1180 137 1450 65"
+          fill="none"
+          stroke="#f9b54f"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
+function Photo({
+  src,
+  alt,
+  className = "",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  if (!src) {
+    return (
+      <div
+        className={`flex items-center justify-center bg-[#73c4bd] text-6xl ${className}`}
+      >
+        🌴
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`h-full w-full object-cover ${className}`}
+    />
+  );
+}
+
+export default function OceaniaPage() {
+  const [showCountries, setShowCountries] = useState(false);
+
+  return (
+    <main className="overflow-hidden bg-[#f9edcf] text-[#172c2b]">
+      {/* HERO — THE PACIFIC */}
+      <section className="relative min-h-[780px] overflow-hidden bg-[#087f91] text-white">
+        <div className="absolute inset-0">
+          <Photo
+            src={images.fiji || images.tonga || images.solomons}
+            alt="Pacific island landscape"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#082e38]/70 via-[#007b89]/20 to-[#073c43]/80" />
+        </div>
+
+        <div className="pointer-events-none absolute -left-24 top-24 h-80 w-80 rounded-full border-[35px] border-[#ffbd54]/60" />
+        <div className="pointer-events-none absolute -right-20 bottom-12 h-64 w-64 rounded-full border-[28px] border-white/30" />
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <nav className="flex items-center justify-between gap-4 py-7">
+            <Link href="/" className="text-xl font-black tracking-tight">
+              FABLE<br />CULTURE
+            </Link>
+            <span className="rounded-full border-2 border-white/70 bg-[#102f35]/40 px-5 py-3 text-xs font-black uppercase tracking-widest">
+              The Pacific awaits
+            </span>
+          </nav>
+
+          <div className="flex min-h-[630px] flex-col items-center justify-center pb-28 text-center">
+            <p className="mb-6 rotate-[-3deg] rounded-full border-[3px] border-[#172c2b] bg-[#ffbd54] px-6 py-3 text-sm font-black uppercase tracking-widest text-[#172c2b] shadow-[5px_5px_0_#172c2b]">
+              Islands · Red Earth · Rainforests · Mountains
+            </p>
+
+            <h1
+              className="max-w-full -rotate-2 text-[clamp(4.2rem,15vw,13rem)] font-black uppercase leading-none tracking-[-0.085em] text-[#fff1d1]"
+              style={{
+                WebkitTextStroke: "clamp(2px, 0.4vw, 6px) #172c2b",
+                textShadow: "8px 10px 0 #172c2b",
+              }}
+            >
+              OCEANIA
+            </h1>
+
+            <p className="mt-10 max-w-xl text-xl font-bold leading-relaxed drop-shadow-lg sm:text-2xl">
+              A world of oceans, extraordinary landscapes and living cultures.
+            </p>
+
+            <a
+              href="#worlds"
+              className="mt-9 -rotate-2 rounded-full border-[4px] border-[#172c2b] bg-[#ffbd54] px-9 py-4 text-lg font-black text-[#172c2b] shadow-[6px_6px_0_#172c2b] transition hover:rotate-0 hover:-translate-y-1"
+            >
+              LET'S EXPLORE ↘
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Wave top="#087f91" bottom="#f9edcf" />
+
+      {/* FOUR WORLDS */}
+      <section id="worlds" className="relative px-5 pb-24 pt-14 sm:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 max-w-3xl">
+            <p className="font-black uppercase tracking-[0.25em] text-[#c85e35]">
+              Follow the winding trail
+            </p>
+            <h2 className="mt-3 text-5xl font-black uppercase leading-[0.9] tracking-tight sm:text-7xl">
+              FOUR WORLDS.<br />
+              <span className="text-[#078d9d]">ONE OCEANIA.</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-lg">
+              Travel from orange desert landscapes to rainforest highlands,
+              snow-capped mountains and tropical islands.
+            </p>
+          </div>
+
+          <div className="grid gap-x-12 gap-y-16 md:grid-cols-2">
+            {destinations.map((place, i) => (
+              <div
+                key={place.name}
+                className={`${place.rotate} ${i % 2 ? "md:translate-y-14" : ""} transition-transform duration-300 hover:rotate-0`}
+              >
+                <div className="overflow-hidden rounded-[42%_58%_39%_61%/20%_29%_71%_80%] border-[6px] border-[#172c2b] bg-white shadow-[12px_12px_0_#172c2b]">
+                  <div className="h-56 sm:h-72">
+                    <Photo src={place.image} alt={place.name} />
+                  </div>
+                  <div
+                    className="px-7 py-5"
+                    style={{ backgroundColor: place.colour }}
+                  >
+                    <h3 className="text-2xl font-black uppercase sm:text-3xl">
+                      {place.name}
+                    </h3>
+                    <p className="mt-1 font-semibold">{place.caption}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-28 max-w-3xl">
+            <svg viewBox="0 0 700 100" className="w-full" aria-hidden="true">
+              <path d="M-10 50C120 -10 220 120 350 50S580 -10 710 50" fill="none" stroke="#172c2b" strokeWidth="10" strokeLinecap="round"/>
+              <path d="M-10 70C120 10 220 140 350 70S580 10 710 70" fill="none" stroke="#078d9d" strokeWidth="6" strokeLinecap="round"/>
+              <circle cx="350" cy="60" r="17" fill="#ffbd54" stroke="#172c2b" strokeWidth="7"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* MAP */}
+      <section id="map" className="bg-[#0a8795] px-5 py-20 text-[#172c2b] sm:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="font-black uppercase tracking-[0.25em] text-[#fff0ca]">
+              Find your way
+            </p>
+            <h2 className="mt-3 text-5xl font-black uppercase leading-[0.9] text-white sm:text-7xl">
+              ISLAND<br />HOPPING!
+            </h2>
+            <p className="mt-6 max-w-md text-lg font-semibold text-white">
+              Fourteen independent countries, thousands of islands and
+              one enormous ocean.
+            </p>
+            <button
+              onClick={() => setShowCountries(!showCountries)}
+              className="mt-8 rounded-full border-[4px] border-[#172c2b] bg-[#ffbd54] px-7 py-4 font-black shadow-[5px_5px_0_#172c2b] transition hover:-translate-y-1"
+            >
+              {showCountries ? "HIDE COUNTRIES ↑" : "EXPLORE THE COUNTRIES →"}
+            </button>
+          </div>
+
+          <div className="relative min-h-[380px] overflow-hidden rounded-[48%_52%_47%_53%/18%_28%_72%_82%] border-[6px] border-[#172c2b] bg-[#bde9db] p-8 shadow-[12px_12px_0_#172c2b]">
+            <div
+              className="absolute inset-0 opacity-30"
+              style={{
+                backgroundImage: "radial-gradient(#087f91 2px, transparent 2px)",
+                backgroundSize: "28px 28px",
+              }}
+            />
+            <div className="relative flex min-h-[300px] flex-col items-center justify-center text-center">
+              <span className="text-8xl">🗺️</span>
+              <h3 className="mt-5 text-3xl font-black uppercase">
+                The Oceania Map
+              </h3>
+              <p className="mt-3 max-w-sm font-semibold">
+                Interactive country map coming soon.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {showCountries && (
+          <div className="mx-auto mt-14 grid max-w-7xl grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {countries.map(([flag, name]) => (
+              <div
+                key={name}
+                className="rounded-3xl border-[3px] border-[#172c2b] bg-[#fff0d0] p-4 font-black shadow-[4px_4px_0_#172c2b]"
+              >
+                <span className="mr-2 text-2xl">{flag}</span>
+                {name}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <Wave top="#0a8795" bottom="#d87545" flip />
+
+      {/* ADVENTURES */}
+      <section id="adventures" className="bg-[#d87545] px-5 pb-24 pt-16 sm:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="font-black uppercase tracking-[0.25em] text-[#ffebbc]">
+            Adventure awaits
+          </p>
+          <h2 className="mt-3 text-5xl font-black uppercase leading-[0.9] text-white sm:text-7xl">
+            PICK YOUR<br />ADVENTURE!
+          </h2>
+          <p className="mt-5 max-w-xl text-lg font-semibold text-white">
+            Explore the Outback, discover dangerous wildlife, learn about
+            First Peoples and test your knowledge.
+          </p>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {adventures.map((adventure, i) => (
+              <article
+                key={adventure.title}
+                className={`rounded-[45%_55%_18%_22%/15%_18%_12%_14%] border-[5px] border-[#172c2b] p-6 shadow-[8px_8px_0_#172c2b] ${i % 2 ? "lg:translate-y-8" : ""}`}
+                style={{ backgroundColor: adventure.colour }}
+              >
+                <div className="mb-7 text-6xl">{adventure.icon}</div>
+                <p className="text-xs font-black uppercase tracking-widest">
+                  {adventure.type}
+                </p>
+                <h3 className="mt-3 text-2xl font-black uppercase leading-tight">
+                  {adventure.title}
+                </h3>
+                <p className="mt-4 text-sm font-medium leading-relaxed">
+                  {adventure.description}
+                </p>
+                <p className="mt-7 border-t-2 border-[#172c2b]/25 pt-4 text-xs font-black uppercase">
+                  Coming soon
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Wave top="#d87545" bottom="#f9edcf" />
+
+      {/* SHARED FEATURES */}
+      <section className="px-5 pb-24 pt-16 sm:px-8">
+        <div className="mx-auto max-w-7xl">
+          <p className="font-black uppercase tracking-[0.25em] text-[#c85e35]">
+            More to discover
+          </p>
+          <h2 className="mt-3 text-5xl font-black uppercase leading-[0.9] sm:text-7xl">
+            OCEANIA<br />
+            <span className="text-[#078d9d]">AT FABLE.</span>
+          </h2>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map(([icon, title, subtitle], i) => (
+              <div
+                key={title}
+                className={`rounded-[40px] border-[4px] border-[#172c2b] p-7 shadow-[7px_7px_0_#172c2b] ${i % 2 ? "bg-[#c5e8dc]" : "bg-[#ffdda1]"}`}
+              >
+                <span className="text-5xl">{icon}</span>
+                <h3 className="mt-5 text-2xl font-black uppercase">
+                  {title}
+                </h3>
+                <p className="mt-2 font-semibold">{subtitle}</p>
+                <p className="mt-6 text-xs font-black uppercase text-[#0a8795]">
+                  Coming soon
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t-[6px] border-[#172c2b] bg-[#123c3d] px-6 py-12 text-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5">
+          <span className="text-3xl font-black">OCEANIA 🌊</span>
+          <Link href="/" className="font-black uppercase text-[#ffbd54]">
+            ← Back to Fable Culture
+          </Link>
+        </div>
+      </footer>
+    </main>
+  );
+}
