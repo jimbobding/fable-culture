@@ -31,6 +31,8 @@ export type TimetableEntry = {
   type: TimetableEntryType;
   notes?: string;
   coveringFor?: string;
+  coveredStudent?: string;
+  coveringForActivity?: string;
 };
 
 export type StaffTimetable = {

@@ -3,16 +3,11 @@ import type {
   CoverBoardSession,
   CoverCandidate,
 } from "./types";
-import { getCoverRequirements } from "./getCoverRequirements";
 
-const flexibleTypes = ["available", "jobs", "planning"];
+import { getCoverRequirements } from "./getCoverRequirements";
 
 function overlaps(startA: string, endA: string, startB: string, endB: string) {
   return startA < endB && startB < endA;
-}
-
-function isFlexible(type: string) {
-  return flexibleTypes.includes(type);
 }
 
 export function buildCoverBoard({
@@ -36,61 +31,102 @@ export function buildCoverBoard({
     const candidates: CoverCandidate[] = staffForDay
       .filter((candidate) => candidate.id !== requirement.absentStaffId)
       .filter((candidate) => !absentStaffIds.includes(candidate.id))
-      .map((candidate) => {
-        const overlappingEntries = candidate.entries.filter((candidateEntry) =>
+      .map((candidate): CoverCandidate => {
+        const overlappingEntries = candidate.entries.filter((entry) =>
           overlaps(
             requirement.entry.start,
             requirement.entry.end,
-            candidateEntry.start,
-            candidateEntry.end,
+            entry.start,
+            entry.end,
           ),
         );
 
-        const hasNoClash = overlappingEntries.length === 0;
+        const isAbsentPupilSession = (
+          entry: (typeof overlappingEntries)[number],
+        ) =>
+          entry.type === "student" &&
+          absentStudentInitials.includes(entry.activity);
 
-        const freedStudentEntry = overlappingEntries.find(
-          (candidateEntry) =>
-            candidateEntry.type === "student" &&
-            absentStudentInitials.includes(candidateEntry.activity),
-        );
+        const isAvailableEntry = (entry: (typeof overlappingEntries)[number]) =>
+          entry.type === "available";
 
-        const flexibleEntry = overlappingEntries.find((candidateEntry) =>
-          isFlexible(candidateEntry.type),
-        );
+        const isLastResortEntry = (
+          entry: (typeof overlappingEntries)[number],
+        ) => entry.type === "jobs" || entry.type === "planning";
 
-        if (hasNoClash) {
+        const baseCandidate = {
+          staffId: candidate.id,
+          staffName: candidate.name,
+        };
+
+        // 1. No scheduled commitments
+        if (overlappingEntries.length === 0) {
           return {
-            staffId: candidate.id,
-            staffName: candidate.name,
+            ...baseCandidate,
             status: "free",
             score: 100,
             reason: "Free at this time",
           };
         }
 
-        if (freedStudentEntry) {
+        // 2. Explicitly available
+        if (overlappingEntries.every(isAvailableEntry)) {
           return {
-            staffId: candidate.id,
-            staffName: candidate.name,
+            ...baseCandidate,
+            status: "free",
+            score: 100,
+            reason: "Marked as available",
+          };
+        }
+
+        // 3. Freed by pupil absence
+        // Other overlapping entries must also be available
+        // or cancelled by pupil absence.
+        const hasAbsentPupilSession =
+          overlappingEntries.some(isAbsentPupilSession);
+
+        const allEntriesFreeOrCancelled = overlappingEntries.every(
+          (entry) => isAvailableEntry(entry) || isAbsentPupilSession(entry),
+        );
+
+        if (hasAbsentPupilSession && allEntriesFreeOrCancelled) {
+          const pupilInitials = [
+            ...new Set(
+              overlappingEntries
+                .filter(isAbsentPupilSession)
+                .map((entry) => entry.activity),
+            ),
+          ];
+
+          return {
+            ...baseCandidate,
             status: "freed-by-pupil-absence",
             score: 80,
-            reason: `${freedStudentEntry.activity} is off`,
+            reason: `${pupilInitials.join(", ")} absent`,
           };
         }
 
-        if (flexibleEntry) {
+        // 4. Jobs and planning are last-resort options
+        // They must not hide a genuine timetable clash.
+        const allEntriesPotentiallyFlexible = overlappingEntries.every(
+          (entry) =>
+            isAvailableEntry(entry) ||
+            isAbsentPupilSession(entry) ||
+            isLastResortEntry(entry),
+        );
+
+        if (allEntriesPotentiallyFlexible) {
           return {
-            staffId: candidate.id,
-            staffName: candidate.name,
+            ...baseCandidate,
             status: "flexible",
             score: 50,
-            reason: `On ${flexibleEntry.activity}`,
+            reason: "On jobs or planning - last resort",
           };
         }
 
+        // 5. At least one non-coverable commitment
         return {
-          staffId: candidate.id,
-          staffName: candidate.name,
+          ...baseCandidate,
           status: "unavailable",
           score: 10,
           reason: "Timetable clash",
