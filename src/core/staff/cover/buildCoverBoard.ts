@@ -5,6 +5,7 @@ import type {
 } from "./types";
 
 import { getCoverRequirements } from "./getCoverRequirements";
+import { getStaffStudentRelationship } from "./getStaffStudentRelationship";
 
 function overlaps(startA: string, endA: string, startB: string, endB: string) {
   return startA < endB && startB < endA;
@@ -57,8 +58,15 @@ export function buildCoverBoard({
         const baseCandidate = {
           staffId: candidate.id,
           staffName: candidate.name,
-        };
 
+          studentRelationship:
+            requirement.entry.type === "student"
+              ? getStaffStudentRelationship(
+                  candidate.id,
+                  requirement.entry.activity,
+                )
+              : undefined,
+        };
         // 1. No scheduled commitments
         if (overlappingEntries.length === 0) {
           return {

@@ -9,12 +9,23 @@ export type CoverCandidateStatus =
   | "flexible"
   | "unavailable";
 
+import type { StaffStudentRelationshipResult } from "./getStaffStudentRelationship";
+
 export type CoverCandidate = {
   staffId: string;
   staffName: string;
   status: CoverCandidateStatus;
   score: number;
   reason: string;
+
+  /**
+   * Relationship between this staff member
+   * and the student requiring cover.
+   *
+   * Optional until the Cover Board builder
+   * starts supplying this information.
+   */
+  studentRelationship?: StaffStudentRelationshipResult;
 };
 
 export type CoverBoardSession = {

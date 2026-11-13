@@ -5,10 +5,15 @@ export type StaffWorkingDay =
   | "Thursday"
   | "Friday";
 
+export type StaffWorkingHours = {
+  day: StaffWorkingDay;
+  start: string;
+  end: string;
+};
+
 export type StaffProfile = {
   /**
    * Permanent internal identifier.
-   * This should not change when somebody's display name changes.
    */
   id: string;
 
@@ -18,18 +23,22 @@ export type StaffProfile = {
   name: string;
 
   /**
-   * Staff initials used where a compact label is needed.
+   * Staff initials used for compact labels.
    */
   initials?: string;
 
   /**
-   * General job role.
+   * Primary job role.
    */
   role: string;
 
   /**
-   * Inactive staff can remain in historic data without appearing
-   * as current staff members.
+   * Additional responsibilities or roles.
+   */
+  additionalRoles?: string[];
+
+  /**
+   * Whether the staff member is currently active.
    */
   active: boolean;
 
@@ -39,23 +48,43 @@ export type StaffProfile = {
   workingDays: StaffWorkingDay[];
 
   /**
-   * Student initials only.
+   * Normal start and finish times.
+   * Actual availability is checked against the timetable.
+   */
+  workingHours?: StaffWorkingHours[];
+
+  /**
+   * Existing staff-student relationships.
+   * More detailed relationships will eventually
+   * be maintained in student profiles.
    */
   worksWithStudentInitials: string[];
 
   /**
-   * Skills that may later influence cover recommendations.
+   * Skills that may influence cover recommendations.
    */
   skills: string[];
 
   /**
-   * Whether this person should normally be considered for cover.
+   * Whether this person is normally considered
+   * for cover. False does not necessarily mean
+   * they cannot be manually selected.
    */
   canProvideCover: boolean;
 
   /**
-   * Optional ranking preference.
-   * Higher numbers can later mean a stronger cover preference.
+   * Whether this person normally provides break cover.
+   */
+  canProvideBreakCover?: boolean;
+
+  /**
+   * Optional cover ranking preference.
    */
   coverPriority?: number;
+
+  /**
+   * General operational cover notes.
+   * Do not store sensitive student information here.
+   */
+  coverNotes?: string;
 };

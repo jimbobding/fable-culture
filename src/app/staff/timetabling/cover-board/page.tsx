@@ -12,6 +12,8 @@ import {
   type SavedCoverPlan,
 } from "@/core/staff/cover/coverStorage";
 import StaffAbsenceSelector from "@/components/staff/cover/StaffAbsenceSelector";
+import CoverSessionCard from "@/components/staff/cover/CoverSessionCard";
+import CoverPlan from "@/components/staff/cover/CoverPlan";
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] as const;
 
@@ -195,10 +197,6 @@ export default function CoverBoardPage() {
     ]);
   };
 
-  const getAssignment = (sessionId: string) => {
-    return assignments.find((assignment) => assignment.sessionId === sessionId);
-  };
-
   const getStaffName = (staffId: string) => {
     return (
       staffTimetables.find((staff) => staff.id === staffId)?.name ?? staffId
@@ -300,146 +298,24 @@ export default function CoverBoardPage() {
                 </p>
               ) : (
                 <div className="space-y-4">
-                  {coverBoard.map((session) => {
-                    const assignment = getAssignment(session.id);
-
-                    return (
-                      <div key={session.id} className="rounded-2xl border p-4">
-                        <p className="text-sm font-semibold text-red-700">
-                          {session.absentStaffName} absent
-                        </p>
-
-                        <h3 className="mt-1 text-lg font-bold">
-                          {session.entry.start} - {session.entry.end}
-                        </h3>
-
-                        <p className="text-slate-700">
-                          {session.entry.activity}{" "}
-                          <span className="text-sm text-slate-500">
-                            ({session.entry.type})
-                          </span>
-                        </p>
-
-                        <select
-                          value={assignment?.coveredById ?? ""}
-                          onChange={(event) =>
-                            updateAssignment(session.id, event.target.value)
-                          }
-                          className="mt-4 w-full rounded-xl border border-slate-300 bg-white px-4 py-2"
-                        >
-                          <option value="">Assign cover...</option>
-
-                          {session.candidates.map((candidate) => {
-                            const alreadyAssigned = hasCoverClash(
-                              session.id,
-                              candidate.staffId,
-                              assignments,
-                              coverBoard,
-                            );
-
-                            const unavailable =
-                              candidate.status === "unavailable" ||
-                              alreadyAssigned;
-
-                            return (
-                              <option
-                                key={candidate.staffId}
-                                value={candidate.staffId}
-                                disabled={unavailable}
-                              >
-                                {candidate.staffName} —{" "}
-                                {alreadyAssigned
-                                  ? "Already covering"
-                                  : candidate.reason}
-                              </option>
-                            );
-                          })}
-                        </select>
-
-                        <div className="mt-4 space-y-2">
-                          {session.candidates.slice(0, 5).map((candidate) => (
-                            <div
-                              key={candidate.staffId}
-                              className={`flex items-center justify-between rounded-xl px-4 py-3 ${
-                                candidate.score >= 90
-                                  ? "bg-green-50"
-                                  : candidate.score >= 70
-                                    ? "bg-blue-50"
-                                    : candidate.score >= 40
-                                      ? "bg-amber-50"
-                                      : "bg-red-50"
-                              }`}
-                            >
-                              <div>
-                                <p className="font-semibold">
-                                  {candidate.staffName}
-                                </p>
-
-                                <p className="text-sm text-slate-500">
-                                  {candidate.reason}
-                                </p>
-                              </div>
-
-                              <span className="rounded-full bg-white px-3 py-1 text-sm font-semibold">
-                                {candidate.score >= 90
-                                  ? "Best match"
-                                  : candidate.score >= 70
-                                    ? "Good option"
-                                    : candidate.score >= 40
-                                      ? "Flexible"
-                                      : "Avoid"}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {coverBoard.map((session) => (
+                    <CoverSessionCard
+                      key={session.id}
+                      session={session}
+                      coverBoard={coverBoard}
+                      assignments={assignments}
+                      onAssignCover={updateAssignment}
+                    />
+                  ))}
                 </div>
               )}
             </section>
 
-            <section className="rounded-3xl bg-white p-6 shadow-sm">
-              <h2 className="mb-4 text-xl font-bold">Cover plan</h2>
-
-              {assignments.filter((assignment) => assignment.coveredById)
-                .length === 0 ? (
-                <p className="text-slate-500">No cover assigned yet.</p>
-              ) : (
-                <div className="space-y-3">
-                  {assignments
-                    .filter((assignment) => assignment.coveredById)
-                    .map((assignment) => {
-                      const session = coverBoard.find(
-                        (item) => item.id === assignment.sessionId,
-                      );
-
-                      if (!session) return null;
-
-                      return (
-                        <div
-                          key={assignment.sessionId}
-                          className="rounded-2xl border border-green-200 bg-green-50 p-4"
-                        >
-                          <p className="font-bold">
-                            {session.entry.start} - {session.entry.end}
-                          </p>
-
-                          <p>{session.entry.activity}</p>
-
-                          <p className="text-sm text-slate-600">
-                            Normally with: {session.absentStaffName}
-                          </p>
-
-                          <p className="text-sm font-semibold text-green-800">
-                            Covered by: {getStaffName(assignment.coveredById)}
-                          </p>
-                        </div>
-                      );
-                    })}
-                </div>
-              )}
-            </section>
+            <CoverPlan
+              assignments={assignments}
+              coverBoard={coverBoard}
+              getStaffName={getStaffName}
+            />
           </>
         )}
       </div>
