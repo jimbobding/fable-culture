@@ -172,9 +172,27 @@ export default function CoverBoardPage() {
       (item) => item.staffId === coveredById,
     );
 
-    if (!candidate || candidate.status === "unavailable") {
-      window.alert("This staff member is not available for this session.");
+    if (!candidate) {
+      window.alert("This staff member could not be found.");
       return;
+    }
+
+    if (candidate.studentRelationship?.relationship === "not-suitable") {
+      window.alert(
+        "This staff member is marked as not suitable for this student. Please choose another staff member.",
+      );
+      return;
+    }
+
+    if (candidate.status === "unavailable") {
+      const confirmed = window.confirm(
+        `${candidate.staffName} is already timetabled during this session.\n\n` +
+          `Reason: ${candidate.reason}\n\n` +
+          "Assigning them may create a timetable clash.\n\n" +
+          "Do you want to continue?",
+      );
+
+      if (!confirmed) return;
     }
 
     const alreadyCovering = hasCoverClash(
