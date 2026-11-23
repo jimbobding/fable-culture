@@ -1,5 +1,5 @@
-import type { EncounterEvidence } from "@/components/shared/history/HistoryEncounterScene";
-import type { PerspectiveMatch } from "@/components/shared/history/HistoryPerspectiveChallenge";
+import type { EncounterEvidence } from "@/components/shared/history/chapter-3-encounters/HistoryEncounterScene";
+import type { PerspectiveMatch } from "@/components/shared/history/chapter-3-encounters/HistoryPerspectiveChallenge";
 
 export const oceaniaEncounter = {
   sceneImage: "/images/continents/oceania/history/encounter-scene.png",

@@ -2,13 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { HistoryExpedition as HistoryData } from "@/data/history/types";
-import HistoryWayfindingChallenge from "./HistoryWayfindingChallenge";
-import HistoryDetective from "./HistoryDetective";
-import { oceaniaDetective } from "@/data/history/oceaniaDetective";
+
+import HistoryWayfindingChallenge from "./chapter-1-voyaging/HistoryWayfindingChallenge";
+import HistoryDetective from "./chapter-2-pacific-worlds/HistoryDetective";
 import HistoryVoyageMap from "./HistoryVoyageMap";
 import HistorySources from "./HistorySources";
-import HistoryEncounterScene from "./HistoryEncounterScene";
+import HistoryEncounterScene from "./chapter-3-encounters/HistoryEncounterScene";
+import HistoryResistanceArchive from "./chapter-4-resistance/HistoryResistanceArchive";
+import HistoryLivingGallery from "./chapter-5-living-history/HistoryLivingGallery";
+
+import { oceaniaDetective } from "@/data/history/oceaniaDetective";
 import { oceaniaEncounter } from "@/data/history/oceaniaEncounter";
+import { oceaniaResistanceCases } from "@/data/history/oceaniaResistance";
 
 type Props = {
   expedition: HistoryData;
@@ -17,6 +22,7 @@ type Props = {
 export default function HistoryExpedition({ expedition }: Props) {
   const [selected, setSelected] = useState(0);
   const [sailing, setSailing] = useState(false);
+
   const sailingTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const chapter = expedition.chapters[selected];
@@ -192,6 +198,7 @@ export default function HistoryExpedition({ expedition }: Props) {
               </div>
             )}
 
+            {/* CHAPTER 1 — THE GREAT VOYAGE */}
             {chapter.id === "great-voyage" && (
               <HistoryWayfindingChallenge
                 key={chapter.id}
@@ -199,6 +206,7 @@ export default function HistoryExpedition({ expedition }: Props) {
               />
             )}
 
+            {/* CHAPTER 2 — PACIFIC WORLDS */}
             {chapter.id === "pacific-worlds" && (
               <HistoryDetective
                 config={oceaniaDetective}
@@ -207,6 +215,7 @@ export default function HistoryExpedition({ expedition }: Props) {
               />
             )}
 
+            {/* CHAPTER 3 — WHEN WORLDS MET */}
             {chapter.id === "worlds-met" && (
               <HistoryEncounterScene
                 key={chapter.id}
@@ -220,10 +229,27 @@ export default function HistoryExpedition({ expedition }: Props) {
               />
             )}
 
+            {/* CHAPTER 4 — PACIFIC RESISTANCE ARCHIVES */}
+            {chapter.id === "resistance-change" && (
+              <HistoryResistanceArchive
+                key={chapter.id}
+                cases={oceaniaResistanceCases}
+                onComplete={() => sailToChapter(selected + 1)}
+              />
+            )}
+
+            {/* CHAPTER 5 — LIVING HISTORY */}
+            {chapter.id === "living-history" && (
+              <HistoryLivingGallery key={chapter.id} />
+            )}
+
+            {/* CHAPTERS WITHOUT AN INTERACTIVE ACTIVITY */}
             {chapter.challenges.length === 0 &&
               chapter.id !== "great-voyage" &&
               chapter.id !== "pacific-worlds" &&
-              chapter.id !== "worlds-met" && (
+              chapter.id !== "worlds-met" &&
+              chapter.id !== "resistance-change" &&
+              chapter.id !== "living-history" && (
                 <div className="mt-12 rounded-2xl border border-[#b6a17d] bg-white/70 p-7">
                   <p className="text-lg font-bold">
                     More discoveries are coming to this expedition.

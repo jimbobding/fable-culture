@@ -84,3 +84,32 @@ export type HistoryDetectiveConfig = {
   completionButton: string;
   investigations: HistoryInvestigation[];
 };
+
+export type ResistanceEvidence = {
+  id: string;
+  title: string;
+  category: string;
+  content: string;
+  question: string;
+  answers: {
+    id: string;
+    text: string;
+    correct: boolean;
+    feedback: string;
+  }[];
+  sourceUrl: string;
+  sourceLabel: string;
+};
+
+export type ResistanceCase = {
+  id: string;
+  number: string;
+  title: string;
+  location: string;
+  year: string;
+  introduction: string;
+  background: string[];
+  centralQuestion: string;
+  evidence: ResistanceEvidence[];
+  historicalOutcome: string[];
+};

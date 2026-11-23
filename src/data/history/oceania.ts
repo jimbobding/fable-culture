@@ -115,7 +115,8 @@ export const oceaniaHistory: HistoryExpedition = {
       title: "Resistance and Change",
       subtitle: "Colonisation, resistance and independence",
       period: "Colonial era and independence movements",
-      introduction: "",
+      introduction:
+        "Across Oceania, communities responded to colonisation in different ways. Explore historical evidence from Fiji, New Caledonia and Samoa to discover how Pacific peoples defended their land, cultures and rights.",
       heroImage: "",
       facts: [],
       challenges: [],
@@ -125,7 +126,8 @@ export const oceaniaHistory: HistoryExpedition = {
       title: "Living History",
       subtitle: "Heritage, identity and cultural revival",
       period: "Modern Oceania",
-      introduction: "",
+      introduction:
+        "Oceania's history is still alive today! Discover how Pacific communities preserve and share their knowledge through traditional voyaging, art, storytelling and cultural celebrations.",
       heroImage: "",
       facts: [],
       challenges: [],
