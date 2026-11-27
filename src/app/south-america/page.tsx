@@ -884,22 +884,6 @@ export default async function SouthAmericaPage() {
                 →
               </span>
             </Link>
-            <div className="grid gap-5 border-b border-white/20 py-10 md:grid-cols-[100px_1fr_auto] md:items-center">
-              <span className="text-5xl font-black text-[#F28C3C]">01</span>
-
-              <div>
-                <p className="text-3xl font-black uppercase sm:text-5xl">
-                  The Inca World
-                </p>
-
-                <p className="mt-3 max-w-2xl text-white/55">
-                  Explore an empire built across mountains — its roads,
-                  engineering, communities and legacy.
-                </p>
-              </div>
-
-              <span className="text-4xl text-white/25">→</span>
-            </div>
 
             {/* AMAZON DEEP DIVE */}
             <Link
