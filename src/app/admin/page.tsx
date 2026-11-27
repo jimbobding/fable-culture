@@ -9,7 +9,8 @@ const adminPages = [
   {
     title: "Student Uploads",
     href: "/admin/submissions",
-    description: "Review pending uploads, manage approved uploads, and delete items.",
+    description:
+      "Review pending uploads, manage approved uploads, and delete items.",
     collectionName: "gallerySubmissions",
   },
   {
@@ -51,7 +52,8 @@ const adminPages = [
   {
     title: "Art Room Manager",
     href: "/admin/culture-gallery/art-room",
-    description: "Create, edit, publish and delete Art Room activities and example images.",
+    description:
+      "Create, edit, publish and delete Art Room activities and example images.",
     collectionName: null,
     icon: "🎨",
   },
@@ -64,9 +66,18 @@ const adminPages = [
   {
     title: "Region at Fable",
     href: "/admin/region-at-fable",
-    description: "Manage activities, photographs and submissions from cultural learning at Fable.",
+    description:
+      "Manage activities, photographs and submissions from cultural learning at Fable.",
     collectionName: "regionAtFable",
     icon: "📸",
+  },
+  {
+    title: "Flag Museum Contributions",
+    href: "/admin/flag-contributions",
+    description:
+      "Review pupil research, edit explanations and publish approved contributions to the Flag Museum.",
+    collectionName: null,
+    icon: "🏛️",
   },
 ];
 
@@ -192,8 +203,8 @@ export default function AdminPage() {
 
           {errors.length > 0 && (
             <p className="mt-3 text-sm text-red-700">
-              Could not check: {errors.join(", ")}.
-              Check the browser console and Firebase permissions.
+              Could not check: {errors.join(", ")}. Check the browser console
+              and Firebase permissions.
             </p>
           )}
         </div>
@@ -235,9 +246,7 @@ export default function AdminPage() {
                 </p>
 
                 {page.collectionName && count === undefined && !failed && (
-                  <p className="mt-3 text-xs text-slate-400">
-                    Checking...
-                  </p>
+                  <p className="mt-3 text-xs text-slate-400">Checking...</p>
                 )}
 
                 {failed && (

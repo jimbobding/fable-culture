@@ -1645,3 +1645,712 @@ Future features include:
 - Public gallery of approved designs
 
 The system should become a reusable Fable Culture game engine rather than a one-off Caribbean feature.
+
+# Fable Culture — Master Architecture Update
+
+**26 November 2026**
+
+This update supersedes earlier statements where architectural decisions, implementation status or security requirements have changed.
+
+---
+
+## 1. Platform evolution
+
+Fable Culture is evolving from a regional educational website into an interactive, collaborative learning platform.
+
+The platform now supports:
+
+- Cultural exploration.
+- Interactive geography.
+- Historical investigations.
+- Museum-style educational experiences.
+- Independent pupil research.
+- Moderated pupil contributions.
+- Collaborative knowledge building.
+- Creative educational games.
+- Recognition of pupil achievements.
+
+The long-term goal is for pupils to actively contribute to educational resources that future pupils can use.
+
+## 2. Reusable engines and regional datasets
+
+### Critical architectural rule
+
+Separate the functionality of an educational experience from its regional content.
+
+**Shared engine:**
+
+- Components.
+- Interaction logic.
+- Navigation.
+- Submission handling.
+- Validation.
+- Moderation.
+- Publication.
+- Feedback.
+- Reusable TypeScript types.
+
+**Regional dataset:**
+
+- Historical information.
+- Cultural information.
+- Geographical locations.
+- Images.
+- Flag information.
+- Questions.
+- Annotation coordinates.
+- Colour themes.
+- Educational explanations.
+
+Build the functionality once and reuse it across regions.
+
+Do not create separate versions of an entire system simply because the educational content changes.
+
+Before building a new feature, investigate whether an existing engine can support it.
+
+## 3. Oceania development
+
+Oceania represents a more advanced stage of the Fable Culture platform.
+
+Development includes:
+
+- Regional homepage.
+- Interactive geographical map.
+- Country pages.
+- Distinct country colour themes.
+- Map comparison activities.
+- History Expedition.
+- Flag Museum.
+
+Oceania should establish reusable patterns for future interactive educational experiences.
+
+### Geographical consistency
+
+Geographical scope must be considered across:
+
+- Interactive maps.
+- Country pages.
+- History activities.
+- Flag museums.
+- Regional navigation.
+- Educational datasets.
+
+Do not introduce or remove countries and territories from individual activities without considering the wider regional experience.
+
+Where geographical coverage differs, provide a clear educational reason.
+
+Distinguish independent countries, territories and self-governing states accurately.
+
+## 4. History Expedition engine
+
+The History Expedition introduces interactive historical storytelling.
+
+Rather than simply reading a timeline, pupils explore historical events through journeys, visual scenes and investigations.
+
+### Components developed
+
+- HistoryExpedition.tsx
+- HistoryVoyageMap.tsx
+- HistoryEncounterScene.tsx
+- HistoryPerspectiveChallenge.tsx
+
+### Regional data
+
+- `src/data/history/oceania.ts`
+- `src/data/history/oceaniaEncounter.ts`
+
+### Educational capabilities
+
+- Interactive historical journeys.
+- Geographical expedition stops.
+- Historical encounter scenes.
+- Clickable visual clues.
+- Guided investigation questions.
+- Historical perspective challenges.
+- Explanatory feedback.
+
+### Long-term direction
+
+The History Expedition should become a reusable educational engine.
+
+Other regions should be able to provide their own historical journeys, images, encounters and questions without rebuilding the underlying functionality.
+
+Historical content should encourage pupils to consider different perspectives rather than presenting history exclusively from the viewpoint of explorers or colonial powers.
+
+## 5. Flag Museum engine
+
+The Flag Museum is a reusable interactive educational museum.
+
+Its purpose is to teach pupils about national and territorial flags, their symbolism, historical origins and cultural significance.
+
+### Core experience
+
+- Museum entrance.
+- Geographical exhibition rooms.
+- Framed flag displays.
+- Individual flag exhibits.
+- Interactive symbol annotations.
+- Flag adoption dates.
+- Research investigations.
+- Pupil curator contributions.
+
+### Exhibit types
+
+1. Completed exhibits.
+2. Partially completed exhibits.
+3. Unfinished exhibits.
+
+Teachers can use unfinished exhibits to encourage independent research.
+
+### Oceania implementation
+
+The museum contains 22 flags across four exhibition rooms:
+
+- Australia and New Zealand.
+- Melanesia.
+- Polynesia.
+- Micronesia.
+
+Fiji is the completed demonstration exhibit.
+
+Tonga is the unfinished demonstration exhibit.
+
+Further annotations should be developed following staff feedback about which research opportunities should be left for pupils.
+
+### Shared component architecture
+
+`src/components/shared/flag-museum/`
+
+- FlagMuseum.tsx
+- FlagGallery.tsx
+- FlagExhibit.tsx
+- CuratorContribution.tsx
+- flagExhibitTypes.ts
+
+### Regional data architecture
+
+`src/data/oceania/flagMuseum/`
+
+- regions.ts
+- flags.ts
+- exhibits.ts
+- flagDates.ts
+
+### Architecture improvement outstanding
+
+The shared exhibit currently references Oceania-specific adoption dates directly.
+
+This should eventually be replaced by passing dates through regional data or component properties.
+
+Shared components should remain region-neutral.
+
+## 6. Museum Curator contribution system
+
+Pupils become museum curators by researching unfinished flag annotations.
+
+The workflow is:
+
+1. Select an unfinished annotation.
+2. Research its historical or cultural meaning.
+3. Write an explanation in their own words.
+4. Record research sources.
+5. Enter initials.
+6. Submit research.
+7. Teacher reviews and edits the contribution.
+8. Teacher approves publication.
+9. Approved research becomes part of the museum.
+
+### Essential publication requirements
+
+Published research must support:
+
+- Approved explanation.
+- Authorised pupil initials.
+- Reviewed research sources.
+
+These are core educational requirements, not optional interface decorations.
+
+Sources must be retained throughout submission, moderation and publication.
+
+Initials should only be publicly displayed when appropriately authorised.
+
+### Educational purpose
+
+- Independent research.
+- Paraphrasing.
+- Source evaluation.
+- Cultural understanding.
+- Ownership of learning.
+- Recognition of pupil achievement.
+- Collaborative educational resource building.
+
+## 7. Private and public database separation
+
+### New architectural standard
+
+Private pupil submissions and public educational content should be stored separately.
+
+The public website should not need access to private pupil records.
+
+### Private collection
+
+`flagContributions`
+
+Contains:
+
+- Original research.
+- Pupil initials.
+- Research sources.
+- Moderation status.
+- Submission timestamps.
+- Review information.
+
+Access must be restricted to authorised staff, except for validated creation of pending submissions.
+
+### Public collection
+
+`flagExplanations`
+
+Contains:
+
+- Region identifier.
+- Flag identifier.
+- Annotation identifier.
+- Approved explanation.
+- Reviewed sources.
+- Authorised published initials.
+- Publication timestamps.
+
+Only information specifically approved for public display should enter this collection.
+
+### Deterministic document identifiers
+
+Published explanations use:
+
+`regionId__flagId__annotationId`
+
+Example:
+
+`oceania__tonga__red-background`
+
+This ensures a consistent publication location for each annotation.
+
+### Transactions
+
+Firestore transactions are used during approval to coordinate changes to private contributions and public explanations.
+
+A transaction allows related database operations to succeed together rather than leaving the system partially updated.
+
+This pattern should be considered for other moderation systems.
+
+## 8. Firebase repository architecture
+
+Database operations should increasingly be separated from visual components.
+
+Current Flag Museum repositories:
+
+- `src/lib/flag-museum/contributionRepository.ts`
+- `src/lib/flag-museum/moderationRepository.ts`
+- `src/lib/flag-museum/publicationRepository.ts`
+
+### Responsibilities
+
+Contribution repository:
+
+- Validate and submit pupil research.
+
+Moderation repository:
+
+- Review, approve and reject submissions.
+- Coordinate publication transactions.
+
+Publication repository:
+
+- Retrieve published educational content.
+- Subscribe to live database changes.
+
+### Purpose
+
+- Keep components manageable.
+- Reduce duplicated database logic.
+- Improve testability.
+- Make security responsibilities clearer.
+- Support future regional expansion.
+
+Avoid unnecessary abstraction, but separate responsibilities when files become difficult to maintain.
+
+## 9. Admin system evolution
+
+The existing central admin dashboard remains the main staff management interface.
+
+The Flag Museum has introduced a dedicated moderation page:
+
+`/admin/flag-contributions`
+
+### New capabilities
+
+- Teacher authentication.
+- Pending research review.
+- Explanation editing.
+- Research source editing.
+- Approval and publication.
+- Rejection.
+- Published research management.
+- Published initials management.
+- Removal of published research.
+
+Removing a publication should reopen the corresponding research investigation.
+
+### Outstanding architecture improvements
+
+- Synchronise private moderation records with public publication changes.
+- Preserve original pupil research separately from teacher-edited versions.
+- Establish reliable publication-to-contribution relationships.
+- Introduce appropriate review history.
+- Add approved and rejected contribution management.
+- Add a live pending contribution count to the central dashboard.
+- Establish appropriate data retention and deletion procedures.
+
+The latest published research editing and deletion interface has been supplied but still requires complete browser testing.
+
+## 10. Firebase Authentication
+
+Firebase Authentication is now part of the technology stack.
+
+### Purpose
+
+- Establish authenticated staff identities.
+- Restrict database operations.
+- Prevent unauthorised moderation.
+- Protect private pupil submissions.
+
+The Flag Museum currently uses Firebase email and password authentication.
+
+Firestore permissions are restricted using an authorised teacher UID.
+
+### Long-term direction
+
+Develop a unified authentication and authorisation system for the entire platform.
+
+Avoid maintaining separate passwords and authentication systems for individual admin features.
+
+Future permissions should follow the principle of least privilege: users receive only the access necessary for their responsibilities.
+
+## 11. Security architecture — critical update
+
+This section supersedes previous statements suggesting that all existing moderation systems are secure.
+
+### Discovered legacy weaknesses
+
+Inspection of existing systems revealed:
+
+- Passwords exposed through NEXT_PUBLIC environment variables.
+- Page protection relying on client-managed password cookies.
+- Excessively permissive Firestore rules in older collections.
+- Excessively permissive Firebase Storage access and deletion rules.
+
+These are significant security weaknesses.
+
+No exploitation has been established, but the risks require attention.
+
+### Important distinction
+
+Protecting an admin webpage does not automatically protect its underlying database.
+
+Database permissions must be enforced independently of the interface.
+
+### Required security principles
+
+- Deny access by default.
+- Authenticate staff.
+- Authorise privileged operations.
+- Validate submitted data.
+- Minimise stored pupil information.
+- Separate private and public content.
+- Never expose secrets through client-side environment variables.
+- Never rely on hidden buttons as security controls.
+- Avoid logging pupil information.
+- Consider shared school computer session security.
+- Establish appropriate retention and deletion policies.
+
+### Migration strategy
+
+Existing systems must be migrated carefully to avoid breaking working classroom features.
+
+However, preserving functionality must not justify leaving sensitive pupil information exposed.
+
+Where necessary, prioritise temporary containment and involve the school's appropriate data protection lead.
+
+The new Flag Museum permissions do not automatically secure legacy collections.
+
+### Security testing
+
+Test each protected feature as:
+
+- An unauthenticated visitor.
+- An authenticated but unauthorised user.
+- An authorised staff member.
+
+Confirm actual database permissions, not merely interface behaviour.
+
+Use fictional test data until protections have been verified.
+
+## 12. Pupil information and recognition
+
+Fable Culture should minimise the collection and publication of personal information.
+
+### Principles
+
+- Avoid publishing full pupil names.
+- Use initials only where appropriate and authorised.
+- Recognise that initials can still constitute personal information.
+- Review explanations and sources for identifying information.
+- Keep original submissions private.
+- Publish only reviewed educational content.
+- Follow school safeguarding and data protection policies.
+
+Older systems that collect pupil names should be reviewed against these principles.
+
+## 13. Production rendering and live data
+
+The earlier requirement for dynamic admin rendering remains relevant, but implementation should depend on the page architecture.
+
+Server-rendered admin pages must not accidentally serve stale database information.
+
+Client-side Firestore subscriptions can provide live updates without requiring the entire page to be dynamically rendered on every request.
+
+Use the appropriate rendering strategy for each feature.
+
+Do not apply force-dynamic indiscriminately without understanding how the page retrieves its data.
+
+Always test both local and production behaviour.
+
+## 14. Educational content consistency
+
+### Country identity
+
+Each country must have its own distinct educational identity.
+
+Avoid duplicating featured:
+
+- Animals.
+- Places.
+- Cultural traditions.
+- Food items.
+- Influential figures.
+- Environmental features.
+
+This applies across countries within a regional dataset.
+
+### Historical accuracy
+
+Distinguish between:
+
+- Independence.
+- Colonisation.
+- Self-government.
+- Territorial status.
+- Flag adoption.
+- First use.
+- Official recognition.
+- Changes to flag designs.
+
+Historical claims and dates must be verified before classroom publication.
+
+### Accessibility
+
+Fable Culture is designed for an alternative education setting and should support pupils with different learning needs.
+
+Prioritise:
+
+- Clear instructions.
+- Readable text.
+- Consistent navigation.
+- Visual learning.
+- Immediate feedback.
+- Manageable research tasks.
+- Responsive layouts.
+- Accessible interaction controls.
+
+## 15. Development and debugging standards
+
+### Inspect before editing
+
+Always establish the current state of the relevant files.
+
+Do not assume previously supplied code was successfully installed.
+
+### Diagnose before changing
+
+When a feature fails, investigate:
+
+1. User interface.
+2. Application logic.
+3. Database operations.
+4. Stored data.
+5. Permissions.
+6. Production rendering and caching.
+
+Identify the actual cause before repeatedly modifying components.
+
+### Lesson from the Flag Museum
+
+The missing initials and sources were caused by incomplete public Firestore documents.
+
+Repeated interface changes did not solve the problem.
+
+Inspecting the actual returned database records established the cause.
+
+This evidence-led debugging approach should be used throughout the platform.
+
+### Verification
+
+A successful TypeScript check does not prove that a feature works.
+
+Verification should include:
+
+- TypeScript compilation.
+- Relevant browser interactions.
+- Database inspection where appropriate.
+- Permission testing.
+- Refresh and persistence checks.
+- Production build.
+- Production behaviour where appropriate.
+
+Clearly distinguish between implemented, tested and fully verified features.
+
+## 16. Development collaboration preferences
+
+- Use UK English.
+- Provide exact project-relative file paths.
+- Use targeted replacement blocks for small changes.
+- Provide complete replacement files for substantial changes.
+- Group related changes into meaningful development batches.
+- Preserve existing working functionality.
+- Avoid unrelated feature development while resolving bugs.
+- Explain technical concepts in everyday language.
+- Keep files modular and maintainable.
+- Do not invent test results, file links or citations.
+- Clearly disclose assumptions, limitations and architectural shortcuts.
+
+## 17. Python development and automation
+
+Python is increasingly useful as a supporting development tool.
+
+It does not replace the existing TypeScript and React application stack.
+
+Current uses include:
+
+- Targeted file modifications.
+- Repetitive code updates.
+- Data processing.
+- File inspection.
+- Image organisation.
+- Development automation.
+
+Python scripts that modify existing files should verify their expected targets before writing changes.
+
+Where possible, scripts should fail clearly rather than silently making incomplete changes.
+
+Continue introducing Python concepts gradually during development.
+
+## 18. Git safety and release workflow
+
+Retain the established merge direction:
+
+feature → region → dev → main
+
+Before starting work:
+
+- Inspect the current branch.
+- Inspect the working tree.
+- Check relevant branch differences.
+- Understand uncommitted changes.
+
+Main and dev may legitimately differ while development is ongoing. Do not force them to match or overwrite unfinished work.
+
+Before committing:
+
+- Review changed files.
+- Exclude temporary backups.
+- Exclude debugging code.
+- Exclude secrets.
+- Run appropriate tests.
+- Stage relevant files explicitly.
+
+Avoid indiscriminate use of git add .
+
+Do not merge into production without approval.
+
+## 19. Documentation and project organisation
+
+Maintain three complementary documentation layers.
+
+### Master Project Context
+
+Permanent architectural principles, educational vision, technology choices and development standards.
+
+### Feature documentation
+
+Detailed descriptions of individual systems, their components, data structures and responsibilities.
+
+### Development handovers
+
+Current branch, recent changes, verified functionality, outstanding bugs, testing requirements and immediate next steps.
+
+Development handovers should be dated.
+
+Older implementation statements should be treated as historical where superseded by newer updates.
+
+## 20. Chat management
+
+Use separate conversations within the Fable Culture Project for substantial development areas.
+
+Suggested areas:
+
+- Architecture.
+- Regional content.
+- History Expedition.
+- Flag Museum.
+- Firebase security and administration.
+- Educational games.
+- Deployment and Git.
+
+Every five assistant responses, provide a brief conversation-length check.
+
+Prepare comprehensive handovers before conversations become excessively long.
+
+Do not rely exclusively on chat history for permanent technical documentation.
+
+End development responses with:
+
+🐍 DON'T FORGET ABOUT PYTHON BABBBBY!
+
+## 21. Current development position
+
+As of 26 November 2026:
+
+### Confirmed
+
+- Flag Museum entrance and gallery navigation.
+- Interactive flag annotations.
+- Pupil research submission.
+- Teacher authentication.
+- Teacher approval and publication.
+- Public display of explanations, authorised initials and sources on a repaired test exhibit.
+
+### Requires verification or completion
+
+- Published research editing and deletion.
+- Fresh end-to-end publication of all required fields.
+- Removal of fictional test data.
+- Removal of diagnostic logging.
+- Final Flag Museum security testing.
+- Legacy security remediation.
+- Historical date verification.
+- Dashboard pending contribution count.
+- Git milestone and deployment preparation.
+
+The detailed dated Flag Museum handover should be used for the immediate development tasks.
+
+This master document establishes the long-term direction of the platform.

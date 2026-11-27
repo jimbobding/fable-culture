@@ -20,6 +20,7 @@ export default function OceaniaFlagMuseumPage() {
       </header>
 
       <FlagMuseum
+        regionId="oceania"
         title="THE PACIFIC FLAG MUSEUM"
         introduction="Welcome to Oceania's Flag Museum! Explore the flags of the Pacific, discover their colours and symbols, and investigate the stories behind their designs. Choose a geographical section to begin."
         sections={oceaniaFlagSections}

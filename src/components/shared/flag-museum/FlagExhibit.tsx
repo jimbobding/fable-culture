@@ -1,16 +1,24 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import type { MuseumFlag } from "./FlagGallery";
+import { oceaniaFlagDates } from "@/data/oceania/flagMuseum/flagDates";
 import type { FlagExhibitContent } from "./flagExhibitTypes";
+import CuratorContribution, { type CuratorAnswer } from "./CuratorContribution";
+import {
+  subscribeToPublishedExplanations,
+  type PublishedFlagExplanation,
+} from "@/lib/flag-museum/publicationRepository";
 
 type FlagExhibitProps = {
+  regionId: string;
   flag: MuseumFlag;
   onBack: () => void;
   content?: FlagExhibitContent;
 };
 
 export default function FlagExhibit({
+  regionId,
   flag,
   onBack,
   content,
@@ -18,13 +26,63 @@ export default function FlagExhibit({
   const [selectedAnnotationId, setSelectedAnnotationId] = useState<
     string | null
   >(null);
+  const [curatorAnswers, setCuratorAnswers] = useState<
+    Record<string, CuratorAnswer>
+  >({});
+
+  function updateCuratorAnswer(annotationId: string, answer: CuratorAnswer) {
+    setCuratorAnswers((previous) => ({
+      ...previous,
+      [`${flag.id}:${annotationId}`]: answer,
+    }));
+  }
 
   const markerId = useId().replace(/:/g, "");
+  const flagAdoptionDate =
+    regionId === "oceania" ? oceaniaFlagDates[flag.id] : undefined;
+
+  const [publication, setPublication] = useState<{
+    key: string;
+    explanations: PublishedFlagExplanation[];
+    error: boolean;
+  } | null>(null);
+
+  const publicationKey = `${regionId}:${flag.id}`;
+
+  useEffect(() => {
+    return subscribeToPublishedExplanations(
+      regionId,
+      flag.id,
+      (explanations) => {
+        setPublication({
+          key: publicationKey,
+          explanations,
+          error: false,
+        });
+      },
+      () => {
+        setPublication({
+          key: publicationKey,
+          explanations: [],
+          error: true,
+        });
+      },
+    );
+  }, [regionId, flag.id, publicationKey]);
 
   const selectedAnnotation = content?.annotations.find(
     (annotation) => annotation.id === selectedAnnotationId,
   );
 
+  const publicationLoading = publication?.key !== publicationKey;
+
+  const publicationError = !publicationLoading && publication?.error;
+
+  const publishedExplanation = !publicationLoading
+    ? publication?.explanations.find(
+        (explanation) => explanation.annotationId === selectedAnnotationId,
+      )
+    : undefined;
   // The flag occupies the middle of a 100 x 100 exhibit canvas.
   // Labels use positions on the whole canvas.
   // Feature coordinates use percentages of the flag itself.
@@ -54,6 +112,15 @@ export default function FlagExhibit({
           <h1 className="mt-5 text-4xl font-black uppercase tracking-tight sm:text-7xl">
             {flag.name}
           </h1>
+
+          {flagAdoptionDate && (
+            <div className="mx-auto mt-6 w-fit rounded-xl border-2 border-[#a7653e] bg-[#fff9eb] px-8 py-4 shadow-md">
+              <p className="text-xs font-black uppercase tracking-[.2em] text-[#a7653e]">
+                Flag adoption / design history
+              </p>
+              <p className="mt-2 text-2xl font-black">{flagAdoptionDate}</p>
+            </div>
+          )}
 
           <p className="mt-5 text-lg">
             Take a closer look. What can this flag tell us?
@@ -217,11 +284,59 @@ export default function FlagExhibit({
                         {selectedAnnotation.title}
                       </h3>
 
-                      {selectedAnnotation.mode === "investigate" ? (
-                        <p className="mt-3 text-lg leading-relaxed">
-                          Your turn! Research this feature and explain what you
-                          think it represents.
+                      {selectedAnnotation.mode === "investigate" &&
+                      publicationLoading ? (
+                        <p className="mt-3">Loading museum explanation...</p>
+                      ) : selectedAnnotation.mode === "investigate" &&
+                        publicationError ? (
+                        <p className="mt-3 text-red-700">
+                          Unable to load the museum explanation. Please try
+                          again later.
                         </p>
+                      ) : selectedAnnotation.mode === "investigate" &&
+                        publishedExplanation ? (
+                        <div className="mt-4">
+                          <p className="whitespace-pre-wrap text-lg leading-relaxed">
+                            {publishedExplanation.explanation}
+                          </p>
+                          {publishedExplanation.initials?.trim() && (
+                            <div className="mt-6 rounded-xl border border-[#a7653e]/30 bg-[#f4e8d1] p-4">
+                              <p className="text-xs font-black uppercase tracking-widest text-[#a7653e]">
+                                Research completed by
+                              </p>
+                              <p className="mt-2 text-lg font-bold">
+                                Museum Curator: {publishedExplanation.initials}
+                              </p>
+                            </div>
+                          )}
+                          {publishedExplanation.sources?.trim() && (
+                            <div className="mt-5 rounded-xl border border-[#203d3b]/20 bg-[#fff9eb] p-4">
+                              <h4 className="font-black">Research sources</h4>
+                              <p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed">
+                                {publishedExplanation.sources}
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      ) : selectedAnnotation.mode === "investigate" ? (
+                        <CuratorContribution
+                          key={`${flag.id}:${selectedAnnotation.id}`}
+                          regionId={regionId}
+                          flagId={flag.id}
+                          annotationId={selectedAnnotation.id}
+                          annotationTitle={selectedAnnotation.title}
+                          answer={
+                            curatorAnswers[
+                              `${flag.id}:${selectedAnnotation.id}`
+                            ] ?? {
+                              explanation: "",
+                              sources: "",
+                            }
+                          }
+                          onChange={(answer) =>
+                            updateCuratorAnswer(selectedAnnotation.id, answer)
+                          }
+                        />
                       ) : (
                         <p className="mt-3 text-lg leading-relaxed">
                           {selectedAnnotation.explanation}
@@ -250,62 +365,6 @@ export default function FlagExhibit({
               </div>
             )}
           </div>
-        </div>
-
-        {/* INVESTIGATION PROMPTS */}
-        <div className="mt-20">
-          <p className="text-xs font-black uppercase tracking-[.3em] text-[#a7653e]">
-            Become a flag detective
-          </p>
-
-          <h2 className="mt-4 text-3xl font-black uppercase sm:text-5xl">
-            Investigate the design
-          </h2>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                number: "01",
-                title: "Colours",
-                question:
-                  "Which colours can you see? Why might they have been chosen?",
-              },
-              {
-                number: "02",
-                title: "Symbols",
-                question:
-                  "Can you spot any stars, animals, plants or other symbols?",
-              },
-              {
-                number: "03",
-                title: "History",
-                question:
-                  "When was this flag introduced? Has its design changed?",
-              },
-            ].map((prompt) => (
-              <div
-                key={prompt.number}
-                className="rounded-[28px] border-2 border-[#203d3b] bg-white p-7 shadow-[5px_5px_0_#203d3b]"
-              >
-                <p className="text-sm font-black text-[#a7653e]">
-                  {prompt.number}
-                </p>
-
-                <h3 className="mt-5 text-2xl font-black">{prompt.title}</h3>
-
-                <p className="mt-4 leading-relaxed">{prompt.question}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 rounded-[30px] bg-[#123f49] p-8 text-center text-white">
-          <h2 className="text-2xl font-black">Every flag has a story.</h2>
-
-          <p className="mx-auto mt-3 max-w-xl">
-            Soon you&apos;ll be able to explore the meanings behind the colours
-            and symbols, and record your discoveries.
-          </p>
         </div>
       </div>
     </section>

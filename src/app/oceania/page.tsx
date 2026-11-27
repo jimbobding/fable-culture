@@ -1,4 +1,5 @@
 "use client";
+import OceaniaInteractiveMap from "@/components/regions/oceania/OceaniaInteractiveMap";
 
 import Link from "next/link";
 
@@ -128,7 +129,10 @@ export default function OceaniaPage() {
 
         <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col px-6">
           <nav className="relative mx-auto flex w-full flex-col items-center gap-5 rounded-[45%_55%_48%_52%/12%_15%_18%_16%] bg-[#123f49]/15 px-6 py-7 backdrop-blur-[2px]">
-            <Link href="/" className="text-xs font-black uppercase tracking-[.2em]">
+            <Link
+              href="/"
+              className="text-xs font-black uppercase tracking-[.2em]"
+            >
               ← Fable Culture
             </Link>
             <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
@@ -241,7 +245,6 @@ export default function OceaniaPage() {
         </div>
       </section>
 
-
       {/* MAP + FLAGS */}
       <section
         id="geography"
@@ -255,81 +258,19 @@ export default function OceaniaPage() {
             <span className="text-[#8fd7cf]">DESTINATION.</span>
           </h2>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-            Explore Oceania on the map, then choose a flag to discover a
-            country's geography, history, food, wildlife and culture.
+            Explore Oceania on the map and discover each country's geography,
+            history, food, wildlife and culture.
           </p>
 
-          <div className="relative mt-12 flex min-h-[320px] flex-col items-center justify-center overflow-hidden rounded-[45px] border-2 border-dashed border-[#8fd7cf]/60 bg-[#246c77]/60 px-6 py-16 text-center sm:min-h-[500px]">
-            <div className="absolute left-[8%] top-[20%] h-32 w-32 rounded-full border border-white/20" />
-            <div className="absolute bottom-[12%] right-[10%] h-48 w-48 rounded-full border border-white/20" />
-            <span className="text-6xl">🧭</span>
-            <h3 className="relative mt-6 text-3xl font-black sm:text-5xl">
-              THE OCEANIA MAP
-            </h3>
-            <p className="relative mt-4 max-w-md text-white/80">
-              Our interactive map will go here. Find countries, island groups
-              and journeys across the Pacific.
-            </p>
-            <span className="relative mt-6 rounded-full border border-white/40 px-5 py-2 text-xs font-black uppercase tracking-widest">
-              Map coming soon
-            </span>
+          <div className="mt-12 overflow-hidden rounded-[35px] border-2 border-[#8fd7cf]/40 bg-[#f4e8d1] p-3 sm:p-6">
+            <OceaniaInteractiveMap />
           </div>
 
-          <div className="mt-16">
-            <div className="flex flex-wrap items-end justify-between gap-5">
-              <div>
-                <Eyebrow>Flags of Oceania</Eyebrow>
-                <h3 className="mt-3 text-3xl font-black sm:text-4xl">
-                  CHOOSE A COUNTRY
-                </h3>
-              </div>
-              <p className="max-w-sm text-sm text-white/70">
-                Discover what each flag represents. Country pages will become
-                clickable as they're completed.
-              </p>
-            </div>
-
-            <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-              {countries.map((country) => {
-                const content = (
-                  <>
-                    <span className="text-5xl leading-none" aria-hidden="true">
-                      {country.flag}
-                    </span>
-                    <span className="mt-3 text-center text-xs font-black">
-                      {country.name}
-                    </span>
-                    {!country.href && (
-                      <span className="mt-2 text-[10px] text-white/60">
-                        Coming soon
-                      </span>
-                    )}
-                  </>
-                );
-
-                const classes =
-                  "flex min-h-36 flex-col items-center justify-center rounded-[22px] border border-white/20 bg-white/10 p-3 transition";
-
-                return country.href ? (
-                  <Link
-                    key={country.name}
-                    href={country.href}
-                    className={
-                      classes + " hover:-translate-y-1 hover:bg-white/20"
-                    }
-                  >
-                    {content}
-                  </Link>
-                ) : (
-                  <div key={country.name} className={classes}>
-                    {content}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <p className="mt-5 text-center text-sm text-white/70">
+            Explore the countries and islands of Oceania. Interactive country
+            links coming next.
+          </p>
         </div>
-        <Wave colour="#cf744c" stroke="#203d3b" />
       </section>
 
       {/* OUTBACK EXPEDITION */}
@@ -548,7 +489,6 @@ export default function OceaniaPage() {
         </div>
       </section>
 
-
       <section id="history" className="scroll-mt-20 bg-[#f4e8d1] px-6 py-16">
         <div className="mx-auto max-w-7xl border-t-2 border-[#203d3b]/20 pt-12">
           <p className="text-xs font-black uppercase tracking-[.3em] text-[#bd633e]">
@@ -558,7 +498,8 @@ export default function OceaniaPage() {
             Stories Through Time
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed">
-            Explore Pacific voyaging, First Peoples, colonisation, resistance and independence.
+            Explore Pacific voyaging, First Peoples, colonisation, resistance
+            and independence.
           </p>
         </div>
       </section>
@@ -572,7 +513,8 @@ export default function OceaniaPage() {
             People & Traditions
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed">
-            Discover the diverse beliefs, languages and living cultures of Oceania.
+            Discover the diverse beliefs, languages and living cultures of
+            Oceania.
           </p>
         </div>
       </section>
@@ -586,7 +528,8 @@ export default function OceaniaPage() {
             The Creative Pacific
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed">
-            Explore Indigenous art traditions, carving, weaving and creative expression.
+            Explore Indigenous art traditions, carving, weaving and creative
+            expression.
           </p>
         </div>
       </section>
@@ -610,9 +553,7 @@ export default function OceaniaPage() {
           <p className="text-xs font-black uppercase tracking-[.3em] text-[#bd633e]">
             Science
           </p>
-          <h2 className="mt-4 text-4xl font-black sm:text-6xl">
-            Wild Oceania
-          </h2>
+          <h2 className="mt-4 text-4xl font-black sm:text-6xl">Wild Oceania</h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed">
             Explore remarkable animals, habitats and conservation.
           </p>

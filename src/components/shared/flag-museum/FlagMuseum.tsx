@@ -13,6 +13,7 @@ export type FlagMuseumSection = {
 };
 
 type FlagMuseumProps = {
+  regionId: string;
   title: string;
   introduction: string;
   sections: FlagMuseumSection[];
@@ -44,6 +45,7 @@ const galleryStyles = [
 ];
 
 export default function FlagMuseum({
+  regionId,
   title,
   introduction,
   sections,
@@ -329,6 +331,7 @@ export default function FlagMuseum({
               {selectedFlag ? (
                 <FlagExhibit
                   flag={selectedFlag}
+                  regionId={regionId}
                   onBack={() => setSelectedFlag(null)}
                   content={exhibits[selectedFlag.id]}
                 />

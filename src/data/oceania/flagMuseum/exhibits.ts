@@ -1,6 +1,48 @@
 import type { FlagExhibitContent } from "@/components/shared/flag-museum/flagExhibitTypes";
 
 export const oceaniaFlagExhibits: Record<string, FlagExhibitContent> = {
+  tonga: {
+    flagId: "tonga",
+
+    introduction:
+      "This museum exhibit is unfinished! Become a museum curator by researching Tonga's flag and completing the missing explanations.",
+
+    annotations: [
+      {
+        id: "red-background",
+        title: "The red background",
+        explanation: "",
+        x: 75,
+        y: 50,
+        labelX: 85,
+        labelY: 18,
+        mode: "investigate",
+      },
+      {
+        id: "white-background",
+        title: "The white rectangle",
+        explanation: "",
+        x: 5,
+        y: 10,
+        labelX: 15,
+        labelY: 18,
+        mode: "investigate",
+      },
+      {
+        id: "red-cross",
+        title: "The red cross",
+        explanation: "",
+        x: 20,
+        y: 25,
+        labelX: 18,
+        labelY: 85,
+        mode: "investigate",
+      },
+    ],
+
+    researchQuestions: [],
+  },
+
   fiji: {
     flagId: "fiji",
 
