@@ -62,6 +62,7 @@ import Link from "next/link";
 import RegionAtFable from "@/components/shared/region-at-fable/RegionAtFable";
 import StudentDiscoveries from "@/components/shared/StudentDiscoveries";
 import { getApprovedResources } from "@/app/lib/getApprovedResources";
+import CultureGalleryPreview from "@/components/shared/culture-gallery/CultureGalleryPreview";
 
 export const dynamic = "force-dynamic";
 
@@ -341,8 +342,8 @@ export default async function SouthAmericaPage() {
 
             <p className="mt-9 max-w-xl text-lg leading-8 text-white/85">
               From sacred Andean landscapes to Afro-Brazilian traditions,
-              discover how belief, identity and community shape life
-              across South America.
+              discover how belief, identity and community shape life across
+              South America.
             </p>
 
             <Link
@@ -356,7 +357,6 @@ export default async function SouthAmericaPage() {
         </div>
       </section>
 
-
       {/* ======================================================
           CULTURE AT FABLE
       ====================================================== */}
@@ -369,7 +369,20 @@ export default async function SouthAmericaPage() {
           <RegionAtFable
             region="south-america"
             regionName="South America"
-            countries={["Argentina", "Bolivia", "Brazil", "Chile", "Colombia", "Ecuador", "Guyana", "Paraguay", "Peru", "Suriname", "Uruguay", "Venezuela"]}
+            countries={[
+              "Argentina",
+              "Bolivia",
+              "Brazil",
+              "Chile",
+              "Colombia",
+              "Ecuador",
+              "Guyana",
+              "Paraguay",
+              "Peru",
+              "Suriname",
+              "Uruguay",
+              "Venezuela",
+            ]}
             theme={{
               background: "#F4E5C4",
               hero: "#B84432",
@@ -679,30 +692,12 @@ export default async function SouthAmericaPage() {
               </p>
             </div>
 
-            <div className="flex min-h-[420px] items-center justify-center border-[3px] border-white/20 bg-white/[0.06] p-8 lg:col-span-7">
-              {/*
-
-              ==================================================
-
-              SHARED CULTURE GALLERY — NOT CONNECTED YET
-
-
-
-              <CultureGallery
-
+            <div className="lg:col-span-7">
+              <CultureGalleryPreview
                 region="south-america"
-
+                regionName="South America"
+                fallbackImage="/images/continents/south-america/countries/peru/cultural-spotlight/taquile-textile-art.jpg"
               />
-
-
-
-              ==================================================
-
-              */}
-
-              <p className="max-w-sm text-center text-sm font-black uppercase tracking-[0.2em] text-white/40">
-                Shared Culture Gallery plugs in here
-              </p>
             </div>
           </div>
         </div>
@@ -867,7 +862,28 @@ export default async function SouthAmericaPage() {
           </p>
 
           <div className="mt-20 border-t border-white/20">
-            {/* INCA DEEP DIVE — NOT CONNECTED YET */}
+            {/* INCA DEEP DIVE */}
+            <Link
+              href="/south-america/deep-dives/inca"
+              className="group grid gap-5 border-b border-white/20 py-10 transition-colors duration-300 hover:bg-white/5 md:grid-cols-[100px_1fr_auto] md:items-center"
+            >
+              <span className="text-5xl font-black text-[#F28C3C]">01</span>
+
+              <div>
+                <p className="text-3xl font-black uppercase transition-colors group-hover:text-[#F28C3C] sm:text-5xl">
+                  The Inca World
+                </p>
+
+                <p className="mt-3 max-w-2xl text-white/55">
+                  Explore an empire built across mountains — its roads,
+                  engineering, communities and legacy.
+                </p>
+              </div>
+
+              <span className="text-4xl text-white/25 transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#F28C3C]">
+                →
+              </span>
+            </Link>
             <div className="grid gap-5 border-b border-white/20 py-10 md:grid-cols-[100px_1fr_auto] md:items-center">
               <span className="text-5xl font-black text-[#F28C3C]">01</span>
 
@@ -954,9 +970,6 @@ export default async function SouthAmericaPage() {
           FINISH
 
       ====================================================== */}
-
-
-
 
       <footer className="relative overflow-hidden bg-[#B84432] px-5 py-20 text-white sm:px-8 lg:px-10">
         <svg
